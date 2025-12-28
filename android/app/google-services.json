@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "938314110163",
+    "project_id": "passport-f4031",
+    "storage_bucket": "passport-f4031.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938314110163:android:7e11fc9520c7f5644a3026",
+        "android_client_info": {
+          "package_name": "com.thearda"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn9QM1Sa_41qZm9mcBLmmo7dlsQlSXrxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

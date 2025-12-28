@@ -1,0 +1,2 @@
+/Users/mohamedyounis/Desktop/arda/passport/android/app/.cxx/RelWithDebInfo/702an1th/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/mohamedyounis/Desktop/arda/passport/android/app/.cxx/RelWithDebInfo/702an1th/arm64-v8a/CMakeFiles/rebuild_cache.dir

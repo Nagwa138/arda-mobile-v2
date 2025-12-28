@@ -1,0 +1,99 @@
+name: PassPort
+description: "A new Flutter project."
+publish_to: "none"
+version: 1.0.6+7
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+dependencies:
+  animated_splash_screen: ^1.1.0
+  carousel_slider: ^5.0.0
+  cupertino_icons: ^1.0.6
+  dartz: ^0.10.1
+  device_preview: ^1.2.0
+  dio: ^5.8.0+1
+  dotted_border: ^2.1.0
+  easy_localization: null
+  equatable: ^2.0.3
+  expandable_page_view: ^1.0.17
+  firebase_analytics: ^11.3.2
+  firebase_core: ^3.5.0
+  firebase_messaging: ^15.1.2
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.3
+
+  flutter_rating_bar: ^4.0.1
+  flutter_screenutil: ^5.8.4
+  flutter_secure_storage: ^9.2.2
+  fluttertoast: ^8.2.6
+  geideapay:
+    git:
+      url: git@github.com:GeideaSolutions/Flutter-SDK.git
+      ref: main
+  get_it: ^8.2.0
+  google_fonts: ^5.1.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  image_picker: ^0.8.8
+  my_fatoorah: ^3.5.0
+  path_provider: ^2.0.12
+  permission_handler: ^12.0.0+1
+  pin_code_fields: null
+  pretty_dio_logger: ^1.4.0
+  rename: ^3.1.0
+  restart_app: null
+  signalr_core: ^1.1.2
+  skeletonizer: ^1.4.3
+  story_view: null
+  table_calendar: ^3.0.5
+  url_launcher: ^6.1.10
+
+dev_dependencies:
+  change_app_package_name: ^1.4.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_test:
+    sdk: flutter
+
+dependency_overrides:
+  intl: ^0.19.0
+  http: ^0.13.5
+  flutter_inappwebview: ^6.1.5
+  flutter_inappwebview_web: ^1.1.2
+  web_socket_channel: ^2.4.3
+  web: ^0.5.0
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/translations/
+    - assets/images/
+    - assets/images/auth/
+    - assets/images/auth/image3.png
+    - assets/images/main/glamp.png
+    - assets/images/auth/phonegif.gif
+    - assets/images/splash/
+    - assets/images/login/
+    - assets/images/landingHome/
+    - assets/images/register/
+    - assets/images/main/
+    - assets/images/profile/
+    - assets/images/landingHome/
+    - assets/images/services/
+    - assets/images/traveller/
+    - assets/images/traveller/home/
+    - assets/images/courser/
+    - assets/images/logo.png
+    - shorebird.yaml
+  fonts:
+    - family: Gotham-Bold
+      fonts:
+        - asset: assets/fonts/Gotham-Bold.otf
+    - family: GE SS Bold
+      fonts:
+        - asset: assets/fonts/GE SS Bold.otf
+    - family: Times
+      fonts:
+        - asset: assets/fonts/times.ttf
