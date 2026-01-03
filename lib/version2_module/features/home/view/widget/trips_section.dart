@@ -54,6 +54,9 @@ class _TripsSectionState extends State<TripsSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header Section with See More
+          // Image.network(
+          //   'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png',
+          // ),
           SectionHeader(
             title: 'Journey Planner',
             subtitle:

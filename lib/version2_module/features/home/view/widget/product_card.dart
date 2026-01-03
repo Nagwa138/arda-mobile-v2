@@ -117,7 +117,9 @@ class ProductImageSection extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              HandmadeBadge(),
+              ProductBadge(
+                text: product.productType!,
+              ),
               if (product.rate != null && product.rate! > 0)
                 ProductRatingBadge(rating: product.rate!),
             ],
@@ -128,9 +130,9 @@ class ProductImageSection extends StatelessWidget {
   }
 }
 
-class HandmadeBadge extends StatelessWidget {
-  const HandmadeBadge({super.key});
-
+class ProductBadge extends StatelessWidget {
+  const ProductBadge({super.key, required this.text});
+ final String text; 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -158,7 +160,7 @@ class HandmadeBadge extends StatelessWidget {
           ),
           SizedBox(width: 5.w),
           Text(
-            'Handmade',
+                text,
             style: TextStyle(
               fontSize: 11.sp,
               fontWeight: FontWeight.w700,

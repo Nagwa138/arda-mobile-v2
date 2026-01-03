@@ -1,10 +1,10 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 
 class PendingActivity extends StatelessWidget {
   const PendingActivity({super.key});
@@ -20,6 +20,49 @@ class PendingActivity extends StatelessWidget {
           if (state is getBookingLoading) {
             return Center(child: CircularProgressIndicator());
           }
+
+          // Check if data is empty
+          final bookingsCount = BookingTravellerCubit.get(context)
+                  .pendingActivity
+                  ?.data
+                  ?.length ??
+              0;
+          if (bookingsCount == 0) {
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.all(40.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      size: 80.sp,
+                      color: Colors.grey[400],
+                    ),
+                    SizedBox(height: 20.h),
+                    Text(
+                      "No Pending Activities",
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      "You don't have any pending activity bookings",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.grey[500],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
           return ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -66,6 +109,14 @@ class PendingActivity extends StatelessWidget {
                                         width: 99.w,
                                         height: 107.h,
                                         fit: BoxFit.fill,
+                                        errorBuilder:
+                                            (context, error, stackTrace) {
+                                          return Icon(
+                                            Icons.error,
+                                            size: 100.sp,
+                                            color: Colors.grey[400],
+                                          );
+                                        },
                                       ),
                                       SizedBox(
                                         width: 20.w,

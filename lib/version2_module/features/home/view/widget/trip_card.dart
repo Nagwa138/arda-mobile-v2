@@ -15,7 +15,7 @@ class TripCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 290.w,
-        margin: EdgeInsets.symmetric(horizontal: 6.w),
+        margin: EdgeInsets.symmetric(horizontal: 6.w,),
         decoration: BoxDecoration(
           color: lightBeige,
           

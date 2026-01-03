@@ -47,26 +47,23 @@ class ProductsListPage extends StatelessWidget {
             ),
           ),
           body: SafeArea(
-            child: GridView.builder(
+            child: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
               physics: const BouncingScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.72,
-                crossAxisSpacing: 14.w,
-                mainAxisSpacing: 14.h,
-              ),
               itemCount: products.length,
               itemBuilder: (context, index) {
-                return ProductCard(
-                  product: products[index],
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      'productDetails1',
-                      arguments: products[index].id,
-                    );
-                  },
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: ProductCard(
+                    product: products[index],
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        'productDetails1',
+                        arguments: products[index].id,
+                      );
+                    },
+                  ),
                 );
               },
             ),

@@ -44,25 +44,27 @@ Widget buildLoadingSection({
 
       SizedBox(height: 16.h),
 
-      // Skeleton List
-      Skeletonizer(
-        enabled: true,
-        child: SizedBox(
-          height: height.h,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.only(
-                  left: index == 0 ? 4.w : 0,
-                  right: 12.w,
-                ),
-                child: skeletonWidget,
-              );
-            },
+      // Skeleton List - wrapped in ClipRect to prevent overflow
+      ClipRect(
+        child: Skeletonizer(
+          enabled: true,
+          child: SizedBox(
+            height: height.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                    left: index == 0 ? 4.w : 0,
+                    right: 12.w,
+                  ),
+                  child: skeletonWidget,
+                );
+              },
+            ),
           ),
         ),
       ),

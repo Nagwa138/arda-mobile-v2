@@ -1,10 +1,10 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 
 class CompleteActivity extends StatelessWidget {
   const CompleteActivity({super.key});
@@ -20,6 +20,38 @@ class CompleteActivity extends StatelessWidget {
           if (state is getBookingLoading) {
             return Center(child: CircularProgressIndicator());
           }
+
+          final bookingsCount = BookingTravellerCubit.get(context)
+                  .completeActivity
+                  ?.data
+                  ?.length ??
+              0;
+          if (bookingsCount == 0) {
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.all(40.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.check_circle_outline,
+                        size: 80.sp, color: Colors.grey[400]),
+                    SizedBox(height: 20.h),
+                    Text("No Completed Activities",
+                        style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey[700])),
+                    SizedBox(height: 8.h),
+                    Text("You haven't completed any activity bookings yet",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 14.sp, color: Colors.grey[500])),
+                  ],
+                ),
+              ),
+            );
+          }
+
           return ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -205,7 +237,8 @@ class CompleteActivity extends StatelessWidget {
                                             backgroundColor:
                                                 WidgetStateProperty.all<Color>(
                                                     white),
-                                            elevation: WidgetStateProperty.all<double>(0.0)),
+                                            elevation:
+                                                WidgetStateProperty.all<double>(0.0)),
                                         onPressed: () {
                                           Navigator.pushNamed(
                                               context, "reviewBooking",

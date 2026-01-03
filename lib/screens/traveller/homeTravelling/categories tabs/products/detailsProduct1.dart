@@ -54,7 +54,7 @@ class ProductDetails1 extends StatelessWidget {
                     : productData == null
                         ? Center(
                             child: Text(
-                              "No product data available",
+                              "No products available",
                               style: TextStyle(fontSize: 16.sp),
                             ),
                           )
@@ -449,32 +449,32 @@ class ProductDetails1 extends StatelessWidget {
 
                                 context.read<CardCubit>().addCard(newCard);
 
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.check_circle,
-                                          color: Colors.white,
-                                        ),
-                                        SizedBox(width: 12.w),
-                                        Text(
-                                          "Product added to cart",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    backgroundColor: accentColor,
-                                    behavior: SnackBarBehavior.floating,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12.r),
-                                    ),
-                                    margin: EdgeInsets.all(16.w),
-                                    duration: const Duration(seconds: 2),
-                                  ),
-                                );
+                                // ScaffoldMessenger.of(context).showSnackBar(
+                                //   SnackBar(
+                                //     content: Row(
+                                //       children: [
+                                //         Icon(
+                                //           Icons.check_circle,
+                                //           color: Colors.white,
+                                //         ),
+                                //         SizedBox(width: 12.w),
+                                //         Text(
+                                //           "Product added to cart",
+                                //           style: TextStyle(
+                                //             fontWeight: FontWeight.w600,
+                                //           ),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //     backgroundColor: accentColor,
+                                //     behavior: SnackBarBehavior.floating,
+                                //     shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(12.r),
+                                //     ),
+                                //     margin: EdgeInsets.all(16.w),
+                                //     duration: const Duration(seconds: 2),
+                                //   ),
+                                // );
                               },
                             ),
                           ),

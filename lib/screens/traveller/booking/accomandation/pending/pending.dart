@@ -20,6 +20,46 @@ class Pending extends StatelessWidget {
           if (state is getBookingLoading) {
             return Center(child: CircularProgressIndicator());
           }
+
+          // Check if data is empty
+          final bookingsCount =
+              BookingTravellerCubit.get(context).pending?.data?.length ?? 0;
+          if (bookingsCount == 0) {
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.all(40.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      size: 80.sp,
+                      color: Colors.grey[400],
+                    ),
+                    SizedBox(height: 20.h),
+                    Text(
+                      "No Pending Bookings",
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      "You don't have any pending bookings at the moment",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.grey[500],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
           return ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,

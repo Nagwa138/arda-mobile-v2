@@ -44,14 +44,18 @@ class DetailsPendingActivity extends StatelessWidget {
                           child: Stack(
                             children: [
                               Image.network(
-                                  BookingTravellerCubit.get(context)
-                                      .activityModelDetails!
-                                      .data!
-                                      .image
-                                      .toString(),
-                                  width: double.infinity.w,
-                                  height: 300.h,
-                                  fit: BoxFit.cover),
+                                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png',
+                                width: double.infinity.w,
+                                height: 300.h,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Icon(
+                                    Icons.error,
+                                    size: 100.sp,
+                                    color: Colors.grey[400],
+                                  );
+                                },
+                              ),
                               Padding(
                                 padding: EdgeInsets.only(
                                     top: 20.h, right: 10.w, left: 10.w),
@@ -61,7 +65,7 @@ class DetailsPendingActivity extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       borderRadius:
                                           BorderRadiusDirectional.circular(
-                                              27.r),
+                                              10.r),
                                       color: appBackgroundColor),
                                   child: Center(
                                     child: Text(

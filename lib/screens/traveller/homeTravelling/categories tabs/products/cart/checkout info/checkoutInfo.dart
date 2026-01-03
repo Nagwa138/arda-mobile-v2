@@ -1,15 +1,14 @@
-
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/models/traveller/products/card_model.dart';
 import 'package:PassPort/screens/add%20service/addServices.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_state.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_button.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CheckoutInfo extends StatelessWidget {
   const CheckoutInfo({super.key});
@@ -105,12 +104,12 @@ class CheckoutInfo extends StatelessWidget {
                     height: 2.5.h,
                   ),
                 ),
-                textFormFildBuilder(
-                  context,
-                  title: "register.governate".tr(),
-                  hint: "Ex. Cairo",
-                  controller: ProductCubit.get(context).government,
-                ),
+                // textFormFildBuilder(
+                //   context,
+                //   title: "register.governate".tr(),
+                //   hint: "Ex. Cairo",
+                //   controller: ProductCubit.get(context).government,
+                // ),
                 textFormFildBuilder(
                   context,
                   title: "addService.1.city".tr(),
@@ -133,7 +132,63 @@ class CheckoutInfo extends StatelessWidget {
                 SizedBox(height: 20.h),
                 CustomButton(
                   onPressed: () async {
-                    //Navigator.pushNamed(context, 'payment');
+                    // Validate phone number
+                    if (ProductCubit.get(context)
+                        .phoneNumberOrder
+                        .text
+                        .trim()
+                        .isEmpty) {
+                      Fluttertoast.showToast(
+                        msg: "Please enter phone number",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                      );
+                      return;
+                    }
+
+                    // Validate city
+                    if (ProductCubit.get(context).city.text.trim().isEmpty) {
+                      Fluttertoast.showToast(
+                        msg: "Please enter city",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                      );
+                      return;
+                    }
+
+                    // Validate street
+                    if (ProductCubit.get(context).street.text.trim().isEmpty) {
+                      Fluttertoast.showToast(
+                        msg: "Please enter street address",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                      );
+                      return;
+                    }
+
+                    // Validate building number
+                    if (ProductCubit.get(context)
+                        .buildNumber
+                        .text
+                        .trim()
+                        .isEmpty) {
+                      Fluttertoast.showToast(
+                        msg: "Please enter building number",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                      );
+                      return;
+                    }
+
+                    // All validations passed, proceed with order
                     ProductCubit.get(context).madeOrder(cards);
                   },
                   text: 'booking.Continue'.tr(),

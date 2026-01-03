@@ -1,10 +1,10 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 
 class UpcomingActivity extends StatelessWidget {
   const UpcomingActivity({super.key});
@@ -20,6 +20,38 @@ class UpcomingActivity extends StatelessWidget {
           if (state is getBookingLoading) {
             return Center(child: CircularProgressIndicator());
           }
+
+          final bookingsCount = BookingTravellerCubit.get(context)
+                  .upComingActivity
+                  ?.data
+                  ?.length ??
+              0;
+          if (bookingsCount == 0) {
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.all(40.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.upcoming_outlined,
+                        size: 80.sp, color: Colors.grey[400]),
+                    SizedBox(height: 20.h),
+                    Text("No Upcoming Activities",
+                        style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey[700])),
+                    SizedBox(height: 8.h),
+                    Text("You don't have any upcoming activity bookings",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 14.sp, color: Colors.grey[500])),
+                  ],
+                ),
+              ),
+            );
+          }
+
           return ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -250,15 +282,15 @@ class UpcomingActivity extends StatelessWidget {
                                                             BorderRadius.circular(
                                                                 10.0),
                                                         side: BorderSide(
-                                                            color: accentColor))),
+                                                            color:
+                                                                accentColor))),
                                                 foregroundColor:
                                                     WidgetStateProperty.all<Color>(
                                                         Colors.white),
                                                 backgroundColor:
                                                     WidgetStateProperty.all<Color>(
                                                         white),
-                                                elevation:
-                                                    WidgetStateProperty.all<double>(0.0)),
+                                                elevation: WidgetStateProperty.all<double>(0.0)),
                                             onPressed: () {
                                               Navigator.pushNamed(
                                                   context, "cancelReservation",

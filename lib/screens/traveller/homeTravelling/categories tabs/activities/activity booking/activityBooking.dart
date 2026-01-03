@@ -1,12 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_button.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class ActivityBooking extends StatelessWidget {
@@ -112,14 +112,14 @@ class ActivityBooking extends StatelessWidget {
                     SizedBox(height: 10.h),
 
                     // Phone Number Field
-                    textFormFildBuilder(
-                      context,
-                      title: "Phone Number",
-                      hint: "Enter phone number",
-                      inputType: TextInputType.phone,
-                      controller:
-                          BookingTravellerCubit.get(context).phoneActivity,
-                    ),
+                    // textFormFildBuilder(
+                    //   context,
+                    //   title: "Phone Number",
+                    //   hint: "Enter phone number",
+                    //   inputType: TextInputType.phone,
+                    //   controller:
+                    //       BookingTravellerCubit.get(context).phoneActivity,
+                    // ),
 
                     // Activity Date Field
                     Padding(
@@ -219,14 +219,14 @@ class ActivityBooking extends StatelessWidget {
                           BookingTravellerCubit.get(context).languagesActivity,
                     ),
 
-                    roomNumBuilder(
-                        function: context
-                            .read<AddServiceCubit>()
-                            .changeSingleRoomNumActvity,
-                        number: context
-                            .read<AddServiceCubit>()
-                            .singleRoomNumActvity,
-                        title: 'addTripe.number'.tr()),
+                    textFormFildBuilder(
+                      context,
+                      title: 'addTripe.number'.tr(),
+                      hint: 'Enter number of guests',
+                      inputType: TextInputType.number,
+                      controller: BookingTravellerCubit.get(context)
+                          .numOfGuestsActivity,
+                    ),
                     SizedBox(height: 30.h),
                   ],
                 ),
@@ -237,19 +237,6 @@ class ActivityBooking extends StatelessWidget {
                     text: 'Continue',
                     onPressed: () {
                       // Validation
-                      if (BookingTravellerCubit.get(context)
-                          .phoneActivity
-                          .text
-                          .isEmpty) {
-                        Fluttertoast.showToast(
-                          msg: "Please enter phone number",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
-                        );
-                        return;
-                      }
                       if (BookingTravellerCubit.get(context)
                           .activityDate
                           .text
@@ -264,17 +251,39 @@ class ActivityBooking extends StatelessWidget {
                         return;
                       }
 
+                      // Validate number of guests
+                      final numGuestsText = BookingTravellerCubit.get(context)
+                          .numOfGuestsActivity
+                          .text
+                          .trim();
+                      if (numGuestsText.isEmpty) {
+                        Fluttertoast.showToast(
+                          msg: "Please enter number of guests",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                        );
+                        return;
+                      }
+
+                      final numGuests = int.tryParse(numGuestsText);
+                      if (numGuests == null || numGuests <= 0) {
+                        Fluttertoast.showToast(
+                          msg: "Number of guests must be greater than 0",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                        );
+                        return;
+                      }
+
                       BookingTravellerCubit.get(context).createBookingActivity(
                         activityId: arguments['id'],
-                        numberOfGuest: context
-                            .read<AddServiceCubit>()
-                            .singleRoomNumActvity,
+                        numberOfGuest: numGuests,
                         activityDate: BookingTravellerCubit.get(context)
                             .activityDate
-                            .text
-                            .trim(),
-                        phone: BookingTravellerCubit.get(context)
-                            .phoneActivity
                             .text
                             .trim(),
                         healthLimitations: BookingTravellerCubit.get(context)

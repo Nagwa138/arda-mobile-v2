@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
           navigatorKey: navigatorKey,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
-
+          title: 'THE ARD',
           theme: ThemeData(
             scaffoldBackgroundColor: appBackgroundColor,
             appBarTheme: AppBarTheme(

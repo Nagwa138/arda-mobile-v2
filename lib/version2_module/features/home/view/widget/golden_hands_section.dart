@@ -141,38 +141,37 @@ class GoldenHandsSection extends StatelessWidget {
 
           SizedBox(height: 20.h),
 
-          // Skeleton Grid - Fixed dummy data
-          Skeletonizer(
-            enabled: true,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.72,
-                  crossAxisSpacing: 14.w,
-                  mainAxisSpacing: 14.h,
+          // Skeleton Horizontal List - matching the actual layout, wrapped in ClipRect
+          ClipRect(
+            child: Skeletonizer(
+              enabled: true,
+              child: SizedBox(
+                height: 370.h,
+                child: ListView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.only(right: 16.w),
+                      child: ProductCard(
+                        product: product_model.Data(
+                          productName: 'Loading Product',
+                          price: 100,
+                          rate: 4.5,
+                          store: 'Store Name',
+                          image: '', // Empty string instead of null
+                          productType: 'Type',
+                          isFav: false,
+                          avilablePieces: 10,
+                          amount: 1,
+                          id: 'loading-$index',
+                        ),
+                      ),
+                    );
+                  },
                 ),
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  // Create dummy product with proper String image
-                  return ProductCard(
-                    product: product_model.Data(
-                      productName: 'Loading Product',
-                      price: 100,
-                      rate: 4.5,
-                      store: 'Store Name',
-                      image: '', // Empty string instead of null
-                      productType: 'Type',
-                      isFav: false,
-                      avilablePieces: 10,
-                      amount: 1,
-                      id: 'loading-$index',
-                    ),
-                  );
-                },
               ),
             ),
           ),

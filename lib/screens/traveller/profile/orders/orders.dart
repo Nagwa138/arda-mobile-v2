@@ -93,7 +93,8 @@ class Orders extends StatelessWidget {
                             ),
                           )
                         : Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 24.w),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 16.h),
                             child: ListView.separated(
                               itemCount: ProductCubit.get(context)
                                   .getAllOrder!

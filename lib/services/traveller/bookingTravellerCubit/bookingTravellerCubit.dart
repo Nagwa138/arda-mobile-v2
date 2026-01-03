@@ -2,25 +2,25 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/models/traveller/booking/Room/booking_Room_Model.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:http/http.dart' as http;
 import 'package:PassPort/consts/api/api.dart';
 import 'package:PassPort/consts/api/apiMethod/api_method.dart';
-import 'package:PassPort/models/traveller/booking/accomandtion/detais/bookingDetails.dart';
+import 'package:PassPort/models/traveller/booking/Room/booking_Room_Model.dart';
 import 'package:PassPort/models/traveller/booking/accomandtion/bookingaccomandation_model.dart';
+import 'package:PassPort/models/traveller/booking/accomandtion/detais/bookingDetails.dart';
 import 'package:PassPort/models/traveller/booking/activity/bookingactivity_model.dart';
 import 'package:PassPort/models/traveller/booking/activity/details/bookingdetaisactivity.dart';
 import 'package:PassPort/models/traveller/booking/trips/bookingtrip_model.dart';
 import 'package:PassPort/models/traveller/booking/trips/details/detailstripmodel.dart';
 import 'package:PassPort/models/traveller/rooms/getAllroommodel.dart';
 import 'package:PassPort/models/traveller/rooms/roomlist.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geideapay/geideapay.dart';
+import 'package:http/http.dart' as http;
 
 import 'bookingTravellerStates.dart';
-import 'package:geideapay/geideapay.dart';
 
 class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
   BookingTravellerCubit() : super(BookingTravellerInitial());
@@ -70,6 +70,8 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
 
   /// booking trips
   TextEditingController specialRequestsTrip = TextEditingController();
+  TextEditingController numOfPersonsTrip = TextEditingController();
+  TextEditingController numOfChildrenTrip = TextEditingController();
 
   /// booking Activity
   TextEditingController phoneActivity = TextEditingController();
@@ -78,6 +80,7 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
   TextEditingController experienceInActivity = TextEditingController();
   TextEditingController specialRequestsActivity = TextEditingController();
   TextEditingController languagesActivity = TextEditingController();
+  TextEditingController numOfGuestsActivity = TextEditingController();
 
   /// notification
   TextEditingController titleNotification = TextEditingController();
@@ -336,10 +339,12 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
               onPrimary: Colors.white,
               onSurface: Colors.black,
               surface: appBackgroundColor,
-            ), dialogTheme: DialogThemeData(backgroundColor: appBackgroundColor),
+            ),
+            dialogTheme: DialogThemeData(backgroundColor: appBackgroundColor),
           ),
           child: MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: TextScaler.linear(1.0)),
             child: child!,
           ),
         );
@@ -612,7 +617,7 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
     required String activityId,
     required int numberOfGuest,
     required String activityDate,
-    required String phone,
+    // required String phone,
     required String healthLimitations,
     required String experienceInActivity,
     required String specialRequests,
@@ -623,7 +628,7 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
 
     // Additional business logic validation
     print('🎯 === ACTIVITY BOOKING VALIDATION ===');
-    print('📱 Phone: "$phone" (length: ${phone.length})');
+    // print('📱 Phone: "$phone" (length: ${phone.length})');
     print('🗓️ Activity Date: "$activityDate"');
     print('👥 Number of Guests: $numberOfGuest');
     print('🏃 Activity ID: "$activityId"');
@@ -633,7 +638,7 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
     try {
       // Create JSON request body
       Map<String, dynamic> requestBody = {
-        'phone': phone,
+        // 'phone': phone,
         'numOfPersons': numberOfGuest,
         'activityId': activityId,
         'activityDate': activityDate,

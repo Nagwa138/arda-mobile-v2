@@ -21,6 +21,45 @@ class UpComing extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
 
+          // Check if data is empty
+          final bookingsCount =
+              BookingTravellerCubit.get(context).upComing?.data?.length ?? 0;
+          if (bookingsCount == 0) {
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.all(40.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.upcoming_outlined,
+                      size: 80.sp,
+                      color: Colors.grey[400],
+                    ),
+                    SizedBox(height: 20.h),
+                    Text(
+                      "No Upcoming Bookings",
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      "You don't have any upcoming bookings",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.grey[500],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
           return ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,

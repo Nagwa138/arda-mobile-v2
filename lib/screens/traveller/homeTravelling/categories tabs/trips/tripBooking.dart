@@ -48,7 +48,7 @@ class TripBooking extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.pop(context);
                 Fluttertoast.showToast(
-                    msg: "Successful",
+                    msg: 'Booking created successfully',
                     toastLength: Toast.LENGTH_LONG,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
@@ -58,7 +58,7 @@ class TripBooking extends StatelessWidget {
               } else if (state is CreateBookingError) {
                 Navigator.pop(context);
                 Fluttertoast.showToast(
-                    msg: "Error",
+                    msg: state.error,
                     toastLength: Toast.LENGTH_LONG,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
@@ -181,25 +181,31 @@ class TripBooking extends StatelessWidget {
                               child: Column(
                                 children: [
                                   // Number of Persons
-                                  roomNumBuilder(
-                                      function: context
-                                          .read<AddServiceCubit>()
-                                          .changeSingleRoomNum,
-                                      number: context
-                                          .read<AddServiceCubit>()
-                                          .singleRoomNum,
-                                      title: 'addTripe.number'.tr()),
+                                  textFormFieldTripe(context,
+                                      title: 'addTripe.number'.tr(),
+                                      hint: 'Enter number of persons',
+                                      inputType: TextInputType.number,
+                                      controller:
+                                          BookingTravellerCubit.get(context)
+                                              .numOfPersonsTrip,
+                                      mixLine: 1,
+                                      minLine: 1,
+                                      validation: () {}),
 
-                                  Divider(height: 20.h),
+                                  SizedBox(height: 10.h),
 
                                   // Number of Children
-                                  roomNumBuilder(
-                                      function: context
-                                          .read<AddServiceCubit>()
-                                          .changeSingleRoomNumUpdateChild,
-                                      number:
-                                          context.read<AddServiceCubit>().child,
-                                      title: 'addTripe.chieldern'.tr()),
+                                  textFormFieldTripe(context,
+                                      title: 'addTripe.chieldern'.tr(),
+                                      hint: 'Enter number of children',
+                                      inputType: TextInputType.number,
+                                      controller:
+                                          BookingTravellerCubit.get(context)
+                                              .numOfChildrenTrip,
+                                      mixLine: 1,
+                                      minLine: 1,
+                                      validation: () {},
+                                      isRequired: false),
                                 ],
                               ),
                             ),
@@ -226,7 +232,7 @@ class TripBooking extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                           horizontal: 20.w, vertical: 20.h),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: appBackgroundColor,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withValues(alpha: 0.1),
@@ -263,44 +269,94 @@ class TripBooking extends StatelessWidget {
                                       .phone
                                       .text
                                       .trim()
-                                      .isEmpty ||
-                                  context
-                                          .read<AddServiceCubit>()
-                                          .singleRoomNum ==
-                                      0) {
+                                      .isEmpty) {
                                 Fluttertoast.showToast(
-                                    msg: "please confirm from data entered",
+                                    msg: "Please enter name and phone number",
                                     toastLength: Toast.LENGTH_LONG,
                                     gravity: ToastGravity.CENTER,
                                     timeInSecForIosWeb: 1,
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
-                              } else {
-                                print(arguments['id']);
-                                BookingTravellerCubit.get(context)
-                                    .createBookingTrip(
-                                  tripId: arguments['id'],
-                                  numOfPersons: context
-                                      .read<AddServiceCubit>()
-                                      .singleRoomNum,
-                                  name: BookingTravellerCubit.get(context)
-                                      .name
-                                      .text
-                                      .trim(),
-                                  phone: BookingTravellerCubit.get(context)
-                                      .phone
-                                      .text
-                                      .trim(),
-                                  numberOfChildren:
-                                      context.read<AddServiceCubit>().child,
-                                  specialRequests:
-                                      BookingTravellerCubit.get(context)
-                                          .specialRequestsTrip
-                                          .text
-                                          .trim(),
-                                );
+                                return;
                               }
+
+                              // Validate number of persons
+                              final numPersonsText =
+                                  BookingTravellerCubit.get(context)
+                                      .numOfPersonsTrip
+                                      .text
+                                      .trim();
+                              if (numPersonsText.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg: "Please enter number of persons",
+                                    toastLength: Toast.LENGTH_LONG,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                return;
+                              }
+
+                              final numPersons = int.tryParse(numPersonsText);
+                              if (numPersons == null || numPersons <= 0) {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        "Number of persons must be greater than 0",
+                                    toastLength: Toast.LENGTH_LONG,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                return;
+                              }
+
+                              // Validate number of children
+                              final numChildrenText =
+                                  BookingTravellerCubit.get(context)
+                                      .numOfChildrenTrip
+                                      .text
+                                      .trim();
+                              int numChildren = 0;
+                              if (numChildrenText.isNotEmpty) {
+                                numChildren =
+                                    int.tryParse(numChildrenText) ?? 0;
+                                if (numChildren < 0) {
+                                  Fluttertoast.showToast(
+                                      msg:
+                                          "Number of children cannot be negative",
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                  return;
+                                }
+                              }
+
+                              print(arguments['id']);
+                              BookingTravellerCubit.get(context)
+                                  .createBookingTrip(
+                                tripId: arguments['id'],
+                                numOfPersons: numPersons,
+                                name: BookingTravellerCubit.get(context)
+                                    .name
+                                    .text
+                                    .trim(),
+                                phone: BookingTravellerCubit.get(context)
+                                    .phone
+                                    .text
+                                    .trim(),
+                                numberOfChildren: numChildren,
+                                specialRequests:
+                                    BookingTravellerCubit.get(context)
+                                        .specialRequestsTrip
+                                        .text
+                                        .trim(),
+                              );
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

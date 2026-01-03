@@ -1,11 +1,11 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/customButton/customButton.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/widgets/customButton/customButton.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CancelActivity extends StatelessWidget {
@@ -48,6 +48,36 @@ class CancelActivity extends StatelessWidget {
           if (state is getBookingLoading) {
             return Center(child: CircularProgressIndicator());
           }
+
+          final bookingsCount =
+              BookingTravellerCubit.get(context).cancelActivity?.data?.length ??
+                  0;
+          if (bookingsCount == 0) {
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.all(40.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.cancel_outlined,
+                        size: 80.sp, color: Colors.grey[400]),
+                    SizedBox(height: 20.h),
+                    Text("No Cancelled Activities",
+                        style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey[700])),
+                    SizedBox(height: 8.h),
+                    Text("You don't have any cancelled activity bookings",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 14.sp, color: Colors.grey[500])),
+                  ],
+                ),
+              ),
+            );
+          }
+
           return ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
