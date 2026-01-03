@@ -83,7 +83,7 @@ class ActivitiesSection extends StatelessWidget {
         return buildLoadingSection(
           title: 'Local Adventures',
           subtitle: '',
-          height: 300,
+          height: 390,
           skeletonWidget: ActivityCard(activity: activity_model.Data()),
         );
       },

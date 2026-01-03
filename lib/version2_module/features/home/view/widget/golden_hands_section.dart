@@ -139,14 +139,14 @@ class GoldenHandsSection extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 20.h),
+          SizedBox(height: 10.h),
 
           // Skeleton Horizontal List - matching the actual layout, wrapped in ClipRect
           ClipRect(
             child: Skeletonizer(
               enabled: true,
               child: SizedBox(
-                height: 370.h,
+                height: 380.h,
                 child: ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   scrollDirection: Axis.horizontal,
