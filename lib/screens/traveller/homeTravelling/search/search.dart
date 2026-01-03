@@ -1,14 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/cart/empty_Cart.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/screens/traveller/homeTravelling/cardBuilder2/cardBuilder2.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/accomadationType_cubit/accomadtion_type_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/accomadationType_cubit/acommedtion_type_state.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Serach extends StatelessWidget {
   const Serach({super.key});
@@ -24,180 +21,202 @@ class Serach extends StatelessWidget {
           final hasSearchText = cubit.searchAccomandtion.text.trim().isNotEmpty;
           final resultsCount = cubit.filtertionModel?.data?.length ?? 0;
 
-          return Scaffold(
-            backgroundColor: backgroundColor,
-            body: SafeArea(
-              child: Column(
-                children: [
-                  // Modern Search Header
-                  Container(
-                    padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 20.h),
-                    decoration: BoxDecoration(
-                      color: backgroundColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: accentColor.withOpacity(0.05),
-                          blurRadius: 10,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Back button and title row
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () => Navigator.pop(context),
-                              child: Container(
-                                padding: EdgeInsets.all(8.w),
-                                decoration: BoxDecoration(
-                                  color: accentColor.withOpacity(0.08),
-                                  borderRadius: BorderRadius.circular(12.r),
-                                ),
-                                child: Icon(
-                                  Icons.arrow_back_ios_new_rounded,
-                                  color: accentColor,
-                                  size: 20.sp,
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 16.w),
-                            Expanded(
-                              child: Text(
-                                'Search',
-                                style: TextStyle(
-                                  color: accentColor,
-                                  fontSize: 24.sp,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
+          return Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/background.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Scaffold(
+                backgroundColor: Colors.transparent,
+                body: SafeArea(
+                  child: Column(
+                    children: [
+                      // Modern Search Header
+                      Container(
+                        padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 20.h),
+                        decoration: BoxDecoration(
+                          color: backgroundColor,
+                          boxShadow: [
+                            BoxShadow(
+                              color: accentColor.withValues(alpha: 0.05),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
                             ),
                           ],
                         ),
-
-                        SizedBox(height: 20.h),
-
-                        // Enhanced Search Bar
-                        Hero(
-                          tag: 'search_bar',
-                          child: Material(
-                            color: Colors.transparent,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: backgroundColor,
-                                borderRadius: BorderRadius.circular(16.r),
-                                border: Border.all(
-                                  color: accentColor.withOpacity(0.15),
-                                  width: 1.5.w,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: accentColor.withOpacity(0.08),
-                                    blurRadius: 12,
-                                    offset: Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              child: TextFormField(
-                                controller: cubit.searchAccomandtion,
-                                autofocus: true,
-                                style: TextStyle(
-                                  color: accentColor,
-                                  fontSize: 15.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                onChanged: (value) {
-                                  cubit.getFiltertion();
-                                },
-                                onFieldSubmitted: (value) {
-                                  cubit.getFiltertion();
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Search destinations, hotels...",
-                                  hintStyle: TextStyle(
-                                    color: accentColor.withOpacity(0.4),
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  prefixIcon: Padding(
-                                    padding: EdgeInsets.all(12.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Back button and title row
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () => Navigator.pop(context),
+                                  child: Container(
+                                    padding: EdgeInsets.all(8.w),
+                                    decoration: BoxDecoration(
+                                      color:
+                                          accentColor.withValues(alpha: 0.08),
+                                      borderRadius: BorderRadius.circular(12.r),
+                                    ),
                                     child: Icon(
-                                      Icons.search_rounded,
-                                      color: accentColor.withOpacity(0.5),
-                                      size: 24.sp,
+                                      Icons.arrow_back_ios_new_rounded,
+                                      color: accentColor,
+                                      size: 20.sp,
                                     ),
                                   ),
-                                  suffixIcon: hasSearchText
-                                      ? GestureDetector(
-                                          onTap: () {
-                                            cubit.searchAccomandtion.clear();
-                                            cubit.getFiltertion();
-                                          },
-                                          child: Padding(
-                                            padding: EdgeInsets.all(12.w),
-                                            child: Icon(
-                                              Icons.close_rounded,
-                                              color:
-                                                  accentColor.withOpacity(0.5),
-                                              size: 20.sp,
-                                            ),
-                                          ),
-                                        )
-                                      : null,
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20.w,
-                                    vertical: 16.h,
+                                ),
+                                SizedBox(width: 16.w),
+                                Expanded(
+                                  child: Text(
+                                    'Search',
+                                    style: TextStyle(
+                                      color: accentColor,
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
-                                  filled: true,
-                                  fillColor: backgroundColor,
-                                  border: OutlineInputBorder(
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: 20.h),
+
+                            // Enhanced Search Bar
+                            Hero(
+                              tag: 'search_bar',
+                              child: Material(
+                                color: Colors.transparent,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: backgroundColor,
                                     borderRadius: BorderRadius.circular(16.r),
-                                    borderSide: BorderSide.none,
+                                    border: Border.all(
+                                      color:
+                                          accentColor.withValues(alpha: 0.15),
+                                      width: 1.5.w,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color:
+                                            accentColor.withValues(alpha: 0.08),
+                                        blurRadius: 12,
+                                        offset: Offset(0, 4),
+                                      ),
+                                    ],
                                   ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(16.r),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(16.r),
-                                    borderSide: BorderSide.none,
+                                  child: TextFormField(
+                                    controller: cubit.searchAccomandtion,
+                                    autofocus: true,
+                                    style: TextStyle(
+                                      color: accentColor,
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    onChanged: (value) {
+                                      cubit.getFiltertion();
+                                    },
+                                    onFieldSubmitted: (value) {
+                                      cubit.getFiltertion();
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText:
+                                          "Search destinations, hotels...",
+                                      hintStyle: TextStyle(
+                                        color:
+                                            accentColor.withValues(alpha: 0.4),
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      prefixIcon: Padding(
+                                        padding: EdgeInsets.all(12.w),
+                                        child: Icon(
+                                          Icons.search_rounded,
+                                          color: accentColor.withValues(
+                                              alpha: 0.5),
+                                          size: 24.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: hasSearchText
+                                          ? GestureDetector(
+                                              onTap: () {
+                                                cubit.searchAccomandtion
+                                                    .clear();
+                                                cubit.getFiltertion();
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.all(12.w),
+                                                child: Icon(
+                                                  Icons.close_rounded,
+                                                  color: accentColor.withValues(
+                                                      alpha: 0.5),
+                                                  size: 20.sp,
+                                                ),
+                                              ),
+                                            )
+                                          : null,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 20.w,
+                                        vertical: 16.h,
+                                      ),
+                                      filled: true,
+                                      fillColor: backgroundColor,
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(16.r),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(16.r),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(16.r),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
 
-                        // Results count
-                        if (hasSearchText && resultsCount > 0)
-                          Padding(
-                            padding: EdgeInsets.only(top: 12.h, left: 4.w),
-                            child: Text(
-                              '$resultsCount ${resultsCount == 1 ? 'result' : 'results'} found',
-                              style: TextStyle(
-                                color: accentColor.withOpacity(0.6),
-                                fontSize: 13.sp,
-                                fontWeight: FontWeight.w500,
+                            // Results count
+                            if (hasSearchText && resultsCount > 0)
+                              Padding(
+                                padding: EdgeInsets.only(top: 12.h, left: 4.w),
+                                child: Text(
+                                  '$resultsCount ${resultsCount == 1 ? 'result' : 'results'} found',
+                                  style: TextStyle(
+                                    color: accentColor.withValues(alpha: 0.6),
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
+                          ],
+                        ),
+                      ),
 
-                  // Search Results or Empty State
-                  Expanded(
-                    child: !hasSearchText
-                        ? _buildEmptySearchState(context)
-                        : resultsCount == 0
-                            ? _buildNoResultsState(context)
-                            : _buildSearchResults(context, cubit),
+                      // Search Results or Empty State
+                      Expanded(
+                        child: !hasSearchText
+                            ? _buildEmptySearchState(context)
+                            : resultsCount == 0
+                                ? _buildNoResultsState(context)
+                                : _buildSearchResults(context, cubit),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           );
         },
       ),
@@ -215,13 +234,13 @@ class Serach extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(32.w),
               decoration: BoxDecoration(
-                color: accentColor.withOpacity(0.08),
+                color: accentColor.withValues(alpha: 0.08),
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 Icons.search_rounded,
                 size: 64.sp,
-                color: accentColor.withOpacity(0.4),
+                color: accentColor.withValues(alpha: 0.4),
               ),
             ),
             SizedBox(height: 24.h),
@@ -239,7 +258,7 @@ class Serach extends StatelessWidget {
               "Start typing to discover amazing places",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: accentColor.withOpacity(0.5),
+                color: accentColor.withValues(alpha: 0.5),
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w400,
               ),
@@ -277,7 +296,7 @@ class Serach extends StatelessWidget {
               "Try different keywords or check your spelling",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: accentColor.withOpacity(0.5),
+                color: accentColor.withValues(alpha: 0.5),
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w400,
               ),

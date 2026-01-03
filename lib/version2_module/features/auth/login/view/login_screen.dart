@@ -1,8 +1,7 @@
-import 'package:PassPort/version2_module/core/const/app_colors.dart';
-import 'package:PassPort/version2_module/core/widgets/custom_button.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_text_field.dart';
 import 'package:PassPort/version2_module/features/auth/login/view_model/login_cubit.dart';
 import 'package:PassPort/version2_module/features/auth/login/view_model/login_state.dart';
+import 'package:PassPort/version2_module/features/auth/signup/view/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -96,9 +95,22 @@ class LoginScreen extends StatelessWidget {
           final cubit = LoginCubit.get(context);
 
           return Scaffold(
-            backgroundColor: AppColors.backgroundColor,
-            body: SafeArea(
-              child: SingleChildScrollView(
+              body: Stack(
+            children: [
+              // Background Image
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/background.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+
+              SafeArea(
+                  child: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.w),
                   child: Form(
@@ -108,28 +120,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: 20.h),
 
-                        // Logo with subtle animation container
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: accentColor.withOpacity(0.08),
-                                  blurRadius: 20,
-                                  offset: Offset(0, 4),
-                                ),
-                              ],
-                            ),
-                            child: Image.asset(
-                              'assets/images/ard_logo.png',
-                              width: 60.w,
-                              height: 60.w,
-                            ),
-                          ),
-                        ),
+                        CustomLogo(),
 
                         SizedBox(height: 40.h),
 
@@ -198,7 +189,7 @@ class LoginScreen extends StatelessWidget {
                               cubit.isPasswordVisible
                                   ? Icons.visibility_rounded
                                   : Icons.visibility_off_rounded,
-                              color: accentColor.withOpacity(0.5),
+                              color: accentColor.withValues(alpha: 0.5),
                             ),
                             onPressed: cubit.togglePasswordVisibility,
                           ),
@@ -238,7 +229,7 @@ class LoginScreen extends StatelessWidget {
                             ? Container(
                                 height: 56.h,
                                 decoration: BoxDecoration(
-                                  color: accentColor.withOpacity(0.1),
+                                  color: accentColor.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(16.r),
                                 ),
                                 child: Center(
@@ -266,7 +257,7 @@ class LoginScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(16.r),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: accentColor.withOpacity(0.3),
+                                      color: accentColor.withValues(alpha: 0.3),
                                       blurRadius: 20,
                                       offset: Offset(0, 10),
                                     ),
@@ -382,9 +373,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-            ),
-          );
+              )),
+            ],
+          ));
         },
       ),
     );

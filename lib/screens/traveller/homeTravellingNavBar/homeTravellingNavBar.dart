@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/homeTravellerNavBarCubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/homeTravellerNavBarStates.dart';

@@ -1,9 +1,6 @@
 import 'dart:io';
-import 'package:PassPort/models/partner/ServicesModel.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
 import '../../data/repositories/service_submission_repository_impl.dart';
-import '../../data/datasources/service_submission_remote_datasource.dart';
 
 part 'service_submission_state.dart';
 

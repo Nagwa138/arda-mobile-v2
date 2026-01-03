@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -10,7 +9,6 @@ import 'package:geideapay/api/response/order_api_response.dart';
 import 'package:geideapay/common/geidea.dart';
 import 'package:geideapay/common/server_environments.dart';
 import 'package:geideapay/widgets/checkout/checkout_options.dart';
-import 'package:my_fatoorah/my_fatoorah.dart';
 import 'package:PassPort/consts/api/api.dart';
 import 'package:PassPort/consts/api/apiMethod/api_method.dart';
 

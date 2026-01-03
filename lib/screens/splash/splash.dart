@@ -1,23 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:PassPort/version2_module/core/const/app_colors.dart';
-import 'package:PassPort/version2_module/core/enums/user_type.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/widgets/customText.dart';
-import 'package:PassPort/main.dart';
-import 'package:PassPort/screens/auth/registration/register.dart';
-import 'package:PassPort/screens/onBoarding/onboarding.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:PassPort/screens/partner/landinHome/landingHome.dart';
-import 'package:PassPort/screens/traveller/homeTravellingNavBar/homeTravellingNavBar.dart';
-import 'package:PassPort/consts/api/apiMethod/api_method.dart';
 import 'package:PassPort/consts/api/api.dart';
+import 'package:PassPort/consts/api/apiMethod/api_method.dart';
+import 'package:PassPort/main.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final storage = new FlutterSecureStorage();
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -76,7 +64,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
       }
     });
 
-    Timer(const Duration(seconds: 5), () async {
+    Timer(const Duration(seconds: 4), () async {
       _animationController.stop();
       await _handleNavigation();
     });
@@ -133,7 +121,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
             print(
                 'DEBUG: Partner is active (status: 0), calling _navigateBasedOnUserType');
             _navigateBasedOnUserType(userTypeFromApi);
-          } else  {
+          } else {
             print(
                 'DEBUG: Partner is not active (status: $generalStatus), navigating to traveller');
             Navigator.pushReplacementNamed(context, 'travellerNavBar');
@@ -255,46 +243,42 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey,
-        body: Center(
-          child: Stack(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.backgroundColor,
-                  // image: DecorationImage(
-                  //   image: AssetImage(
-                  //       "assets/images/splash/photo_2025-06-26_21-30-33.jpg"),
-                  //   fit: BoxFit.cover,
-                  // ),
+        body: Stack(
+          children: [
+            // Background image
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/splash_background3.jpeg"),
+                  fit: BoxFit.cover,
                 ),
               ),
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, 'login');
-                      },
-                      child: _showLogo
-                          ? FadeTransition(
-                              opacity: _fadeAnimation,
-                              child: Image.asset("assets/images/ard_logo.png",
-                                  height: 350, width: 350),
-                            )
-                          : SizedBox(height: 350, width: 350),
-                    ),
-
-                    // CustomText(
-                    //     text: "Anti-Afrocentric#",
-                    //     size: 14.sp,
-                    //     color: white,
-                    //     fontWeight: FontWeight.w700)
-                  ],
-                ),
-              )
-            ],
-          ),
+            ),
+            // Logo on top
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, 'login');
+                    },
+                    child: _showLogo
+                        ? FadeTransition(
+                            opacity: _fadeAnimation,
+                            child: Image.asset(
+                                "assets/images/image-removebg-preview.png",
+                                height: 350,
+                                width: 350),
+                          )
+                        : SizedBox(height: 350, width: 350),
+                  ),
+                ],
+              ),
+            )
+          ],
         ));
   }
 }

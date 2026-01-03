@@ -1,13 +1,10 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/partner/profile/profile_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/widgets/customText.dart';
-import 'package:PassPort/services/partner/profile/profile_cubit.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({super.key});
@@ -17,9 +14,7 @@ class EditProfile extends StatelessWidget {
     var args = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       backgroundColor: white,
-
       appBar: PreferredSize(
-
           preferredSize: Size.fromHeight(280.h),
           child: Stack(
             alignment: Alignment.center,
@@ -40,19 +35,20 @@ class EditProfile extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("assets/images/ard_logo.png",height: 300.h,),
+                      Image.asset(
+                        "assets/images/ard_logo.png",
+                        height: 300.h,
+                      ),
                     ],
                   ),
                 ),
               ),
-
             ],
           )),
       body: BlocProvider(
         create: (context) => ProfileCubit(),
         child: BlocConsumer<ProfileCubit, ProfileState>(
           listener: (context, state) {
-
             if (state is ProfileEditLoaded) {
               Fluttertoast.showToast(
                   msg: "Successful",
@@ -62,16 +58,16 @@ class EditProfile extends StatelessWidget {
                   backgroundColor: Colors.green,
                   textColor: Colors.white,
                   fontSize: 16.0);
-              Navigator.pushNamed(context,"personalProfile");
+              Navigator.pushNamed(context, "personalProfile");
             } else if (state is ProfileEditError) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(state.error)));
             }
           },
           builder: (context, state) {
             return ListView(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
               children: [
-
                 textFormFildBuilder(
                   context,
                   title: 'profile.username'.tr(),
@@ -124,39 +120,54 @@ class EditProfile extends StatelessWidget {
                   onTap: () {
                     // Navigator.pop(context);
                     context.read<ProfileCubit>().updateInformation(
-
-                      name: context.read<ProfileCubit>().userNameController.text
-                          .trim()
-                          .isNotEmpty
-                          ? context.read<ProfileCubit>().userNameController.text
-                          .trim()
-                          : args['userName'],
-                      email: context.read<ProfileCubit>().emailController.text
-                          .trim()
-                          .isNotEmpty
-                          ? context.read<ProfileCubit>().emailController.text
-                          .trim()
-                          : args['email'],
-                      phone: context.read<ProfileCubit>().phoneController.text
-                          .trim()
-                          .isNotEmpty
-                          ? context.read<ProfileCubit>().phoneController.text
-                          .trim()
-                          : args['userName'],
-                        valG:   context.read<ProfileCubit>().val == 0 || context.read<ProfileCubit>().val == 1
+                        name: context
+                                .read<ProfileCubit>()
+                                .userNameController
+                                .text
+                                .trim()
+                                .isNotEmpty
+                            ? context
+                                .read<ProfileCubit>()
+                                .userNameController
+                                .text
+                                .trim()
+                            : args['userName'],
+                        email: context
+                                .read<ProfileCubit>()
+                                .emailController
+                                .text
+                                .trim()
+                                .isNotEmpty
+                            ? context
+                                .read<ProfileCubit>()
+                                .emailController
+                                .text
+                                .trim()
+                            : args['email'],
+                        phone: context
+                                .read<ProfileCubit>()
+                                .phoneController
+                                .text
+                                .trim()
+                                .isNotEmpty
+                            ? context
+                                .read<ProfileCubit>()
+                                .phoneController
+                                .text
+                                .trim()
+                            : args['userName'],
+                        valG: context.read<ProfileCubit>().val == 0 ||
+                                context.read<ProfileCubit>().val == 1
                             ? context.read<ProfileCubit>().val
-                            : args['gender']
-
-
-
-
-                    );
+                            : args['gender']);
                   },
                   child: Container(
                     width: 1.sw,
                     height: 56.h,
                     decoration: ShapeDecoration(
-                      color: context.read<ProfileCubit>().isAllInputNotEmpty ? orange : Color(0xFF8C8C8C),
+                      color: context.read<ProfileCubit>().isAllInputNotEmpty
+                          ? orange
+                          : Color(0xFF8C8C8C),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           8.r,
@@ -221,7 +232,8 @@ class EditProfile extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
               hintText: hint.tr(),
               hintStyle: TextStyle(
                 color: Color(0xFFCECFD1),

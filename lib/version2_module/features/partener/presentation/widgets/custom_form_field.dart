@@ -369,7 +369,7 @@ class CustomFormField extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         DropdownButtonFormField<String>(
-          value: controller.text.isEmpty ? null : controller.text,
+          initialValue: controller.text.isEmpty ? null : controller.text,
           decoration: InputDecoration(
             hintText: field.placeholder,
             hintStyle: TextStyle(

@@ -1,13 +1,13 @@
 import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/version2_module/core/const/app_colors.dart';
+import 'package:PassPort/models/traveller/trips_model/trips_model.dart'
+    as trips_model;
 import 'package:PassPort/version2_module/features/home/view/widget/trip_card.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:PassPort/models/traveller/trips_model/trips_model.dart'
-    as trips_model;
+
 import '../../view_model/trips_cubit.dart';
 import '../../view_model/trips_state.dart';
 
@@ -61,9 +61,19 @@ class _TripsSectionState extends State<TripsSection> {
                   style: TextStyle(
                     fontSize: 28.sp,
                     fontWeight: FontWeight.bold,
-                    color: appTextColor,
+                    color: lightBrown,
                     letterSpacing: 1,
                     height: 1.2,
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  'Explore Egypt With Experts, Book Full-day Or Multi-day trips guided by locals',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: lightText,
+                    height: 1.4,
+                    letterSpacing: 0.3,
                   ),
                 ),
               ],
@@ -77,10 +87,10 @@ class _TripsSectionState extends State<TripsSection> {
             carouselController: carouselController,
             itemCount: trips.length,
             options: CarouselOptions(
-              height: 360.h,
+              height: 380.h,
               viewportFraction: 0.87,
               enlargeCenterPage: true,
-              enlargeFactor: 0.22,
+              enlargeFactor: 0.10,
               autoPlay: true,
               autoPlayInterval: const Duration(seconds: 5),
               autoPlayAnimationDuration: const Duration(milliseconds: 1000),
@@ -114,42 +124,42 @@ class _TripsSectionState extends State<TripsSection> {
           SizedBox(height: 20.h),
 
           // Dot Indicator
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: trips.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: () {
-                  carouselController.animateToPage(
-                    entry.key,
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeInOutCubic,
-                  );
-                },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  width: currentIndex == entry.key ? 28.w : 8.w,
-                  height: 8.h,
-                  margin: EdgeInsets.symmetric(horizontal: 4.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4.r),
-                    color: currentIndex == entry.key
-                        ? AppColors.primaryColor
-                        : Colors.grey.withOpacity(0.3),
-                    boxShadow: currentIndex == entry.key
-                        ? [
-                            BoxShadow(
-                              color: AppColors.primaryColor.withOpacity(0.3),
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
-                            ),
-                          ]
-                        : [],
-                  ),
-                ),
-              );
-            }).toList(),
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: trips.asMap().entries.map((entry) {
+          //     return GestureDetector(
+          //       onTap: () {
+          //         carouselController.animateToPage(
+          //           entry.key,
+          //           duration: const Duration(milliseconds: 400),
+          //           curve: Curves.easeInOutCubic,
+          //         );
+          //       },
+          //       child: AnimatedContainer(
+          //         duration: const Duration(milliseconds: 300),
+          //         curve: Curves.easeInOut,
+          //         width: currentIndex == entry.key ? 28.w : 8.w,
+          //         height: 8.h,
+          //         margin: EdgeInsets.symmetric(horizontal: 4.w),
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(4.r),
+          //           color: currentIndex == entry.key
+          //               ? AppColors.primaryColor
+          //               : Colors.grey.withValues(alpha:0.3),
+          //           boxShadow: currentIndex == entry.key
+          //               ? [
+          //                   BoxShadow(
+          //                     color: AppColors.primaryColor.withValues(alpha:0.3),
+          //                     blurRadius: 8,
+          //                     offset: const Offset(0, 2),
+          //                   ),
+          //                 ]
+          //               : [],
+          //         ),
+          //       ),
+          //     );
+          //   }).toList(),
+          // ),
         ],
       ),
     );
@@ -167,12 +177,12 @@ class _TripsSectionState extends State<TripsSection> {
         decoration: BoxDecoration(
           color: isActive
               ? const Color(0xFF233A6A)
-              : const Color(0xFF233A6A).withOpacity(0.08),
+              : const Color(0xFF233A6A).withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(12.r),
           boxShadow: isActive
               ? [
                   BoxShadow(
-                    color: const Color(0xFF233A6A).withOpacity(0.2),
+                    color: const Color(0xFF233A6A).withValues(alpha: 0.2),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -292,7 +302,7 @@ class _TripsSectionState extends State<TripsSection> {
             child: CarouselSlider.builder(
               itemCount: 3,
               options: CarouselOptions(
-                height: 360.h,
+                height: 380.h,
                 viewportFraction: 0.87,
                 enlargeCenterPage: true,
                 autoPlay: false,
@@ -318,7 +328,7 @@ class _TripsSectionState extends State<TripsSection> {
                 margin: EdgeInsets.symmetric(horizontal: 4.w),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4.r),
-                  color: Colors.grey.withOpacity(0.3),
+                  color: Colors.grey.withValues(alpha: 0.3),
                 ),
               );
             }),

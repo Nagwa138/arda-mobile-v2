@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 import 'package:PassPort/consts/api/api.dart';
 import 'package:PassPort/models/partner/AccommodationTypeModel.dart';
 import 'package:PassPort/models/partner/AmenitiesModel.dart';
@@ -448,13 +447,13 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   addServiceImages(List<XFile> selectedImages) async {
     emit(AddServiceImagesChanged());
 
-    serviceImages!.addAll(selectedImages);
+    serviceImages.addAll(selectedImages);
     print(serviceImages);
     emit(AddServiceRoomNumChanged());
   }
 
   removeServiceImage(int index) {
-    serviceImages!.removeAt(index);
+    serviceImages.removeAt(index);
     emit(AddServiceImagesChanged());
   }
 

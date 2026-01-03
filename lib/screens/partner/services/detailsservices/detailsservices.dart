@@ -1,13 +1,11 @@
+import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/models/partner/acommdation_model.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/cubit/service_submission_cubit.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/models/partner_service_item.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/models/partner/ServicesModel.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailsServices extends StatefulWidget {
@@ -107,7 +105,7 @@ class _DetailsServicesState extends State<DetailsServices> {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.15),
+                          color: Colors.black.withValues(alpha: 0.15),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -154,7 +152,7 @@ class _DetailsServicesState extends State<DetailsServices> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 12.w, vertical: 6.h),
                                 decoration: BoxDecoration(
-                                  color: orange.withOpacity(0.1),
+                                  color: orange.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(20.r),
                                 ),
                                 child: Row(
@@ -438,7 +436,7 @@ class _DetailsServicesState extends State<DetailsServices> {
               end: Alignment.bottomCenter,
               colors: [
                 Colors.transparent,
-                Colors.black.withOpacity(0.3),
+                Colors.black.withValues(alpha: 0.3),
               ],
             ),
           ),
@@ -461,7 +459,7 @@ class _DetailsServicesState extends State<DetailsServices> {
         color: white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -475,7 +473,7 @@ class _DetailsServicesState extends State<DetailsServices> {
               Container(
                 padding: EdgeInsets.all(8.w),
                 decoration: BoxDecoration(
-                  color: orange.withOpacity(0.1),
+                  color: orange.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Icon(icon, color: orange, size: 20.sp),
@@ -591,9 +589,9 @@ class _DetailsServicesState extends State<DetailsServices> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
       decoration: BoxDecoration(
-        color: orange.withOpacity(0.1),
+        color: orange.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(color: orange.withOpacity(0.3)),
+        border: Border.all(color: orange.withValues(alpha: 0.3)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -626,7 +624,7 @@ class _DetailsServicesState extends State<DetailsServices> {
           Container(
             padding: EdgeInsets.all(10.w),
             decoration: BoxDecoration(
-              color: orange.withOpacity(0.1),
+              color: orange.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(10.r),
             ),
             child: Icon(Icons.bed, color: orange, size: 22.sp),
@@ -704,7 +702,7 @@ class _DetailsServicesState extends State<DetailsServices> {
         Container(
           padding: EdgeInsets.all(8.w),
           decoration: BoxDecoration(
-            color: orange.withOpacity(0.1),
+            color: orange.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8.r),
           ),
           child: Icon(icon, color: orange, size: 18.sp),
@@ -747,7 +745,7 @@ class _DetailsServicesState extends State<DetailsServices> {
           color: white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.06),
+              color: Colors.black.withValues(alpha: 0.06),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),

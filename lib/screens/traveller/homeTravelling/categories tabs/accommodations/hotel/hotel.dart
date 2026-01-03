@@ -1,10 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/screens/traveller/homeTravelling/cardBuilder2/cardBuilder2.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/accomadationType_cubit/accomadtion_type_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Hotel extends StatelessWidget {
   const Hotel({super.key});
@@ -47,7 +45,8 @@ class Hotel extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: "search for hotel ",
                 hintStyle: TextStyle(
-                  color: accentColor.withOpacity(0.5), // Updated hint text color
+                  color: accentColor.withValues(
+                      alpha: 0.5), // Updated hint text color
                   fontSize: 14.sp,
                 ),
                 prefixIcon: Icon(
@@ -61,14 +60,16 @@ class Hotel extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.r),
                   borderSide: BorderSide(
-                    color: accentColor.withOpacity(0.3), // Updated border color
+                    color: accentColor.withValues(
+                        alpha: 0.3), // Updated border color
                     width: 0.5.w,
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.r),
                   borderSide: BorderSide(
-                    color: accentColor.withOpacity(0.3), // Updated border color
+                    color: accentColor.withValues(
+                        alpha: 0.3), // Updated border color
                     width: 0.5.w,
                   ),
                 ),

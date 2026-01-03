@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/version2_module/core/enums/booking_status.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../domain/models/partner_booking_model.dart';
 
 class BookingCard extends StatelessWidget {
@@ -27,7 +28,7 @@ class BookingCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -223,7 +224,8 @@ class BookingCard extends StatelessWidget {
             color: BookingStatus.pending.backgroundColor,
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
-                color: BookingStatus.pending.statusColor.withOpacity(0.3)),
+                color:
+                    BookingStatus.pending.statusColor.withValues(alpha: 0.3)),
           ),
           child: Column(
             children: [
@@ -314,7 +316,8 @@ class BookingCard extends StatelessWidget {
             color: BookingStatus.upcoming.backgroundColor,
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
-                color: BookingStatus.upcoming.statusColor.withOpacity(0.3)),
+                color:
+                    BookingStatus.upcoming.statusColor.withValues(alpha: 0.3)),
           ),
           child: Row(
             children: [
@@ -375,7 +378,8 @@ class BookingCard extends StatelessWidget {
             color: BookingStatus.completed.backgroundColor,
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
-                color: BookingStatus.completed.statusColor.withOpacity(0.3)),
+                color:
+                    BookingStatus.completed.statusColor.withValues(alpha: 0.3)),
           ),
           child: Row(
             children: [
@@ -436,7 +440,8 @@ class BookingCard extends StatelessWidget {
             color: BookingStatus.cancelled.backgroundColor,
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
-                color: BookingStatus.cancelled.statusColor.withOpacity(0.3)),
+                color:
+                    BookingStatus.cancelled.statusColor.withValues(alpha: 0.3)),
           ),
           child: Row(
             children: [

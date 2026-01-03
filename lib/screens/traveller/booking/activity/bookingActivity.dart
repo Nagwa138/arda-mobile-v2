@@ -1,23 +1,20 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:PassPort/components/color/color.dart';
-import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:PassPort/screens/traveller/booking/activity/cancel/cancel.dart';
 import 'package:PassPort/screens/traveller/booking/activity/pending/pending.dart';
 import 'package:PassPort/screens/traveller/booking/activity/upcomming/upcoming.dart';
-
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:expandable_page_view/expandable_page_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'complete/complete.dart';
 
 class BookingActivity extends StatelessWidget {
   BookingActivity({super.key});
-  PageController controllerBooking = PageController();
+  final PageController controllerBooking = PageController();
 
   @override
   Widget build(BuildContext context) {

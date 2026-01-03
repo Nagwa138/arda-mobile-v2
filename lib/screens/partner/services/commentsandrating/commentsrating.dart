@@ -1,11 +1,11 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/traveller/review_cubit/review_cubit.dart';
+import 'package:PassPort/services/traveller/review_cubit/review_state.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/review_cubit/review_cubit.dart';
-import 'package:PassPort/services/traveller/review_cubit/review_state.dart';
 
 import '../../../../version2_module/core/const/app_colors.dart';
 
@@ -73,7 +73,7 @@ class _CommentsAndRatingState extends State<CommentsAndRating>
           borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 4,
               offset: Offset(0, 2),
             ),
@@ -152,7 +152,7 @@ class _CommentsAndRatingState extends State<CommentsAndRating>
               borderRadius: BorderRadius.circular(20.r),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 20,
                   offset: Offset(0, 4),
                 ),
@@ -231,14 +231,14 @@ class _CommentsAndRatingState extends State<CommentsAndRating>
       padding: EdgeInsets.all(24.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [appTextColor, appTextColor.withOpacity(0.8)],
+          colors: [appTextColor, appTextColor.withValues(alpha: 0.8)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24.r),
         boxShadow: [
           BoxShadow(
-            color: appTextColor.withOpacity(0.3),
+            color: appTextColor.withValues(alpha: 0.3),
             blurRadius: 20,
             offset: Offset(0, 8),
           ),
@@ -276,7 +276,7 @@ class _CommentsAndRatingState extends State<CommentsAndRating>
                   '${data.reviewrsCount ?? 0} Reviews',
                   style: TextStyle(
                     fontSize: 16.sp,
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withValues(alpha: 0.8),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -286,7 +286,7 @@ class _CommentsAndRatingState extends State<CommentsAndRating>
           Container(
             padding: EdgeInsets.all(16.w),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(16.r),
             ),
             child: Column(
@@ -303,7 +303,7 @@ class _CommentsAndRatingState extends State<CommentsAndRating>
                   'Recommended',
                   style: TextStyle(
                     fontSize: 12.sp,
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withValues(alpha: 0.8),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -326,7 +326,7 @@ class _CommentsAndRatingState extends State<CommentsAndRating>
           borderRadius: BorderRadius.circular(20.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withValues(alpha: 0.08),
               blurRadius: 20,
               offset: Offset(0, 4),
             ),
@@ -344,7 +344,8 @@ class _CommentsAndRatingState extends State<CommentsAndRating>
                     gradient: LinearGradient(
                       colors: [
                         _getAvatarColor(review.userName ?? ''),
-                        _getAvatarColor(review.userName ?? '').withOpacity(0.7),
+                        _getAvatarColor(review.userName ?? '')
+                            .withValues(alpha: 0.7),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(24.r),
@@ -399,11 +400,11 @@ class _CommentsAndRatingState extends State<CommentsAndRating>
                       EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                   decoration: BoxDecoration(
                     color: _getRatingColor((review.rate ?? 0).toDouble())
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20.r),
                     border: Border.all(
                       color: _getRatingColor((review.rate ?? 0).toDouble())
-                          .withOpacity(0.3),
+                          .withValues(alpha: 0.3),
                     ),
                   ),
                   child: Row(
@@ -677,7 +678,7 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
           Container(
             padding: EdgeInsets.all(12.w),
             decoration: BoxDecoration(
-              color: appTextColor.withOpacity(0.1),
+              color: appTextColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(10.r),
             ),
             child: Icon(
@@ -738,7 +739,7 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
                 itemCount: 5,
                 itemSize: 40.sp,
                 glow: true,
-                glowColor: Colors.amber.withOpacity(0.3),
+                glowColor: Colors.amber.withValues(alpha: 0.3),
                 itemPadding: EdgeInsets.symmetric(horizontal: 4.w),
                 itemBuilder: (context, index) => Container(
                   decoration: BoxDecoration(
@@ -746,7 +747,7 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
                     boxShadow: _currentRating > index
                         ? [
                             BoxShadow(
-                              color: Colors.amber.withOpacity(0.3),
+                              color: Colors.amber.withValues(alpha: 0.3),
                               blurRadius: 8,
                               spreadRadius: 1,
                             ),
@@ -772,10 +773,12 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
                   padding:
                       EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                   decoration: BoxDecoration(
-                    color: _getRatingColor(_currentRating).withOpacity(0.1),
+                    color:
+                        _getRatingColor(_currentRating).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20.r),
                     border: Border.all(
-                      color: _getRatingColor(_currentRating).withOpacity(0.3),
+                      color: _getRatingColor(_currentRating)
+                          .withValues(alpha: 0.3),
                     ),
                   ),
                   child: Row(
@@ -878,14 +881,14 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
       height: 56.h,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [appTextColor, appTextColor.withOpacity(0.8)],
+          colors: [appTextColor, appTextColor.withValues(alpha: 0.8)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
-            color: appTextColor.withOpacity(0.3),
+            color: appTextColor.withValues(alpha: 0.3),
             blurRadius: 12,
             offset: Offset(0, 6),
           ),
@@ -1025,7 +1028,7 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
                 Container(
                   padding: EdgeInsets.all(4.w),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(50.r),
                   ),
                   child: Icon(Icons.check_circle,
@@ -1048,7 +1051,7 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
                         'Thank you for your feedback',
                         style: TextStyle(
                           fontSize: 12.sp,
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                         ),
                       ),
                     ],
@@ -1078,7 +1081,7 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
                 Container(
                   padding: EdgeInsets.all(4.w),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(50.r),
                   ),
                   child: Icon(Icons.error_rounded,
@@ -1103,7 +1106,7 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
                             : error,
                         style: TextStyle(
                           fontSize: 12.sp,
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withValues(alpha: 0.9),
                         ),
                       ),
                     ],

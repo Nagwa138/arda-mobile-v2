@@ -51,3 +51,9 @@ const Color accentColor = Color(0xFF1A3A5F); // Dark blue/navy
 // App theme colors
 const Color appBackgroundColor = Color(0xFFFBF0E3); // Light beige background
 const Color appTextColor = Color(0xFF1A3A5F); // Dark blue text/button color
+//const Color(0xFF9B6B4A)
+const Color lightBrown = Color(0xFF9B6B4A);
+//E7D7BE
+const Color lightBeige = Color(0xFFE7D7BE);
+//90867A
+const Color lightText = Color(0xFF90867A);

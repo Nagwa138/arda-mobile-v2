@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -146,8 +145,8 @@ class ChangePassword extends StatelessWidget {
                   ),
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(accentColor),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        WidgetStateProperty.all<Color>(accentColor),
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.r),
                       ),

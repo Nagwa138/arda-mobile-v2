@@ -1,16 +1,12 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/customButton/customButton.dart';
 import 'package:PassPort/screens/auth/login/widget/buildModernTextField.dart';
+import 'package:PassPort/services/auth/login/loginCubit.dart';
+import 'package:PassPort/services/auth/login/loginState.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/widgets/customButton/customButton.dart';
-import 'package:PassPort/components/widgets/customText.dart';
-import 'package:PassPort/services/auth/login/loginCubit.dart';
-import 'package:PassPort/services/auth/login/loginState.dart';
-
-import '../login/login.dart';
 
 class CreatePassword extends StatelessWidget {
   const CreatePassword({super.key});

@@ -1,10 +1,8 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/consts/routes/route.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../domain/entities/service_form_field.dart';
 import '../cubit/add_activity_cubit.dart';
@@ -549,7 +547,7 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
               return false;
             }
             print(
-                '✅ Required field present: ${field.key} = ${controller?.text}');
+                '✅ Required field present: ${field.key} = ${controller.text}');
         }
       }
     }

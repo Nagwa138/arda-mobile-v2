@@ -95,7 +95,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     borderRadius: BorderRadius.circular(16.r),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.06),
+                        color: Colors.black.withValues(alpha:0.06),
                         blurRadius: 12,
                         offset: Offset(0, 4),
                       ),
@@ -116,7 +116,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     startingDayOfWeek: StartingDayOfWeek.monday,
                     rangeSelectionMode: RangeSelectionMode.toggledOn,
                     calendarStyle: CalendarStyle(
-                      rangeHighlightColor: orange.withOpacity(0.2),
+                      rangeHighlightColor: orange.withValues(alpha:0.2),
                       rangeStartDecoration: BoxDecoration(
                         color: orange,
                         shape: BoxShape.circle,
@@ -126,7 +126,7 @@ class _CalendarPageState extends State<CalendarPage> {
                         shape: BoxShape.circle,
                       ),
                       todayDecoration: BoxDecoration(
-                        color: orange.withOpacity(0.3),
+                        color: orange.withValues(alpha:0.3),
                         shape: BoxShape.circle,
                       ),
                       selectedDecoration: BoxDecoration(
@@ -212,10 +212,10 @@ class _CalendarPageState extends State<CalendarPage> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(12.r),
                                 border:
-                                    Border.all(color: orange.withOpacity(0.3)),
+                                    Border.all(color: orange.withValues(alpha:0.3)),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.04),
+                                    color: Colors.black.withValues(alpha:0.04),
                                     blurRadius: 8,
                                     offset: Offset(0, 2),
                                   ),
@@ -226,7 +226,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                   Container(
                                     padding: EdgeInsets.all(8.w),
                                     decoration: BoxDecoration(
-                                      color: orange.withOpacity(0.1),
+                                      color: orange.withValues(alpha:0.1),
                                       borderRadius: BorderRadius.circular(8.r),
                                     ),
                                     child: Icon(Icons.date_range,
@@ -281,7 +281,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     color: white,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.08),
+                        color: Colors.black.withValues(alpha:0.08),
                         blurRadius: 12,
                         offset: Offset(0, -4),
                       ),
@@ -420,7 +420,7 @@ class _CalendarPageState extends State<CalendarPage> {
                               borderRadius: BorderRadius.circular(12.r),
                             ),
                             elevation: selectedRanges.isEmpty ? 0 : 4,
-                            shadowColor: orange.withOpacity(0.4),
+                            shadowColor: orange.withValues(alpha:0.4),
                           ),
                           child: state is RegisterRoomLoading
                               ? SizedBox(

@@ -4,7 +4,6 @@ import 'package:PassPort/models/partner/acommdation_model.dart';
 import 'package:PassPort/screens/partner/profile/profileLanding.dart';
 import 'package:http/http.dart' as http;
 import 'package:PassPort/consts/api/api.dart';
-import '../../../../../models/partner/ServicesModel.dart';
 import '../models/add_accommodation_request.dart';
 import '../models/add_activity_request.dart';
 import '../models/add_product_request.dart';

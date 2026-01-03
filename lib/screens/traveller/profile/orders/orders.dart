@@ -1,16 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_state.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Orders extends StatelessWidget {
-  PageController pageController = PageController();
+  final PageController pageController = PageController();
 
   Orders({super.key});
 
@@ -20,7 +18,7 @@ class Orders extends StatelessWidget {
       create: (BuildContext context) => ProductCubit()..getAllOrders(),
       child: BlocConsumer<ProductCubit, ProductState>(
         listener: (context, state) {
-          if(state is OrderAgainSuccessful){
+          if (state is OrderAgainSuccessful) {
             ProductCubit.get(context).getAllOrders();
             Fluttertoast.showToast(
                 msg: "Successful",
@@ -29,10 +27,8 @@ class Orders extends StatelessWidget {
                 timeInSecForIosWeb: 1,
                 backgroundColor: Colors.green,
                 textColor: Colors.white,
-                fontSize: 16.0
-            );
-          }
-          else if (state is OrderAgainError){
+                fontSize: 16.0);
+          } else if (state is OrderAgainError) {
             Fluttertoast.showToast(
                 msg: state.error,
                 toastLength: Toast.LENGTH_LONG,
@@ -40,113 +36,138 @@ class Orders extends StatelessWidget {
                 timeInSecForIosWeb: 1,
                 backgroundColor: Colors.green,
                 textColor: Colors.white,
-                fontSize: 16.0
-            );
+                fontSize: 16.0);
           }
         },
         builder: (context, state) {
-          return Scaffold(
-            backgroundColor: appBackgroundColor,
-
-            appBar: AppBar(
-              backgroundColor: appBackgroundColor,
-              elevation: 0,
-              centerTitle: true,
-              title: Text(
-                'travellerOrders.title'.tr(),
-                style: TextStyle(
-                  color: accentColor,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w600,
+          return Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/background.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-
-            ),
-            body: state is getOrderLoading
-                ? Center(
-                    child: CircularProgressIndicator(
-                    color: accentColor,
-                  ))
-                :
-            ProductCubit.get(context)
-                .getAllOrder!
-                .data!.isEmpty ?
-            Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/images/landingHome/notificationEmpty.png"),
-                    Text(
-                      textAlign: TextAlign.center,
-                      "You haven’t any Orders Now",
-                      style: TextStyle(
-                        color: accentColor,
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )
-                :
-
-            Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.w),
-                    child: ListView.separated(
-                      itemCount: ProductCubit.get(context)
-                          .getAllOrder!
-                          .data!
-                          .length,
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: 16.h,
-                      ),
-                      itemBuilder: (context, index) => GestureDetector(
-                        onTap: (){
-                          if( ProductCubit.get(context)
-                          .getAllOrder!
-                              .data![index].orderStatus == "Completed")
-                          Navigator.pushNamed(context, "orderDetails",arguments: {
-                            'id' : ProductCubit.get(context)
-                                .getAllOrder!
-                                .data![index].id.toString()
-                          });
-                        },
-                        child: cardBuilder(
-                          context,
-                          dateBooking:ProductCubit.get(context)
-                              .getAllOrder!
-                              .data![index].bookingDate.toString() ,
-                          dateDelivery:ProductCubit.get(context)
-                              .getAllOrder!
-                              .data![index].deliveryDate.toString() ,
-                          timeBooking:ProductCubit.get(context)
-                              .getAllOrder!
-                              .data![index].bookingTime.toString() ,
-                          timeDelivery:ProductCubit.get(context)
-                              .getAllOrder!
-                              .data![index].deliveryTime.toString() ,
-                          price: ProductCubit.get(context)
-                              .getAllOrder!
-                              .data![index].totalPrice,
-                          qunatity: ProductCubit.get(context)
-                              .getAllOrder!
-                              .data![index].noOfProducts!.toInt(),
-                          status: ProductCubit.get(context)
-                              .getAllOrder!
-                              .data![index].orderStatus.toString(),
-                          isDelivered: ProductCubit.get(context)
-                              .getAllOrder!
-                              .data![index].orderStatus.toString(),
-                          id: ProductCubit.get(context)
-                              .getAllOrder!
-                              .data![index].id.toString()
-                        ),
-                      ),
+              Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: AppBar(
+                  backgroundColor: appBackgroundColor,
+                  elevation: 0,
+                  centerTitle: true,
+                  title: Text(
+                    'travellerOrders.title'.tr(),
+                    style: TextStyle(
+                      color: accentColor,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
+                ),
+                body: state is getOrderLoading
+                    ? Center(
+                        child: CircularProgressIndicator(
+                        color: accentColor,
+                      ))
+                    : ProductCubit.get(context).getAllOrder!.data!.isEmpty
+                        ? Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                      "assets/images/landingHome/notificationEmpty.png"),
+                                  Text(
+                                    textAlign: TextAlign.center,
+                                    "You haven’t any Orders Now",
+                                    style: TextStyle(
+                                      color: accentColor,
+                                      fontSize: 22.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        : Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.w),
+                            child: ListView.separated(
+                              itemCount: ProductCubit.get(context)
+                                  .getAllOrder!
+                                  .data!
+                                  .length,
+                              separatorBuilder: (context, index) => SizedBox(
+                                height: 16.h,
+                              ),
+                              itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  if (ProductCubit.get(context)
+                                          .getAllOrder!
+                                          .data![index]
+                                          .orderStatus ==
+                                      "Completed")
+                                    Navigator.pushNamed(context, "orderDetails",
+                                        arguments: {
+                                          'id': ProductCubit.get(context)
+                                              .getAllOrder!
+                                              .data![index]
+                                              .id
+                                              .toString()
+                                        });
+                                },
+                                child: cardBuilder(context,
+                                    dateBooking: ProductCubit.get(context)
+                                        .getAllOrder!
+                                        .data![index]
+                                        .bookingDate
+                                        .toString(),
+                                    dateDelivery: ProductCubit.get(context)
+                                        .getAllOrder!
+                                        .data![index]
+                                        .deliveryDate
+                                        .toString(),
+                                    timeBooking: ProductCubit.get(context)
+                                        .getAllOrder!
+                                        .data![index]
+                                        .bookingTime
+                                        .toString(),
+                                    timeDelivery: ProductCubit.get(context)
+                                        .getAllOrder!
+                                        .data![index]
+                                        .deliveryTime
+                                        .toString(),
+                                    price: ProductCubit.get(context)
+                                        .getAllOrder!
+                                        .data![index]
+                                        .totalPrice,
+                                    qunatity: ProductCubit.get(context)
+                                        .getAllOrder!
+                                        .data![index]
+                                        .noOfProducts!
+                                        .toInt(),
+                                    status: ProductCubit.get(context)
+                                        .getAllOrder!
+                                        .data![index]
+                                        .orderStatus
+                                        .toString(),
+                                    isDelivered: ProductCubit.get(context)
+                                        .getAllOrder!
+                                        .data![index]
+                                        .orderStatus
+                                        .toString(),
+                                    id: ProductCubit.get(context)
+                                        .getAllOrder!
+                                        .data![index]
+                                        .id
+                                        .toString()),
+                              ),
+                            ),
+                          ),
+              ),
+            ],
           );
         },
       ),
@@ -288,9 +309,8 @@ class Orders extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     ProductCubit.get(context).MadeOrderAgain(id);
                   },
                   child: Container(
@@ -314,13 +334,13 @@ class Orders extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                SizedBox(width: 20.w,),
+                SizedBox(
+                  width: 20.w,
+                ),
                 GestureDetector(
-                  onTap: ()async{
-
-
-                    ProductCubit.get(context).startPayment(context: context,id:id,amount: price );
+                  onTap: () async {
+                    ProductCubit.get(context)
+                        .startPayment(context: context, id: id, amount: price);
                   },
                   child: Container(
                     width: 100.w,
@@ -333,21 +353,19 @@ class Orders extends StatelessWidget {
                       ),
                     ),
                     padding:
-                    EdgeInsets.symmetric(horizontal: 15.w, vertical: 11.h),
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 11.h),
                     child: Center(
                       child: Text(
-                         "push",
+                        "push",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 12.sp,
-
                           color: white,
                         ),
                       ),
                     ),
                   ),
                 ),
-
               ],
             )
           // else

@@ -1,10 +1,7 @@
+import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/models/trip_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
-import '../../models/partner_service_item.dart';
 
 class PartnerTripDetailsScreen extends StatelessWidget {
   const PartnerTripDetailsScreen({super.key});
@@ -32,7 +29,7 @@ class PartnerTripDetailsScreen extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
+                    color: Colors.black.withValues(alpha: 0.15),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -102,7 +99,7 @@ class PartnerTripDetailsScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                           horizontal: 16.w, vertical: 12.h),
                       decoration: BoxDecoration(
-                        color: appTextColor.withOpacity(0.1),
+                        color: appTextColor.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(15.r),
                       ),
                       child: Row(
@@ -179,7 +176,7 @@ class PartnerTripDetailsScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15.r),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.08),
+                            color: Colors.grey.withValues(alpha: 0.08),
                             spreadRadius: 1,
                             blurRadius: 8,
                             offset: const Offset(0, 2),
@@ -199,29 +196,26 @@ class PartnerTripDetailsScreen extends StatelessWidget {
                     SizedBox(height: 24.h),
 
                     // What's Included
-                    if (tripData.whatsIncluded != null &&
-                        tripData.whatsIncluded!.isNotEmpty)
+                    if (tripData.whatsIncluded.isNotEmpty)
                       _buildExpandableSection(
                         'What\'s Included',
-                        tripData.whatsIncluded!,
+                        tripData.whatsIncluded,
                         Icons.check_circle_outline,
                       ),
 
                     // Rules and Cancellation Policy
-                    if (tripData.rulesAndCancellationPolicy != null &&
-                        tripData.rulesAndCancellationPolicy!.isNotEmpty)
+                    if (tripData.rulesAndCancellationPolicy.isNotEmpty)
                       _buildExpandableSection(
                         'Rules & Cancellation Policy',
-                        tripData.rulesAndCancellationPolicy!,
+                        tripData.rulesAndCancellationPolicy,
                         Icons.policy_outlined,
                       ),
 
                     // Important Information
-                    if (tripData.importantInformation != null &&
-                        tripData.importantInformation!.isNotEmpty)
+                    if (tripData.importantInformation.isNotEmpty)
                       _buildExpandableSection(
                         'Important Information',
-                        tripData.importantInformation!,
+                        tripData.importantInformation,
                         Icons.info_outline,
                       ),
 
@@ -290,7 +284,7 @@ class PartnerTripDetailsScreen extends StatelessWidget {
               end: Alignment.bottomCenter,
               colors: [
                 Colors.transparent,
-                Colors.black.withOpacity(0.3),
+                Colors.black.withValues(alpha: 0.3),
               ],
             ),
           ),
@@ -307,7 +301,7 @@ class PartnerTripDetailsScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.08),
+            color: Colors.grey.withValues(alpha: 0.08),
             spreadRadius: 1,
             blurRadius: 8,
             offset: const Offset(0, 2),
@@ -319,7 +313,7 @@ class PartnerTripDetailsScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(10.w),
             decoration: BoxDecoration(
-              color: appTextColor.withOpacity(0.1),
+              color: appTextColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12.r),
             ),
             child: Icon(icon, color: appTextColor, size: 22.sp),
@@ -386,7 +380,7 @@ class PartnerTripDetailsScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.08),
+            color: Colors.grey.withValues(alpha: 0.08),
             spreadRadius: 1,
             blurRadius: 8,
             offset: const Offset(0, 2),
@@ -407,7 +401,7 @@ class PartnerTripDetailsScreen extends StatelessWidget {
             leading: Container(
               padding: EdgeInsets.all(10.w),
               decoration: BoxDecoration(
-                color: appTextColor.withOpacity(0.1),
+                color: appTextColor.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: Icon(icon, color: appTextColor, size: 22.sp),

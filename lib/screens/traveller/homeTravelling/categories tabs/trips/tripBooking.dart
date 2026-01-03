@@ -1,15 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
-
-import 'addTripe/addTripe.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TripBooking extends StatelessWidget {
   const TripBooking({super.key});
@@ -71,248 +68,265 @@ class TripBooking extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return Scaffold(
-                backgroundColor: appBackgroundColor,
-                appBar: AppBar(
-                    backgroundColor: appBackgroundColor,
-                    elevation: 0.0,
-                    centerTitle: true,
-                    title: Text("trips.TripBooking".tr(),
-                        style: TextStyle(
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.w700,
-                          color: accentColor,
-                        ))),
-                body: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 10.h),
+              return Stack(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/background.jpeg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Scaffold(
+                    backgroundColor: Colors.transparent,
+                    appBar: AppBar(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0.0,
+                        centerTitle: true,
+                        title: Text("trips.TripBooking".tr(),
+                            style: TextStyle(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.w700,
+                              color: accentColor,
+                            ))),
+                    body: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 10.h),
 
-                        // Header Card
-                        Container(
-                          padding: EdgeInsets.all(16.w),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12.r),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.05),
-                                blurRadius: 10,
-                                offset: Offset(0, 4),
+                            // Header Card
+                            Container(
+                              padding: EdgeInsets.all(16.w),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12.r),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.05),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 4),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Icon(Icons.person_outline,
-                                      color: accentColor, size: 24.sp),
-                                  SizedBox(width: 8.w),
-                                  Text("trips.GuestProfile".tr(),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.person_outline,
+                                          color: accentColor, size: 24.sp),
+                                      SizedBox(width: 8.w),
+                                      Text("trips.GuestProfile".tr(),
+                                          style: TextStyle(
+                                            fontSize: 20.sp,
+                                            fontWeight: FontWeight.w700,
+                                            color: accentColor,
+                                          )),
+                                    ],
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  Text("trips.d1".tr(),
                                       style: TextStyle(
-                                        fontSize: 20.sp,
-                                        fontWeight: FontWeight.w700,
-                                        color: accentColor,
+                                        fontSize: 14.sp,
+                                        color: Colors.grey[600],
+                                        fontWeight: FontWeight.w400,
                                       )),
                                 ],
                               ),
-                              SizedBox(height: 8.h),
-                              Text("trips.d1".tr(),
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    color: Colors.grey[600],
-                                    fontWeight: FontWeight.w400,
-                                  )),
-                            ],
-                          ),
-                        ),
+                            ),
 
-                        SizedBox(height: 20.h),
+                            SizedBox(height: 20.h),
 
-                        // Name Field
-                        textFormFieldTripe(context,
-                            title: 'trips.name'.tr(),
-                            hint: 'trips.enterName'.tr(),
-                            controller: BookingTravellerCubit.get(context).name,
-                            mixLine: 3,
-                            minLine: 2,
-                            validation: () {}),
+                            // Name Field
+                            textFormFieldTripe(context,
+                                title: 'trips.name'.tr(),
+                                hint: 'trips.enterName'.tr(),
+                                controller:
+                                    BookingTravellerCubit.get(context).name,
+                                mixLine: 3,
+                                minLine: 2,
+                                validation: () {}),
 
-                        // Phone Field
-                        textFormFieldTripe(context,
-                            title: 'trips.phone'.tr(),
-                            hint: 'trips.enterPhone'.tr(),
-                            inputType: TextInputType.phone,
-                            controller:
-                                BookingTravellerCubit.get(context).phone,
-                            mixLine: 3,
-                            minLine: 2,
-                            validation: () {}),
+                            // Phone Field
+                            textFormFieldTripe(context,
+                                title: 'trips.phone'.tr(),
+                                hint: 'trips.enterPhone'.tr(),
+                                inputType: TextInputType.phone,
+                                controller:
+                                    BookingTravellerCubit.get(context).phone,
+                                mixLine: 3,
+                                minLine: 2,
+                                validation: () {}),
 
-                        SizedBox(height: 10.h),
+                            SizedBox(height: 10.h),
 
-                        // Guests Section Card
-                        Container(
-                          padding: EdgeInsets.all(16.w),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12.r),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.05),
-                                blurRadius: 10,
-                                offset: Offset(0, 4),
+                            // Guests Section Card
+                            Container(
+                              padding: EdgeInsets.all(16.w),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12.r),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.05),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 4),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              // Number of Persons
-                              roomNumBuilder(
-                                  function: context
-                                      .read<AddServiceCubit>()
-                                      .changeSingleRoomNum,
-                                  number: context
-                                      .read<AddServiceCubit>()
-                                      .singleRoomNum,
-                                  title: 'addTripe.number'.tr()),
+                              child: Column(
+                                children: [
+                                  // Number of Persons
+                                  roomNumBuilder(
+                                      function: context
+                                          .read<AddServiceCubit>()
+                                          .changeSingleRoomNum,
+                                      number: context
+                                          .read<AddServiceCubit>()
+                                          .singleRoomNum,
+                                      title: 'addTripe.number'.tr()),
 
-                              Divider(height: 20.h),
+                                  Divider(height: 20.h),
 
-                              // Number of Children
-                              roomNumBuilder(
-                                  function: context
-                                      .read<AddServiceCubit>()
-                                      .changeSingleRoomNumUpdateChild,
-                                  number: context.read<AddServiceCubit>().child,
-                                  title: 'addTripe.chieldern'.tr()),
-                            ],
-                          ),
+                                  // Number of Children
+                                  roomNumBuilder(
+                                      function: context
+                                          .read<AddServiceCubit>()
+                                          .changeSingleRoomNumUpdateChild,
+                                      number:
+                                          context.read<AddServiceCubit>().child,
+                                      title: 'addTripe.chieldern'.tr()),
+                                ],
+                              ),
+                            ),
+
+                            SizedBox(height: 20.h),
+
+                            // Special Requests Field
+                            textFormFieldTripe(context,
+                                title: 'Special Requests',
+                                hint: 'Any special requests or requirements',
+                                controller: BookingTravellerCubit.get(context)
+                                    .specialRequestsTrip,
+                                mixLine: 4,
+                                minLine: 2,
+                                validation: () {},
+                                isRequired: false),
+
+                            SizedBox(height: 20.h),
+                          ],
                         ),
-
-                        SizedBox(height: 20.h),
-
-                        // Special Requests Field
-                        textFormFieldTripe(context,
-                            title: 'Special Requests',
-                            hint: 'Any special requests or requirements',
-                            controller: BookingTravellerCubit.get(context)
-                                .specialRequestsTrip,
-                            mixLine: 4,
-                            minLine: 2,
-                            validation: () {},
-                            isRequired: false),
-
-                        SizedBox(height: 20.h),
-                      ],
-                    ),
-                  ),
-                ),
-                bottomNavigationBar: Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10,
-                        offset: Offset(0, -2),
                       ),
-                    ],
-                  ),
-                  child: SizedBox(
-                    width: 350.w,
-                    height: 55.h,
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                    ),
+                    bottomNavigationBar: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 20.w, vertical: 20.h),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.1),
+                            blurRadius: 10,
+                            offset: Offset(0, -2),
+                          ),
+                        ],
+                      ),
+                      child: SizedBox(
+                        width: 350.w,
+                        height: 55.h,
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              shape: WidgetStateProperty.all<
+                                      RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12.r),
                                       side: BorderSide(
                                           color: accentColor, width: 2))),
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(accentColor),
-                          elevation: MaterialStateProperty.all(4),
-                        ),
-                        onPressed: () async {
-                          // Validation
-                          if (BookingTravellerCubit.get(context)
-                                  .name
-                                  .text
-                                  .trim()
-                                  .isEmpty ||
-                              BookingTravellerCubit.get(context)
-                                  .phone
-                                  .text
-                                  .trim()
-                                  .isEmpty ||
-                              context.read<AddServiceCubit>().singleRoomNum ==
-                                  0) {
-                            Fluttertoast.showToast(
-                                msg: "please confirm from data entered",
-                                toastLength: Toast.LENGTH_LONG,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
-                          } else {
-                            print(arguments['id']);
-                            BookingTravellerCubit.get(context)
-                                .createBookingTrip(
-                              tripId: arguments['id'],
-                              numOfPersons:
-                                  context.read<AddServiceCubit>().singleRoomNum,
-                              name: BookingTravellerCubit.get(context)
-                                  .name
-                                  .text
-                                  .trim(),
-                              phone: BookingTravellerCubit.get(context)
-                                  .phone
-                                  .text
-                                  .trim(),
-                              numberOfChildren:
-                                  context.read<AddServiceCubit>().child,
-                              specialRequests:
+                              foregroundColor:
+                                  WidgetStateProperty.all<Color>(Colors.white),
+                              backgroundColor:
+                                  WidgetStateProperty.all<Color>(accentColor),
+                              elevation: WidgetStateProperty.all(4),
+                            ),
+                            onPressed: () async {
+                              // Validation
+                              if (BookingTravellerCubit.get(context)
+                                      .name
+                                      .text
+                                      .trim()
+                                      .isEmpty ||
                                   BookingTravellerCubit.get(context)
-                                      .specialRequestsTrip
+                                      .phone
+                                      .text
+                                      .trim()
+                                      .isEmpty ||
+                                  context
+                                          .read<AddServiceCubit>()
+                                          .singleRoomNum ==
+                                      0) {
+                                Fluttertoast.showToast(
+                                    msg: "please confirm from data entered",
+                                    toastLength: Toast.LENGTH_LONG,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                              } else {
+                                print(arguments['id']);
+                                BookingTravellerCubit.get(context)
+                                    .createBookingTrip(
+                                  tripId: arguments['id'],
+                                  numOfPersons: context
+                                      .read<AddServiceCubit>()
+                                      .singleRoomNum,
+                                  name: BookingTravellerCubit.get(context)
+                                      .name
                                       .text
                                       .trim(),
-                            );
-                          }
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.check_circle_outline, size: 20.sp),
-                            SizedBox(width: 8.w),
-                            Flexible(
-                              child: Text(
-                                "booking.Continue".tr() +
-                                    " ${arguments['price']} " +
-                                    "booking.EGP".tr() +
-                                    " / " +
-                                    "trips.person".tr(),
-                                style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: white,
-                                    fontWeight: FontWeight.w700),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        )),
+                                  phone: BookingTravellerCubit.get(context)
+                                      .phone
+                                      .text
+                                      .trim(),
+                                  numberOfChildren:
+                                      context.read<AddServiceCubit>().child,
+                                  specialRequests:
+                                      BookingTravellerCubit.get(context)
+                                          .specialRequestsTrip
+                                          .text
+                                          .trim(),
+                                );
+                              }
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.check_circle_outline, size: 20.sp),
+                                SizedBox(width: 8.w),
+                                Flexible(
+                                  child: Text(
+                                    "booking.Continue".tr() +
+                                        " ${arguments['price']} " +
+                                        "booking.EGP".tr() +
+                                        " / " +
+                                        "trips.person".tr(),
+                                    style: TextStyle(
+                                        fontSize: 16.sp,
+                                        color: white,
+                                        fontWeight: FontWeight.w700),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               );
             },
           );
@@ -369,7 +383,7 @@ Widget textFormFieldTripe(
             borderRadius: BorderRadius.circular(12.r),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 8,
                 offset: Offset(0, 2),
               ),

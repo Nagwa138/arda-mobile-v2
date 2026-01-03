@@ -1,15 +1,12 @@
 import 'dart:io';
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/widgets/dotted%20container/dottedRect.dart';
 import 'package:PassPort/services/add%20service/add%20images/add_images_cubit.dart';
-import 'package:PassPort/services/add%20service/add_service_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddImages extends StatelessWidget {
   final String i = "";
@@ -38,8 +35,11 @@ class AddImages extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             BlocProvider.of<AddImagesCubit>(context).serviceImages.clear();
-            BlocProvider.of<AddImagesCubit>(context).serviceImages.addAll(args['selectedimages']);
-            BlocProvider.of<AddImagesCubit>(context).serviceImageCoverImageNumber = args['coverImageIndex'];
+            BlocProvider.of<AddImagesCubit>(context)
+                .serviceImages
+                .addAll(args['selectedimages']);
+            BlocProvider.of<AddImagesCubit>(context)
+                .serviceImageCoverImageNumber = args['coverImageIndex'];
             return ListView(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               children: [
@@ -70,7 +70,9 @@ class AddImages extends StatelessWidget {
                 ListView.separated(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: BlocProvider.of<AddImagesCubit>(context).serviceImages.length,
+                  itemCount: BlocProvider.of<AddImagesCubit>(context)
+                      .serviceImages
+                      .length,
                   separatorBuilder: (context, index) {
                     return SizedBox(height: 10.h);
                   },
@@ -78,7 +80,9 @@ class AddImages extends StatelessWidget {
                     return Stack(
                       children: [
                         Image.file(
-                          File(BlocProvider.of<AddImagesCubit>(context).serviceImages[index].path),
+                          File(BlocProvider.of<AddImagesCubit>(context)
+                              .serviceImages[index]
+                              .path),
                           width: 1.sw,
                         ),
                         // Positioned(
@@ -114,9 +118,12 @@ class AddImages extends StatelessWidget {
                         Positioned(
                           top: 15.h,
                           right: 10.w,
-                          child: index == BlocProvider.of<AddImagesCubit>(context).serviceImageCoverImageNumber
+                          child: index ==
+                                  BlocProvider.of<AddImagesCubit>(context)
+                                      .serviceImageCoverImageNumber
                               ? Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w, vertical: 5.h),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.r),
                                     color: Colors.white,
@@ -142,7 +149,8 @@ class AddImages extends StatelessWidget {
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          BlocProvider.of<AddImagesCubit>(context).addServiceImages(
+                          BlocProvider.of<AddImagesCubit>(context)
+                              .addServiceImages(
                             args["cxt"],
                           );
                         },
@@ -172,7 +180,8 @@ class AddImages extends StatelessWidget {
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          BlocProvider.of<AddImagesCubit>(context).addServiceImagesFromCamera(
+                          BlocProvider.of<AddImagesCubit>(context)
+                              .addServiceImagesFromCamera(
                             args["cxt"],
                           );
                         },
@@ -230,7 +239,8 @@ class AddImages extends StatelessWidget {
     );
   }
 
-  bottomSheetBuilder(BuildContext context, {required int index, required BuildContext cxt, required Map args}) {
+  bottomSheetBuilder(BuildContext context,
+      {required int index, required BuildContext cxt, required Map args}) {
     return Container(
       height: 250.h,
       child: Column(
@@ -265,7 +275,8 @@ class AddImages extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
 
-              BlocProvider.of<AddImagesCubit>(context).changeServiceImageCoverImageNumber(cxt, index);
+              BlocProvider.of<AddImagesCubit>(context)
+                  .changeServiceImageCoverImageNumber(cxt, index);
               args['coverImageIndex'] = index;
             },
           ),

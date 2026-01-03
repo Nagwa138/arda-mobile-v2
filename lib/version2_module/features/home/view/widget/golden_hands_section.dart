@@ -1,10 +1,10 @@
+import 'package:PassPort/models/traveller/randomProduct/random_product.dart'
+    as product_model;
 import 'package:PassPort/version2_module/features/home/view/widget/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:PassPort/models/traveller/randomProduct/random_product.dart'
-    as product_model;
 
 import '../../../../../components/color/color.dart';
 import '../../view_model/products_cubit.dart';
@@ -63,7 +63,7 @@ class GoldenHandsSection extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 28.sp,
                     fontWeight: FontWeight.bold,
-                    color: appTextColor,
+                    color: lightBrown,
                     letterSpacing: 1,
                     height: 1.2,
                   ),
@@ -74,29 +74,27 @@ class GoldenHandsSection extends StatelessWidget {
 
           SizedBox(height: 20.h),
 
-          // Vertical Grid
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.65,
-                crossAxisSpacing: 14.w,
-                mainAxisSpacing: 14.h,
-              ),
+          // Horizontal Scroll List like Activities
+          SizedBox(
+            height: 370.h,
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
               itemCount: products.length,
               itemBuilder: (context, index) {
-                return ProductCard(
-                  product: products[index],
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      'productDetails1',
-                      arguments: products[index].id,
-                    );
-                  },
+                return Padding(
+                  padding: EdgeInsets.only(right: 16.w),
+                  child: ProductCard(
+                    product: products[index],
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        'productDetails1',
+                        arguments: products[index].id,
+                      );
+                    },
+                  ),
                 );
               },
             ),

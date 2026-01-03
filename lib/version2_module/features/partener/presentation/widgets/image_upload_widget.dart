@@ -1,8 +1,9 @@
 import 'dart:io';
+
+import 'package:PassPort/components/color/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:PassPort/components/color/color.dart';
 
 class ImageUploadWidget extends StatefulWidget {
   final String label;
@@ -70,13 +71,13 @@ class _ImageUploadWidgetState extends State<ImageUploadWidget> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(12.r),
           border: Border.all(
-            color: appTextColor.withOpacity(0.3),
+            color: appTextColor.withValues(alpha: 0.3),
             width: 2,
             style: BorderStyle.solid,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -88,7 +89,7 @@ class _ImageUploadWidgetState extends State<ImageUploadWidget> {
             Container(
               padding: EdgeInsets.all(16.w),
               decoration: BoxDecoration(
-                color: appTextColor.withOpacity(0.1),
+                color: appTextColor.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -128,7 +129,7 @@ class _ImageUploadWidgetState extends State<ImageUploadWidget> {
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -211,7 +212,7 @@ class _ImageUploadWidgetState extends State<ImageUploadWidget> {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
+                    color: Colors.black.withValues(alpha: 0.3),
                     blurRadius: 4,
                   ),
                 ],
@@ -360,7 +361,7 @@ class _ImageUploadWidgetState extends State<ImageUploadWidget> {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 20.h),
         decoration: BoxDecoration(
-          color: appTextColor.withOpacity(0.1),
+          color: appTextColor.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(12.r),
         ),
         child: Column(

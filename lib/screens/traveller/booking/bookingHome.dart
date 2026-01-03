@@ -1,12 +1,11 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 
 class BookingHome extends StatelessWidget {
   const BookingHome({super.key});
@@ -31,124 +30,157 @@ class BookingHome extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: appBackgroundColor,
-            appBar: AppBar(
-              backgroundColor: appBackgroundColor,
-              elevation: 0.0,
-              automaticallyImplyLeading: false,
-              centerTitle: true,
-              title: Text(
-                "booking.booking".tr(),
-                style: TextStyle(
-                  color: accentColor,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w600,
+            body: Stack(
+              children: [
+                // Background Image
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/background.jpeg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-              ),
-              // actions: [
-              //   IconButton(
-              //     onPressed: () {
-              //       Navigator.pushNamed(context, "cart");
-              //     },
-              //     icon: Icon(
-              //       Icons.shopping_bag,
-              //       size: 40.sp,
-              //     ),
-              //   )
-              // ],
-            ),
-            body: Center(
-              child: Padding(
-                padding: EdgeInsets.only(top: 1.h),
-                child: SingleChildScrollView(
+                SafeArea(
                   child: Column(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          // BookingTravellerCubit.get(context).getAllBooking(
-                          //     state: "0", serviceName: 'accommodations');
-                          Navigator.pushNamed(context, "booking");
-                        },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(18),
-                                child: Image.asset(
-                                    height: 150,
-                                    fit: BoxFit.fitWidth,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.8,
-                                    "assets/images/traveller/accomodtion2.jpg")),
-                            Text("Camps and Glamps",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: appBackgroundColor,
-                                  fontWeight: FontWeight.w600,
-                                ))
-                          ],
+                      AppBar(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0.0,
+                        automaticallyImplyLeading: false,
+                        centerTitle: true,
+                        title: Text(
+                          "booking.booking".tr(),
+                          style: TextStyle(
+                            color: accentColor,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
+                        // actions: [
+                        //   IconButton(
+                        //     onPressed: () {
+                        //       Navigator.pushNamed(context, "cart");
+                        //     },
+                        //     icon: Icon(
+                        //       Icons.shopping_bag,
+                        //       size: 40.sp,
+                        //     ),
+                        //   )
+                        // ],
                       ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, "bookingTrips");
-                        },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(18),
-                              child: Image.asset(
-                                  height: 150,
-                                  fit: BoxFit.fitWidth,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.8,
-                                  "assets/images/traveller/trips2.jpeg"),
+                      Expanded(
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 1.h),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      // BookingTravellerCubit.get(context).getAllBooking(
+                                      //     state: "0", serviceName: 'accommodations');
+                                      Navigator.pushNamed(context, "booking");
+                                    },
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(18),
+                                            child: Image.asset(
+                                                height: 150,
+                                                fit: BoxFit.fitWidth,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.8,
+                                                "assets/images/traveller/accomodtion2.jpg")),
+                                        Text("Camps and Glamps",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: appBackgroundColor,
+                                              fontWeight: FontWeight.w600,
+                                            ))
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, "bookingTrips");
+                                    },
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(18),
+                                          child: Image.asset(
+                                              height: 150,
+                                              fit: BoxFit.fitWidth,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
+                                              "assets/images/traveller/trips2.jpeg"),
+                                        ),
+                                        Text("Journey Planner",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: appBackgroundColor,
+                                              fontWeight: FontWeight.w600,
+                                            ))
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, "bookingActivity");
+                                    },
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(18),
+                                          child: Image.asset(
+                                              height: 150,
+                                              fit: BoxFit.fitWidth,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
+                                              "assets/images/traveller/activity2.jpeg"),
+                                        ),
+                                        Text("Adventure",
+                                            style: TextStyle(
+                                              fontSize: 20.sp,
+                                              color: appBackgroundColor,
+                                              fontWeight: FontWeight.w600,
+                                            ))
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Text("Journey Planner",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: appBackgroundColor,
-                                  fontWeight: FontWeight.w600,
-                                ))
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, "bookingActivity");
-                        },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(18),
-                              child: Image.asset(
-                                  height: 150,
-                                  fit: BoxFit.fitWidth,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.8,
-                                  "assets/images/traveller/activity2.jpeg"),
-                            ),
-                            Text("Adventure",
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  color: appBackgroundColor,
-                                  fontWeight: FontWeight.w600,
-                                ))
-                          ],
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
+                )
+              ],
             ),
           );
         },

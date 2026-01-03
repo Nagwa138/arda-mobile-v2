@@ -1,10 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/homeTravellingcubit/home_travellet_cubit.dart';
 
 // Define new colors
 const Color backgroundColor = Color(0xFFFBF0E3);

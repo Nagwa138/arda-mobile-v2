@@ -1,18 +1,12 @@
-import 'dart:io';
-
-import 'package:PassPort/screens/auth/login/widget/buildModernTextField.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/transeletarabic/transalet.dart';
-import 'package:PassPort/components/widgets/customButton/customButton.dart';
 import 'package:PassPort/consts/cache%20manger/cache.dart';
+import 'package:PassPort/screens/auth/login/widget/buildModernTextField.dart';
 import 'package:PassPort/services/auth/login/loginCubit.dart';
 import 'package:PassPort/services/auth/login/loginState.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -74,7 +68,7 @@ class Login extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: appBackgroundColor,
+            // backgroundColor: appBackgroundColor,
             body: Stack(
               children: [
                 // Background Image with Gradient Overlay
@@ -83,7 +77,7 @@ class Login extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/login/image1.png"),
+                      image: AssetImage("assets/images/background.jpeg"),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -94,8 +88,8 @@ class Login extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Colors.black.withOpacity(0.3),
-                        Colors.black.withOpacity(0.1),
+                        Colors.black.withValues(alpha: 0.3),
+                        Colors.black.withValues(alpha: 0.1),
                       ],
                     ),
                   ),
@@ -116,11 +110,11 @@ class Login extends StatelessWidget {
                             child: Container(
                               padding: EdgeInsets.all(16.w),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha: 0.9),
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: accentColor.withOpacity(0.2),
+                                    color: accentColor.withValues(alpha: 0.2),
                                     blurRadius: 20,
                                     offset: Offset(0, 10),
                                   ),
@@ -145,7 +139,7 @@ class Login extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(32.r),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
+                                    color: Colors.black.withValues(alpha: 0.1),
                                     blurRadius: 30,
                                     offset: Offset(0, 15),
                                   ),
@@ -175,8 +169,8 @@ class Login extends StatelessWidget {
                                             style: TextStyle(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w400,
-                                              color:
-                                                  blackWhite.withOpacity(0.6),
+                                              color: blackWhite.withValues(
+                                                  alpha: 0.6),
                                             ),
                                           ),
                                         ],
@@ -223,7 +217,8 @@ class Login extends StatelessWidget {
                                                   .isPasswordVisible
                                               ? Icons.visibility_off_outlined
                                               : Icons.visibility_outlined,
-                                          color: accentColor.withOpacity(0.5),
+                                          color: accentColor.withValues(
+                                              alpha: 0.5),
                                         ),
                                       ),
                                       validation: (String? value) {
@@ -273,12 +268,13 @@ class Login extends StatelessWidget {
                                         gradient: LinearGradient(
                                           colors: [
                                             accentColor,
-                                            accentColor.withOpacity(0.8)
+                                            accentColor.withValues(alpha: 0.8)
                                           ],
                                         ),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: accentColor.withOpacity(0.3),
+                                            color: accentColor.withValues(
+                                                alpha: 0.3),
                                             blurRadius: 16,
                                             offset: Offset(0, 8),
                                           ),
@@ -314,7 +310,8 @@ class Login extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Divider(
-                                            color: blackWhite.withOpacity(0.2),
+                                            color: blackWhite.withValues(
+                                                alpha: 0.2),
                                             thickness: 1,
                                           ),
                                         ),
@@ -325,15 +322,16 @@ class Login extends StatelessWidget {
                                             'OR',
                                             style: TextStyle(
                                               fontSize: 12.sp,
-                                              color:
-                                                  blackWhite.withOpacity(0.4),
+                                              color: blackWhite.withValues(
+                                                  alpha: 0.4),
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                         ),
                                         Expanded(
                                           child: Divider(
-                                            color: blackWhite.withOpacity(0.2),
+                                            color: blackWhite.withValues(
+                                                alpha: 0.2),
                                             thickness: 1,
                                           ),
                                         ),
@@ -353,8 +351,8 @@ class Login extends StatelessWidget {
                                             style: TextStyle(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w400,
-                                              color:
-                                                  blackWhite.withOpacity(0.6),
+                                              color: blackWhite.withValues(
+                                                  alpha: 0.6),
                                             ),
                                           ),
                                           SizedBox(width: 6.w),

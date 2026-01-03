@@ -8,8 +8,6 @@ import 'package:PassPort/consts/api/api.dart';
 import 'package:PassPort/consts/api/apiMethod/api_method.dart';
 import 'package:PassPort/models/traveller/activity/activity_id_model.dart';
 import 'package:PassPort/models/traveller/activity/get_all_activity.dart';
-import 'package:PassPort/models/traveller/products/get_all_product.dart';
-import 'package:PassPort/models/traveller/products/get_all_product_by_id.dart';
 
 import 'activity_stata.dart';
 

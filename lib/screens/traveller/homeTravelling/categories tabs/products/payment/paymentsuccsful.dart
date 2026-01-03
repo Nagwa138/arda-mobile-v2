@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
@@ -94,10 +93,10 @@ class PaymentSuccessful extends StatelessWidget {
             height: 55.h,
             child: ElevatedButton(
                 style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0), side: BorderSide(color: orange))),
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                  backgroundColor: MaterialStateProperty.all<Color>(orange),
+                  foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                  backgroundColor: WidgetStateProperty.all<Color>(orange),
                 ),
                 onPressed: () {
                   Navigator.pushNamed(context, "travellerNavBar");

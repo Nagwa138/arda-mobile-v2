@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -130,14 +129,14 @@ class ConfirmCancel extends StatelessWidget {
                       child: ElevatedButton(
                           style: ButtonStyle(
                             shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                            WidgetStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
                                     side: BorderSide(color: accentColor))),
                             foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
+                            WidgetStateProperty.all<Color>(Colors.white),
                             backgroundColor:
-                            MaterialStateProperty.all<Color>(accentColor),
+                            WidgetStateProperty.all<Color>(accentColor),
                           ),
                           onPressed: () {
                             print(arguments['id']);

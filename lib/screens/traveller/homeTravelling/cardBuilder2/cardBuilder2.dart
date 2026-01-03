@@ -1,9 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const Color textColor = Color(0xFF161651);
 
@@ -52,13 +50,13 @@ class CardBuilder2 extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: textColor.withOpacity(0.08),
+            color: textColor.withValues(alpha: 0.08),
             blurRadius: 20,
             offset: Offset(0, 4),
             spreadRadius: 0,
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: Offset(0, 2),
           ),
@@ -125,7 +123,7 @@ class CardBuilder2 extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Colors.black.withOpacity(0.4),
+                        Colors.black.withValues(alpha: 0.4),
                         Colors.transparent,
                       ],
                     ),
@@ -148,7 +146,7 @@ class CardBuilder2 extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12.r),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.15),
+                          color: Colors.black.withValues(alpha: 0.15),
                           blurRadius: 8,
                           offset: Offset(0, 2),
                         ),
@@ -177,7 +175,7 @@ class CardBuilder2 extends StatelessWidget {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.15),
+                        color: Colors.black.withValues(alpha: 0.15),
                         blurRadius: 8,
                         offset: Offset(0, 2),
                       ),
@@ -257,7 +255,7 @@ class CardBuilder2 extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(6.w),
                       decoration: BoxDecoration(
-                        color: textColor.withOpacity(0.08),
+                        color: textColor.withValues(alpha: 0.08),
                         borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: Icon(
@@ -272,7 +270,7 @@ class CardBuilder2 extends StatelessWidget {
                         location,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          color: textColor.withOpacity(0.7),
+                          color: textColor.withValues(alpha: 0.7),
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
@@ -292,13 +290,13 @@ class CardBuilder2 extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        accentColor.withOpacity(0.1),
-                        accentColor.withOpacity(0.05),
+                        accentColor.withValues(alpha: 0.1),
+                        accentColor.withValues(alpha: 0.05),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(12.r),
                     border: Border.all(
-                      color: accentColor.withOpacity(0.2),
+                      color: accentColor.withValues(alpha: 0.2),
                       width: 1.w,
                     ),
                   ),
@@ -308,7 +306,7 @@ class CardBuilder2 extends StatelessWidget {
                       Text(
                         context.locale.languageCode == 'ar' ? 'السعر' : 'Price',
                         style: TextStyle(
-                          color: textColor.withOpacity(0.6),
+                          color: textColor.withValues(alpha: 0.6),
                           fontSize: 13.sp,
                           fontWeight: FontWeight.w500,
                         ),
@@ -339,7 +337,7 @@ class CardBuilder2 extends StatelessWidget {
                                   ? " / ليلة"
                                   : " / Night",
                               style: TextStyle(
-                                color: textColor.withOpacity(0.5),
+                                color: textColor.withValues(alpha: 0.5),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -369,7 +367,7 @@ class CardBuilder2 extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8.r),
                           boxShadow: [
                             BoxShadow(
-                              color: textColor.withOpacity(0.2),
+                              color: textColor.withValues(alpha: 0.2),
                               blurRadius: 4,
                               offset: Offset(0, 2),
                             ),

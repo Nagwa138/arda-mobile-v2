@@ -2,15 +2,13 @@
 
 import 'dart:io';
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/screens/auth/registration/partner/partner_register.dart';
 import 'package:PassPort/services/auth/registration/partner/partner_register_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PrivateInformation extends StatelessWidget {
   const PrivateInformation({super.key});
@@ -19,7 +17,7 @@ class PrivateInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 0.9.sh,
-       color: appBackgroundColor,
+      color: appBackgroundColor,
       child: ListView(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         shrinkWrap: true,
@@ -89,7 +87,7 @@ class PrivateInformation extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                    text: true ? ' *' : '',
+                    text: ' *',
                     style: TextStyle(
                       color: Colors.red,
                       fontSize: 14.sp,
@@ -146,7 +144,7 @@ class PrivateInformation extends StatelessWidget {
             title: 'register.address'.tr(),
             isRequired: false,
             hint: 'register.inputs.address'.tr(),
-            controller: context.read<PartnerRegisterCubit>().addressController ,
+            controller: context.read<PartnerRegisterCubit>().addressController,
             validation: (value) {
               return null;
             },
@@ -154,7 +152,6 @@ class PrivateInformation extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           textFormFildBuilder(
-            
             context,
             title: 'register.websiteLink'.tr(),
             hint: 'register.inputs.websiteLink'.tr(),

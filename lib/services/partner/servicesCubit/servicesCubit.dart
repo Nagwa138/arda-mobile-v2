@@ -11,7 +11,6 @@ import 'package:PassPort/models/partner/ServicesModel.dart';
 import 'package:PassPort/models/partner/servicesByid/servicesById.dart';
 import 'package:PassPort/services/partner/servicesCubit/servicesStates.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 
 final storage = new FlutterSecureStorage();
 

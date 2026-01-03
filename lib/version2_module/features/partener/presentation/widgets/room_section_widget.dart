@@ -157,7 +157,7 @@ class _RoomSectionWidgetState extends State<RoomSectionWidget> {
 
                     // نوع الغرفة
                     DropdownButtonFormField<String>(
-                      value: room['roomType'],
+                      initialValue: room['roomType'],
                       decoration: InputDecoration(
                         labelText: 'نوع الغرفة',
                         border: OutlineInputBorder(),

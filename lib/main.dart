@@ -1,25 +1,21 @@
 import 'dart:io';
 
-import 'package:PassPort/services/ssl/ssl.dart';
-import 'package:PassPort/version2_module/features/partener/partner_feature_exports.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/consts/cache%20manger/cache.dart';
-import 'package:PassPort/screens/onBoarding/onboarding.dart';
 import 'package:PassPort/screens/splash/splash.dart';
 import 'package:PassPort/services/cubit/cubitobserve.dart';
 import 'package:PassPort/services/notification/notificationLogic.dart';
+import 'package:PassPort/services/ssl/ssl.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:path_provider/path_provider.dart';
+
 import 'consts/routes/route.dart' as route;
 
 var token;
@@ -50,7 +46,7 @@ void main() async {
   await CacheManger.init();
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      enabled: !kReleaseMode && false,
       builder: (context) => EasyLocalization(
         supportedLocales: [
           Locale('en'),
@@ -98,7 +94,6 @@ class MyApp extends StatelessWidget {
               surface: appBackgroundColor,
             ),
             cardColor: appBackgroundColor,
-            dialogBackgroundColor: appBackgroundColor,
             primaryColor: appTextColor,
             fontFamily: 'Times',
             textTheme: TextTheme(
@@ -140,6 +135,7 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(
               color: appTextColor,
             ),
+            dialogTheme: DialogThemeData(backgroundColor: appBackgroundColor),
           ),
           //home: OnBoarding(),
           home: Splash(),

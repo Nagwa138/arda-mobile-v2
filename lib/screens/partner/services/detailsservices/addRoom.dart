@@ -50,14 +50,15 @@ class AddRoomDetails extends StatelessWidget {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
-                            orange.withOpacity(0.1),
-                            orange.withOpacity(0.05)
+                            orange.withValues(alpha: 0.1),
+                            orange.withValues(alpha: 0.05)
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
                         borderRadius: BorderRadius.circular(16.r),
-                        border: Border.all(color: orange.withOpacity(0.3)),
+                        border:
+                            Border.all(color: orange.withValues(alpha: 0.3)),
                       ),
                       child: Row(
                         children: [
@@ -170,7 +171,7 @@ class AddRoomDetails extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.r),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: Offset(0, 2),
               ),
@@ -258,7 +259,7 @@ class AddRoomDetails extends StatelessWidget {
               border: Border.all(color: Colors.grey[300]!),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 10,
                   offset: Offset(0, 2),
                 ),

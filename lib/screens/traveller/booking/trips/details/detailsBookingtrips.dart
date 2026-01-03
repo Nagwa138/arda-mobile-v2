@@ -1,9 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
@@ -407,7 +404,7 @@ class DetailsBookingTrips extends StatelessWidget {
                                       height: 55.h,
                                       child: ElevatedButton(
                                           style: ButtonStyle(
-                                              shape: MaterialStateProperty.all<
+                                              shape: WidgetStateProperty.all<
                                                       RoundedRectangleBorder>(
                                                   RoundedRectangleBorder(
                                                       borderRadius:
@@ -416,13 +413,13 @@ class DetailsBookingTrips extends StatelessWidget {
                                                       side: BorderSide(
                                                           color: orange))),
                                               foregroundColor:
-                                                  MaterialStateProperty.all<Color>(
+                                                  WidgetStateProperty.all<Color>(
                                                       white),
                                               backgroundColor:
-                                                  MaterialStateProperty.all<Color>(
+                                                  WidgetStateProperty.all<Color>(
                                                       white),
                                               elevation:
-                                                  MaterialStateProperty.all<double>(0.0)),
+                                                  WidgetStateProperty.all<double>(0.0)),
                                           onPressed: () {
                                             Navigator.pushNamed(
                                                 context, "cancelReservation",
@@ -461,7 +458,7 @@ class DetailsBookingTrips extends StatelessWidget {
                                             height: 60.h,
                                             child: ElevatedButton(
                                                 style: ButtonStyle(
-                                                  shape: MaterialStateProperty
+                                                  shape: WidgetStateProperty
                                                       .all<RoundedRectangleBorder>(
                                                           RoundedRectangleBorder(
                                                               borderRadius:
@@ -472,10 +469,10 @@ class DetailsBookingTrips extends StatelessWidget {
                                                                   color:
                                                                       orange))),
                                                   foregroundColor:
-                                                      MaterialStateProperty.all<
+                                                      WidgetStateProperty.all<
                                                           Color>(Colors.white),
                                                   backgroundColor:
-                                                      MaterialStateProperty.all<
+                                                      WidgetStateProperty.all<
                                                           Color>(orange),
                                                 ),
                                                 onPressed: () async {
@@ -515,7 +512,7 @@ class DetailsBookingTrips extends StatelessWidget {
                                           height: 55.h,
                                           child: ElevatedButton(
                                               style: ButtonStyle(
-                                                  shape: MaterialStateProperty.all<
+                                                  shape: WidgetStateProperty.all<
                                                           RoundedRectangleBorder>(
                                                       RoundedRectangleBorder(
                                                           borderRadius:
@@ -524,13 +521,13 @@ class DetailsBookingTrips extends StatelessWidget {
                                                           side: BorderSide(
                                                               color: orange))),
                                                   foregroundColor:
-                                                      MaterialStateProperty.all<Color>(
+                                                      WidgetStateProperty.all<Color>(
                                                           white),
                                                   backgroundColor:
-                                                      MaterialStateProperty.all<Color>(
+                                                      WidgetStateProperty.all<Color>(
                                                           white),
                                                   elevation:
-                                                      MaterialStateProperty.all<double>(0.0)),
+                                                      WidgetStateProperty.all<double>(0.0)),
                                               onPressed: () {
                                                 Navigator.pushNamed(context,
                                                     "cancelReservation",
@@ -565,7 +562,7 @@ class DetailsBookingTrips extends StatelessWidget {
                                               width: 380.w,
                                               child: ElevatedButton(
                                                   style: ButtonStyle(
-                                                      shape: MaterialStateProperty.all<
+                                                      shape: WidgetStateProperty.all<
                                                               RoundedRectangleBorder>(
                                                           RoundedRectangleBorder(
                                                               borderRadius:
@@ -575,12 +572,12 @@ class DetailsBookingTrips extends StatelessWidget {
                                                                   color:
                                                                       orange))),
                                                       foregroundColor:
-                                                          MaterialStateProperty
+                                                          WidgetStateProperty
                                                               .all<Color>(
                                                                   Colors.white),
                                                       backgroundColor:
-                                                          MaterialStateProperty.all<Color>(white),
-                                                      elevation: MaterialStateProperty.all<double>(0.0)),
+                                                          WidgetStateProperty.all<Color>(white),
+                                                      elevation: WidgetStateProperty.all<double>(0.0)),
                                                   onPressed: () {
                                                     Navigator.pushNamed(context,
                                                         "reviewBooking",

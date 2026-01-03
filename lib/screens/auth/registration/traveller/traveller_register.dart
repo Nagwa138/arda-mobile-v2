@@ -1,15 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/transeletarabic/transalet.dart';
 import 'package:PassPort/services/auth/registration/traveller/traveller_register_cubit.dart';
 import 'package:PassPort/services/auth/registration/traveller/traveller_register_state.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TravellerRegister extends StatelessWidget {
   const TravellerRegister({super.key});
@@ -206,7 +205,7 @@ class TravellerRegister extends StatelessWidget {
                                         ),
                                         children: [
                                           TextSpan(
-                                            text: true ? ' *' : '',
+                                            text: ' *',
                                             style: TextStyle(
                                               color: Colors.red,
                                               fontSize: 14.sp,

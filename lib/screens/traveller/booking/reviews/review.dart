@@ -1,11 +1,11 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/traveller/review_cubit/review_cubit.dart';
+import 'package:PassPort/services/traveller/review_cubit/review_state.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/review_cubit/review_cubit.dart';
-import 'package:PassPort/services/traveller/review_cubit/review_state.dart';
 
 PageController pageController = PageController();
 
@@ -117,7 +117,7 @@ class _ReviewBookingState extends State<ReviewBooking>
           borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 4,
               offset: Offset(0, 2),
             ),
@@ -149,7 +149,7 @@ class _ReviewBookingState extends State<ReviewBooking>
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 20,
             offset: Offset(0, 4),
           ),
@@ -225,7 +225,7 @@ class _ReviewBookingState extends State<ReviewBooking>
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 20,
             offset: Offset(0, 4),
           ),
@@ -239,7 +239,7 @@ class _ReviewBookingState extends State<ReviewBooking>
               Container(
                 padding: EdgeInsets.all(12.w),
                 decoration: BoxDecoration(
-                  color: Colors.amber.withOpacity(0.1),
+                  color: Colors.amber.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Icon(
@@ -285,7 +285,7 @@ class _ReviewBookingState extends State<ReviewBooking>
                   itemCount: 5,
                   itemSize: 40.sp,
                   glow: true,
-                  glowColor: Colors.amber.withOpacity(0.3),
+                  glowColor: Colors.amber.withValues(alpha: 0.3),
                   itemPadding: EdgeInsets.symmetric(horizontal: 8.w),
                   itemBuilder: (context, index) => Container(
                     decoration: BoxDecoration(
@@ -293,7 +293,7 @@ class _ReviewBookingState extends State<ReviewBooking>
                       boxShadow: _currentRating > index
                           ? [
                               BoxShadow(
-                                color: Colors.amber.withOpacity(0.3),
+                                color: Colors.amber.withValues(alpha: 0.3),
                                 blurRadius: 8,
                                 spreadRadius: 1,
                               ),
@@ -319,10 +319,12 @@ class _ReviewBookingState extends State<ReviewBooking>
                     padding:
                         EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                     decoration: BoxDecoration(
-                      color: _getRatingColor(_currentRating).withOpacity(0.1),
+                      color: _getRatingColor(_currentRating)
+                          .withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(20.r),
                       border: Border.all(
-                        color: _getRatingColor(_currentRating).withOpacity(0.3),
+                        color: _getRatingColor(_currentRating)
+                            .withValues(alpha: 0.3),
                       ),
                     ),
                     child: Row(
@@ -361,7 +363,7 @@ class _ReviewBookingState extends State<ReviewBooking>
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 20,
             offset: Offset(0, 4),
           ),
@@ -375,7 +377,7 @@ class _ReviewBookingState extends State<ReviewBooking>
               Container(
                 padding: EdgeInsets.all(12.w),
                 decoration: BoxDecoration(
-                  color: appTextColor.withOpacity(0.1),
+                  color: appTextColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Icon(
@@ -466,14 +468,14 @@ class _ReviewBookingState extends State<ReviewBooking>
       height: 56.h,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [appTextColor, appTextColor.withOpacity(0.8)],
+          colors: [appTextColor, appTextColor.withValues(alpha: 0.8)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
-            color: appTextColor.withOpacity(0.3),
+            color: appTextColor.withValues(alpha: 0.3),
             blurRadius: 12,
             offset: Offset(0, 6),
           ),
@@ -560,7 +562,7 @@ class _ReviewBookingState extends State<ReviewBooking>
             Container(
               padding: EdgeInsets.all(16.w),
               decoration: BoxDecoration(
-                color: Colors.green.withOpacity(0.1),
+                color: Colors.green.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(50.r),
               ),
               child: Icon(

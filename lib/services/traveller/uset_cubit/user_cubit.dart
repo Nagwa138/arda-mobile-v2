@@ -6,7 +6,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:PassPort/consts/api/api.dart';
 import 'package:PassPort/consts/api/apiMethod/api_method.dart';
 import 'package:PassPort/models/partner/profits/profits_model.dart';
-import 'package:PassPort/models/traveller/blog/blog_model.dart';
 import 'package:PassPort/models/traveller/user_model/user_model.dart';
 import 'package:PassPort/services/traveller/uset_cubit/user_state.dart';
 

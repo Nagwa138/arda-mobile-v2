@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 // removed unused easy_localization import
 import 'package:PassPort/components/color/color.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'menu_item.dart';
 
 class MenuDrawer extends StatelessWidget {
@@ -271,10 +272,10 @@ class MenuDrawer extends StatelessWidget {
                       vertical: 12.h,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.red.withOpacity(0.1),
+                      color: Colors.red.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12.r),
                       border: Border.all(
-                        color: Colors.red.withOpacity(0.3),
+                        color: Colors.red.withValues(alpha: 0.3),
                         width: 1,
                       ),
                     ),

@@ -1,4 +1,3 @@
-import 'package:PassPort/models/traveller/products/card_model.dart';
 
 abstract class ProductState {}
 

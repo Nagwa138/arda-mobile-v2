@@ -1,17 +1,14 @@
-import 'package:PassPort/models/traveller/accomandating/randomAccomandtion.dart';
 import 'package:PassPort/version2_module/features/home/data/models/top_rated_model.dart';
 import 'package:PassPort/version2_module/features/home/view/widget/accommodation_card.dart';
 import 'package:PassPort/version2_module/features/home/view/widget/build_error_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../components/color/color.dart';
 import '../../view_model/top_rated_cubit.dart';
 import '../../view_model/top_rated_state.dart';
 import 'build_loading_section.dart';
-import 'build_section.dart';
 
 class PopularGemsSection extends StatelessWidget {
   const PopularGemsSection({super.key});

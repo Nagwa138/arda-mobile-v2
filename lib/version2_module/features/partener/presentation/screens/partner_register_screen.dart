@@ -1,7 +1,8 @@
+import 'package:PassPort/version2_module/core/const/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/version2_module/core/const/app_colors.dart';
+
 import '../../domain/entities/partner_register_entity.dart';
 import '../cubit/partner_register_cubit.dart';
 import '../cubit/partner_register_state.dart';
@@ -39,160 +40,174 @@ class _PartnerRegisterScreenState extends State<PartnerRegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(
-        title: Text(
-          'Partner Registration',
-          style: TextStyle(
-            color: AppColors.textColor,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.jpeg"),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios, color: AppColors.textColor),
-        ),
-        backgroundColor: AppColors.backgroundColor,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textColor),
-      ),
-      body: BlocConsumer<PartnerRegisterCubit, PartnerRegisterState>(
-        listener: (context, state) {
-          if (state is PartnerRegisterLoading) {
-            CustomDialogs.showLoadingDialog(
-              context: context,
-              message: 'Registering your partnership...',
-            );
-          } else if (state is PartnerRegisterSuccess) {
-            Navigator.of(context).pop(); // Close loading dialog
-            CustomDialogs.showSuccessDialog(
-              context: context,
-              title: 'Welcome Partner!',
-              message: state.message,
-              onOkPressed: () {
-                Navigator.of(context).pop(); // Go back to previous screen
-              },
-            );
-          } else if (state is PartnerRegisterError) {
-            Navigator.of(context).pop(); // Close loading dialog
-            CustomDialogs.showErrorDialog(
-              context: context,
-              title: 'Registration Failed',
-              message: state.message,
-              onRetryPressed: () {
-                // User can try again
-              },
-              onCancelPressed: () {
-                // Just close the dialog
-              },
-            );
-          } else if (state is ServicesError) {
-            CustomDialogs.showErrorDialog(
-              context: context,
-              title: 'Connection Error',
-              message:
-                  'Unable to load services. Please check your internet connection and try again.',
-              onRetryPressed: () {
-                context.read<PartnerRegisterCubit>().getApplicationServices();
-                context.read<PartnerRegisterCubit>().getGovernments();
-              },
-              onCancelPressed: () {
-                Navigator.of(context).pop(); // Go back
-              },
-            );
-          }
-        },
-        builder: (context, state) {
-          return Padding(
-            padding: EdgeInsets.all(16.w),
-            child: Form(
-              key: _formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(height: 20.h),
-
-                    // Welcome Text
-                    Text(
-                      'Glad to have you , our partner in growth',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textColor,
-                      ),
-                    ),
-                    SizedBox(height: 30.h),
-
-                    // Applicant Name Field
-                    _buildTextField(
-                      controller: _applicantNameController,
-                      label: 'Applicant Name *',
-                      hint: 'Enter applicant name',
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Applicant name is required';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16.h),
-
-                    // Brand/Company Name Field
-                    _buildTextField(
-                      controller: _companyNameController,
-                      label: 'Brand Name *',
-                      hint: 'Enter your brand/company name',
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Brand name is required';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16.h),
-
-                    // Email Field
-                    _buildTextField(
-                      controller: _emailController,
-                      label: 'Email *',
-                      hint: 'Enter your email address',
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Email is required';
-                        }
-                        if (!value.contains('@')) {
-                          return 'Please enter a valid email';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16.h),
-
-                    // Government/City Selection
-                    _buildGovernmentSelector(state),
-                    SizedBox(height: 20.h),
-
-                    // Service Selection
-                    _buildServiceSelector(state),
-                    SizedBox(height: 30.h),
-
-                    // Register Button
-                    _buildRegisterButton(state),
-                  ],
-                ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: Text(
+              'Partner Registration',
+              style: TextStyle(
+                color: AppColors.textColor,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          );
-        },
-      ),
+            centerTitle: true,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios, color: AppColors.textColor),
+            ),
+            backgroundColor: AppColors.backgroundColor,
+            elevation: 0,
+            iconTheme: const IconThemeData(color: AppColors.textColor),
+          ),
+          body: BlocConsumer<PartnerRegisterCubit, PartnerRegisterState>(
+            listener: (context, state) {
+              if (state is PartnerRegisterLoading) {
+                CustomDialogs.showLoadingDialog(
+                  context: context,
+                  message: 'Registering your partnership...',
+                );
+              } else if (state is PartnerRegisterSuccess) {
+                Navigator.of(context).pop(); // Close loading dialog
+                CustomDialogs.showSuccessDialog(
+                  context: context,
+                  title: 'Welcome Partner!',
+                  message: state.message,
+                  onOkPressed: () {
+                    Navigator.of(context).pop(); // Go back to previous screen
+                  },
+                );
+              } else if (state is PartnerRegisterError) {
+                Navigator.of(context).pop(); // Close loading dialog
+                CustomDialogs.showErrorDialog(
+                  context: context,
+                  title: 'Registration Failed',
+                  message: state.message,
+                  onRetryPressed: () {
+                    // User can try again
+                  },
+                  onCancelPressed: () {
+                    // Just close the dialog
+                  },
+                );
+              } else if (state is ServicesError) {
+                CustomDialogs.showErrorDialog(
+                  context: context,
+                  title: 'Connection Error',
+                  message:
+                      'Unable to load services. Please check your internet connection and try again.',
+                  onRetryPressed: () {
+                    context
+                        .read<PartnerRegisterCubit>()
+                        .getApplicationServices();
+                    context.read<PartnerRegisterCubit>().getGovernments();
+                  },
+                  onCancelPressed: () {
+                    Navigator.of(context).pop(); // Go back
+                  },
+                );
+              }
+            },
+            builder: (context, state) {
+              return Padding(
+                padding: EdgeInsets.all(16.w),
+                child: Form(
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        SizedBox(height: 20.h),
+
+                        // Welcome Text
+                        Text(
+                          'Glad to have you , our partner in growth',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textColor,
+                          ),
+                        ),
+                        SizedBox(height: 30.h),
+
+                        // Applicant Name Field
+                        _buildTextField(
+                          controller: _applicantNameController,
+                          label: 'Applicant Name *',
+                          hint: 'Enter applicant name',
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Applicant name is required';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 16.h),
+
+                        // Brand/Company Name Field
+                        _buildTextField(
+                          controller: _companyNameController,
+                          label: 'Brand Name *',
+                          hint: 'Enter your brand/company name',
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Brand name is required';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 16.h),
+
+                        // Email Field
+                        _buildTextField(
+                          controller: _emailController,
+                          label: 'Email *',
+                          hint: 'Enter your email address',
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Email is required';
+                            }
+                            if (!value.contains('@')) {
+                              return 'Please enter a valid email';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 16.h),
+
+                        // Government/City Selection
+                        _buildGovernmentSelector(state),
+                        SizedBox(height: 20.h),
+
+                        // Service Selection
+                        _buildServiceSelector(state),
+                        SizedBox(height: 30.h),
+
+                        // Register Button
+                        _buildRegisterButton(state),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
@@ -413,14 +428,14 @@ class _PartnerRegisterScreenState extends State<PartnerRegisterScreen> {
         gradient: LinearGradient(
           colors: [
             AppColors.buttonColor,
-            AppColors.buttonColor.withOpacity(0.8),
+            AppColors.buttonColor.withValues(alpha:0.8),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.buttonColor.withOpacity(0.3),
+            color: AppColors.buttonColor.withValues(alpha:0.3),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),

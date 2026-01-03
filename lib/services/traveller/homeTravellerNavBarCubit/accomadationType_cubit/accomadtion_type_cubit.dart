@@ -10,7 +10,6 @@ import 'package:PassPort/consts/api/apiMethod/api_method.dart';
 import 'package:PassPort/models/traveller/accomandating/accomadingBasedonTypeModel.dart';
 import 'package:PassPort/models/traveller/accomandating/accomandtionByIdone.dart';
 import 'package:PassPort/models/traveller/accomandating/accomonsting.dart';
-import 'package:PassPort/models/traveller/activity/get_all_activity.dart';
 import 'package:PassPort/models/traveller/favourite_model/accomandation_model.dart';
 
 import 'acommedtion_type_state.dart';

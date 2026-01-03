@@ -1,17 +1,17 @@
-import 'package:PassPort/screens/partner/services/detailsservices/detailsservices.dart';
-import 'package:PassPort/version2_module/features/partener/data/repositories/service_submission_repository_impl.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:PassPort/components/color/color.dart';
-import '../widgets/service_card.dart';
-import '../widgets/dynamic_service_form.dart';
-import '../cubit/service_submission_cubit.dart';
+import 'package:PassPort/screens/partner/services/detailsservices/detailsservices.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import '../../core/di/service_provider.dart';
 import '../cubit/partner_services_cubit.dart';
 import '../cubit/partner_services_state.dart';
+import '../cubit/service_submission_cubit.dart';
 import '../models/partner_service_item.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../widgets/dynamic_service_form.dart';
+import '../widgets/service_card.dart';
 
 class PartnerServicesScreen extends StatelessWidget {
   const PartnerServicesScreen({super.key});
@@ -81,7 +81,7 @@ class PartnerServicesScreen extends StatelessWidget {
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.03),
+                          color: Colors.black.withValues(alpha: 0.03),
                           blurRadius: 10,
                           offset: Offset(0, 2),
                         ),
@@ -95,7 +95,7 @@ class PartnerServicesScreen extends StatelessWidget {
                               width: 40.w,
                               height: 40.w,
                               decoration: BoxDecoration(
-                                color: appTextColor.withOpacity(0.1),
+                                color: appTextColor.withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
                               child: IconButton(
@@ -158,7 +158,7 @@ class PartnerServicesScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.r),
                 boxShadow: [
                   BoxShadow(
-                    color: appTextColor.withOpacity(0.3),
+                    color: appTextColor.withValues(alpha: 0.3),
                     blurRadius: 20,
                     offset: Offset(0, 10),
                   ),
@@ -377,7 +377,7 @@ class _PartnerServicesBlocList extends StatelessWidget {
                     width: 80.w,
                     height: 80.w,
                     decoration: BoxDecoration(
-                      color: Colors.red.withOpacity(0.1),
+                      color: Colors.red.withValues(alpha: 0.1),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -443,13 +443,13 @@ class _PartnerServicesBlocList extends StatelessWidget {
                       width: 120.w,
                       height: 120.w,
                       decoration: BoxDecoration(
-                        color: appTextColor.withOpacity(0.08),
+                        color: appTextColor.withValues(alpha: 0.08),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
                         Icons.business_rounded,
                         size: 60.sp,
-                        color: appTextColor.withOpacity(0.5),
+                        color: appTextColor.withValues(alpha: 0.5),
                       ),
                     ),
                     SizedBox(height: 24.h),

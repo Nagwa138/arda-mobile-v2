@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PartnerActivityDetailsScreen extends StatelessWidget {
   const PartnerActivityDetailsScreen({super.key});
@@ -23,7 +23,7 @@ class PartnerActivityDetailsScreen extends StatelessWidget {
             leading: Container(
               margin: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(alpha: 0.9),
                 borderRadius: BorderRadius.circular(10.r),
               ),
               child: IconButton(
@@ -35,7 +35,7 @@ class PartnerActivityDetailsScreen extends StatelessWidget {
               Container(
                 margin: EdgeInsets.all(8.w),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: IconButton(
@@ -125,7 +125,7 @@ class PartnerActivityDetailsScreen extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               horizontal: 12.w, vertical: 8.h),
                           decoration: BoxDecoration(
-                            color: appTextColor.withOpacity(0.1),
+                            color: appTextColor.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(15.r),
                           ),
                           child: Text(
@@ -319,7 +319,7 @@ class PartnerActivityDetailsScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 5,
             offset: Offset(0, 2),
@@ -331,7 +331,7 @@ class PartnerActivityDetailsScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(8.w),
             decoration: BoxDecoration(
-              color: appTextColor.withOpacity(0.1),
+              color: appTextColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(10.r),
             ),
             child: Icon(icon, color: appTextColor, size: 20.sp),
@@ -385,7 +385,7 @@ class PartnerActivityDetailsScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 5,
             offset: Offset(0, 2),
@@ -396,7 +396,7 @@ class PartnerActivityDetailsScreen extends StatelessWidget {
         leading: Container(
           padding: EdgeInsets.all(8.w),
           decoration: BoxDecoration(
-            color: appTextColor.withOpacity(0.1),
+            color: appTextColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10.r),
           ),
           child: Icon(icon, color: appTextColor, size: 20.sp),

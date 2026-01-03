@@ -1,15 +1,12 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/transeletarabic/transalet.dart';
+import 'package:PassPort/services/traveller/uset_cubit/user_cubit.dart';
+import 'package:PassPort/services/traveller/uset_cubit/user_state.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/transeletarabic/transalet.dart';
-import 'package:PassPort/components/widgets/customText.dart';
-import 'package:PassPort/services/traveller/uset_cubit/user_cubit.dart';
-import 'package:PassPort/services/traveller/uset_cubit/user_state.dart';
 
 class TravellerEditProfile extends StatelessWidget {
   const TravellerEditProfile({super.key});
@@ -76,7 +73,7 @@ class TravellerEditProfile extends StatelessWidget {
                               end: Alignment.bottomCenter,
                               colors: [
                                 Colors.transparent,
-                                Colors.black.withOpacity(0.3),
+                                Colors.black.withValues(alpha: 0.3),
                               ],
                             ),
                           ),
@@ -170,7 +167,7 @@ class TravellerEditProfile extends StatelessWidget {
                               color: appBackgroundColor,
                               borderRadius: BorderRadius.circular(16.r),
                               border: Border.all(
-                                color: Colors.black.withOpacity(0.08),
+                                color: Colors.black.withValues(alpha: 0.08),
                                 width: 1,
                               ),
                             ),
@@ -226,7 +223,7 @@ class TravellerEditProfile extends StatelessWidget {
                                 Container(
                                   width: 1,
                                   height: 50.h,
-                                  color: Colors.black.withOpacity(0.08),
+                                  color: Colors.black.withValues(alpha: 0.08),
                                 ),
                                 Expanded(
                                   child: GestureDetector(
@@ -339,7 +336,8 @@ class TravellerEditProfile extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(16.r),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: accentColor.withOpacity(0.3),
+                                          color: accentColor.withValues(
+                                              alpha: 0.3),
                                           blurRadius: 12,
                                           offset: Offset(0, 6),
                                         ),
@@ -411,7 +409,7 @@ class TravellerEditProfile extends StatelessWidget {
             color: appBackgroundColor,
             borderRadius: BorderRadius.circular(14.r),
             border: Border.all(
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withValues(alpha: 0.08),
               width: 1.5,
             ),
           ),
@@ -430,7 +428,7 @@ class TravellerEditProfile extends StatelessWidget {
                 padding: EdgeInsets.all(12.w),
                 child: Icon(
                   icon,
-                  color: accentColor.withOpacity(0.6),
+                  color: accentColor.withValues(alpha: 0.6),
                   size: 22.sp,
                 ),
               ),

@@ -1,11 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/traveller/uset_cubit/user_cubit.dart';
 import 'package:PassPort/services/traveller/uset_cubit/user_state.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AccountSecurity extends StatelessWidget {
   const AccountSecurity({super.key});
@@ -20,9 +19,19 @@ class AccountSecurity extends StatelessWidget {
         listener: (BuildContext context,  state) {  },
 
         builder: (BuildContext context,  state) {
-          return Scaffold(
-            backgroundColor: appBackgroundColor,
-            appBar: AppBar(
+          return Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/background.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: AppBar(
               backgroundColor: appBackgroundColor,
               elevation: 0.0,
               centerTitle: true,
@@ -105,6 +114,8 @@ class AccountSecurity extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+            ],
           );
         },
 

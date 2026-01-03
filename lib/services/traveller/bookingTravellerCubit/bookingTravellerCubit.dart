@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/models/traveller/booking/Room/booking_Room_Model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -19,11 +18,9 @@ import 'package:PassPort/models/traveller/booking/trips/bookingtrip_model.dart';
 import 'package:PassPort/models/traveller/booking/trips/details/detailstripmodel.dart';
 import 'package:PassPort/models/traveller/rooms/getAllroommodel.dart';
 import 'package:PassPort/models/traveller/rooms/roomlist.dart';
-import 'package:rename/platform_file_editors/abs_platform_file_editor.dart';
 
 import 'bookingTravellerStates.dart';
 import 'package:geideapay/geideapay.dart';
-import 'package:geideapay/widgets/checkout/checkout_options.dart';
 
 class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
   BookingTravellerCubit() : super(BookingTravellerInitial());
@@ -338,12 +335,11 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
               primary: accentColor,
               onPrimary: Colors.white,
               onSurface: Colors.black,
-              background: appBackgroundColor,
-            ),
-            dialogBackgroundColor: appBackgroundColor,
+              surface: appBackgroundColor,
+            ), dialogTheme: DialogThemeData(backgroundColor: appBackgroundColor),
           ),
           child: MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
             child: child!,
           ),
         );

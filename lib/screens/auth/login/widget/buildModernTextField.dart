@@ -4,8 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../components/color/color.dart';
-
 Widget buildModernTextField(
   BuildContext context, {
   required String title,
@@ -57,13 +55,13 @@ Widget buildModernTextField(
               horizontal: 16.w,
             ),
             hintStyle: TextStyle(
-              color: accentColor.withOpacity(0.4),
+              color: accentColor.withValues(alpha: 0.4),
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
             ),
             prefixIcon: Icon(
               prefixIcon,
-              color: accentColor.withOpacity(0.5),
+              color: accentColor.withValues(alpha: 0.5),
               size: 22.sp,
             ),
             suffixIcon: suffixIcon,

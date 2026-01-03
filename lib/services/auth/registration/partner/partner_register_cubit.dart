@@ -6,13 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 import 'package:PassPort/consts/api/api.dart';
-import 'package:PassPort/consts/api/apiMethod/api_method.dart';
 import 'package:PassPort/models/partner/ApplicationServicesModel.dart';
 import 'package:PassPort/models/partner/GovernmentsModel.dart';
 import 'package:PassPort/screens/auth/registration/partner/general%20information/general_information.dart';
-import 'package:PassPort/screens/auth/registration/register.dart';
 import 'package:http/http.dart' as http;
 
 part 'partner_register_state.dart';

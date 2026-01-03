@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/transeletarabic/transalet.dart';
 import 'package:PassPort/screens/auth/registration/partner/partner_register.dart';

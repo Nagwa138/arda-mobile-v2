@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:PassPort/components/color/color.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:PassPort/version2_module/core/enums/user_type.dart';
-import '../widgets/statistics_card.dart';
-import '../widgets/menu_drawer.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import '../cubit/partner_dashboard_cubit.dart';
 import '../cubit/partner_dashboard_state.dart';
-import 'partner_services_screen.dart';
+import '../widgets/menu_drawer.dart';
+import '../widgets/statistics_card.dart';
 import 'partner_bookings_screen.dart';
+import 'partner_services_screen.dart';
 
 class PartnerMobileDashboardScreen extends StatefulWidget {
   const PartnerMobileDashboardScreen({super.key});
@@ -204,8 +204,8 @@ class _PartnerMobileDashboardScreenState
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            appTextColor.withOpacity(0.1),
-            appTextColor.withOpacity(0.05),
+            appTextColor.withValues(alpha: 0.1),
+            appTextColor.withValues(alpha: 0.05),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -231,7 +231,7 @@ class _PartnerMobileDashboardScreenState
                   'Welcome back to your dashboard',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: appTextColor.withOpacity(0.7),
+                    color: appTextColor.withValues(alpha: 0.7),
                   ),
                 ),
               ],
@@ -315,7 +315,7 @@ class _PartnerMobileDashboardScreenState
           borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -326,7 +326,7 @@ class _PartnerMobileDashboardScreenState
             Container(
               padding: EdgeInsets.all(12.w),
               decoration: BoxDecoration(
-                color: appTextColor.withOpacity(0.1),
+                color: appTextColor.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Icon(

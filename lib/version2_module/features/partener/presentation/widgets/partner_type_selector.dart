@@ -1,7 +1,7 @@
+import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/version2_module/core/enums/user_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
 
 class PartnerTypeSelector extends StatefulWidget {
   final Function(UserType) onPartnerTypeSelected;
@@ -77,7 +77,7 @@ class _PartnerTypeSelectorState extends State<PartnerTypeSelector> {
                 Text(
                   'Choose the type of service you want to provide',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withValues(alpha: 0.8),
                     fontSize: 14.sp,
                   ),
                   textAlign: TextAlign.center,
@@ -200,7 +200,7 @@ class _PartnerTypeSelectorState extends State<PartnerTypeSelector> {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -212,7 +212,7 @@ class _PartnerTypeSelectorState extends State<PartnerTypeSelector> {
             Container(
               padding: EdgeInsets.all(16.w),
               decoration: BoxDecoration(
-                color: cardColor.withOpacity(0.1),
+                color: cardColor.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(

@@ -1,9 +1,7 @@
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 
 part 'add_images_state.dart';
 
@@ -19,7 +17,7 @@ class AddImagesCubit extends Cubit<AddImagesState> {
       maxWidth: 1920,
     );
     if (selectedImages!.isNotEmpty) {
-      serviceImages!.addAll(selectedImages);
+      serviceImages.addAll(selectedImages);
       BlocProvider.of<AddServiceCubit>(context)
           .addServiceImages(selectedImages);
     }

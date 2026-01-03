@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:PassPort/consts/api/api.dart';
 import 'package:PassPort/consts/api/apiMethod/api_method.dart';
-import 'package:PassPort/models/partner/getAllGuests/getGuestById.dart';
 import 'package:PassPort/models/partner/getAllGuests/getGuestById.dart';
 import 'package:PassPort/models/partner/getAllGuests/getallGuest.dart';
 

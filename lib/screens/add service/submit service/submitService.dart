@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
@@ -48,11 +47,11 @@ class SubmitService extends StatelessWidget {
 
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(orange),
-                  minimumSize: MaterialStateProperty.all<Size>(
+                  backgroundColor: WidgetStateProperty.all<Color>(orange),
+                  minimumSize: WidgetStateProperty.all<Size>(
                     Size(double.infinity, 50.h),
                   ),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r),
                     ),

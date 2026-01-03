@@ -73,7 +73,8 @@ class GetRoomsPartner extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(12.r),
-                            border: Border.all(color: orange.withOpacity(0.3)),
+                            border: Border.all(
+                                color: orange.withValues(alpha: 0.3)),
                           ),
                           child: Row(
                             children: [
@@ -135,13 +136,13 @@ class GetRoomsPartner extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
           gradient: LinearGradient(
-            colors: [orange, orange.withOpacity(0.8)],
+            colors: [orange, orange.withValues(alpha: 0.8)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           boxShadow: [
             BoxShadow(
-              color: orange.withOpacity(0.3),
+              color: orange.withValues(alpha: 0.3),
               blurRadius: 12,
               offset: Offset(0, 4),
             ),
@@ -153,7 +154,7 @@ class GetRoomsPartner extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(6.w),
               decoration: BoxDecoration(
-                color: white.withOpacity(0.2),
+                color: white.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Icon(Icons.add, color: white, size: 20.sp),
@@ -183,7 +184,7 @@ class GetRoomsPartner extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 12,
             offset: Offset(0, 4),
           ),
@@ -239,7 +240,7 @@ class GetRoomsPartner extends StatelessWidget {
                       vertical: 6.h,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.6),
+                      color: Colors.black.withValues(alpha: 0.6),
                       borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Row(
@@ -288,9 +289,9 @@ class GetRoomsPartner extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(12.w),
                   decoration: BoxDecoration(
-                    color: orange.withOpacity(0.1),
+                    color: orange.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(10.r),
-                    border: Border.all(color: orange.withOpacity(0.3)),
+                    border: Border.all(color: orange.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     children: [

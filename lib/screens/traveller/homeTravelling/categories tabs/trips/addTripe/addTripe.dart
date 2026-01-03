@@ -1,14 +1,12 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/add%20service/add_service_cubit.dart';
+import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/trips_cubit/trips_cubit.dart';
+import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/trips_cubit/trips_state.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/widgets/customText.dart';
-import 'package:PassPort/services/add%20service/add_service_cubit.dart';
-import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/trips_cubit/trips_cubit.dart';
-import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/trips_cubit/trips_state.dart';
 
 class AddTripe extends StatelessWidget {
   const AddTripe({super.key});
@@ -50,303 +48,321 @@ class AddTripe extends StatelessWidget {
               }
             },
             builder: (BuildContext context, Object? state) {
-              return Scaffold(
-                backgroundColor: appBackgroundColor,
-                appBar: AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0.0,
-                  centerTitle: true,
-                  leading: IconButton(
-                    icon: Icon(Icons.arrow_back_ios,
-                        color: accentColor, size: 20.sp),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  title: Text(
-                    "Create Your Trip",
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      color: orange,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                body: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Form(
-                    key: TripsCubit.get(context).formKey,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 12.w, vertical: 16.h),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Header
-                          Text(
-                            'Design Your Experience ',
-                            style: TextStyle(
-                              color: accentColor,
-                              fontSize: 28.sp,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -0.5,
-                            ),
-                          ),
-                          SizedBox(height: 8.h),
-                          Text(
-                            "Tell us what kind of trip you dream of, whether it’s a romantic escape, a family adventure, or a team getaway. Our team will design a personalized experience just for you.",
-                            style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(height: 32.h),
-
-                          // Form Container
-                          Container(
-                            padding: EdgeInsets.all(16.w),
-                            decoration: BoxDecoration(
-                              color: appBackgroundColor,
-                              borderRadius: BorderRadius.circular(20.r),
-                              border: Border.all(
-                                color: Colors.black.withOpacity(0.08),
-                                width: 1,
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                textFormFieldTripe(
-                                  context,
-                                  icon: Icons.flag_outlined,
-                                  title: 'addTripe.Name'.tr(),
-                                  hint: 'addTripe.hintName'.tr(),
-                                  controller: TripsCubit.get(context).nameTrips,
-                                  validation: (value) {
-                                    if (value!.isEmpty) {
-                                      return "please Enter Name";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                textFormFieldTripe(
-                                  context,
-                                  icon: Icons.groups_outlined,
-                                  title: "type of Group",
-                                  hint: "example:- company , family , bigGroup",
-                                  controller:
-                                      TripsCubit.get(context).nameSupervisor,
-                                  validation: (value) {
-                                    if (value!.isEmpty) {
-                                      return "please Enter type of group";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                textFormFieldTripe(
-                                  context,
-                                  icon: Icons.calendar_today_outlined,
-                                  title: 'addTripe.date'.tr(),
-                                  validation: (value) {
-                                    if (value!.isEmpty) {
-                                      return "please select date";
-                                    }
-                                    return null;
-                                  },
-                                  isRead: true,
-                                  onTap: () {
-                                    TripsCubit.get(context).PickDate(
-                                        context: context,
-                                        controller:
-                                            TripsCubit.get(context).date,
-                                        firstTime: DateTime.now(),
-                                        lastTime: DateTime(2050 - 1 - 1));
-                                  },
-                                  hint: 'addTripe.enterDate'.tr(),
-                                  controller: TripsCubit.get(context).date,
-                                  suffixIcon:
-                                      Icon(Icons.calendar_month, color: orange),
-                                ),
-                                textFormFieldTripe(
-                                  context,
-                                  icon: Icons.location_on_outlined,
-                                  title: "the city you want to visit",
-                                  hint: 'addTripe.city'.tr(),
-                                  controller: TripsCubit.get(context).toGo,
-                                  validation: (value) {
-                                    if (value!.isEmpty) {
-                                      return "please Enter place";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                SizedBox(height: 10.h),
-                                roomNumBuilder(
-                                  function: context
-                                      .read<AddServiceCubit>()
-                                      .changeSingleRoomNum,
-                                  number: context
-                                      .read<AddServiceCubit>()
-                                      .singleRoomNum,
-                                  title: 'addTripe.number'.tr(),
-                                ),
-                                SizedBox(height: 10.h),
-                                textFormFieldTripe(
-                                  context,
-                                  icon: Icons.description_outlined,
-                                  title: 'addTripe.about'.tr(),
-                                  hint: 'addTripe.aboutTripe'.tr(),
-                                  minLine: 6,
-                                  mixLine: 7,
-                                  controller:
-                                      TripsCubit.get(context).aboutTrips,
-                                  validation: (value) {
-                                    if (value!.isEmpty) {
-                                      return "please enter description";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                textFormFieldTripe(
-                                  context,
-                                  icon: Icons.note_outlined,
-                                  title: 'addTripe.specialNotes'.tr(),
-                                  hint: 'addTripe.hintSpecialNotes'.tr(),
-                                  minLine: 3,
-                                  mixLine: 4,
-                                  isRequired: false,
-                                  controller: TripsCubit.get(context)
-                                      .specialNotesOrRequests,
-                                  validation: (value) {
-                                    return null;
-                                  },
-                                ),
-                                textFormFieldTripe(
-                                  context,
-                                  icon: Icons.attach_money_outlined,
-                                  title: 'addTripe.budget'.tr(),
-                                  hint: 'addTripe.hintBudget'.tr(),
-                                  inputType: TextInputType.number,
-                                  controller: TripsCubit.get(context)
-                                      .estimatedBudgetPerPerson,
-                                  validation: (value) {
-                                    if (value!.isEmpty) {
-                                      return "please enter estimated budget";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                textFormFieldTripe(
-                                  context,
-                                  icon: Icons.phone_outlined,
-                                  title: 'addTripe.mobile'.tr(),
-                                  hint: 'addTripe.hintMobile'.tr(),
-                                  inputType: TextInputType.phone,
-                                  controller:
-                                      TripsCubit.get(context).mobileNumber,
-                                  validation: (value) {
-                                    if (value!.isEmpty) {
-                                      return "please enter mobile number";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                textFormFieldTripe(
-                                  context,
-                                  icon: Icons.travel_explore_outlined,
-                                  title: 'addTripe.tripType'.tr(),
-                                  hint: 'addTripe.hintTripType'.tr(),
-                                  controller: TripsCubit.get(context).tripType,
-                                  validation: (value) {
-                                    if (value!.isEmpty) {
-                                      return "please enter trip type";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          SizedBox(height: 32.h),
-
-                          // Submit Button
-                          state is CreateTripLoading
-                              ? Center(
-                                  child: CircularProgressIndicator(
-                                    color: accentColor,
-                                  ),
-                                )
-                              : GestureDetector(
-                                  onTap: () {
-                                    if (TripsCubit.get(context)
-                                        .formKey
-                                        .currentState!
-                                        .validate()) {
-                                      if (context
-                                              .read<AddServiceCubit>()
-                                              .singleRoomNum ==
-                                          0) {
-                                        Fluttertoast.showToast(
-                                            msg: "enter number of person",
-                                            toastLength: Toast.LENGTH_LONG,
-                                            gravity: ToastGravity.CENTER,
-                                            timeInSecForIosWeb: 1,
-                                            backgroundColor: Colors.red,
-                                            textColor: Colors.white,
-                                            fontSize: 16.0);
-                                      } else {
-                                        TripsCubit.get(context).createTrips(
-                                          NumOfPerson: context
-                                              .read<AddServiceCubit>()
-                                              .singleRoomNum
-                                              .toString(),
-                                        );
-                                      }
-                                    }
-                                  },
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 58.h,
-                                    decoration: BoxDecoration(
-                                      color: accentColor,
-                                      borderRadius: BorderRadius.circular(16.r),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: accentColor.withOpacity(0.3),
-                                          blurRadius: 12,
-                                          offset: Offset(0, 6),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.check_circle_outline_rounded,
-                                          color: Colors.white,
-                                          size: 24.sp,
-                                        ),
-                                        SizedBox(width: 10.w),
-                                        Text(
-                                          "booking.submit".tr(),
-                                          style: TextStyle(
-                                            fontSize: 17.sp,
-                                            color: white,
-                                            fontWeight: FontWeight.w700,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-
-                          SizedBox(height: 40.h),
-                        ],
+              return Stack(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/background.jpeg"),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                ),
+                  Scaffold(
+                    backgroundColor: Colors.transparent,
+                    appBar: AppBar(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0.0,
+                      centerTitle: true,
+                      leading: IconButton(
+                        icon: Icon(Icons.arrow_back_ios,
+                            color: accentColor, size: 20.sp),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                      title: Text(
+                        "Create Your Trip",
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          color: orange,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    body: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      child: Form(
+                        key: TripsCubit.get(context).formKey,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 16.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Header
+                              Text(
+                                'Design Your Experience ',
+                                style: TextStyle(
+                                  color: accentColor,
+                                  fontSize: 28.sp,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: -0.5,
+                                ),
+                              ),
+                              SizedBox(height: 8.h),
+                              Text(
+                                "Tell us what kind of trip you dream of, whether it’s a romantic escape, a family adventure, or a team getaway. Our team will design a personalized experience just for you.",
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              SizedBox(height: 32.h),
+
+                              // Form Container
+                              Container(
+                                padding: EdgeInsets.all(16.w),
+                                decoration: BoxDecoration(
+                                  color: appBackgroundColor,
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  border: Border.all(
+                                    color: Colors.black.withValues(alpha: 0.08),
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    textFormFieldTripe(
+                                      context,
+                                      icon: Icons.flag_outlined,
+                                      title: 'addTripe.Name'.tr(),
+                                      hint: 'addTripe.hintName'.tr(),
+                                      controller:
+                                          TripsCubit.get(context).nameTrips,
+                                      validation: (value) {
+                                        if (value!.isEmpty) {
+                                          return "please Enter Name";
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    textFormFieldTripe(
+                                      context,
+                                      icon: Icons.groups_outlined,
+                                      title: "type of Group",
+                                      hint:
+                                          "example:- company , family , bigGroup",
+                                      controller: TripsCubit.get(context)
+                                          .nameSupervisor,
+                                      validation: (value) {
+                                        if (value!.isEmpty) {
+                                          return "please Enter type of group";
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    textFormFieldTripe(
+                                      context,
+                                      icon: Icons.calendar_today_outlined,
+                                      title: 'addTripe.date'.tr(),
+                                      validation: (value) {
+                                        if (value!.isEmpty) {
+                                          return "please select date";
+                                        }
+                                        return null;
+                                      },
+                                      isRead: true,
+                                      onTap: () {
+                                        TripsCubit.get(context).PickDate(
+                                            context: context,
+                                            controller:
+                                                TripsCubit.get(context).date,
+                                            firstTime: DateTime.now(),
+                                            lastTime: DateTime(2050 - 1 - 1));
+                                      },
+                                      hint: 'addTripe.enterDate'.tr(),
+                                      controller: TripsCubit.get(context).date,
+                                      suffixIcon: Icon(Icons.calendar_month,
+                                          color: orange),
+                                    ),
+                                    textFormFieldTripe(
+                                      context,
+                                      icon: Icons.location_on_outlined,
+                                      title: "the city you want to visit",
+                                      hint: 'addTripe.city'.tr(),
+                                      controller: TripsCubit.get(context).toGo,
+                                      validation: (value) {
+                                        if (value!.isEmpty) {
+                                          return "please Enter place";
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    SizedBox(height: 10.h),
+                                    roomNumBuilder(
+                                      function: context
+                                          .read<AddServiceCubit>()
+                                          .changeSingleRoomNum,
+                                      number: context
+                                          .read<AddServiceCubit>()
+                                          .singleRoomNum,
+                                      title: 'addTripe.number'.tr(),
+                                    ),
+                                    SizedBox(height: 10.h),
+                                    textFormFieldTripe(
+                                      context,
+                                      icon: Icons.description_outlined,
+                                      title: 'addTripe.about'.tr(),
+                                      hint: 'addTripe.aboutTripe'.tr(),
+                                      minLine: 6,
+                                      mixLine: 7,
+                                      controller:
+                                          TripsCubit.get(context).aboutTrips,
+                                      validation: (value) {
+                                        if (value!.isEmpty) {
+                                          return "please enter description";
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    textFormFieldTripe(
+                                      context,
+                                      icon: Icons.note_outlined,
+                                      title: 'addTripe.specialNotes'.tr(),
+                                      hint: 'addTripe.hintSpecialNotes'.tr(),
+                                      minLine: 3,
+                                      mixLine: 4,
+                                      isRequired: false,
+                                      controller: TripsCubit.get(context)
+                                          .specialNotesOrRequests,
+                                      validation: (value) {
+                                        return null;
+                                      },
+                                    ),
+                                    textFormFieldTripe(
+                                      context,
+                                      icon: Icons.attach_money_outlined,
+                                      title: 'addTripe.budget'.tr(),
+                                      hint: 'addTripe.hintBudget'.tr(),
+                                      inputType: TextInputType.number,
+                                      controller: TripsCubit.get(context)
+                                          .estimatedBudgetPerPerson,
+                                      validation: (value) {
+                                        if (value!.isEmpty) {
+                                          return "please enter estimated budget";
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    textFormFieldTripe(
+                                      context,
+                                      icon: Icons.phone_outlined,
+                                      title: 'addTripe.mobile'.tr(),
+                                      hint: 'addTripe.hintMobile'.tr(),
+                                      inputType: TextInputType.phone,
+                                      controller:
+                                          TripsCubit.get(context).mobileNumber,
+                                      validation: (value) {
+                                        if (value!.isEmpty) {
+                                          return "please enter mobile number";
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    textFormFieldTripe(
+                                      context,
+                                      icon: Icons.travel_explore_outlined,
+                                      title: 'addTripe.tripType'.tr(),
+                                      hint: 'addTripe.hintTripType'.tr(),
+                                      controller:
+                                          TripsCubit.get(context).tripType,
+                                      validation: (value) {
+                                        if (value!.isEmpty) {
+                                          return "please enter trip type";
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              SizedBox(height: 32.h),
+
+                              // Submit Button
+                              state is CreateTripLoading
+                                  ? Center(
+                                      child: CircularProgressIndicator(
+                                        color: accentColor,
+                                      ),
+                                    )
+                                  : GestureDetector(
+                                      onTap: () {
+                                        if (TripsCubit.get(context)
+                                            .formKey
+                                            .currentState!
+                                            .validate()) {
+                                          if (context
+                                                  .read<AddServiceCubit>()
+                                                  .singleRoomNum ==
+                                              0) {
+                                            Fluttertoast.showToast(
+                                                msg: "enter number of person",
+                                                toastLength: Toast.LENGTH_LONG,
+                                                gravity: ToastGravity.CENTER,
+                                                timeInSecForIosWeb: 1,
+                                                backgroundColor: Colors.red,
+                                                textColor: Colors.white,
+                                                fontSize: 16.0);
+                                          } else {
+                                            TripsCubit.get(context).createTrips(
+                                              NumOfPerson: context
+                                                  .read<AddServiceCubit>()
+                                                  .singleRoomNum
+                                                  .toString(),
+                                            );
+                                          }
+                                        }
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 58.h,
+                                        decoration: BoxDecoration(
+                                          color: accentColor,
+                                          borderRadius:
+                                              BorderRadius.circular(16.r),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: accentColor.withValues(
+                                                  alpha: 0.3),
+                                              blurRadius: 12,
+                                              offset: Offset(0, 6),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons
+                                                  .check_circle_outline_rounded,
+                                              color: Colors.white,
+                                              size: 24.sp,
+                                            ),
+                                            SizedBox(width: 10.w),
+                                            Text(
+                                              "booking.submit".tr(),
+                                              style: TextStyle(
+                                                fontSize: 17.sp,
+                                                color: white,
+                                                fontWeight: FontWeight.w700,
+                                                letterSpacing: 0.5,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+
+                              SizedBox(height: 40.h),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               );
             },
           );
@@ -382,7 +398,7 @@ Widget textFormFieldTripe(
             Container(
               padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
-                color: orange.withOpacity(0.1),
+                color: orange.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Icon(
@@ -421,7 +437,7 @@ Widget textFormFieldTripe(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.r),
             border: Border.all(
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withValues(alpha: 0.08),
               width: 1.5,
             ),
           ),
@@ -467,10 +483,10 @@ Widget roomNumBuilder({
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 12.h),
     decoration: BoxDecoration(
-      color: orange.withOpacity(0.05),
+      color: orange.withValues(alpha: 0.05),
       borderRadius: BorderRadius.circular(12.r),
       border: Border.all(
-        color: orange.withOpacity(0.2),
+        color: orange.withValues(alpha: 0.2),
         width: 1.5,
       ),
     ),
@@ -482,7 +498,7 @@ Widget roomNumBuilder({
             Container(
               padding: EdgeInsets.all(6.w),
               decoration: BoxDecoration(
-                color: orange.withOpacity(0.15),
+                color: orange.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Icon(

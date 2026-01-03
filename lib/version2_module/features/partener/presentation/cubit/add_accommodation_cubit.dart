@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../../data/models/add_accommodation_request.dart';
 import 'package:PassPort/consts/api/api.dart';
 
 part 'add_accommodation_state.dart';

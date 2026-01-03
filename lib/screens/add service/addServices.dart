@@ -1,18 +1,13 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/validator%20container/ValidatedContainer%20.dart';
-import 'package:PassPort/screens/add%20service/contact%20details/contactDetails.dart';
 import 'package:PassPort/screens/add%20service/room%20details/roomDetails.dart';
-import 'package:PassPort/screens/add%20service/service%20details/serviceDetails.dart';
 import 'package:PassPort/services/add%20service/add%20images/add_images_cubit.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Add Service Page/AddServicePage.dart';
 

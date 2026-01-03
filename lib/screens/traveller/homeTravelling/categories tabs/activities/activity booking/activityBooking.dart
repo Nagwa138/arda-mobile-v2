@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/screens/add%20service/addServices.dart';
-import 'package:PassPort/screens/traveller/homeTravelling/categories%20tabs/Trips/addTripe/addTripe.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';

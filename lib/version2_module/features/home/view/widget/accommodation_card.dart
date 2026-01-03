@@ -1,5 +1,3 @@
-import 'package:PassPort/models/traveller/accomandating/randomAccomandtion.dart';
-import 'package:PassPort/version2_module/core/const/app_colors.dart';
 import 'package:PassPort/version2_module/features/home/data/models/top_rated_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +20,7 @@ class AccommodationCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withValues(alpha: 0.08),
               blurRadius: 15,
               offset: Offset(0, 4),
             ),
@@ -82,7 +80,7 @@ class AccommodationCard extends StatelessWidget {
                       end: Alignment.bottomCenter,
                       colors: [
                         Colors.transparent,
-                        Colors.black.withOpacity(0.3),
+                        Colors.black.withValues(alpha: 0.3),
                       ],
                     ),
                   ),
@@ -98,13 +96,13 @@ class AccommodationCard extends StatelessWidget {
                       gradient: LinearGradient(
                         colors: [
                           orange,
-                          orange.withOpacity(0.8),
+                          orange.withValues(alpha: 0.8),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(12.r),
                       boxShadow: [
                         BoxShadow(
-                          color: orange.withOpacity(0.4),
+                          color: orange.withValues(alpha: 0.4),
                           blurRadius: 8,
                           offset: Offset(0, 2),
                         ),
@@ -140,7 +138,7 @@ class AccommodationCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12.r),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           blurRadius: 8,
                           offset: Offset(0, 2),
                         ),
@@ -233,7 +231,7 @@ class AccommodationCard extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.all(6.w),
                         decoration: BoxDecoration(
-                          color: orange.withOpacity(0.1),
+                          color: orange.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(8.r),
                         ),
                         child: Icon(

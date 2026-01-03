@@ -1,6 +1,6 @@
+import 'package:PassPort/components/color/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
 
 class MenuItem extends StatelessWidget {
   final IconData icon;
@@ -29,7 +29,9 @@ class MenuItem extends StatelessWidget {
             vertical: 12.h,
           ),
           decoration: BoxDecoration(
-            color: isSelected ? appTextColor.withOpacity(0.1) : Colors.transparent,
+            color: isSelected
+                ? appTextColor.withValues(alpha: 0.1)
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(12.r),
           ),
           child: Row(
@@ -47,9 +49,7 @@ class MenuItem extends StatelessWidget {
                   size: 20.sp,
                 ),
               ),
-              
               SizedBox(width: 16.w),
-              
               Expanded(
                 child: Text(
                   title,
@@ -66,4 +66,4 @@ class MenuItem extends StatelessWidget {
       ),
     );
   }
-} 
+}

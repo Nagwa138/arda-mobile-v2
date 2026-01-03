@@ -1,8 +1,6 @@
 import 'package:PassPort/screens/traveller/booking/accomandation/detailsbooking/detaialsbookingPending.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
@@ -326,14 +324,14 @@ class DetailsBookingUpComing extends StatelessWidget {
 
                           style: ButtonStyle(
                             shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                            WidgetStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
 
                                     borderRadius: BorderRadius.circular(10.0),
                                     side: BorderSide(color: accentColor))
                             ),
-                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                            backgroundColor: MaterialStateProperty.all<Color>(accentColor),
+                            foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                            backgroundColor: WidgetStateProperty.all<Color>(accentColor),
 
                           ),
                           onPressed: (){
@@ -356,14 +354,14 @@ class DetailsBookingUpComing extends StatelessWidget {
 
                         style: ButtonStyle(
                           shape:
-                          MaterialStateProperty.all<RoundedRectangleBorder>(
+                          WidgetStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
 
                                   borderRadius: BorderRadius.circular(10.0),
                                   side: BorderSide(color: accentColor))
                           ),
-                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor: MaterialStateProperty.all<Color>(accentColor),
+                          foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                          backgroundColor: WidgetStateProperty.all<Color>(accentColor),
 
                         ),
                         onPressed: (){

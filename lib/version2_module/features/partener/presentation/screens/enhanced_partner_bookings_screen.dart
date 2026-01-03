@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/version2_module/core/enums/booking_status.dart';
 import 'package:PassPort/version2_module/core/enums/user_type.dart';
-import 'package:PassPort/version2_module/core/enums/cancellation_reason.dart';
 import '../widgets/booking_card.dart';
 import '../widgets/date_filter_widget.dart';
 import '../widgets/cancellation_reason_dialog.dart';

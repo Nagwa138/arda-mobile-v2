@@ -1,8 +1,6 @@
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
@@ -220,7 +218,7 @@ class PendingTrips extends StatelessWidget {
                                   Expanded(
                                     child: ElevatedButton(
                                         style: ButtonStyle(
-                                            shape: MaterialStateProperty.all<
+                                            shape: WidgetStateProperty.all<
                                                     RoundedRectangleBorder>(
                                                 RoundedRectangleBorder(
                                                     borderRadius:
@@ -229,12 +227,12 @@ class PendingTrips extends StatelessWidget {
                                                     side: BorderSide(
                                                         color: accentColor))),
                                             foregroundColor:
-                                                MaterialStateProperty.all<Color>(
+                                                WidgetStateProperty.all<Color>(
                                                     Colors.white),
                                             backgroundColor:
-                                                MaterialStateProperty.all<Color>(
+                                                WidgetStateProperty.all<Color>(
                                                     white),
-                                            elevation: MaterialStateProperty.all<double>(0.0)),
+                                            elevation: WidgetStateProperty.all<double>(0.0)),
                                         onPressed: () {
                                           Navigator.pushNamed(
                                               context, "cancelReservation",

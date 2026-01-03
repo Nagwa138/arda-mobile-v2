@@ -1,12 +1,9 @@
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:meta/meta.dart';
 import 'package:PassPort/consts/api/api.dart';
-import 'package:PassPort/consts/api/apiMethod/api_method.dart';
 import 'package:http/http.dart' as http;
 import 'package:PassPort/services/auth/registration/traveller/traveller_register_state.dart';
 

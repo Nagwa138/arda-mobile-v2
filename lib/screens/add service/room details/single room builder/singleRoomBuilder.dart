@@ -1,14 +1,13 @@
 import 'dart:io';
 
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/customText.dart';
+import 'package:PassPort/components/widgets/dotted%20container/dottedRect.dart';
+import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/validator%20container/ValidatedContainer%20.dart';
-import 'package:PassPort/components/widgets/customText.dart';
-import 'package:PassPort/components/widgets/dotted%20container/dottedRect.dart';
-import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 
 class SingleRoomBuilder extends StatelessWidget {
   SingleRoomBuilder({super.key});
@@ -63,7 +62,9 @@ class SingleRoomBuilder extends StatelessWidget {
                           gap: 5,
                           child: GestureDetector(
                             onTap: () {
-                              context.read<AddServiceCubit>().addSingleRoomImage(isPicked: true);
+                              context
+                                  .read<AddServiceCubit>()
+                                  .addSingleRoomImage(isPicked: true);
                             },
                             child: Container(
                               height: 77.h,
@@ -87,7 +88,9 @@ class SingleRoomBuilder extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            context.read<AddServiceCubit>().addSingleRoomImage(isPicked: false);
+                            context
+                                .read<AddServiceCubit>()
+                                .addSingleRoomImage(isPicked: false);
                           },
                           child: DashedRect(
                             color: accentColor,
@@ -117,14 +120,19 @@ class SingleRoomBuilder extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.file(
-                        File(context.read<AddServiceCubit>().singleRoomImage!.path),
+                        File(context
+                            .read<AddServiceCubit>()
+                            .singleRoomImage!
+                            .path),
                         // height: 100.h,
                         fit: BoxFit.cover,
                       ),
                       SizedBox(height: 10.h),
                       GestureDetector(
                         onTap: () {
-                          context.read<AddServiceCubit>().removeSingleRoomImage();
+                          context
+                              .read<AddServiceCubit>()
+                              .removeSingleRoomImage();
                         },
                         child: Text(
                           'addService.deleteImage'.tr(),
@@ -163,7 +171,8 @@ class SingleRoomBuilder extends StatelessWidget {
             ),
             SizedBox(height: 15.h),
             TextFormField(
-              controller: context.read<AddServiceCubit>().singleRoomNightController,
+              controller:
+                  context.read<AddServiceCubit>().singleRoomNightController,
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'errorMessages.empty'.tr();
@@ -225,7 +234,8 @@ class SingleRoomBuilder extends StatelessWidget {
             ),
             SizedBox(height: 15.h),
             TextFormField(
-              controller: context.read<AddServiceCubit>().singleRoomGuestController,
+              controller:
+                  context.read<AddServiceCubit>().singleRoomGuestController,
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'errorMessages.empty'.tr();
@@ -265,7 +275,11 @@ class SingleRoomBuilder extends StatelessWidget {
             SizedBox(height: 10.h),
             CheckboxListTile(
               activeColor: accentColor,
-              title: CustomText(text:  'addService.3.title3'.tr(), size: 18.sp, color: accentColor, fontWeight: FontWeight.w600),
+              title: CustomText(
+                  text: 'addService.3.title3'.tr(),
+                  size: 18.sp,
+                  color: accentColor,
+                  fontWeight: FontWeight.w600),
               value: context.read<AddServiceCubit>().agree,
               onChanged: (newValue) {
                 context.read<AddServiceCubit>().changeAgree(newValue);

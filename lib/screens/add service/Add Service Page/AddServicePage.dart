@@ -1,10 +1,11 @@
 import 'dart:io';
+
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 
 class AddServicePage extends StatelessWidget {
   const AddServicePage({super.key});
@@ -488,7 +489,8 @@ class AddServicePage extends StatelessWidget {
                                 children: [
                                   Icon(Icons.cloud_upload,
                                       size: 56.r,
-                                      color: accentColor.withOpacity(0.5)),
+                                      color:
+                                          accentColor.withValues(alpha: 0.5)),
                                   SizedBox(height: 16.h),
                                   Text(
                                     'Tap to upload photos',
@@ -672,7 +674,7 @@ class AddServicePage extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.all(16.r),
                             decoration: BoxDecoration(
-                              color: accentColor.withOpacity(0.1),
+                              color: accentColor.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(12.r),
                                 bottomRight: Radius.circular(12.r),
@@ -704,7 +706,8 @@ class AddServicePage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(8.r),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: accentColor.withOpacity(0.3),
+                                        color:
+                                            accentColor.withValues(alpha: 0.3),
                                         blurRadius: 4,
                                         offset: Offset(0, 2),
                                       ),
@@ -782,7 +785,7 @@ class AddServicePage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(10.r),
                 decoration: BoxDecoration(
-                  color: accentColor.withOpacity(0.1),
+                  color: accentColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Icon(icon, color: accentColor, size: 22.r),
@@ -939,7 +942,7 @@ class AddServicePage extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(8.r),
             decoration: BoxDecoration(
-              color: accentColor.withOpacity(0.1),
+              color: accentColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8.r),
             ),
             child: Icon(icon, color: accentColor, size: 20.r),

@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:PassPort/models/partner/ServicesModel.dart';
 import 'package:PassPort/models/partner/acommdation_model.dart';
 
 import '../datasources/service_submission_remote_datasource.dart';

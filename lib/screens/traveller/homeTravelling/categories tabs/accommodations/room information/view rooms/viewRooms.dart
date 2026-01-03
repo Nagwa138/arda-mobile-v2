@@ -1,16 +1,17 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/models/traveller/rooms/roomlist.dart';
+import 'package:PassPort/services/add%20service/add_service_cubit.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/add%20service/add_service_cubit.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 import '../../../../../../../consts/api/api.dart';
 import '../../../../../../../models/traveller/accomandating/accomandtionByIdone.dart';
 import '../../../../../../../services/traveller/bookingTravellerCubit/BookingCart/bookingCardCubit.dart';
-import 'package:PassPort/models/traveller/rooms/roomlist.dart';
 
 class ViewRooms extends StatelessWidget {
   const ViewRooms({super.key});
@@ -54,7 +55,7 @@ class ViewRooms extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12.r),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
+                          color: Colors.black.withValues(alpha: 0.05),
                           blurRadius: 10,
                           offset: Offset(0, 2),
                         ),
@@ -317,9 +318,9 @@ class ViewRooms extends StatelessWidget {
                                 bookingState is CreateBookingRoomLoading;
                             return ElevatedButton(
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
+                                backgroundColor: WidgetStateProperty.all(
                                     isLoading ? Colors.grey : accentColor),
-                                shape: MaterialStateProperty.all(
+                                shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
@@ -601,7 +602,7 @@ class ViewRooms extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                   decoration: BoxDecoration(
-                    color: accentColor.withOpacity(0.1),
+                    color: accentColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6.r),
                   ),
                   child: Text(
@@ -622,7 +623,7 @@ class ViewRooms extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.r),
                     border: Border.all(
-                        color: accentColor.withOpacity(0.2), width: 1),
+                        color: accentColor.withValues(alpha: 0.2), width: 1),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -688,7 +689,7 @@ class ViewRooms extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 15,
             offset: Offset(0, 4),
           ),
@@ -702,7 +703,7 @@ class ViewRooms extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(10.w),
                 decoration: BoxDecoration(
-                  color: accentColor.withOpacity(0.1),
+                  color: accentColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Icon(icon, color: accentColor, size: 22.sp),
@@ -738,7 +739,7 @@ class ViewRooms extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 12.h),
       child: Row(
         children: [
-          Icon(icon, color: accentColor.withOpacity(0.7), size: 22.sp),
+          Icon(icon, color: accentColor.withValues(alpha: 0.7), size: 22.sp),
           SizedBox(width: 12.w),
           Expanded(
             child: Text(
@@ -752,7 +753,7 @@ class ViewRooms extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-              color: accentColor.withOpacity(0.05),
+              color: accentColor.withValues(alpha: 0.05),
               borderRadius: BorderRadius.circular(12.r),
             ),
             child: Row(
@@ -831,12 +832,12 @@ class ViewRooms extends StatelessWidget {
             decoration: InputDecoration(
               hintText: hint,
               hintStyle: TextStyle(
-                color: accentColor.withOpacity(0.4),
+                color: accentColor.withValues(alpha: 0.4),
                 fontSize: 14.sp,
               ),
               prefixIcon: Icon(
                 Icons.calendar_today_rounded,
-                color: accentColor.withOpacity(0.5),
+                color: accentColor.withValues(alpha: 0.5),
                 size: 20.sp,
               ),
               border: InputBorder.none,
@@ -905,12 +906,12 @@ class ViewRooms extends StatelessWidget {
             decoration: InputDecoration(
               hintText: hint,
               hintStyle: TextStyle(
-                color: accentColor.withOpacity(0.4),
+                color: accentColor.withValues(alpha: 0.4),
                 fontSize: 14.sp,
               ),
               prefixIcon: Icon(
                 icon,
-                color: accentColor.withOpacity(0.5),
+                color: accentColor.withValues(alpha: 0.5),
                 size: 20.sp,
               ),
               border: InputBorder.none,
@@ -937,7 +938,9 @@ class ViewRooms extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
         decoration: BoxDecoration(
-          color: isSelected ? accentColor.withOpacity(0.08) : Color(0xFFF8F9FA),
+          color: isSelected
+              ? accentColor.withValues(alpha: 0.08)
+              : Color(0xFFF8F9FA),
           borderRadius: BorderRadius.circular(14.r),
           border: Border.all(
             color: isSelected ? accentColor : Color(0xFFE8EAED),

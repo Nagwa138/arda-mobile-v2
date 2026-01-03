@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:PassPort/screens/partner/landinHome/landingHome.dart';
 import 'package:PassPort/screens/partner/profile/profileLanding.dart';
-import 'package:PassPort/screens/partner/services/services.dart';
 
 import 'landingHomeStates.dart';
 

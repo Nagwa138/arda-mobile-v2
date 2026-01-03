@@ -12,7 +12,6 @@ import 'package:PassPort/version2_module/features/auth/login/view/login_screen.d
 import 'package:PassPort/version2_module/features/auth/privacy/privacy_policy_screen.dart';
 import 'package:PassPort/version2_module/features/auth/signup/view/screens/signup_screen.dart';
 import 'package:PassPort/version2_module/features/auth/terms/terms_conditions_screen.dart';
-import 'package:PassPort/version2_module/features/home/view/screens/explor_screen.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/screens/partner_register_wrapper.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/screens/partner_mobile_dashboard_screen.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/screens/partner_services_screen.dart';
@@ -21,18 +20,11 @@ import 'package:PassPort/version2_module/features/partener/presentation/widgets/
 import 'package:PassPort/version2_module/features/partener/presentation/screens/service_details_screens/partner_product_details_screen.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/screens/service_details_screens/partner_activity_details_screen.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/screens/service_details_screens/partner_trip_details_screen.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:PassPort/screens/add%20service/add%20images/addImages.dart';
 import 'package:PassPort/screens/add%20service/addServices.dart';
 import 'package:PassPort/screens/add%20service/submit%20service/submitService.dart';
 import 'package:PassPort/screens/auth/createPassword/createPassword.dart';
-import 'package:PassPort/screens/auth/forget%20password/forget_password.dart';
-import 'package:PassPort/screens/auth/login/login.dart';
-import 'package:PassPort/screens/auth/registration/partner/partner_register.dart';
-import 'package:PassPort/screens/auth/registration/register.dart';
-import 'package:PassPort/screens/auth/registration/terms/termConditions.dart';
 import 'package:PassPort/screens/auth/registration/traveller/traveller_register.dart';
 import 'package:PassPort/screens/auth/verifyCode/verifyCode.dart';
 import 'package:PassPort/screens/onBoarding/onboarding.dart';
@@ -44,7 +36,6 @@ import 'package:PassPort/screens/partner/landinHome/showallGuests/showallGuests.
 import 'package:PassPort/screens/partner/mainHome/mainHome.dart';
 import 'package:PassPort/screens/partner/profile/account%20and%20security/change%20password/changePassword.dart';
 import 'package:PassPort/screens/partner/profile/account%20and%20security/delete%20account/deleteAccount.dart';
-import 'package:PassPort/screens/partner/profile/account%20and%20security/privacy%20and%20policy/privacy.dart';
 import 'package:PassPort/screens/partner/profile/help/FAQS/FAQS.dart';
 import 'package:PassPort/screens/partner/profile/help/contact%20us/contactsUs.dart';
 import 'package:PassPort/screens/partner/profile/help/helpSupport.dart';

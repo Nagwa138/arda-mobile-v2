@@ -1,17 +1,16 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/favourite_cubit/favourite_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/favourite_cubit/favourite_state.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_state.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailsProductFavourite extends StatelessWidget {
   DetailsProductFavourite({super.key});
-  bool emptyFavourites = false;
+  final bool emptyFavourites = false;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -31,9 +30,19 @@ class DetailsProductFavourite extends StatelessWidget {
           return BlocConsumer<FavouriteCubit, FavouriteState>(
             listener: (context, state) {},
             builder: (context, state) {
-              return Scaffold(
-                  backgroundColor: appBackgroundColor,
-                  appBar: AppBar(
+              return Stack(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/background.jpeg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Scaffold(
+                      backgroundColor: Colors.transparent,
+                      appBar: AppBar(
                     backgroundColor: appBackgroundColor,
                     elevation: 0.0,
                     centerTitle: true,
@@ -322,7 +331,10 @@ class DetailsProductFavourite extends StatelessWidget {
                               itemCount: FavouriteCubit.get(context)
                                   .product!
                                   .data!
-                                  .length));
+                                  .length),
+                ),
+                ],
+              );
             },
           );
         },

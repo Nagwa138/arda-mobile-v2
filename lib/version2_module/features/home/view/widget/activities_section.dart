@@ -1,16 +1,14 @@
-import 'package:PassPort/version2_module/features/home/view/widget/activity_card.dart';
+import 'package:PassPort/models/traveller/activity/activity_random_model.dart'
+    as activity_model;
 import 'package:PassPort/version2_module/features/home/view/widget/build_loading_section.dart';
-import 'package:PassPort/version2_module/features/home/view/widget/build_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-import 'package:PassPort/models/traveller/activity/activity_random_model.dart'
-    as activity_model;
 
 import '../../../../../components/color/color.dart';
 import '../../view_model/activities_cubit.dart';
 import '../../view_model/activities_state.dart';
+import 'activity_card.dart';
 
 class ActivitiesSection extends StatelessWidget {
   const ActivitiesSection({super.key});
@@ -38,7 +36,7 @@ class ActivitiesSection extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 28.sp,
                           fontWeight: FontWeight.bold,
-                          color: appTextColor,
+                          color: lightBrown,
                           letterSpacing: 1,
                           height: 1.2,
                         ),
@@ -51,7 +49,7 @@ class ActivitiesSection extends StatelessWidget {
 
                 // Horizontal List
                 SizedBox(
-                  height: 245.h,
+                  height: 390.h,
                   child: ListView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     scrollDirection: Axis.horizontal,

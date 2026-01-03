@@ -29,7 +29,7 @@ dependencies:
   fluttertoast: ^8.2.6
   geideapay:
     git:
-      url: git@github.com:GeideaSolutions/Flutter-SDK.git
+      url: https://github.com/GeideaSolutions/Flutter-SDK.git
       ref: main
   get_it: ^8.2.0
   google_fonts: ^5.1.0
@@ -44,7 +44,7 @@ dependencies:
   rename: ^3.1.0
   restart_app: null
   signalr_core: ^1.1.2
-  skeletonizer: ^1.4.3
+  skeletonizer: ^2.1.2
   story_view: null
   table_calendar: ^3.0.5
   url_launcher: ^6.1.10

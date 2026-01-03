@@ -248,7 +248,7 @@ class _CategoryDropdownWidgetState extends State<CategoryDropdownWidget> {
                     ),
                   )
                 : DropdownButtonFormField<String>(
-                    value: _selectedValue,
+                    initialValue: _selectedValue,
                     onChanged: (value) {
                       print('🔽 Category dropdown changed: $value');
                       setState(() {

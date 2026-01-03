@@ -215,7 +215,7 @@ class PartnerServicesCubit extends Cubit<PartnerServicesState> {
             final model = ServicesModel.fromJson(body);
             print('✅ Model parsed, data count: ${model.data.length}');
 
-            final accData = (model.data as List<Datum>);
+            final accData = model.data;
             print('✅ accData casted successfully');
 
             items = accData.map((datum) {

@@ -29,19 +29,19 @@ class BlogModel {
 
 class Data {
   String? title;
-  Null? contant;
-  Null? author;
+  Null contant;
+  Null author;
   String? publishedOn;
   String? imageName;
   String? id;
 
   Data(
       {this.title,
-        this.contant,
-        this.author,
-        this.publishedOn,
-        this.imageName,
-        this.id});
+      this.contant,
+      this.author,
+      this.publishedOn,
+      this.imageName,
+      this.id});
 
   Data.fromJson(Map<String, dynamic> json) {
     title = json['title'];

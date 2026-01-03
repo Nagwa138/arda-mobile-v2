@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -317,7 +316,7 @@ class Trips extends StatelessWidget {
                                               height: 55.h,
                                               child: ElevatedButton(
                                                   style: ButtonStyle(
-                                                    shape: MaterialStateProperty.all<
+                                                    shape: WidgetStateProperty.all<
                                                             RoundedRectangleBorder>(
                                                         RoundedRectangleBorder(
                                                             borderRadius:
@@ -328,11 +327,11 @@ class Trips extends StatelessWidget {
                                                                 color:
                                                                     accentColor))),
                                                     foregroundColor:
-                                                        MaterialStateProperty
+                                                        WidgetStateProperty
                                                             .all<Color>(
                                                                 Colors.white),
                                                     backgroundColor:
-                                                        MaterialStateProperty
+                                                        WidgetStateProperty
                                                             .all<Color>(
                                                                 accentColor),
                                                   ),

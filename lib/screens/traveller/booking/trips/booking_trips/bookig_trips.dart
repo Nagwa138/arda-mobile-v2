@@ -1,23 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:PassPort/components/color/color.dart';
-import 'package:expandable_page_view/expandable_page_view.dart';
-import 'package:PassPort/components/widgets/customButton/customButton.dart';
-import 'package:PassPort/screens/traveller/booking/activity/cancel/cancel.dart';
-import 'package:PassPort/screens/traveller/booking/activity/complete/complete.dart';
-import 'package:PassPort/screens/traveller/booking/activity/pending/pending.dart';
-import 'package:PassPort/screens/traveller/booking/activity/upcomming/upcoming.dart';
 import 'package:PassPort/screens/traveller/booking/trips/cancel/cancel.dart';
 import 'package:PassPort/screens/traveller/booking/trips/complete/complete.dart';
 import 'package:PassPort/screens/traveller/booking/trips/pending/pending.dart';
 import 'package:PassPort/screens/traveller/booking/trips/upcomming/upcomming.dart';
-
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:expandable_page_view/expandable_page_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookingTrips extends StatelessWidget {
   const BookingTrips({super.key});

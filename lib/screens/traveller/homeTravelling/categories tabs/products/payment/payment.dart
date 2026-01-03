@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/screens/traveller/booking/reviews/review.dart';
 PageController pageControllerPayment = PageController();
 bool error = false ;
 
@@ -95,10 +93,10 @@ class Payment extends StatelessWidget {
                         height: 55.h,
                         child: ElevatedButton(
                             style: ButtonStyle(
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0), side: BorderSide(color: orange))),
-                              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                              backgroundColor: MaterialStateProperty.all<Color>(orange),
+                              foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                              backgroundColor: WidgetStateProperty.all<Color>(orange),
                             ),
                             onPressed: () {
                               pageControllerPayment.animateToPage(1, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
@@ -158,10 +156,10 @@ class Payment extends StatelessWidget {
                         height: 55.h,
                         child: ElevatedButton(
                             style: ButtonStyle(
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0), side: BorderSide(color: orange))),
-                              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                              backgroundColor: MaterialStateProperty.all<Color>(orange),
+                              foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                              backgroundColor: WidgetStateProperty.all<Color>(orange),
                             ),
                             onPressed: () {
                               pageControllerPayment.animateToPage(2, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
@@ -267,10 +265,10 @@ class Payment extends StatelessWidget {
                        height: 55.h,
                        child: ElevatedButton(
                            style: ButtonStyle(
-                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                             shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0), side: BorderSide(color: orange))),
-                             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                             backgroundColor: MaterialStateProperty.all<Color>(orange),
+                             foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                             backgroundColor: WidgetStateProperty.all<Color>(orange),
                            ),
                            onPressed: () {
                              Navigator.pushNamed(context, "paymentSusscful");
