@@ -1,6 +1,8 @@
 import 'package:PassPort/models/traveller/randomProduct/random_product.dart'
     as product_model;
+import 'package:PassPort/version2_module/features/home/view/screens/products_list_page.dart';
 import 'package:PassPort/version2_module/features/home/view/widget/product_card.dart';
+import 'package:PassPort/version2_module/features/home/view/widget/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,29 +49,25 @@ class GoldenHandsSection extends StatelessWidget {
     required String subtitle,
     required List products,
   }) {
+    // Limit to 5 items for home screen
+    final displayProducts = products.take(5).toList();
+
     return Padding(
       padding: EdgeInsets.only(bottom: 32.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section Header
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Golden Hands',
-                  style: TextStyle(
-                    fontSize: 28.sp,
-                    fontWeight: FontWeight.bold,
-                    color: lightBrown,
-                    letterSpacing: 1,
-                    height: 1.2,
-                  ),
+          // Section Header with See More
+          SectionHeader(
+            title: 'Golden Hands',
+            onSeeMoreTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductsListPage(products: products),
                 ),
-              ],
-            ),
+              );
+            },
           ),
 
           SizedBox(height: 20.h),
@@ -81,17 +79,17 @@ class GoldenHandsSection extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
-              itemCount: products.length,
+              itemCount: displayProducts.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.only(right: 16.w),
                   child: ProductCard(
-                    product: products[index],
+                    product: displayProducts[index],
                     onTap: () {
                       Navigator.pushNamed(
                         context,
                         'productDetails1',
-                        arguments: products[index].id,
+                        arguments: displayProducts[index].id,
                       );
                     },
                   ),

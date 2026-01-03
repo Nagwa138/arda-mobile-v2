@@ -1,6 +1,7 @@
-import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/models/traveller/trips_model/trips_model.dart'
     as trips_model;
+import 'package:PassPort/version2_module/features/home/view/screens/trips_list_page.dart';
+import 'package:PassPort/version2_module/features/home/view/widget/section_header.dart';
 import 'package:PassPort/version2_module/features/home/view/widget/trip_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -44,40 +45,27 @@ class _TripsSectionState extends State<TripsSection> {
   }
 
   Widget _buildTripsSection(List trips) {
+    // Limit to 5 items for home screen
+    final displayTrips = trips.take(5).toList();
+
     return Container(
       margin: EdgeInsets.only(top: 8.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header Section
-
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Journey Planner',
-                  style: TextStyle(
-                    fontSize: 28.sp,
-                    fontWeight: FontWeight.bold,
-                    color: lightBrown,
-                    letterSpacing: 1,
-                    height: 1.2,
-                  ),
+          // Header Section with See More
+          SectionHeader(
+            title: 'Journey Planner',
+            subtitle:
+                'Explore Egypt With Experts, Book Full-day Or Multi-day trips guided by locals',
+            onSeeMoreTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TripsListPage(trips: trips),
                 ),
-                SizedBox(height: 8.h),
-                Text(
-                  'Explore Egypt With Experts, Book Full-day Or Multi-day trips guided by locals',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: lightText,
-                    height: 1.4,
-                    letterSpacing: 0.3,
-                  ),
-                ),
-              ],
-            ),
+              );
+            },
           ),
 
           SizedBox(height: 20.h),
@@ -85,7 +73,7 @@ class _TripsSectionState extends State<TripsSection> {
           // Carousel Slider
           CarouselSlider.builder(
             carouselController: carouselController,
-            itemCount: trips.length,
+            itemCount: displayTrips.length,
             options: CarouselOptions(
               height: 380.h,
               viewportFraction: 0.87,
@@ -108,12 +96,12 @@ class _TripsSectionState extends State<TripsSection> {
                 scale: currentIndex == index ? 1.0 : 0.92,
                 duration: const Duration(milliseconds: 300),
                 child: TripCard(
-                  trip: trips[index],
+                  trip: displayTrips[index],
                   onTap: () {
                     Navigator.pushNamed(context, 'detailsTrips', arguments: {
-                      'id': trips[index].id,
+                      'id': displayTrips[index].id,
                       'text': 'trips',
-                      'num': trips[index].availableSeats,
+                      'num': displayTrips[index].availableSeats,
                     });
                   },
                 ),

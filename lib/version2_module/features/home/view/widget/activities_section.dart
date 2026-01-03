@@ -1,11 +1,12 @@
 import 'package:PassPort/models/traveller/activity/activity_random_model.dart'
     as activity_model;
+import 'package:PassPort/version2_module/features/home/view/screens/activities_list_page.dart';
 import 'package:PassPort/version2_module/features/home/view/widget/build_loading_section.dart';
+import 'package:PassPort/version2_module/features/home/view/widget/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../components/color/color.dart';
 import '../../view_model/activities_cubit.dart';
 import '../../view_model/activities_state.dart';
 import 'activity_card.dart';
@@ -21,28 +22,26 @@ class ActivitiesSection extends StatelessWidget {
           if (state.activities.isEmpty) {
             return const SizedBox.shrink();
           }
+
+          // Limit to 5 items for home screen
+          final displayActivities = state.activities.take(5).toList();
+
           return Padding(
             padding: EdgeInsets.only(bottom: 32.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Local Adventures',
-                        style: TextStyle(
-                          fontSize: 28.sp,
-                          fontWeight: FontWeight.bold,
-                          color: lightBrown,
-                          letterSpacing: 1,
-                          height: 1.2,
-                        ),
+                SectionHeader(
+                  title: 'Local Adventures',
+                  onSeeMoreTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ActivitiesListPage(activities: state.activities),
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
 
                 SizedBox(height: 20.h),
@@ -54,17 +53,17 @@ class ActivitiesSection extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     scrollDirection: Axis.horizontal,
                     physics: BouncingScrollPhysics(),
-                    itemCount: state.activities.length,
+                    itemCount: displayActivities.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.only(right: 16.w),
                         child: ActivityCard(
-                          activity: state.activities[index],
+                          activity: displayActivities[index],
                           onTap: () {
                             Navigator.pushNamed(
                               context,
                               'activitiesDetails',
-                              arguments: state.activities[index].id,
+                              arguments: displayActivities[index].id,
                             );
                           },
                         ),
