@@ -70,22 +70,6 @@ flutter:
   assets:
     - assets/translations/
     - assets/images/
-    - assets/images/auth/
-    - assets/images/auth/image3.png
-    - assets/images/main/glamp.png
-    - assets/images/auth/phonegif.gif
-    - assets/images/splash/
-    - assets/images/login/
-    - assets/images/landingHome/
-    - assets/images/register/
-    - assets/images/main/
-    - assets/images/profile/
-    - assets/images/landingHome/
-    - assets/images/services/
-    - assets/images/traveller/
-    - assets/images/traveller/home/
-    - assets/images/courser/
-    - assets/images/logo.png
     - shorebird.yaml
   fonts:
     - family: Gotham-Bold
