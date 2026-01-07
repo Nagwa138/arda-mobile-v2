@@ -1,10 +1,11 @@
 import 'dart:convert';
+
+import 'package:PassPort/consts/api/api.dart';
+import 'package:PassPort/main.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:PassPort/consts/api/api.dart';
-import 'package:PassPort/main.dart';
 
 class FirebaseNotification {
   final storage = FlutterSecureStorage();
@@ -148,7 +149,8 @@ class FirebaseNotification {
       );
 
       if (response.statusCode == 200) {
-        print("Token sent to server successfully.");
+        print(
+            "----------------------------Token sent to server successfully.-----------------------------------------");
       } else {
         print("Failed to send token to server: ${response.statusCode}");
       }
