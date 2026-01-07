@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../models/traveller/activity/activity_id_model.dart';
+import '../../../../../../version2_module/core/widgets/custom_carousel_slider.dart';
 
 class Details extends StatelessWidget {
   const Details({super.key});
@@ -625,7 +626,7 @@ class Details extends StatelessWidget {
               ),
               bottomNavigationBar: Container(
                 decoration: BoxDecoration(
-                  color: white,
+                  color: appBackgroundColor,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.08),
@@ -659,65 +660,25 @@ class Details extends StatelessWidget {
   }
 
   Widget _buildHeroImage(ActivityData activityData) {
-    final imageUrl = activityData.image;
+    // Prepare images list - use backend images when available, otherwise use dummy
+    final List<String> images = [];
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        imageUrl != null && imageUrl.isNotEmpty
-            ? Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Container(
-                    color: Colors.grey[200],
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        color: accentColor,
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    ),
-                  );
-                },
-                errorBuilder: (context, error, stackTrace) => Container(
-                  color: Colors.grey[100],
-                  child: Center(
-                    child: Image.asset(
-                      _placeholderImage,
-                      fit: BoxFit.contain,
-                      width: 150.w,
-                    ),
-                  ),
-                ),
-              )
-            : Container(
-                color: Colors.grey[100],
-                child: Center(
-                  child: Image.asset(
-                    _placeholderImage,
-                    fit: BoxFit.contain,
-                    width: 150.w,
-                  ),
-                ),
-              ),
-        // Gradient overlay
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent,
-                Colors.black.withValues(alpha: 0.4),
-              ],
-            ),
-          ),
-        ),
-      ],
+    // Check if backend provides images array (future implementation)
+    // For now, use single image or dummy images
+    if (activityData.image != null && activityData.image!.isNotEmpty) {
+      images.add(activityData.image!);
+    }
+
+    // Add dummy images to make it a carousel (3 images total)
+    while (images.length < 3) {
+      images.add(
+          'https://zadnaeg.com/wp-content/uploads/2017/06/wood-blog-placeholder.jpg');
+    }
+
+    return CustomCarouselSlider(
+      images: images,
+      showGradient: true,
+      placeholderImage: _placeholderImage,
     );
   }
 

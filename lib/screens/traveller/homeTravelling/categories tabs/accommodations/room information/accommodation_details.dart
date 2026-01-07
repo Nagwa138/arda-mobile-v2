@@ -2,6 +2,7 @@ import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/accomadationType_cubit/accomadtion_type_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/accomadationType_cubit/acommedtion_type_state.dart';
 import 'package:PassPort/version2_module/core/const/app_colors.dart';
+import 'package:PassPort/version2_module/core/widgets/custom_carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -99,85 +100,7 @@ class RoomInformation extends StatelessWidget {
                           ),
                       ],
                       flexibleSpace: FlexibleSpaceBar(
-                        background: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(20.r),
-                              ),
-                              child: (data?.coverPhotoUrl?.isNotEmpty == true)
-                                  ? Image.network(
-                                      data!.coverPhotoUrl!,
-                                      fit: BoxFit.cover,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return Image.asset(
-                                          'assets/images/ard_logo.png',
-                                          fit: BoxFit.cover,
-                                        );
-                                      },
-                                      loadingBuilder:
-                                          (context, child, loadingProgress) {
-                                        if (loadingProgress == null)
-                                          return child;
-                                        return const Center(
-                                          child: CircularProgressIndicator(),
-                                        );
-                                      },
-                                    )
-                                  : Image.asset(
-                                      'assets/images/ard_logo.png',
-                                      fit: BoxFit.cover,
-                                    ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              child: Container(
-                                height: 100.h,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
-                                    colors: [
-                                      appBackgroundColor,
-                                      appBackgroundColor.withValues(alpha: 0.0),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 20.h,
-                              left: 20.w,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.r),
-                                  color: AppColors.buttonColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          Colors.black.withValues(alpha: 0.1),
-                                      blurRadius: 8,
-                                      offset: Offset(0, 2),
-                                    ),
-                                  ],
-                                ),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16.w, vertical: 8.h),
-                                child: Text(
-                                  data?.accomodationType ?? 'No Type',
-                                  style: TextStyle(
-                                      color: white,
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        background: _buildHeroImage(data),
                       ),
                     ),
 
@@ -1223,6 +1146,80 @@ class RoomInformation extends StatelessWidget {
             color: accentColor.withValues(alpha: 0.7),
             fontSize: 13.sp,
             fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHeroImage(dynamic data) {
+    // Prepare images list - use backend images when available, otherwise use dummy
+    final List<String> images = [];
+
+    // Check if backend provides images array (future implementation)
+    // For now, use single image or dummy images
+    if (data?.coverPhotoUrl?.isNotEmpty == true) {
+      images.add(data!.coverPhotoUrl!);
+    }
+
+    // Add dummy images to make it a carousel (3 images total)
+    while (images.length < 3) {
+      images.add(
+          'https://zadnaeg.com/wp-content/uploads/2017/06/wood-blog-placeholder.jpg');
+    }
+
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        CustomCarouselSlider(
+          images: images,
+          showGradient: false, // We'll add custom gradient below
+          placeholderImage: 'assets/images/ard_logo.png',
+        ),
+        // Custom gradient overlay
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            height: 100.h,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  appBackgroundColor,
+                  appBackgroundColor.withValues(alpha: 0.0),
+                ],
+              ),
+            ),
+          ),
+        ),
+        // Accommodation type badge
+        Positioned(
+          bottom: 20.h,
+          left: 20.w,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.r),
+              color: AppColors.buttonColor,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.1),
+                  blurRadius: 8,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            child: Text(
+              data?.accomodationType ?? 'No Type',
+              style: TextStyle(
+                color: white,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ),
         ),
       ],

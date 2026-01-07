@@ -5,6 +5,7 @@ import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cub
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_state.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_button.dart';
+import 'package:PassPort/version2_module/core/widgets/custom_carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -97,7 +98,7 @@ class ProductDetails1 extends StatelessWidget {
                               SliverToBoxAdapter(
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: appBackgroundColor,
+                                    // color: appBackgroundColor,
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(30.r),
                                       topRight: Radius.circular(30.r),
@@ -415,7 +416,7 @@ class ProductDetails1 extends StatelessWidget {
                     //         (productData.availablePieces ?? 0) > 0
                     ? Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: appBackgroundColor.withValues(alpha: 0.5),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withValues(alpha: 0.05),
@@ -550,93 +551,29 @@ class ProductDetails1 extends StatelessWidget {
   }
 
   Widget _buildMainImage(dynamic productData) {
+    // Prepare images list - use backend images when available, otherwise use dummy
+    final List<String> images = [];
+
+    // Check if backend provides images array (future implementation)
+    // For now, use single image or dummy images
     final imageUrl = productData.image;
     final bool hasValidImage =
         imageUrl != null && imageUrl.isNotEmpty && imageUrl.startsWith('http');
 
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.transparent,
-            Colors.black.withValues(alpha: 0.3),
-          ],
-        ),
-      ),
-      child: hasValidImage
-          ? Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: Colors.grey[100],
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.shopping_bag_outlined,
-                          size: 80.r,
-                          color: Colors.grey[400],
-                        ),
-                        SizedBox(height: 16.h),
-                        Text(
-                          "No Image Available",
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            color: Colors.grey[600],
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Container(
-                  color: Colors.grey[100],
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: orange,
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
-                    ),
-                  ),
-                );
-              },
-            )
-          : Container(
-              color: Colors.grey[100],
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.shopping_bag_outlined,
-                      size: 80.r,
-                      color: Colors.grey[400],
-                    ),
-                    SizedBox(height: 16.h),
-                    Text(
-                      "No Image Available",
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        color: Colors.grey[600],
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+    if (hasValidImage) {
+      images.add(imageUrl);
+    }
+
+    // Add dummy images to make it a carousel (3 images total)
+    while (images.length < 3) {
+      images.add(
+          'https://zadnaeg.com/wp-content/uploads/2017/06/wood-blog-placeholder.jpg');
+    }
+
+    return CustomCarouselSlider(
+      images: images,
+      showGradient: true,
+      placeholderImage: _placeholderImage,
     );
   }
 }
