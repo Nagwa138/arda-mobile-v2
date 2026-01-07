@@ -550,7 +550,7 @@ class ProductDetails1 extends StatelessWidget {
     );
   }
 
-  Widget _buildMainImage(dynamic productData) {
+  Widget _buildMainImage(Data productData) {
     // Prepare images list - use backend images when available, otherwise use dummy
     final List<String> images = [];
 
@@ -572,8 +572,7 @@ class ProductDetails1 extends StatelessWidget {
 
     return CustomCarouselSlider(
       images: images,
-      showGradient: true,
-      placeholderImage: _placeholderImage,
+      placeholderImage: 'assets/images/ard_logo.png',
     );
   }
 }

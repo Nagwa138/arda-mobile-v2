@@ -1,9 +1,6 @@
-import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hive/hive.dart';
-
 import 'package:PassPort/models/traveller/rooms/roomlist.dart';
+import 'package:bloc/bloc.dart';
+import 'package:hive/hive.dart';
 
 class CardCubitRoom extends Cubit<List<RoomList>> {
   CardCubitRoom() : super([]);
@@ -34,14 +31,8 @@ class CardCubitRoom extends Cubit<List<RoomList>> {
 
     if (cardExists) {
       //changeBooking = false;
-      Fluttertoast.showToast(
-          msg: "this room already exist",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      // Note: Cubit doesn't have BuildContext, so we can't show snackbar here
+      // The UI layer should listen to a state and show the snackbar
     } else {
       await box.add(card.toJson());
       //changeBooking= false;
@@ -49,14 +40,8 @@ class CardCubitRoom extends Cubit<List<RoomList>> {
 
       print(card);
       loadCards();
-      Fluttertoast.showToast(
-          msg: " add Booking  Done",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      // Note: Cubit doesn't have BuildContext, so we can't show snackbar here
+      // The UI layer should listen to a state and show the snackbar
     }
 
     // Refresh the state
@@ -78,14 +63,8 @@ class CardCubitRoom extends Cubit<List<RoomList>> {
     //print(changeBooking);
 
     loadCards();
-    Fluttertoast.showToast(
-        msg: "remove booking Done",
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 16.0);
+    // Note: Cubit doesn't have BuildContext, so we can't show snackbar here
+    // The UI layer should listen to a state and show the snackbar
     // Refresh the state
   }
 

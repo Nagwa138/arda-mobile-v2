@@ -2,11 +2,12 @@ import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class TripBooking extends StatelessWidget {
   const TripBooking({super.key});
@@ -47,24 +48,16 @@ class TripBooking extends StatelessWidget {
               if (state is CreateBookingSuccessful) {
                 Navigator.pop(context);
                 Navigator.pop(context);
-                Fluttertoast.showToast(
-                    msg: 'Booking created successfully',
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
+                context.showCustomSnackBar(
+                  'Booking created successfully',
+                  type: SnackBarType.success,
+                );
               } else if (state is CreateBookingError) {
                 Navigator.pop(context);
-                Fluttertoast.showToast(
-                    msg: state.error,
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
+                context.showCustomSnackBar(
+                  state.error,
+                  type: SnackBarType.error,
+                );
               }
             },
             builder: (context, state) {
@@ -270,14 +263,10 @@ class TripBooking extends StatelessWidget {
                                       .text
                                       .trim()
                                       .isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: "Please enter name and phone number",
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                                context.showCustomSnackBar(
+                                  "Please enter name and phone number",
+                                  type: SnackBarType.error,
+                                );
                                 return;
                               }
 
@@ -288,28 +277,19 @@ class TripBooking extends StatelessWidget {
                                       .text
                                       .trim();
                               if (numPersonsText.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg: "Please enter number of persons",
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                                context.showCustomSnackBar(
+                                  "Please enter number of persons",
+                                  type: SnackBarType.error,
+                                );
                                 return;
                               }
 
                               final numPersons = int.tryParse(numPersonsText);
                               if (numPersons == null || numPersons <= 0) {
-                                Fluttertoast.showToast(
-                                    msg:
-                                        "Number of persons must be greater than 0",
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                                context.showCustomSnackBar(
+                                  "Number of persons must be greater than 0",
+                                  type: SnackBarType.error,
+                                );
                                 return;
                               }
 
@@ -324,15 +304,10 @@ class TripBooking extends StatelessWidget {
                                 numChildren =
                                     int.tryParse(numChildrenText) ?? 0;
                                 if (numChildren < 0) {
-                                  Fluttertoast.showToast(
-                                      msg:
-                                          "Number of children cannot be negative",
-                                      toastLength: Toast.LENGTH_LONG,
-                                      gravity: ToastGravity.CENTER,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0);
+                                  context.showCustomSnackBar(
+                                    "Number of children cannot be negative",
+                                    type: SnackBarType.error,
+                                  );
                                   return;
                                 }
                               }

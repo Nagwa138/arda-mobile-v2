@@ -26,25 +26,12 @@ class RegisterScreen extends StatelessWidget {
                         color: Colors.white, size: 24),
                     SizedBox(width: 12),
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            state.message,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                          Text(
-                            'Redirecting to login...',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              color: Colors.white70,
-                            ),
-                          ),
-                        ],
+                      child: Text(
+                        state.message,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.sp,
+                        ),
                       ),
                     ),
                   ],

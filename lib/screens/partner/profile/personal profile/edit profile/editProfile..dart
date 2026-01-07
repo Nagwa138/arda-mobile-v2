@@ -1,10 +1,11 @@
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/partner/profile/profile_cubit.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({super.key});
@@ -50,18 +51,16 @@ class EditProfile extends StatelessWidget {
         child: BlocConsumer<ProfileCubit, ProfileState>(
           listener: (context, state) {
             if (state is ProfileEditLoaded) {
-              Fluttertoast.showToast(
-                  msg: "Successful",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.CENTER,
-                  timeInSecForIosWeb: 1,
-                  backgroundColor: Colors.green,
-                  textColor: Colors.white,
-                  fontSize: 16.0);
+              context.showCustomSnackBar(
+                "Profile Updated Successfully",
+                type: SnackBarType.success,
+              );
               Navigator.pushNamed(context, "personalProfile");
             } else if (state is ProfileEditError) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(state.error)));
+              context.showCustomSnackBar(
+                state.error,
+                type: SnackBarType.error,
+              );
             }
           },
           builder: (context, state) {

@@ -3,11 +3,12 @@ import 'package:PassPort/models/traveller/rooms/roomlist.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../../../../consts/api/api.dart';
 import '../../../../../../../models/traveller/accomandating/accomandtionByIdone.dart';
@@ -331,13 +332,9 @@ class ViewRooms extends StatelessWidget {
                                   : () async {
                                       // Validation
                                       if (roomsState.isEmpty) {
-                                        Fluttertoast.showToast(
-                                          msg: "Please Select Rooms",
-                                          toastLength: Toast.LENGTH_LONG,
-                                          gravity: ToastGravity.CENTER,
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0,
+                                        context.showCustomSnackBar(
+                                          "Please Select Rooms",
+                                          type: SnackBarType.error,
                                         );
                                         return;
                                       }
@@ -351,10 +348,9 @@ class ViewRooms extends StatelessWidget {
                                       if (bookingCubit.startDate.text
                                           .trim()
                                           .isEmpty) {
-                                        Fluttertoast.showToast(
-                                          msg: "Please select check-in date",
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
+                                        context.showCustomSnackBar(
+                                          "Please select check-in date",
+                                          type: SnackBarType.error,
                                         );
                                         return;
                                       }
@@ -362,10 +358,9 @@ class ViewRooms extends StatelessWidget {
                                       if (bookingCubit.endDate.text
                                           .trim()
                                           .isEmpty) {
-                                        Fluttertoast.showToast(
-                                          msg: "Please select check-out date",
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
+                                        context.showCustomSnackBar(
+                                          "Please select check-out date",
+                                          type: SnackBarType.error,
                                         );
                                         return;
                                       }
@@ -374,10 +369,9 @@ class ViewRooms extends StatelessWidget {
                                       if (bookingCubit.phoneRoom.text
                                           .trim()
                                           .isEmpty) {
-                                        Fluttertoast.showToast(
-                                          msg: "Please enter phone number",
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
+                                        context.showCustomSnackBar(
+                                          "Please enter phone number",
+                                          type: SnackBarType.error,
                                         );
                                         return;
                                       }
@@ -385,17 +379,16 @@ class ViewRooms extends StatelessWidget {
                                       // Validate guest numbers
                                       if (cubit.singleRoomNumAdult == 0 &&
                                           cubit.child == 0) {
-                                        Fluttertoast.showToast(
-                                          msg:
-                                              "Please add at least one adult or child",
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
+                                        context.showCustomSnackBar(
+                                          "Please add at least one adult or child",
+                                          type: SnackBarType.error,
                                         );
                                         return;
                                       }
 
                                       // Call booking API
                                       await bookingCubit.bookRoom(
+                                        context: context,
                                         room: roomsState,
                                         start:
                                             bookingCubit.startDate.text.trim(),

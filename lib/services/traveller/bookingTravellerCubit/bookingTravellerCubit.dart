@@ -13,10 +13,11 @@ import 'package:PassPort/models/traveller/booking/trips/bookingtrip_model.dart';
 import 'package:PassPort/models/traveller/booking/trips/details/detailstripmodel.dart';
 import 'package:PassPort/models/traveller/rooms/getAllroommodel.dart';
 import 'package:PassPort/models/traveller/rooms/roomlist.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geideapay/geideapay.dart';
 import 'package:http/http.dart' as http;
 
@@ -403,6 +404,7 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
     required int numberOfAdult,
     required int numberOfChildern,
     required int nationalityType,
+    required BuildContext context,
   }) async {
     emit(CreateBookingRoomLoading());
 
@@ -446,18 +448,14 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
       var jsonBody = json.decode(response.body);
 
       if (response.statusCode == 200) {
-        Fluttertoast.showToast(
-          msg: "✅ Booking Successful!",
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-        );
+        context.showCustomSnackBar('Booking Successful!',
+            type: SnackBarType.success);
         room.clear();
         emit(CreateBookingRoomSuccessful());
       } else {
-        Fluttertoast.showToast(
-          msg: "❌ ${jsonBody['message'] ?? 'Booking Failed'}",
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
+        context.showCustomSnackBar(
+          "❌ ${jsonBody['message'] ?? 'Booking Failed'}",
+          type: SnackBarType.error,
         );
         emit(CreateBookingRoomError(jsonBody['message']));
       }
@@ -539,40 +537,28 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
       );
 
       if (response.responseCode == "000") {
-        Fluttertoast.showToast(
-            msg: "✅ Payment Successful!",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.green,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        context.showCustomSnackBar(
+          "✅ Payment Successful!",
+          type: SnackBarType.success,
+        );
         paymentOrNot(id: id);
         addProfitTrips(bookingId: id, amount: amount);
         emit(PaymentSuccess());
         debugPrint("✅ Payment Successful: ${response.detailedResponseMessage}");
         log("✅ Payment Successful!");
       } else {
-        Fluttertoast.showToast(
-            msg: "❌ Payment Failed",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.grey,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        context.showCustomSnackBar(
+          "❌ Payment Failed",
+          type: SnackBarType.error,
+        );
         debugPrint("❌ Payment Failed: ${response.detailedResponseMessage}");
         log("❌ Payment Failed: ${response.detailedResponseMessage}");
       }
     } catch (e) {
-      Fluttertoast.showToast(
-          msg: "❌ Payment Failed",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      context.showCustomSnackBar(
+        "❌ Payment Failed",
+        type: SnackBarType.error,
+      );
       debugPrint("⚠️ OrderApiResponse Error: $e");
       log("⚠️ Error: $e");
     }
@@ -925,40 +911,28 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
       );
 
       if (response.responseCode == "000") {
-        Fluttertoast.showToast(
-            msg: "✅ Payment Successful!",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.green,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        context.showCustomSnackBar(
+          "✅ Payment Successful!",
+          type: SnackBarType.success,
+        );
         paymentOrNot(id: id);
         addProfitActivity(bookingId: id, amount: amount);
         emit(PaymentSuccessActivity());
         debugPrint("✅ Payment Successful: ${response.detailedResponseMessage}");
         log("✅ Payment Successful!");
       } else {
-        Fluttertoast.showToast(
-            msg: "❌ Payment Failed",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.grey,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        context.showCustomSnackBar(
+          "❌ Payment Failed",
+          type: SnackBarType.error,
+        );
         debugPrint("❌ Payment Failed: ${response.detailedResponseMessage}");
         log("❌ Payment Failed: ${response.detailedResponseMessage}");
       }
     } catch (e) {
-      Fluttertoast.showToast(
-          msg: "❌ Payment Failed",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      context.showCustomSnackBar(
+        "❌ Payment Failed",
+        type: SnackBarType.error,
+      );
       debugPrint("⚠️ OrderApiResponse Error: $e");
       log("⚠️ Error: $e");
     }
@@ -997,40 +971,28 @@ class BookingTravellerCubit extends Cubit<BookingTravellerStates> {
       );
 
       if (response.responseCode == "000") {
-        Fluttertoast.showToast(
-            msg: "✅ Payment Successful!",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.green,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        context.showCustomSnackBar(
+          "✅ Payment Successful!",
+          type: SnackBarType.success,
+        );
         paymentOrNot(id: id);
         addProfitAccomaantion(bookingId: id, amount: amount);
         emit(PaymentSuccessActivity());
         debugPrint("✅ Payment Successful: ${response.detailedResponseMessage}");
         log("✅ Payment Successful!");
       } else {
-        Fluttertoast.showToast(
-            msg: "❌ Payment Failed",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.grey,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        context.showCustomSnackBar(
+          "❌ Payment Failed",
+          type: SnackBarType.error,
+        );
         debugPrint("❌ Payment Failed: ${response.detailedResponseMessage}");
         log("❌ Payment Failed: ${response.detailedResponseMessage}");
       }
     } catch (e) {
-      Fluttertoast.showToast(
-          msg: "❌ Payment Failed",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      context.showCustomSnackBar(
+        "❌ Payment Failed",
+        type: SnackBarType.error,
+      );
       debugPrint("⚠️ OrderApiResponse Error: $e");
       log("⚠️ Error: $e");
     }

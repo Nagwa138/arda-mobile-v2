@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,13 +10,11 @@ class CustomCarouselSlider extends StatefulWidget {
     super.key,
     required this.images,
     this.height,
-    this.showGradient = true,
     this.placeholderImage = 'assets/images/ard_logo.png',
   });
 
   final List<String> images;
   final double? height;
-  final bool showGradient;
   final String placeholderImage;
 
   @override
@@ -67,23 +66,6 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
           },
         ),
 
-        // Gradient Overlay
-        if (widget.showGradient)
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withValues(alpha: 0.4),
-                  ],
-                ),
-              ),
-            ),
-          ),
-
         // Numbered Indicators
         if (displayImages.length > 1)
           Positioned(
@@ -92,7 +74,86 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
             right: 0,
             child: _buildNumberedIndicators(displayImages.length),
           ),
+
+        // Magnifier Icon
+        Positioned(
+          bottom: 16.h,
+          right: 16.w,
+          child: GestureDetector(
+            onTap: () => _showImageZoom(context, displayImages[_currentIndex]),
+            child: Container(
+              padding: EdgeInsets.all(8.w),
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.5),
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.3),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.zoom_in,
+                color: Colors.white,
+                size: 25
+                .sp,
+              ),
+            ),
+          ),
+        ),
       ],
+    );
+  }
+
+  void _showImageZoom(BuildContext context, String imageUrl) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: EdgeInsets.zero,
+        child: Stack(
+          children: [
+            InteractiveViewer(
+              minScale: 0.5,
+              maxScale: 4.0,
+              child: Center(
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  fit: BoxFit.contain,
+                  placeholder: (context, url) => Center(
+                    child: CircularProgressIndicator(color: Colors.white),
+                  ),
+                  errorWidget: (context, url, error) => Center(
+                    child: Icon(
+                      Icons.error_outline,
+                      color: Colors.white,
+                      size: 64.sp,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 40.h,
+              right: 16.w,
+              child: GestureDetector(
+                onTap: () => Navigator.of(context).pop(),
+                child: Container(
+                  padding: EdgeInsets.all(8.w),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.5),
+                    borderRadius: BorderRadius.circular(12.r),
+                    border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                  ),
+                  child: Icon(Icons.close, color: Colors.white, size: 22.sp),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -156,8 +217,8 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           margin: EdgeInsets.symmetric(horizontal: 4.w),
-          width: isActive ? 10.w : 8.w,
-          height: isActive ? 10.h : 8.h,
+          width: isActive ? 12.w : 8.w,
+          height: isActive ? 12.h : 8.h,
           decoration: BoxDecoration(
             color: isActive ? white : white.withValues(alpha: 0.5),
             shape: BoxShape.circle,

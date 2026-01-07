@@ -1,11 +1,12 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 
 class Confirmation extends StatelessWidget {
   const Confirmation({super.key});
@@ -23,23 +24,15 @@ class Confirmation extends StatelessWidget {
               "single": arguments['Guset'],
               "date": arguments['date']
             });
-            Fluttertoast.showToast(
-                msg: "Successful",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              "Successful",
+              type: SnackBarType.success,
+            );
           } else if (state is CreateBookingRoomError) {
-            Fluttertoast.showToast(
-                msg: state.error,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
+            );
           }
         },
         builder: (context, state) {
@@ -196,6 +189,7 @@ class Confirmation extends StatelessWidget {
                     print("night ${arguments['night']}");
                     print(arguments['night'].runtimeType);
                     BookingTravellerCubit.get(context).bookRoom(
+                      context: context,
                         start: arguments['date'],
                         end: arguments['endDate'],
                         phone: arguments['phone'],

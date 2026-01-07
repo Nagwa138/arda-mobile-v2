@@ -12,9 +12,9 @@ class UniqueCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 4.w),
-        width: 380.w,
-        height: 520.h,
+        margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 6.w),
+        width: 270.w,
+        height: 300.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
           boxShadow: [
@@ -93,7 +93,7 @@ class UniqueCard extends StatelessWidget {
                   ),
                   color: Colors.black.withValues(alpha: 0.3),
                 ),
-                padding: EdgeInsets.all(20.w),
+                padding: EdgeInsets.all(16.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -105,7 +105,7 @@ class UniqueCard extends StatelessWidget {
                           child: Text(
                             accommodation.address ?? 'Location',
                             style: TextStyle(
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                               color: Colors.white.withValues(alpha: 0.95),
                               fontWeight: FontWeight.w500,
                             ),
@@ -128,13 +128,13 @@ class UniqueCard extends StatelessWidget {
                               Icon(
                                 Icons.star_rounded,
                                 color: Color(0xFFFFD700),
-                                size: 14.sp,
+                                size: 12.sp,
                               ),
                               SizedBox(width: 3.w),
                               Text(
                                 '${(accommodation.rate ?? 0).toStringAsFixed(1)}',
                                 style: TextStyle(
-                                  fontSize: 12.sp,
+                                  fontSize: 11.sp,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.white,
                                 ),
@@ -145,7 +145,7 @@ class UniqueCard extends StatelessWidget {
                       ],
                     ),
 
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 6.h),
 
                     // Title
                     Text(
@@ -154,15 +154,15 @@ class UniqueCard extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 26.sp,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w900,
                         color: Colors.white,
                         height: 1.15,
-                        letterSpacing: 1.5,
+                        letterSpacing: 1.2,
                       ),
                     ),
 
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 12.h),
 
                     // Price and Reserve Button
                     Row(
@@ -175,7 +175,7 @@ class UniqueCard extends StatelessWidget {
                             Text(
                               'Starting From',
                               style: TextStyle(
-                                fontSize: 13.sp,
+                                fontSize: 11.sp,
                                 color: Colors.white.withValues(alpha: 0.9),
                                 fontWeight: FontWeight.w500,
                               ),
@@ -184,7 +184,7 @@ class UniqueCard extends StatelessWidget {
                             Text(
                               '\$${(accommodation.price ?? 0.0).toStringAsFixed(0)}',
                               style: TextStyle(
-                                fontSize: 28.sp,
+                                fontSize: 22.sp,
                                 fontWeight: FontWeight.w900,
                                 color: Colors.white,
                                 letterSpacing: -0.5,
@@ -194,8 +194,8 @@ class UniqueCard extends StatelessWidget {
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(
-                            horizontal: 20.w,
-                            vertical: 12.h,
+                            horizontal: 16.w,
+                            vertical: 10.h,
                           ),
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -204,7 +204,7 @@ class UniqueCard extends StatelessWidget {
                           child: Text(
                             'Reserve',
                             style: TextStyle(
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w700,
                               color: Colors.black87,
                             ),

@@ -2,12 +2,13 @@ import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class ActivityBooking extends StatelessWidget {
   const ActivityBooking({super.key});
@@ -45,24 +46,16 @@ class ActivityBooking extends StatelessWidget {
               } else if (state is CreateBookingActivitySuccessful) {
                 Navigator.pop(context);
                 Navigator.pop(context);
-                Fluttertoast.showToast(
-                    msg: "Successful",
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
+                context.showCustomSnackBar(
+                  "Successful",
+                  type: SnackBarType.success,
+                );
               } else if (state is CreateBookingActivityError) {
                 Navigator.pop(context);
-                Fluttertoast.showToast(
-                    msg: state.error,
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
+                context.showCustomSnackBar(
+                  state.error,
+                  type: SnackBarType.error,
+                );
               }
             },
             builder: (context, state) {
@@ -241,12 +234,9 @@ class ActivityBooking extends StatelessWidget {
                           .activityDate
                           .text
                           .isEmpty) {
-                        Fluttertoast.showToast(
-                          msg: "Please select activity date",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
+                        context.showCustomSnackBar(
+                          "Please select activity date",
+                          type: SnackBarType.error,
                         );
                         return;
                       }
@@ -257,24 +247,18 @@ class ActivityBooking extends StatelessWidget {
                           .text
                           .trim();
                       if (numGuestsText.isEmpty) {
-                        Fluttertoast.showToast(
-                          msg: "Please enter number of guests",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
+                        context.showCustomSnackBar(
+                          "Please enter number of guests",
+                          type: SnackBarType.error,
                         );
                         return;
                       }
 
                       final numGuests = int.tryParse(numGuestsText);
                       if (numGuests == null || numGuests <= 0) {
-                        Fluttertoast.showToast(
-                          msg: "Number of guests must be greater than 0",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
+                        context.showCustomSnackBar(
+                          "Number of guests must be greater than 0",
+                          type: SnackBarType.error,
                         );
                         return;
                       }

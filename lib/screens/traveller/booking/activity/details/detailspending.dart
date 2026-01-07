@@ -151,12 +151,12 @@ class DetailsPendingActivity extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   border: Border.all(
-                                      color: lightBrown.withOpacity(0.3)),
+                                      color: lightBrown.withValues(alpha: 0.3)),
                                   borderRadius:
                                       BorderRadiusDirectional.circular(12.r),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: lightBrown.withOpacity(0.1),
+                                      color: lightBrown.withValues(alpha: 0.1),
                                       blurRadius: 8,
                                       offset: Offset(0, 2),
                                     ),
@@ -179,7 +179,8 @@ class DetailsPendingActivity extends StatelessWidget {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 12.h),
                                       child: Divider(
-                                        color: lightBrown.withOpacity(0.3),
+                                        color:
+                                            lightBrown.withValues(alpha: 0.3),
                                         thickness: 1,
                                       ),
                                     ),
@@ -206,12 +207,12 @@ class DetailsPendingActivity extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   border: Border.all(
-                                      color: lightBrown.withOpacity(0.3)),
+                                      color: lightBrown.withValues(alpha: 0.3)),
                                   borderRadius:
                                       BorderRadiusDirectional.circular(12.r),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: lightBrown.withOpacity(0.1),
+                                      color: lightBrown.withValues(alpha: 0.1),
                                       blurRadius: 8,
                                       offset: Offset(0, 2),
                                     ),
@@ -252,7 +253,8 @@ class DetailsPendingActivity extends StatelessWidget {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 12.h),
                                       child: Divider(
-                                        color: lightBrown.withOpacity(0.3),
+                                        color:
+                                            lightBrown.withValues(alpha: 0.3),
                                         thickness: 1,
                                       ),
                                     ),
@@ -266,7 +268,8 @@ class DetailsPendingActivity extends StatelessWidget {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 12.h),
                                       child: Divider(
-                                        color: lightBrown.withOpacity(0.3),
+                                        color:
+                                            lightBrown.withValues(alpha: 0.3),
                                         thickness: 1,
                                       ),
                                     ),

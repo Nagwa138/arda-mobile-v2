@@ -73,12 +73,9 @@
 //   }
 // }
 
-import 'package:bloc/bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hive/hive.dart';
 import 'package:PassPort/models/traveller/products/card_model.dart';
+import 'package:bloc/bloc.dart';
+import 'package:hive/hive.dart';
 
 class CardCubit extends Cubit<List<CardModel>> {
   CardCubit() : super([]);
@@ -114,25 +111,13 @@ class CardCubit extends Cubit<List<CardModel>> {
 
     if (cardExists) {
       print('Card already exists');
-      Fluttertoast.showToast(
-          msg: "addedToCart".tr(),
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      // Note: Cubit doesn't have BuildContext, so we can't show snackbar here
+      // The UI layer should listen to a state and show the snackbar
       // Optionally, show a message to the user
     } else {
       await box.add(card.toMap());
-      Fluttertoast.showToast(
-          msg: "addedToCartSuccess".tr(),
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      // Note: Cubit doesn't have BuildContext, so we can't show snackbar here
+      // The UI layer should listen to a state and show the snackbar
       loadCards(); // Refresh the state
     }
   }

@@ -1,10 +1,10 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 
 class DetailsBookingPending extends StatelessWidget {
   const DetailsBookingPending({super.key});
@@ -151,6 +151,9 @@ class DetailsBookingPending extends StatelessWidget {
                             children: [
                               Image.asset(
                                   "assets/images/landingHome/location.png"),
+                              SizedBox(
+                                width: 5,
+                              ),
                               Text(
                                 "${BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.location}",
                                 // "booking.Luxor".tr() + "   ",
@@ -203,58 +206,58 @@ class DetailsBookingPending extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("booking.HostDetails".tr(),
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    )),
-                                SizedBox(
-                                  height: 10.h,
-                                ),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                        "assets/images/traveller/location.png"),
-                                    SizedBox(
-                                      width: 5.w,
-                                    ),
-                                    SizedBox(
-                                      width: 250.w,
-                                      child: Text(
-                                          BookingTravellerCubit.get(context)
-                                              .accomandationDetailsModel!
-                                              .data!
-                                              .location
-                                              .toString(),
-                                          // "23 Abbas El Aqqad st - Naser city - Cairo",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10.h,
-                                ),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                        "assets/images/traveller/call.png"),
-                                    SizedBox(
-                                      width: 5.w,
-                                    ),
-                                    SizedBox(
-                                      width: 250.w,
-                                      child: Text(
-                                          "Call the Host through +${BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.phone.toString()}",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                    )
-                                  ],
-                                ),
+                                // Text("booking.HostDetails".tr(),
+                                //     style: TextStyle(
+                                //       fontSize: 16,
+                                //       fontWeight: FontWeight.w600,
+                                //     )),
+                                // SizedBox(
+                                //   height: 10.h,
+                                // ),
+                                // Row(
+                                //   children: [
+                                //     Image.asset(
+                                //         "assets/images/traveller/location.png"),
+                                //     SizedBox(
+                                //       width: 5.w,
+                                //     ),
+                                //     SizedBox(
+                                //       width: 250.w,
+                                //       child: Text(
+                                //           BookingTravellerCubit.get(context)
+                                //               .accomandationDetailsModel!
+                                //               .data!
+                                //               .location
+                                //               .toString(),
+                                //           // "23 Abbas El Aqqad st - Naser city - Cairo",
+                                //           style: TextStyle(
+                                //             fontSize: 16,
+                                //             fontWeight: FontWeight.w400,
+                                //           )),
+                                //     )
+                                //   ],
+                                // ),
+                                // SizedBox(
+                                //   height: 10.h,
+                                // ),
+                                // Row(
+                                //   children: [
+                                //     Image.asset(
+                                //         "assets/images/traveller/call.png"),
+                                //     SizedBox(
+                                //       width: 5.w,
+                                //     ),
+                                //     SizedBox(
+                                //       width: 250.w,
+                                //       child: Text(
+                                //           "Call the Host through +${BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.phone.toString()}",
+                                //           style: TextStyle(
+                                //             fontSize: 16,
+                                //             fontWeight: FontWeight.w400,
+                                //           )),
+                                //     )
+                                //   ],
+                                // ),
                                 SizedBox(
                                   height: 10.h,
                                 ),
@@ -524,7 +527,8 @@ class DetailsBookingPending extends StatelessWidget {
                                       RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
-                                          side: BorderSide(color: accentColor))),
+                                          side:
+                                              BorderSide(color: accentColor))),
                                   foregroundColor:
                                       WidgetStateProperty.all<Color>(white),
                                   backgroundColor:

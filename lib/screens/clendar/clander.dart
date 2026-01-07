@@ -2,10 +2,11 @@ import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/models/partner/rooms/addRoom.dart';
 import 'package:PassPort/services/partner/servicesCubit/servicesCubit.dart';
 import 'package:PassPort/services/partner/servicesCubit/servicesStates.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -44,23 +45,15 @@ class _CalendarPageState extends State<CalendarPage> {
       child: BlocConsumer<ServicesCubit, ServicesStates>(
         listener: (context, state) {
           if (state is RegisterRoomLoaded) {
-            Fluttertoast.showToast(
-              msg: "Room Added Successfully!",
-              toastLength: Toast.LENGTH_LONG,
-              gravity: ToastGravity.TOP,
-              backgroundColor: Colors.green,
-              textColor: Colors.white,
-              fontSize: 16.0,
+            context.showCustomSnackBar(
+              "Room Added Successfully!",
+              type: SnackBarType.success,
             );
             Navigator.pop(context);
           } else if (state is RegisterRoomError) {
-            Fluttertoast.showToast(
-              msg: state.error,
-              toastLength: Toast.LENGTH_LONG,
-              gravity: ToastGravity.TOP,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0,
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
             );
           }
         },
@@ -95,7 +88,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     borderRadius: BorderRadius.circular(16.r),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha:0.06),
+                        color: Colors.black.withValues(alpha: 0.06),
                         blurRadius: 12,
                         offset: Offset(0, 4),
                       ),
@@ -116,7 +109,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     startingDayOfWeek: StartingDayOfWeek.monday,
                     rangeSelectionMode: RangeSelectionMode.toggledOn,
                     calendarStyle: CalendarStyle(
-                      rangeHighlightColor: orange.withValues(alpha:0.2),
+                      rangeHighlightColor: orange.withValues(alpha: 0.2),
                       rangeStartDecoration: BoxDecoration(
                         color: orange,
                         shape: BoxShape.circle,
@@ -126,7 +119,7 @@ class _CalendarPageState extends State<CalendarPage> {
                         shape: BoxShape.circle,
                       ),
                       todayDecoration: BoxDecoration(
-                        color: orange.withValues(alpha:0.3),
+                        color: orange.withValues(alpha: 0.3),
                         shape: BoxShape.circle,
                       ),
                       selectedDecoration: BoxDecoration(
@@ -211,11 +204,11 @@ class _CalendarPageState extends State<CalendarPage> {
                               decoration: BoxDecoration(
                                 color: white,
                                 borderRadius: BorderRadius.circular(12.r),
-                                border:
-                                    Border.all(color: orange.withValues(alpha:0.3)),
+                                border: Border.all(
+                                    color: orange.withValues(alpha: 0.3)),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withValues(alpha:0.04),
+                                    color: Colors.black.withValues(alpha: 0.04),
                                     blurRadius: 8,
                                     offset: Offset(0, 2),
                                   ),
@@ -226,7 +219,7 @@ class _CalendarPageState extends State<CalendarPage> {
                                   Container(
                                     padding: EdgeInsets.all(8.w),
                                     decoration: BoxDecoration(
-                                      color: orange.withValues(alpha:0.1),
+                                      color: orange.withValues(alpha: 0.1),
                                       borderRadius: BorderRadius.circular(8.r),
                                     ),
                                     child: Icon(Icons.date_range,
@@ -281,7 +274,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     color: white,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha:0.08),
+                        color: Colors.black.withValues(alpha: 0.08),
                         blurRadius: 12,
                         offset: Offset(0, -4),
                       ),
@@ -358,10 +351,9 @@ class _CalendarPageState extends State<CalendarPage> {
                                           '0';
 
                                   if (roomNumber.isEmpty) {
-                                    Fluttertoast.showToast(
-                                      msg: "Please enter a room number",
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white,
+                                    context.showCustomSnackBar(
+                                      "Please enter a room number",
+                                      type: SnackBarType.error,
                                     );
                                     return;
                                   }
@@ -369,10 +361,9 @@ class _CalendarPageState extends State<CalendarPage> {
                                   // Check if room number is valid
                                   final roomNo = int.tryParse(roomNumber);
                                   if (roomNo == null) {
-                                    Fluttertoast.showToast(
-                                      msg: "Invalid room number",
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white,
+                                    context.showCustomSnackBar(
+                                      "Invalid room number",
+                                      type: SnackBarType.error,
                                     );
                                     return;
                                   }
@@ -383,11 +374,9 @@ class _CalendarPageState extends State<CalendarPage> {
                                     final parsedPrice = double.tryParse(price);
                                     if (parsedPrice == null ||
                                         parsedPrice <= 0) {
-                                      Fluttertoast.showToast(
-                                        msg:
-                                            "Please enter a valid price for King room",
-                                        backgroundColor: Colors.red,
-                                        textColor: Colors.white,
+                                      context.showCustomSnackBar(
+                                        "Please enter a valid price for King room",
+                                        type: SnackBarType.error,
                                       );
                                       return;
                                     }
@@ -420,7 +409,7 @@ class _CalendarPageState extends State<CalendarPage> {
                               borderRadius: BorderRadius.circular(12.r),
                             ),
                             elevation: selectedRanges.isEmpty ? 0 : 4,
-                            shadowColor: orange.withValues(alpha:0.4),
+                            shadowColor: orange.withValues(alpha: 0.4),
                           ),
                           child: state is RegisterRoomLoading
                               ? SizedBox(

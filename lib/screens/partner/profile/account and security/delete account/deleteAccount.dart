@@ -1,12 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/widgets/customText.dart';
 import 'package:PassPort/services/traveller/uset_cubit/user_cubit.dart';
 import 'package:PassPort/services/traveller/uset_cubit/user_state.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DeleteAccount extends StatelessWidget {
   const DeleteAccount({super.key});
@@ -14,35 +15,25 @@ class DeleteAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-
-      create: (BuildContext context)=>UserCubit(),
-      child: BlocConsumer<UserCubit,UserState>(
-        listener: (BuildContext context,  state) {
-          if (state is DeleteAccountSuccessful){
+      create: (BuildContext context) => UserCubit(),
+      child: BlocConsumer<UserCubit, UserState>(
+        listener: (BuildContext context, state) {
+          if (state is DeleteAccountSuccessful) {
             deleteAccountSuccessDialog(context);
-            Navigator.pushNamed(context,"register");
-
-          }
-          else if (state is DeleteAccountError){
-            Fluttertoast.showToast(
-                msg: state.error,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-
-                fontSize: 16.0
+            Navigator.pushNamed(context, "register");
+          } else if (state is DeleteAccountError) {
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
             );
           }
         },
         builder: (BuildContext context, state) {
           return Scaffold(
             backgroundColor: appBackgroundColor,
-
             appBar: AppBar(
               backgroundColor: appBackgroundColor,
-             elevation: 0.0,
+              elevation: 0.0,
               centerTitle: true,
               title: Text(
                 'accountSecurity.deleteAccount'.tr(),
@@ -88,26 +79,27 @@ class DeleteAccount extends StatelessWidget {
                   ),
                   SizedBox(height: 10.h),
                   TextFormField(
-                    controller:UserCubit.get(context).deleteAccountPassword,
+                    controller: UserCubit.get(context).deleteAccountPassword,
                     obscureText: UserCubit.get(context).isPasswordVisibleDelete,
                     decoration: InputDecoration(
                       hintText: 'register.password'.tr(),
                       suffixIcon: GestureDetector(
-                        onTap: (){
-                          UserCubit.get(context).changePasswordVisibilityDelete();
+                        onTap: () {
+                          UserCubit.get(context)
+                              .changePasswordVisibilityDelete();
                         },
-                        child:
-                        UserCubit.get(context).isPasswordVisibleDelete == true ?  Icon(
-                          Icons.visibility_off,
-                          color: accentColor,
-                          size: 20.sp,
-                        )
-                            :
-                        Icon(
-                          Icons.visibility,
-                          color: accentColor,
-                          size: 20.sp,
-                        ),
+                        child: UserCubit.get(context).isPasswordVisibleDelete ==
+                                true
+                            ? Icon(
+                                Icons.visibility_off,
+                                color: accentColor,
+                                size: 20.sp,
+                              )
+                            : Icon(
+                                Icons.visibility,
+                                color: accentColor,
+                                size: 20.sp,
+                              ),
                       ),
                       hintStyle: TextStyle(
                         color: accentColor,
@@ -125,7 +117,7 @@ class DeleteAccount extends StatelessWidget {
                     height: 60.h,
                     child: ElevatedButton(
                       onPressed: () {
-                         showDialog(
+                        showDialog(
                           barrierDismissible: false,
                           context: context,
                           builder: (contextItem) {
@@ -148,14 +140,20 @@ class DeleteAccount extends StatelessWidget {
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    SizedBox(height: 10.h,),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
                                     Row(
                                       children: [
                                         GestureDetector(
-                                          onTap:(){
-                                            UserCubit.get(context).deleteAccount(password: UserCubit.get(context).deleteAccountPassword.text);
+                                          onTap: () {
+                                            UserCubit.get(context)
+                                                .deleteAccount(
+                                                    password: UserCubit.get(
+                                                            context)
+                                                        .deleteAccountPassword
+                                                        .text);
                                             Navigator.pop(contextItem);
-
                                           },
                                           child: Container(
                                             width: 100.w,
@@ -163,14 +161,23 @@ class DeleteAccount extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               border: Border.all(color: white),
                                               color: Colors.red,
-                                              borderRadius: BorderRadius.circular(10.r),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
                                             ),
-                                            child: CustomText(text: "register.confirm".tr(), size: 16.sp, color: white, fontWeight: FontWeight.w700,alignment: Alignment.center,),
+                                            child: CustomText(
+                                              text: "register.confirm".tr(),
+                                              size: 16.sp,
+                                              color: white,
+                                              fontWeight: FontWeight.w700,
+                                              alignment: Alignment.center,
+                                            ),
                                           ),
                                         ),
-                                        SizedBox(width: 30.w,),
+                                        SizedBox(
+                                          width: 30.w,
+                                        ),
                                         GestureDetector(
-                                          onTap:(){
+                                          onTap: () {
                                             Navigator.pop(contextItem);
                                           },
                                           child: Container(
@@ -179,14 +186,20 @@ class DeleteAccount extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               border: Border.all(color: white),
                                               color: Colors.grey.shade500,
-                                              borderRadius: BorderRadius.circular(10.r),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
                                             ),
-                                            child: CustomText(text: "register.cancel".tr(), size: 16.sp, color: white, fontWeight: FontWeight.w700,alignment: Alignment.center,),
+                                            child: CustomText(
+                                              text: "register.cancel".tr(),
+                                              size: 16.sp,
+                                              color: white,
+                                              fontWeight: FontWeight.w700,
+                                              alignment: Alignment.center,
+                                            ),
                                           ),
                                         )
                                       ],
                                     )
-
                                   ],
                                 ),
                               ),
@@ -241,7 +254,6 @@ class DeleteAccount extends StatelessWidget {
             ),
           );
         },
-
       ),
     );
   }

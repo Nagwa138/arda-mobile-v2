@@ -268,10 +268,8 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
                     child: _showLogo
                         ? FadeTransition(
                             opacity: _fadeAnimation,
-                            child: Image.asset(
-                                "assets/images/image-removebg-preview.png",
-                                height: 350,
-                                width: 350),
+                            child: Image.asset("assets/images/logo.png",
+                                height: 350, width: 350),
                           )
                         : SizedBox(height: 350, width: 350),
                   ),

@@ -1,4 +1,5 @@
 import 'package:PassPort/consts/cache manger/cache.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:PassPort/version2_module/core/services/api_services.dart';
 import 'package:PassPort/version2_module/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:PassPort/version2_module/features/home/data/repositories/activities_repo.dart';
@@ -132,7 +133,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             height: 380.h,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('assets/images/home_background.jpeg'),
+                                image: AssetImage(
+                                    'assets/images/home_background.jpeg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -210,7 +212,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                           vertical: 6.h,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: Colors.white.withValues(alpha:0.3),
+                                          color: Colors.white
+                                              .withValues(alpha: 0.3),
                                           borderRadius:
                                               BorderRadius.circular(10.r),
                                         ),
@@ -236,7 +239,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                             shadows: [
                                               Shadow(
                                                 color: Colors.black
-                                                    .withValues(alpha:0.3),
+                                                    .withValues(alpha: 0.3),
                                                 blurRadius: 10,
                                                 offset: Offset(0, 2),
                                               ),
@@ -306,13 +309,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
-                    colors: [accentColor, accentColor.withValues(alpha:0.8)],
+                    colors: [accentColor, accentColor.withValues(alpha: 0.8)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: accentColor.withValues(alpha:0.4),
+                      color: accentColor.withValues(alpha: 0.4),
                       blurRadius: 20,
                       offset: const Offset(0, 6),
                     ),
@@ -321,6 +324,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 child: FloatingActionButton(
                   onPressed: () {
                     Navigator.pushNamed(context, 'addTripe');
+                    // context.showCustomSnackBar('This is a test msg');
                   },
                   backgroundColor:
                       Colors.transparent, // لأننا استخدمنا gradient
@@ -329,7 +333,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                          color: Colors.white.withValues(alpha:0.3), width: 2),
+                          color: Colors.white.withValues(alpha: 0.3), width: 2),
                     ),
                     child: Icon(
                       Icons.map_rounded, // أيقونة الخريطة 📍

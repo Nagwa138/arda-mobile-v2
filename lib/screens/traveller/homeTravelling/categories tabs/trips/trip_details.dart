@@ -372,7 +372,6 @@ class DetailsTrips extends StatelessWidget {
 
     return CustomCarouselSlider(
       images: images,
-      showGradient: true,
       placeholderImage: _placeholderImage,
     );
   }

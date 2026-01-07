@@ -9,6 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+//import AccomandtionByIdModelone
+import '../../../../../../models/traveller/accomandating/accomandtionByIdone.dart';
+
 class RoomInformation extends StatelessWidget {
   const RoomInformation({super.key});
 
@@ -33,6 +36,7 @@ class RoomInformation extends StatelessWidget {
 
           final data =
               AccommodatingCubit.get(context).accomandtionByIdModel?.data;
+          print(data?.amenityName);
 
           return Stack(
             children: [
@@ -319,69 +323,69 @@ class RoomInformation extends StatelessWidget {
                                 ],
                               ),
 
-                            // Amenities Section
-                            if (data?.amenityName?.isNotEmpty == true) ...[
-                              _buildSectionTitle('roomInfo.title1'.tr()),
-                              SizedBox(height: 12.h),
-                              GridView.builder(
-                                shrinkWrap: true,
-                                padding: EdgeInsets.zero,
-                                physics: NeverScrollableScrollPhysics(),
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 12.w,
-                                  mainAxisSpacing: 12.h,
-                                  childAspectRatio: 4.5,
-                                ),
-                                itemCount: data!.amenityName!.length,
-                                itemBuilder: (context, index) {
-                                  var icons = [
-                                    Icons.wifi,
-                                    Icons.ac_unit,
-                                    Icons.tv,
-                                    Icons.dry_cleaning,
-                                    Icons.pool,
-                                    Icons.restaurant,
-                                    Icons.local_parking,
-                                    Icons.fitness_center,
-                                  ];
-                                  return Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 6.w, vertical: 6.h),
-                                    decoration: BoxDecoration(
-                                      color: appBackgroundColor,
-                                      borderRadius: BorderRadius.circular(10.r),
-                                      border: Border.all(
-                                          color: Colors.grey.shade200,
-                                          width: 1),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          icons[index % icons.length],
-                                          color: accentColor,
-                                          size: 20.r,
-                                        ),
-                                        SizedBox(width: 8.w),
-                                        Expanded(
-                                          child: Text(
-                                            data.amenityName![index],
-                                            style: TextStyle(
-                                              color: accentColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              ),
-                              SizedBox(height: 24.h),
-                            ],
+                            //!MARK // Amenities Section
+                            // if (data?.amenityName?.isNotEmpty == true) ...[
+                            //   _buildSectionTitle('roomInfo.title1'.tr()),
+                            //   SizedBox(height: 12.h),
+                            //   GridView.builder(
+                            //     shrinkWrap: true,
+                            //     padding: EdgeInsets.zero,
+                            //     physics: NeverScrollableScrollPhysics(),
+                            //     gridDelegate:
+                            //         SliverGridDelegateWithFixedCrossAxisCount(
+                            //       crossAxisCount: 2,
+                            //       crossAxisSpacing: 12.w,
+                            //       mainAxisSpacing: 12.h,
+                            //       childAspectRatio: 4.5,
+                            //     ),
+                            //     itemCount: data!.amenityName!.length,
+                            //     itemBuilder: (context, index) {
+                            //       var icons = [
+                            //         Icons.wifi,
+                            //         Icons.ac_unit,
+                            //         Icons.tv,
+                            //         Icons.dry_cleaning,
+                            //         Icons.pool,
+                            //         Icons.restaurant,
+                            //         Icons.local_parking,
+                            //         Icons.fitness_center,
+                            //       ];
+                            //       return Container(
+                            //         padding: EdgeInsets.symmetric(
+                            //             horizontal: 6.w, vertical: 6.h),
+                            //         decoration: BoxDecoration(
+                            //           color: appBackgroundColor,
+                            //           borderRadius: BorderRadius.circular(10.r),
+                            //           border: Border.all(
+                            //               color: Colors.grey.shade200,
+                            //               width: 1),
+                            //         ),
+                            //         child: Row(
+                            //           children: [
+                            //             Icon(
+                            //               icons[index % icons.length],
+                            //               color: accentColor,
+                            //               size: 20.r,
+                            //             ),
+                            //             SizedBox(width: 8.w),
+                            //             Expanded(
+                            //               child: Text(
+                            //                 data.amenityName![index],
+                            //                 style: TextStyle(
+                            //                   color: accentColor,
+                            //                   fontSize: 12.sp,
+                            //                   fontWeight: FontWeight.w600,
+                            //                 ),
+                            //                 overflow: TextOverflow.ellipsis,
+                            //               ),
+                            //             ),
+                            //           ],
+                            //         ),
+                            //       );
+                            //     },
+                            //   ),
+                            //   SizedBox(height: 24.h),
+                            // ],
 
                             // Rating Stats Section
                             _buildSectionTitle('roomInfo.title2'.tr()),
@@ -1152,9 +1156,9 @@ class RoomInformation extends StatelessWidget {
     );
   }
 
-  Widget _buildHeroImage(dynamic data) {
+  Widget _buildHeroImage(Data? data) {
     // Prepare images list - use backend images when available, otherwise use dummy
-    final List<String> images = [];
+    final List<String> images = data?.serviceImageUrl ?? [];
 
     // Check if backend provides images array (future implementation)
     // For now, use single image or dummy images
@@ -1168,61 +1172,9 @@ class RoomInformation extends StatelessWidget {
           'https://zadnaeg.com/wp-content/uploads/2017/06/wood-blog-placeholder.jpg');
     }
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        CustomCarouselSlider(
-          images: images,
-          showGradient: false, // We'll add custom gradient below
-          placeholderImage: 'assets/images/ard_logo.png',
-        ),
-        // Custom gradient overlay
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            height: 100.h,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  appBackgroundColor,
-                  appBackgroundColor.withValues(alpha: 0.0),
-                ],
-              ),
-            ),
-          ),
-        ),
-        // Accommodation type badge
-        Positioned(
-          bottom: 20.h,
-          left: 20.w,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.r),
-              color: AppColors.buttonColor,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 8,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-            child: Text(
-              data?.accomodationType ?? 'No Type',
-              style: TextStyle(
-                color: white,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-        ),
-      ],
+    return CustomCarouselSlider(
+      images: images,
+      placeholderImage: 'assets/images/ard_logo.png',
     );
   }
 }

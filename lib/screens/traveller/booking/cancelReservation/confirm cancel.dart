@@ -1,11 +1,12 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
+import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
-import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 
 class ConfirmCancel extends StatelessWidget {
   const ConfirmCancel({super.key});
@@ -15,55 +16,43 @@ class ConfirmCancel extends StatelessWidget {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
     return BlocProvider(
-
-      create: (BuildContext context)=>BookingTravellerCubit(),
-      child: BlocConsumer<BookingTravellerCubit,BookingTravellerStates>(
-        listener: (context,state){
-          if(state is CancelBookingSuccessful){
-            Fluttertoast.showToast(
-                msg: "Successful",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0
+      create: (BuildContext context) => BookingTravellerCubit(),
+      child: BlocConsumer<BookingTravellerCubit, BookingTravellerStates>(
+        listener: (context, state) {
+          if (state is CancelBookingSuccessful) {
+            context.showCustomSnackBar(
+              "Successful",
+              type: SnackBarType.success,
             );
-            if(state.data == "Activity"){
-              Navigator.pushNamed(context,"bookingActivity");
-            }
-            else if (state.data == "Trip"){
+            if (state.data == "Activity") {
+              Navigator.pushNamed(context, "bookingActivity");
+            } else if (state.data == "Trip") {
               Navigator.pushNamed(context, "bookingTrips");
-            }
-            else if (state.data == "Accomodation"){
+            } else if (state.data == "Accomodation") {
               // Navigator.pushNamed(context, "booking");
-              BookingTravellerCubit.get(context).getAllBooking(state: "0", serviceName: "accommodations");
-              BookingTravellerCubit.get(context).getAllBooking(state: "2", serviceName: "accommodations");
-
+              BookingTravellerCubit.get(context)
+                  .getAllBooking(state: "0", serviceName: "accommodations");
+              BookingTravellerCubit.get(context)
+                  .getAllBooking(state: "2", serviceName: "accommodations");
             }
-          }
-          else if (state is CancelBookingError){
-            Fluttertoast.showToast(
-                msg: state.error,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0
+          } else if (state is CancelBookingError) {
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
             );
           }
         },
-        builder: (context,state){
+        builder: (context, state) {
           return Scaffold(
               backgroundColor: appBackgroundColor,
-            appBar: AppBar(),
-              body:  ///
-              Padding(
-                padding: EdgeInsets.only(right: 20.w,top: 10.h,left: 20.w),
+              appBar: AppBar(),
+              body:
+
+                  ///
+                  Padding(
+                padding: EdgeInsets.only(right: 20.w, top: 10.h, left: 20.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-
                   children: [
                     Text("booking.cancel".tr(),
                         style: TextStyle(
@@ -129,20 +118,23 @@ class ConfirmCancel extends StatelessWidget {
                       child: ElevatedButton(
                           style: ButtonStyle(
                             shape:
-                            WidgetStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    side: BorderSide(color: accentColor))),
+                                WidgetStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        side: BorderSide(color: accentColor))),
                             foregroundColor:
-                            WidgetStateProperty.all<Color>(Colors.white),
+                                WidgetStateProperty.all<Color>(Colors.white),
                             backgroundColor:
-                            WidgetStateProperty.all<Color>(accentColor),
+                                WidgetStateProperty.all<Color>(accentColor),
                           ),
                           onPressed: () {
                             print(arguments['id']);
                             print(arguments['reasson']);
 
-                            BookingTravellerCubit.get(context).cancelBooking(id: arguments['id'],reason: arguments['reasson']);
+                            BookingTravellerCubit.get(context).cancelBooking(
+                                id: arguments['id'],
+                                reason: arguments['reasson']);
                           },
                           child: Text(
                             "booking.confirm".tr(),
@@ -186,10 +178,8 @@ class ConfirmCancel extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
-          );
+              ));
         },
-
       ),
     );
   }

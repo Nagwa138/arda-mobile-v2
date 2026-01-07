@@ -2,11 +2,12 @@ import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/trips_cubit/trips_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/trips_cubit/trips_state.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class AddTripe extends StatelessWidget {
   const AddTripe({super.key});
@@ -28,23 +29,15 @@ class AddTripe extends StatelessWidget {
               if (state is CreateTripSuccessful) {
                 TripsCubit.get(context).clearFormFields();
                 Navigator.pushNamed(context, "travellerNavBar");
-                Fluttertoast.showToast(
-                    msg: "Trip created successfully!",
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
+                context.showCustomSnackBar(
+                  "Trip created successfully!",
+                  type: SnackBarType.success,
+                );
               } else if (state is CreateTripError) {
-                Fluttertoast.showToast(
-                    msg: state.error,
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
+                context.showCustomSnackBar(
+                  state.error,
+                  type: SnackBarType.error,
+                );
               }
             },
             builder: (BuildContext context, Object? state) {
@@ -296,14 +289,10 @@ class AddTripe extends StatelessWidget {
                                                   .read<AddServiceCubit>()
                                                   .singleRoomNum ==
                                               0) {
-                                            Fluttertoast.showToast(
-                                                msg: "enter number of person",
-                                                toastLength: Toast.LENGTH_LONG,
-                                                gravity: ToastGravity.CENTER,
-                                                timeInSecForIosWeb: 1,
-                                                backgroundColor: Colors.red,
-                                                textColor: Colors.white,
-                                                fontSize: 16.0);
+                                            context.showCustomSnackBar(
+                                              "enter number of person",
+                                              type: SnackBarType.error,
+                                            );
                                           } else {
                                             TripsCubit.get(context).createTrips(
                                               NumOfPerson: context

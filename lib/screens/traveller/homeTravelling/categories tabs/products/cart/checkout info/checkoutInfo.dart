@@ -3,12 +3,13 @@ import 'package:PassPort/models/traveller/products/card_model.dart';
 import 'package:PassPort/screens/add%20service/addServices.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_state.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class CheckoutInfo extends StatelessWidget {
   const CheckoutInfo({super.key});
@@ -24,27 +25,19 @@ class CheckoutInfo extends StatelessWidget {
         listener: (context, state) {
           if (state is MadeOrderSuccessful) {
             Navigator.pop(context);
-            Fluttertoast.showToast(
-                msg: "Successful",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              "Successful",
+              type: SnackBarType.success,
+            );
             cards.clear();
             cards.length = 0;
             Navigator.pushNamed(context, "orders");
           } else if (state is MadeOrderError) {
             Navigator.pop(context);
-            Fluttertoast.showToast(
-                msg: state.error,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
+            );
           }
         },
         builder: (context, state) {
@@ -138,36 +131,27 @@ class CheckoutInfo extends StatelessWidget {
                         .text
                         .trim()
                         .isEmpty) {
-                      Fluttertoast.showToast(
-                        msg: "Please enter phone number",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
+                      context.showCustomSnackBar(
+                        "Please enter phone number",
+                        type: SnackBarType.error,
                       );
                       return;
                     }
 
                     // Validate city
                     if (ProductCubit.get(context).city.text.trim().isEmpty) {
-                      Fluttertoast.showToast(
-                        msg: "Please enter city",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
+                      context.showCustomSnackBar(
+                        "Please enter city",
+                        type: SnackBarType.error,
                       );
                       return;
                     }
 
                     // Validate street
                     if (ProductCubit.get(context).street.text.trim().isEmpty) {
-                      Fluttertoast.showToast(
-                        msg: "Please enter street address",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
+                      context.showCustomSnackBar(
+                        "Please enter street address",
+                        type: SnackBarType.error,
                       );
                       return;
                     }
@@ -178,12 +162,9 @@ class CheckoutInfo extends StatelessWidget {
                         .text
                         .trim()
                         .isEmpty) {
-                      Fluttertoast.showToast(
-                        msg: "Please enter building number",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
+                      context.showCustomSnackBar(
+                        "Please enter building number",
+                        type: SnackBarType.error,
                       );
                       return;
                     }

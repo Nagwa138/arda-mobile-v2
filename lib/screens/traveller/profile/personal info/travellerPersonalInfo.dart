@@ -1,11 +1,12 @@
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/traveller/uset_cubit/user_cubit.dart';
 import 'package:PassPort/services/traveller/uset_cubit/user_state.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class TravellerPersonalInfo extends StatelessWidget {
   const TravellerPersonalInfo({super.key});
@@ -18,14 +19,10 @@ class TravellerPersonalInfo extends StatelessWidget {
         listener: (context, state) {
           if (state is UpdateInformationSuccessful) {
             UserCubit.get(context).getInformationUser();
-            Fluttertoast.showToast(
-                msg: "Successful",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              "Successful",
+              type: SnackBarType.success,
+            );
           }
         },
         builder: (context, state) {

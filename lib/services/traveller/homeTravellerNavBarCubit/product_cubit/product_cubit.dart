@@ -1,18 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geideapay/api/response/order_api_response.dart';
-import 'package:geideapay/common/geidea.dart';
-import 'package:geideapay/common/server_environments.dart';
-import 'package:geideapay/widgets/checkout/checkout_options.dart';
 import 'package:PassPort/consts/api/api.dart';
 import 'package:PassPort/consts/api/apiMethod/api_method.dart';
-
-import 'package:http/http.dart' as http;
 import 'package:PassPort/models/traveller/orders/order.dart';
 import 'package:PassPort/models/traveller/orders/orderDetails.dart';
 import 'package:PassPort/models/traveller/products/card_model.dart';
@@ -20,6 +10,16 @@ import 'package:PassPort/models/traveller/products/get_all_product.dart';
 import 'package:PassPort/models/traveller/products/get_all_product_by_id.dart';
 import 'package:PassPort/models/traveller/products/get_one_product_by_id.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_state.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:geideapay/api/response/order_api_response.dart';
+import 'package:geideapay/common/geidea.dart';
+import 'package:geideapay/common/server_environments.dart';
+import 'package:geideapay/widgets/checkout/checkout_options.dart';
+import 'package:http/http.dart' as http;
 
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(ProductInitial());
@@ -306,40 +306,28 @@ class ProductCubit extends Cubit<ProductState> {
       );
 
       if (response.responseCode == "000") {
-        Fluttertoast.showToast(
-            msg: "✅ Payment Successful!",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.green,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        context.showCustomSnackBar(
+          "✅ Payment Successful!",
+          type: SnackBarType.success,
+        );
         paymentOrNot(id: id);
         addProfitProduct(bookingId: id);
         emit(PaymentSuccess());
         debugPrint("✅ Payment Successful: ${response.detailedResponseMessage}");
         log("✅ Payment Successful!");
       } else {
-        Fluttertoast.showToast(
-            msg: "❌ Payment Failed",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.grey,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        context.showCustomSnackBar(
+          "❌ Payment Failed",
+          type: SnackBarType.error,
+        );
         debugPrint("❌ Payment Failed: ${response.detailedResponseMessage}");
         log("❌ Payment Failed: ${response.detailedResponseMessage}");
       }
     } catch (e) {
-      Fluttertoast.showToast(
-          msg: "❌ Payment Failed",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      context.showCustomSnackBar(
+        "❌ Payment Failed",
+        type: SnackBarType.error,
+      );
       debugPrint("⚠️ OrderApiResponse Error: $e");
       log("⚠️ Error: $e");
     }

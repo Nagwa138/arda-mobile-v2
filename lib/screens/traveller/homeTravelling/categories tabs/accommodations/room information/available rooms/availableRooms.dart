@@ -1,13 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/models/traveller/rooms/roomlist.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/BookingCart/bookingCardCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AvailableRooms extends StatelessWidget {
   const AvailableRooms({super.key});
@@ -30,52 +31,32 @@ class AvailableRooms extends StatelessWidget {
       child: BlocConsumer<BookingTravellerCubit, BookingTravellerStates>(
         listener: (context, state) {
           if (state is DeleteBookingSuccessful) {
-            Fluttertoast.showToast(
-                msg: "Done",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              "Done",
+              type: SnackBarType.success,
+            );
           } else if (state is AddBookingSuccessful) {
-            Fluttertoast.showToast(
-                msg: "Done",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              "Done",
+              type: SnackBarType.success,
+            );
           } else if (state is AddAnotherBookingSuccessful) {
-            Fluttertoast.showToast(
-                msg: "Done Again",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              "Done Again",
+              type: SnackBarType.success,
+            );
           } else if (state is CreateBookingRoomSuccessful) {
-            Fluttertoast.showToast(
-                msg: "Create Booking Successful",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              "Create Booking Successful",
+              type: SnackBarType.success,
+            );
           } else if (state is CreateBookingRoomError) {
             Navigator.pop(context);
             Navigator.pop(context);
-            Fluttertoast.showToast(
-                msg: state.error,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                fontSize: 16.0);
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
+            );
           } else if (state is CreateBookingRoomLoading) {
             showDialog(
               context: context,
@@ -820,8 +801,7 @@ class AvailableRooms extends StatelessWidget {
                       height: 50.h,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor:
-                              WidgetStateProperty.all(accentColor),
+                          backgroundColor: WidgetStateProperty.all(accentColor),
                           shape: WidgetStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
@@ -830,17 +810,14 @@ class AvailableRooms extends StatelessWidget {
                         ),
                         onPressed: () async {
                           if (state.isEmpty) {
-                            Fluttertoast.showToast(
-                                msg: "Please Select Rooms",
-                                toastLength: Toast.LENGTH_LONG,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.grey,
-                                textColor: backgroundColor,
-                                fontSize: 16.0);
+                            context.showCustomSnackBar(
+                              "Please Select Rooms",
+                              type: SnackBarType.info
+                              );
                           } else {
                             BookingTravellerCubit.get(context)
                                 .bookRoom(
+                                  context: context,
                                     room: state,
                                     start: arguments['date'],
                                     end: arguments['endDate'],

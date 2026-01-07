@@ -57,7 +57,7 @@ class UniqueStaysSection extends StatelessWidget {
               SizedBox(height: 18.h),
 
               SizedBox(
-                height: 510.h,
+                height: 350.h,
                 child: ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   scrollDirection: Axis.horizontal,
@@ -89,7 +89,8 @@ class UniqueStaysSection extends StatelessWidget {
 
         return buildLoadingSection(
           title: 'Unique Stays',
-          subtitle: 'Sleep Somewhere Extraordinary from desert glamps to eco-lodges and historic homes',
+          subtitle:
+              'Sleep Somewhere Extraordinary from desert glamps to eco-lodges and historic homes',
           height: 510,
           skeletonWidget: UniqueCard(accommodation: Data()),
         );

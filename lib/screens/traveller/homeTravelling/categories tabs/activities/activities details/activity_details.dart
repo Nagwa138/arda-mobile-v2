@@ -676,10 +676,9 @@ class Details extends StatelessWidget {
     }
 
     return CustomCarouselSlider(
-      images: images,
-      showGradient: true,
-      placeholderImage: _placeholderImage,
-    );
+          images: images,
+          placeholderImage: 'assets/images/ard_logo.png',
+        );
   }
 
   Widget _buildSectionTitle(String title) {

@@ -1,9 +1,11 @@
 import 'dart:convert';
+
+import 'package:PassPort/consts/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:PassPort/consts/api/api.dart';
+
 import '../model/signup_model.dart';
 import 'signup_state.dart';
 
@@ -268,7 +270,8 @@ class SignupCubit extends Cubit<SignupState> {
           }
 
           emit(SignupSuccess(
-            message: jsonBody['message'] ?? 'Registration successful',
+            message: jsonBody['message'] ??
+                'Your account has been created successfully. You can now log in using your email.',
             token: jsonBody['token'],
           ));
         } catch (e) {
