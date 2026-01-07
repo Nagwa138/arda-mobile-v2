@@ -42,7 +42,7 @@ import 'package:PassPort/screens/traveller/booking/activity/bookingActivity.dart
 import 'package:PassPort/screens/traveller/booking/activity/details/detailspending.dart';
 import 'package:PassPort/screens/traveller/booking/booking.dart';
 import 'package:PassPort/screens/traveller/booking/cancelReservation/cancelReservation.dart';
-import 'package:PassPort/screens/traveller/booking/cancelReservation/confirm%20cancel.dart';
+import 'package:PassPort/screens/traveller/booking/cancelReservation/confirm_cancel.dart';
 import 'package:PassPort/screens/traveller/booking/reviews/review.dart';
 import 'package:PassPort/screens/traveller/booking/trips/booking_trips/bookig_trips.dart';
 import 'package:PassPort/screens/traveller/booking/trips/details/detailsBookingtrips.dart';
