@@ -105,76 +105,55 @@ class Pending extends StatelessWidget {
                                       SizedBox(
                                         width: 20.w,
                                       ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            child: Text(
-                                              BookingTravellerCubit.get(context)
-                                                  .pending!
-                                                  .data![index]
-                                                  .serviceName
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  color: black,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            width: 150.w,
-                                          ),
-                                          SizedBox(
-                                            height: 5.h,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Image.asset(
-                                                  "assets/images/landingHome/location.png"),
-                                              Text(
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              child: Text(
                                                 BookingTravellerCubit.get(
-                                                            context)
-                                                        .pending!
-                                                        .data![index]
-                                                        .address
-                                                        .toString() +
-                                                    "   ",
+                                                        context)
+                                                    .pending!
+                                                    .data![index]
+                                                    .serviceName
+                                                    .toString(),
                                                 style: TextStyle(
                                                     fontSize: 14.sp,
-                                                    color: Color.fromRGBO(
-                                                        140, 140, 140, 1),
+                                                    color: black,
                                                     fontWeight:
-                                                        FontWeight.w400),
+                                                        FontWeight.w600),
                                               ),
-                                              Text(
-                                                "booking.Egypt".tr(),
-                                                style: TextStyle(
-                                                    fontSize: 14.sp,
-                                                    color: Color.fromRGBO(
-                                                        140, 140, 140, 1),
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 5.h,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.date_range_outlined,
-                                                color: accentColor,
-                                                size: 18.sp,
-                                              ),
-                                              SizedBox(
-                                                width: 130.w,
-                                                child: Text(
-                                                  BookingTravellerCubit.get(
-                                                          context)
-                                                      .pending!
-                                                      .data![index]
-                                                      .bookingDate
-                                                      .toString(),
+                                              width: 150.w,
+                                            ),
+                                            SizedBox(
+                                              height: 5.h,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Image.asset(
+                                                    "assets/images/landingHome/location.png"),
+                                                Flexible(
+                                                  child: Text(
+                                                    BookingTravellerCubit.get(
+                                                                context)
+                                                            .pending!
+                                                            .data![index]
+                                                            .address
+                                                            .toString() +
+                                                        "   ",
+                                                    style: TextStyle(
+                                                        fontSize: 14.sp,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        color: Color.fromRGBO(
+                                                            140, 140, 140, 1),
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "booking.Egypt".tr(),
                                                   style: TextStyle(
                                                       fontSize: 14.sp,
                                                       color: Color.fromRGBO(
@@ -182,42 +161,71 @@ class Pending extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.w400),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 5.h,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                BookingTravellerCubit.get(
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 5.h,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.date_range_outlined,
+                                                  color: accentColor,
+                                                  size: 18.sp,
+                                                ),
+                                                SizedBox(
+                                                  width: 130.w,
+                                                  child: Text(
+                                                    BookingTravellerCubit.get(
                                                             context)
                                                         .pending!
                                                         .data![index]
-                                                        .price
-                                                        .toString() +
-                                                    "booking.EGP".tr(),
-                                                style: TextStyle(
-                                                    fontSize: 14.sp,
-                                                    color: accentColor,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              SizedBox(
-                                                width: 3.w,
-                                              ),
-                                              Text(
-                                                "booking.Nigth".tr(),
-                                                style: TextStyle(
-                                                    fontSize: 14.sp,
-                                                    color: black,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                        .bookingDate
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                        fontSize: 14.sp,
+                                                        color: Color.fromRGBO(
+                                                            140, 140, 140, 1),
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 5.h,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  BookingTravellerCubit.get(
+                                                              context)
+                                                          .pending!
+                                                          .data![index]
+                                                          .price
+                                                          .toString() +
+                                                      "booking.EGP".tr(),
+                                                  style: TextStyle(
+                                                      fontSize: 14.sp,
+                                                      color: accentColor,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                                SizedBox(
+                                                  width: 3.w,
+                                                ),
+                                                Text(
+                                                  "booking.Nigth".tr(),
+                                                  style: TextStyle(
+                                                      fontSize: 14.sp,
+                                                      color: black,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),

@@ -80,7 +80,7 @@ class _TripsSectionState extends State<TripsSection> {
             ),
           ),
 
-          SizedBox(height: 10.h),
+          SizedBox(height: 20.h),
 
           // Carousel Slider
           CarouselSlider.builder(
@@ -88,7 +88,7 @@ class _TripsSectionState extends State<TripsSection> {
             itemCount: trips.length,
             options: CarouselOptions(
               height: 380.h,
-              viewportFraction: 0.87,        
+              viewportFraction: 0.87,
               enlargeCenterPage: true,
               enlargeFactor: 0.10,
               autoPlay: true,
