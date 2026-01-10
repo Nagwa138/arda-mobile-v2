@@ -1,10 +1,13 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:PassPort/consts/api/api.dart';
-import '../models/partner_register_request.dart';
-import '../models/partner_register_response.dart';
+import 'package:http/http.dart' as http;
+
+import '../models/api_error_response.dart';
 import '../models/application_service.dart';
 import '../models/government.dart';
+import '../models/partner_register_request.dart';
+import '../models/partner_register_response.dart';
 
 abstract class PartnerRegisterRemoteDataSource {
   Future<PartnerRegisterResponse> registerPartner(
@@ -18,6 +21,24 @@ class PartnerRegisterRemoteDataSourceImpl
   final http.Client client;
 
   PartnerRegisterRemoteDataSourceImpl({required this.client});
+
+  ApiException _handleErrorResponse(http.Response response) {
+    try {
+      final data = jsonDecode(response.body);
+      final errorResponse = ApiErrorResponse.fromJson(data);
+      return ApiException(errorResponse);
+    } catch (e) {
+      // If parsing fails, create a generic error
+      return ApiException(
+        ApiErrorResponse(
+          statusCode: response.statusCode,
+          message: response.body.isNotEmpty
+              ? response.body
+              : 'Unknown error occurred',
+        ),
+      );
+    }
+  }
 
   @override
   Future<PartnerRegisterResponse> registerPartner(
@@ -58,11 +79,18 @@ class PartnerRegisterRemoteDataSourceImpl
         print('❌ Registration Failed!');
         print('❌ Status Code: ${response.statusCode}');
         print('❌ Error Response Body: ${response.body}');
-        throw Exception('Failed to register partner: ${response.statusCode}');
+
+        throw _handleErrorResponse(response);
       }
     } catch (e) {
       print('💥 Exception occurred: $e');
       print('💥 Exception type: ${e.runtimeType}');
+
+      // Re-throw ApiException as-is
+      if (e is ApiException) {
+        rethrow;
+      }
+
       throw Exception('Network error: $e');
     }
   }
@@ -95,12 +123,18 @@ class PartnerRegisterRemoteDataSourceImpl
         print('❌ Get Services Failed!');
         print('❌ Status Code: ${response.statusCode}');
         print('❌ Error Response Body: ${response.body}');
-        throw Exception(
-            'Failed to get application services: ${response.statusCode}');
+
+        throw _handleErrorResponse(response);
       }
     } catch (e) {
       print('💥 Exception occurred: $e');
       print('💥 Exception type: ${e.runtimeType}');
+
+      // Re-throw ApiException as-is
+      if (e is ApiException) {
+        rethrow;
+      }
+
       throw Exception('Network error: $e');
     }
   }
@@ -133,11 +167,18 @@ class PartnerRegisterRemoteDataSourceImpl
         print('❌ Get Governments Failed!');
         print('❌ Status Code: ${response.statusCode}');
         print('❌ Error Response Body: ${response.body}');
-        throw Exception('Failed to get governments: ${response.statusCode}');
+
+        throw _handleErrorResponse(response);
       }
     } catch (e) {
       print('💥 Exception occurred: $e');
       print('💥 Exception type: ${e.runtimeType}');
+
+      // Re-throw ApiException as-is
+      if (e is ApiException) {
+        rethrow;
+      }
+
       throw Exception('Network error: $e');
     }
   }

@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+
 import '../../data/datasources/partner_register_remote_datasource.dart';
+import '../../data/models/api_error_response.dart';
 import '../../data/repositories/partner_register_repository_impl.dart';
 import '../../domain/entities/partner_register_entity.dart';
 import '../../domain/usecases/register_partner_usecase.dart';
@@ -140,7 +142,8 @@ class PartnerRegisterCubit extends Cubit<PartnerRegisterState> {
       if (success) {
         print('✅ Cubit: Registration successful!');
         emit(const PartnerRegisterSuccess(
-            message: 'Partner registered successfully, please wait for approval'));
+            message:
+                'Partner registered successfully, please wait for approval'));
       } else {
         print('❌ Cubit: Registration failed - API returned false');
         emit(const PartnerRegisterError(message: 'Registration failed'));
@@ -148,7 +151,13 @@ class PartnerRegisterCubit extends Cubit<PartnerRegisterState> {
     } catch (e) {
       print('💥 Cubit: Registration exception: $e');
       print('💥 Cubit: Exception type: ${e.runtimeType}');
-      emit(PartnerRegisterError(message: e.toString()));
+
+      if (e is ApiException) {
+        // Handle API errors with specific messages
+        emit(PartnerRegisterError(message: e.error.message));
+      } else {
+        emit(PartnerRegisterError(message: e.toString()));
+      }
     }
   }
 }
