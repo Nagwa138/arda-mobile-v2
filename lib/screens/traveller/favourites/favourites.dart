@@ -67,7 +67,7 @@ class Favourites extends StatelessWidget {
                                                   .size
                                                   .width *
                                               0.8,
-                                          "assets/images/traveller/accomodtion2.jpg")),
+                                          "assets/images/accomodtion2.jpg")),
                                   Text("Camps And Glamps",
                                       style: TextStyle(
                                         fontSize: 20,
@@ -98,7 +98,7 @@ class Favourites extends StatelessWidget {
                                                   .size
                                                   .width *
                                               0.8,
-                                          "assets/images/traveller/products2.jpeg")),
+                                          "assets/images/products2.jpeg")),
                                   Text("Golden Hands",
                                       style: TextStyle(
                                         fontSize: 20,
@@ -129,7 +129,7 @@ class Favourites extends StatelessWidget {
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 0.8,
-                                        "assets/images/traveller/trips2.jpeg"),
+                                        "assets/images/trips2.jpeg"),
                                   ),
                                   Text("Journey Planner",
                                       style: TextStyle(
@@ -161,7 +161,7 @@ class Favourites extends StatelessWidget {
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 0.8,
-                                        "assets/images/traveller/activity2.jpeg"),
+                                        "assets/images/activity2.jpeg"),
                                   ),
                                   Text("Adventure",
                                       style: TextStyle(

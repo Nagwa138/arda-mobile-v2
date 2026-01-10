@@ -1,10 +1,10 @@
+import 'package:PassPort/screens/traveller/favourites/favourites.dart';
 import 'package:PassPort/version2_module/features/home/view/screens/explor_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:PassPort/screens/traveller/booking/bookingHome.dart';
-import 'package:PassPort/screens/traveller/favourites/favourites.dart';
 import 'package:PassPort/screens/traveller/profile/profile.dart';
 
 import '../../../screens/traveller/homeTravelling/categories tabs/products/cart/cart.dart';
