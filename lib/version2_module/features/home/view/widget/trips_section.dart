@@ -1,6 +1,6 @@
-import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/models/traveller/trips_model/trips_model.dart'
     as trips_model;
+import 'package:PassPort/version2_module/features/home/view/widget/section_header.dart';
 import 'package:PassPort/version2_module/features/home/view/widget/trip_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -49,35 +49,18 @@ class _TripsSectionState extends State<TripsSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header Section
-
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Journey Planner',
-                  style: TextStyle(
-                    fontSize: 28.sp,
-                    fontWeight: FontWeight.bold,
-                    color: lightBrown,
-                    letterSpacing: 1,
-                    height: 1.2,
-                  ),
-                ),
-                SizedBox(height: 8.h),
-                Text(
-                  'Explore Egypt With Experts, Book Full-day Or Multi-day trips guided by locals',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: lightText,
-                    height: 1.4,
-                    letterSpacing: 0.3,
-                  ),
-                ),
-              ],
-            ),
+          // Header Section with See More
+          SectionHeader(
+            title: 'Journey Planner',
+            subtitle:
+                'Explore Egypt With Experts, Book Full-day Or Multi-day trips guided by locals',
+            onSeeMoreTap: () {
+              Navigator.pushNamed(
+                context,
+                'tripsListPage',
+                arguments: {'trips': trips},
+              );
+            },
           ),
 
           SizedBox(height: 20.h),

@@ -1,4 +1,5 @@
 import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/version2_module/core/const/app_colors.dart';
 import 'package:PassPort/version2_module/core/enums/user_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,9 +94,8 @@ class _PartnerMobileDashboardScreenState
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: const Color(0xFF2C8B8B),
             appBar: AppBar(
-              backgroundColor: const Color(0xFF2C8B8B),
+              backgroundColor: accentColor.withValues(alpha: 0.9),
               elevation: 0,
               centerTitle: false,
               title: Text(
@@ -165,36 +165,51 @@ class _PartnerMobileDashboardScreenState
   }
 
   Widget _buildMobileBody(BuildContext context, PartnerDashboardState state) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFFFBF0E3),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(25.r),
-          topRight: Radius.circular(25.r),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(20.w, 30.h, 20.w, 20.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Welcome Section
-            _buildWelcomeSection(),
-
-            SizedBox(height: 30.h),
-
-            // Quick Actions
-            _buildQuickActions(context),
-
-            SizedBox(height: 30.h),
-
-            // Statistics
-            Expanded(
-              child: _buildMobileStatistics(context, state),
+    return Stack(
+      children: [
+        // Background Image
+        Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.jpeg"),
+              fit: BoxFit.cover,
             ),
-          ],
+          ),
         ),
-      ),
+        // Existing content
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25.r),
+              topRight: Radius.circular(25.r),
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.w, 30.h, 20.w, 20.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Welcome Section
+                _buildWelcomeSection(),
+
+                SizedBox(height: 30.h),
+
+                // Quick Actions
+                _buildQuickActions(context),
+
+                SizedBox(height: 30.h),
+
+                // Statistics
+                Expanded(
+                  child: _buildMobileStatistics(context, state),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 

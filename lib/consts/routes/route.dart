@@ -91,6 +91,8 @@ import 'package:PassPort/version2_module/features/auth/login/view/login_screen.d
 import 'package:PassPort/version2_module/features/auth/privacy/privacy_policy_screen.dart';
 import 'package:PassPort/version2_module/features/auth/signup/view/screens/signup_screen.dart';
 import 'package:PassPort/version2_module/features/auth/terms/terms_conditions_screen.dart';
+import 'package:PassPort/version2_module/features/home/view/screens/trips_list_page.dart';
+import 'package:PassPort/version2_module/features/home/view/screens/unique_stays_list_page.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/screens/partner_bookings_screen.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/screens/partner_mobile_dashboard_screen.dart';
 import 'package:PassPort/version2_module/features/partener/presentation/screens/partner_register_wrapper.dart';
@@ -228,6 +230,8 @@ const String partnerServiceEdit = "partnerServiceEdit";
 const String partnerServiceAdd = "partnerServiceAdd";
 const String partnerServiceList = "partnerServiceList";
 const String dynamicForm = "dynamicForm";
+const String tripsListPage = "tripsListPage";
+const String uniqueStaysListPage = "uniqueStaysListPage";
 
 Route<dynamic> controller(RouteSettings settings) {
   switch (settings.name) {
@@ -291,7 +295,7 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (context) => const ReviewBooking(), settings: settings);
     // case onBoarding:
-      // return MaterialPageRoute(builder: (conte87u55xt) => const OnBoarding());
+    // return MaterialPageRoute(builder: (conte87u55xt) => const OnBoarding());
     case detailsBookingCompleted:
       return MaterialPageRoute(
           builder: (context) => const DetailsBookingCompleted(),
@@ -575,6 +579,21 @@ Route<dynamic> controller(RouteSettings settings) {
                 },
               ),
           settings: settings);
+
+    case tripsListPage:
+      final arguments = settings.arguments as Map<String, dynamic>?;
+      final trips = arguments?['trips'] ?? [];
+      return MaterialPageRoute(
+          builder: (context) => TripsListPage(trips: trips),
+          settings: settings);
+
+    case uniqueStaysListPage:
+      final arguments = settings.arguments as Map<String, dynamic>?;
+      final uniqueStays = arguments?['uniqueStays'] ?? [];
+      return MaterialPageRoute(
+          builder: (context) => UniqueStaysListPage(uniqueStays: uniqueStays),
+          settings: settings);
+
     // TODO: Add these routes when screens are implemented
     // case partnerServiceRegistration:
     //   return MaterialPageRoute(

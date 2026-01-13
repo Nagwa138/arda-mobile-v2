@@ -107,19 +107,35 @@ class _PartnerBookingsScreenState extends State<PartnerBookingsScreen>
             ],
           ),
         ),
-        body: BlocBuilder<PartnerBookingsCubit, PartnerBookingsState>(
-          builder: (context, state) {
-            return TabBarView(
-              controller: _tabController,
-              children: [
-                _buildBookingsList(null),
-                _buildBookingsList(BookingStatus.pending),
-                _buildBookingsList(BookingStatus.upcoming),
-                _buildBookingsList(BookingStatus.completed),
-                _buildBookingsList(BookingStatus.cancelled),
-              ],
-            );
-          },
+        body: Stack(
+          children: [
+            // Background Image
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/background.jpeg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            // Existing content
+            BlocBuilder<PartnerBookingsCubit, PartnerBookingsState>(
+              builder: (context, state) {
+                return TabBarView(
+                  controller: _tabController,
+                  children: [
+                    _buildBookingsList(null),
+                    _buildBookingsList(BookingStatus.pending),
+                    _buildBookingsList(BookingStatus.upcoming),
+                    _buildBookingsList(BookingStatus.completed),
+                    _buildBookingsList(BookingStatus.cancelled),
+                  ],
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

@@ -199,9 +199,8 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2C8B8B),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF2C8B8B),
+        backgroundColor: accentColor.withValues(alpha: 0.9),
         elevation: 0,
         title: GestureDetector(
           onTap: () {
@@ -229,106 +228,124 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
   }
 
   Widget _buildFormContent(bool isLoading, {dynamic cubit}) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: appBackgroundColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
+    return Stack(
+      children: [
+        // Background Image
+        Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.jpeg"),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Add ${widget.partnerType}',
-                        style: TextStyle(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                          color: appTextColor,
+        // Existing content
+        Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: 20.h),
+              Expanded(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Add ${widget.partnerType}',
+                            style: TextStyle(
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.bold,
+                              color: appTextColor,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
 
-                  SizedBox(height: 20.h),
+                      SizedBox(height: 20.h),
 
-                  // Form Fields
-                  Expanded(
-                    child: ListView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      itemCount: _config.fields.length,
-                      itemBuilder: (context, index) {
-                        final field = _config.fields[index];
-                        return Padding(
-                          padding: EdgeInsets.only(bottom: 16.h),
-                          child: _buildFormField(field),
-                        );
-                      },
-                    ),
-                  ),
-
-                  // Submit Button
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(20.w),
-                    child: ElevatedButton(
-                      onPressed: isLoading ? null : () => _submitForm(cubit),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: appTextColor,
-                        padding: EdgeInsets.symmetric(vertical: 16.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      // Form Fields
+                      Expanded(
+                        child: ListView.builder(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          itemCount: _config.fields.length,
+                          itemBuilder: (context, index) {
+                            final field = _config.fields[index];
+                            return Padding(
+                              padding: EdgeInsets.only(bottom: 16.h),
+                              child: _buildFormField(field),
+                            );
+                          },
                         ),
                       ),
-                      child: isLoading
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.white),
-                                  ),
-                                ),
-                                SizedBox(width: 12.w),
-                                Text(
-                                  'Submitting...',
+
+                      // Submit Button
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(20.w),
+                        child: ElevatedButton(
+                          onPressed:
+                              isLoading ? null : () => _submitForm(cubit),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: appTextColor,
+                            padding: EdgeInsets.symmetric(vertical: 16.h),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                          ),
+                          child: isLoading
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                                Colors.white),
+                                      ),
+                                    ),
+                                    SizedBox(width: 12.w),
+                                    Text(
+                                      'Submitting...',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Text(
+                                  'Submit',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ],
-                            )
-                          : Text(
-                              'Submit',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

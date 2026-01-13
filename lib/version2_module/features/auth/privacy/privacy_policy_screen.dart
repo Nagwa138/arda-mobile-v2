@@ -28,6 +28,17 @@ class PrivacyPolicyScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
+          // Background Image
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/background.jpeg"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           // Main content
           SingleChildScrollView(
             padding: EdgeInsets.all(16.0),

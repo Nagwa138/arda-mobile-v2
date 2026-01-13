@@ -252,13 +252,13 @@ class MenuDrawer extends StatelessWidget {
                   },
                 ),
 
-                MenuItem(
-                  icon: Icons.swap_horiz,
-                  title: 'Switch to Traveller',
-                  onTap: () {
-                    _handleSwitchToTraveller(context);
-                  },
-                ),
+                // MenuItem(
+                //   icon: Icons.swap_horiz,
+                //   title: 'Switch to Traveller',
+                //   onTap: () {
+                //     _handleSwitchToTraveller(context);
+                //   },
+                // ),
 
                 SizedBox(height: 40.h),
 

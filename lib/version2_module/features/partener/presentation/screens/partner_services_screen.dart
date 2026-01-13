@@ -46,88 +46,105 @@ class PartnerServicesScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             backgroundColor: appBackgroundColor,
-            body: SafeArea(
-              child: Column(
-                children: [
-                  // Modern Header
-                  Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.03),
-                          blurRadius: 10,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
+            body: Stack(
+              children: [
+                // Background Image
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/background.jpeg"),
+                      fit: BoxFit.cover,
                     ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 40.w,
-                              height: 40.w,
-                              decoration: BoxDecoration(
-                                color: appTextColor.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                              child: IconButton(
-                                icon:
-                                    Icon(Icons.arrow_back_ios_new, size: 18.sp),
-                                color: appTextColor,
-                                onPressed: () => Navigator.pop(context),
-                                padding: EdgeInsets.zero,
-                              ),
-                            ),
-                            SizedBox(width: 16.w),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'My Services',
-                                    style: TextStyle(
-                                      color: appTextColor,
-                                      fontSize: 24.sp,
-                                      fontWeight: FontWeight.w800,
-                                      letterSpacing: -0.5,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Manage your offerings',
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                  ),
+                ),
+                // Existing content
+                SafeArea(
+                  child: Column(
+                    children: [
+                      // Modern Header
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 16.h),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.03),
+                              blurRadius: 10,
+                              offset: Offset(0, 2),
                             ),
                           ],
                         ),
-                        SizedBox(height: 16.h),
-                        _SearchAndStatusHeader(),
-                      ],
-                    ),
-                  ),
-
-                  // Services List
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: BlocProvider(
-                        create: (_) =>
-                            PartnerServicesCubit()..loadForCurrentUser(),
-                        child: _PartnerServicesBlocList(),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 40.w,
+                                  height: 40.w,
+                                  decoration: BoxDecoration(
+                                    color: appTextColor.withValues(alpha: 0.1),
+                                    borderRadius: BorderRadius.circular(12.r),
+                                  ),
+                                  child: IconButton(
+                                    icon: Icon(Icons.arrow_back_ios_new,
+                                        size: 18.sp),
+                                    color: appTextColor,
+                                    onPressed: () => Navigator.pop(context),
+                                    padding: EdgeInsets.zero,
+                                  ),
+                                ),
+                                SizedBox(width: 16.w),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'My Services',
+                                        style: TextStyle(
+                                          color: appTextColor,
+                                          fontSize: 24.sp,
+                                          fontWeight: FontWeight.w800,
+                                          letterSpacing: -0.5,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Manage your offerings',
+                                        style: TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16.h),
+                            _SearchAndStatusHeader(),
+                          ],
+                        ),
                       ),
-                    ),
+
+                      // Services List
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          child: BlocProvider(
+                            create: (_) =>
+                                PartnerServicesCubit()..loadForCurrentUser(),
+                            child: _PartnerServicesBlocList(),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             floatingActionButton: Container(
               decoration: BoxDecoration(

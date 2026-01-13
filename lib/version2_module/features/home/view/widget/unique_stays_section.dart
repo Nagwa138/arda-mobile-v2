@@ -1,11 +1,11 @@
 import 'package:PassPort/models/traveller/accomandating/randomAccomandtion.dart';
 import 'package:PassPort/version2_module/features/home/view/widget/build_error_section.dart';
+import 'package:PassPort/version2_module/features/home/view/widget/section_header.dart';
 import 'package:PassPort/version2_module/features/home/view/widget/unique_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../components/color/color.dart';
 import '../../view_model/unique_stays_cubit.dart';
 import '../../view_model/unique_stays_state.dart';
 import 'build_loading_section.dart';
@@ -24,40 +24,24 @@ class UniqueStaysSection extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Section Header
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Unique Stays',
-                      style: TextStyle(
-                        fontSize: 28.sp,
-                        fontWeight: FontWeight.bold,
-                        color: lightBrown,
-                        letterSpacing: 1,
-                        height: 1.2,
-                      ),
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      'Sleep Somewhere Extraordinary from desert glamps to eco-lodges and historic homes',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: lightText,
-                        height: 1.4,
-                        letterSpacing: 0.3,
-                      ),
-                    ),
-                  ],
-                ),
+              // Section Header with See More
+              SectionHeader(
+                title: 'Unique Stays',
+                subtitle:
+                    'Sleep Somewhere Extraordinary from desert glamps to eco-lodges and historic homes',
+                onSeeMoreTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    'uniqueStaysListPage',
+                    arguments: {'uniqueStays': state.uniqueStays},
+                  );
+                },
               ),
 
               SizedBox(height: 18.h),
 
               SizedBox(
-                height: 510.h,
+                height: 380.h,
                 child: ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   scrollDirection: Axis.horizontal,
@@ -89,7 +73,8 @@ class UniqueStaysSection extends StatelessWidget {
 
         return buildLoadingSection(
           title: 'Unique Stays',
-          subtitle: 'Sleep Somewhere Extraordinary from desert glamps to eco-lodges and historic homes',
+          subtitle:
+              'Sleep Somewhere Extraordinary from desert glamps to eco-lodges and historic homes',
           height: 510,
           skeletonWidget: UniqueCard(accommodation: Data()),
         );
