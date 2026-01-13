@@ -2,6 +2,8 @@ import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/widgets/customButton/customButton.dart';
 import 'package:PassPort/services/auth/login/loginCubit.dart';
 import 'package:PassPort/services/auth/login/loginState.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,13 +28,10 @@ class VerifyCode extends StatelessWidget {
             });
           }
           if (state is VerifyCodeError) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                state.error,
-                style: TextStyle(color: white),
-              ),
-              backgroundColor: Colors.red,
-            ));
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
+            );
           }
         },
         builder: (context, state) {

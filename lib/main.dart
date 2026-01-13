@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:PassPort/consts/cache%20manger/cache.dart';
+import 'package:PassPort/screens/onBoarding/onboardingMain.dart'
+    show OnBoardingMain;
 import 'package:PassPort/screens/splash/splash.dart';
 import 'package:PassPort/services/cubit/cubitobserve.dart';
 import 'package:PassPort/services/notification/notificationLogic.dart';
@@ -20,6 +22,7 @@ import 'consts/routes/route.dart' as route;
 
 var token;
 var userType;
+bool isFirstLaunch = true;
 ValueNotifier<bool> isUserNotification = ValueNotifier<bool>(true);
 
 // Define app theme colors
@@ -44,6 +47,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
 
   await CacheManger.init();
+  isFirstLaunch = await CacheManger.isFirstLaunch();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode && false,
@@ -137,8 +141,7 @@ class MyApp extends StatelessWidget {
             ),
             dialogTheme: DialogThemeData(backgroundColor: appBackgroundColor),
           ),
-          //home: OnBoarding(),
-          home: Splash(),
+          home: isFirstLaunch ? OnBoardingMain() : Splash(),
           onGenerateRoute: route.controller,
           //initialRoute: route.splash,
         );

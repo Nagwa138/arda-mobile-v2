@@ -1,15 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/version2_module/core/enums/booking_status.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
 import 'package:PassPort/version2_module/core/enums/user_type.dart';
-import '../widgets/booking_card.dart';
-import '../widgets/date_filter_widget.dart';
-import '../widgets/cancellation_reason_dialog.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../domain/models/partner_booking_model.dart';
 import '../cubit/partner_bookings_cubit.dart';
 import '../cubit/partner_bookings_state.dart';
-import '../../domain/models/partner_booking_model.dart';
+import '../widgets/booking_card.dart';
+import '../widgets/cancellation_reason_dialog.dart';
+import '../widgets/date_filter_widget.dart';
 
 class PartnerBookingsScreen extends StatefulWidget {
   final UserType? partnerType;
@@ -302,23 +305,9 @@ class _PartnerBookingsScreenState extends State<PartnerBookingsScreen>
   void _acceptBooking(PartnerBookingModel booking) {
     _bookingsCubit.acceptBooking(booking.id);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.check_circle, color: Colors.white),
-            SizedBox(width: 8.w),
-            Text('Booking accepted successfully'),
-          ],
-        ),
-        backgroundColor: Colors.green,
-        behavior: SnackBarBehavior.floating,
-        action: SnackBarAction(
-          label: 'View',
-          textColor: Colors.white,
-          onPressed: () => _viewBookingDetails(booking),
-        ),
-      ),
+    context.showCustomSnackBar(
+      'Booking accepted successfully',
+      type: SnackBarType.success,
     );
   }
 
@@ -331,31 +320,9 @@ class _PartnerBookingsScreenState extends State<PartnerBookingsScreen>
         onReasonSelected: (reason) {
           _bookingsCubit.cancelBooking(booking.id, reason.id);
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Row(
-                children: [
-                  Icon(Icons.cancel, color: Colors.white),
-                  SizedBox(width: 8.w),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text('Booking rejected'),
-                        Text(
-                          'Reason: ${reason.title}',
-                          style: TextStyle(fontSize: 12.sp),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              backgroundColor: Colors.red,
-              behavior: SnackBarBehavior.floating,
-              duration: Duration(seconds: 4),
-            ),
+          context.showCustomSnackBar(
+            'Booking rejected - Reason: ${reason.title}',
+            type: SnackBarType.error,
           );
         },
       ),

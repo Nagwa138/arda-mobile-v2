@@ -4,6 +4,8 @@ import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/transeletarabic/transalet.dart';
 import 'package:PassPort/services/auth/registration/traveller/traveller_register_cubit.dart';
 import 'package:PassPort/services/auth/registration/traveller/traveller_register_state.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -33,25 +35,19 @@ class TravellerRegister extends StatelessWidget {
           } else if (state is RegisterTravellingSuccessful) {
             Navigator.pushReplacementNamed(context, "login");
 
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                'Register Successfully',
-                style: TextStyle(color: Colors.white),
-              ),
-              backgroundColor: orange,
-            ));
+            context.showCustomSnackBar(
+              'Register Successfully',
+              type: SnackBarType.success,
+            );
             TravellerRegisterCubit.get(context).usernameController.clear();
             TravellerRegisterCubit.get(context).emailController.clear();
             TravellerRegisterCubit.get(context).passwordController.clear();
           } else if (state is RegisterTravellingError) {
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                state.error,
-                style: TextStyle(color: Colors.white),
-              ),
-              backgroundColor: Colors.red,
-            ));
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
+            );
           }
           // TODO: implement listener
         },

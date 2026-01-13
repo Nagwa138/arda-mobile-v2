@@ -1,4 +1,6 @@
 import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -473,11 +475,9 @@ class PartnerActivityDetailsScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
               // Delete activity logic
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Activity deleted successfully'),
-                  backgroundColor: Colors.red,
-                ),
+              context.showCustomSnackBar(
+                'Activity deleted successfully',
+                type: SnackBarType.error,
               );
             },
             style: ElevatedButton.styleFrom(

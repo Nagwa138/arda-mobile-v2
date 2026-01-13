@@ -44,213 +44,237 @@ class DeleteAccount extends StatelessWidget {
                 ),
               ),
             ),
-            body: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 24.w,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'accountSecurity.deleteAccountTitle'.tr(),
-                    style: TextStyle(
-                      color: accentColor,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w700,
+            body: Stack(
+              children: [
+                // Background Image
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/background.jpeg"),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(height: 20.h),
-                  Text(
-                    'accountSecurity.deleteAccountHint'.tr(),
-                    style: TextStyle(
-                      color: accentColor,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
+                ),
+                // Existing content
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.w,
                   ),
-                  SizedBox(height: 40.h),
-                  Text(
-                    'register.password'.tr(),
-                    style: TextStyle(
-                      color: accentColor,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  SizedBox(height: 10.h),
-                  TextFormField(
-                    controller: UserCubit.get(context).deleteAccountPassword,
-                    obscureText: UserCubit.get(context).isPasswordVisibleDelete,
-                    decoration: InputDecoration(
-                      hintText: 'register.password'.tr(),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          UserCubit.get(context)
-                              .changePasswordVisibilityDelete();
-                        },
-                        child: UserCubit.get(context).isPasswordVisibleDelete ==
-                                true
-                            ? Icon(
-                                Icons.visibility_off,
-                                color: accentColor,
-                                size: 20.sp,
-                              )
-                            : Icon(
-                                Icons.visibility,
-                                color: accentColor,
-                                size: 20.sp,
-                              ),
-                      ),
-                      hintStyle: TextStyle(
-                        color: accentColor,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  Spacer(),
-                  Container(
-                    width: double.infinity,
-                    height: 60.h,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                          barrierDismissible: false,
-                          context: context,
-                          builder: (contextItem) {
-                            return AlertDialog(
-                              surfaceTintColor: Colors.white,
-                              title: Image.asset(
-                                'assets/images/main/code-review 1.png',
-                                width: 120.w,
-                                height: 120.h,
-                              ),
-                              content: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      'register.delete'.tr(),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: accentColor,
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    Row(
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            UserCubit.get(context)
-                                                .deleteAccount(
-                                                    password: UserCubit.get(
-                                                            context)
-                                                        .deleteAccountPassword
-                                                        .text);
-                                            Navigator.pop(contextItem);
-                                          },
-                                          child: Container(
-                                            width: 100.w,
-                                            height: 40.h,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: white),
-                                              color: Colors.red,
-                                              borderRadius:
-                                                  BorderRadius.circular(10.r),
-                                            ),
-                                            child: CustomText(
-                                              text: "register.confirm".tr(),
-                                              size: 16.sp,
-                                              color: white,
-                                              fontWeight: FontWeight.w700,
-                                              alignment: Alignment.center,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 30.w,
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            Navigator.pop(contextItem);
-                                          },
-                                          child: Container(
-                                            width: 100.w,
-                                            height: 40.h,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: white),
-                                              color: Colors.grey.shade500,
-                                              borderRadius:
-                                                  BorderRadius.circular(10.r),
-                                            ),
-                                            child: CustomText(
-                                              text: "register.cancel".tr(),
-                                              size: 16.sp,
-                                              color: white,
-                                              fontWeight: FontWeight.w700,
-                                              alignment: Alignment.center,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                      child: Text(
-                        'accountSecurity.deleteAccount'.tr(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'accountSecurity.deleteAccountTitle'.tr(),
                         style: TextStyle(
-                          color: white,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
+                          color: accentColor,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  //cancel button
-                  Container(
-                    width: double.infinity,
-                    height: 80.h,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'accountSecurity.cancel'.tr(),
+                      SizedBox(height: 20.h),
+                      Text(
+                        'accountSecurity.deleteAccountHint'.tr(),
                         style: TextStyle(
                           color: accentColor,
                           fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                      SizedBox(height: 40.h),
+                      Text(
+                        'register.password'.tr(),
+                        style: TextStyle(
+                          color: accentColor,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
-                    ),
+                      SizedBox(height: 10.h),
+                      TextFormField(
+                        controller:
+                            UserCubit.get(context).deleteAccountPassword,
+                        obscureText:
+                            UserCubit.get(context).isPasswordVisibleDelete,
+                        decoration: InputDecoration(
+                          hintText: 'register.password'.tr(),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              UserCubit.get(context)
+                                  .changePasswordVisibilityDelete();
+                            },
+                            child: UserCubit.get(context)
+                                        .isPasswordVisibleDelete ==
+                                    true
+                                ? Icon(
+                                    Icons.visibility_off,
+                                    color: accentColor,
+                                    size: 20.sp,
+                                  )
+                                : Icon(
+                                    Icons.visibility,
+                                    color: accentColor,
+                                    size: 20.sp,
+                                  ),
+                          ),
+                          hintStyle: TextStyle(
+                            color: accentColor,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        width: double.infinity,
+                        height: 60.h,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (contextItem) {
+                                return AlertDialog(
+                                  surfaceTintColor: Colors.white,
+                                  title: Image.asset(
+                                    'assets/images/main/code-review 1.png',
+                                    width: 120.w,
+                                    height: 120.h,
+                                  ),
+                                  content: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'register.delete'.tr(),
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: accentColor,
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10.h,
+                                        ),
+                                        Row(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                UserCubit.get(context)
+                                                    .deleteAccount(
+                                                        password: UserCubit.get(
+                                                                context)
+                                                            .deleteAccountPassword
+                                                            .text);
+                                                Navigator.pop(contextItem);
+                                              },
+                                              child: Container(
+                                                width: 100.w,
+                                                height: 40.h,
+                                                decoration: BoxDecoration(
+                                                  border:
+                                                      Border.all(color: white),
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.r),
+                                                ),
+                                                child: CustomText(
+                                                  text: "register.confirm".tr(),
+                                                  size: 16.sp,
+                                                  color: white,
+                                                  fontWeight: FontWeight.w700,
+                                                  alignment: Alignment.center,
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 30.w,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.pop(contextItem);
+                                              },
+                                              child: Container(
+                                                width: 100.w,
+                                                height: 40.h,
+                                                decoration: BoxDecoration(
+                                                  border:
+                                                      Border.all(color: white),
+                                                  color: Colors.grey.shade500,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.r),
+                                                ),
+                                                child: CustomText(
+                                                  text: "register.cancel".tr(),
+                                                  size: 16.sp,
+                                                  color: white,
+                                                  fontWeight: FontWeight.w700,
+                                                  alignment: Alignment.center,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Text(
+                            'accountSecurity.deleteAccount'.tr(),
+                            style: TextStyle(
+                              color: white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20.h),
+                      //cancel button
+                      Container(
+                        width: double.infinity,
+                        height: 60.h,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            'accountSecurity.cancel'.tr(),
+                            style: TextStyle(
+                              color: accentColor,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20.h),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

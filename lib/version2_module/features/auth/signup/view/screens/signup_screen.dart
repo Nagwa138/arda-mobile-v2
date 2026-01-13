@@ -1,4 +1,6 @@
 import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_text_field.dart';
 import 'package:PassPort/version2_module/features/auth/privacy/privacy_policy_screen.dart';
 import 'package:PassPort/version2_module/features/auth/signup/view_model/signup_cubit.dart';
@@ -18,32 +20,9 @@ class RegisterScreen extends StatelessWidget {
       child: BlocConsumer<SignupCubit, SignupState>(
         listener: (context, state) {
           if (state is SignupSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.check_circle_rounded,
-                        color: Colors.white, size: 24),
-                    SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        state.message,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.sp,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                backgroundColor: Colors.green.shade600,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                margin: EdgeInsets.all(16.w),
-                duration: Duration(seconds: 2),
-              ),
+            context.showCustomSnackBar(
+              state.message,
+              type: SnackBarType.success,
             );
 
             Navigator.pushNamedAndRemoveUntil(
@@ -52,24 +31,9 @@ class RegisterScreen extends StatelessWidget {
               (route) => false,
             );
           } else if (state is SignupError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.error_outline_rounded,
-                        color: Colors.white, size: 24),
-                    SizedBox(width: 12),
-                    Expanded(child: Text(state.error)),
-                  ],
-                ),
-                backgroundColor: Colors.red.shade600,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                margin: EdgeInsets.all(16.w),
-                duration: Duration(seconds: 3),
-              ),
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
             );
           }
         },

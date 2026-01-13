@@ -1,6 +1,8 @@
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/traveller/review_cubit/review_cubit.dart';
 import 'package:PassPort/services/traveller/review_cubit/review_state.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -987,21 +989,9 @@ class _QuickReviewBottomSheetState extends State<QuickReviewBottomSheet>
   }
 
   void _showValidationError(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.warning_rounded, color: Colors.white),
-            SizedBox(width: 8.w),
-            Expanded(child: Text(message)),
-          ],
-        ),
-        backgroundColor: Colors.orange,
-        behavior: SnackBarBehavior.floating,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-        duration: Duration(seconds: 3),
-      ),
+    context.showCustomSnackBar(
+      message,
+      type: SnackBarType.warning,
     );
   }
 

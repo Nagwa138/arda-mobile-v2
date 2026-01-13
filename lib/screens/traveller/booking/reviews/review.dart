@@ -1,6 +1,8 @@
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/services/traveller/review_cubit/review_cubit.dart';
 import 'package:PassPort/services/traveller/review_cubit/review_state.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -626,20 +628,9 @@ class _ReviewBookingState extends State<ReviewBooking>
   }
 
   void _showErrorSnackBar(String error) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.error_rounded, color: Colors.white),
-            SizedBox(width: 8.w),
-            Expanded(child: Text(error)),
-          ],
-        ),
-        backgroundColor: Colors.red,
-        behavior: SnackBarBehavior.floating,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-      ),
+    context.showCustomSnackBar(
+      error,
+      type: SnackBarType.error,
     );
   }
 

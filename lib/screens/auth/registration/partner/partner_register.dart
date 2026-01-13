@@ -1,15 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_interpolation_to_compose_strings
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/transeletarabic/transalet.dart';
 import 'package:PassPort/screens/auth/registration/partner/private%20information/private_information.dart';
 import 'package:PassPort/screens/auth/registration/partner/service%20information/service_information.dart';
-
 import 'package:PassPort/services/auth/registration/partner/partner_register_cubit.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'general information/general_information.dart';
 
@@ -51,13 +52,9 @@ class PartnerRegister extends StatelessWidget {
               }
               //Navigator.pop(context);
             } else if (state is PartnerRegisterFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: Colors.red,
-                  content: Text(
-                    state.error,
-                  ),
-                ),
+              context.showCustomSnackBar(
+                state.error,
+                type: SnackBarType.error,
               );
               Navigator.pop(context);
             }

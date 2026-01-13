@@ -1,8 +1,8 @@
+import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/consts/cache manger/cache.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/components/widgets/customText.dart';
 
 PageController onBoardingController = PageController();
 
@@ -13,25 +13,43 @@ class OnBoardingMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appBackgroundColor,
-
       body: PageView(
         controller: onBoardingController,
         children: [
           onboardingBuilder(context,
-              index: 0, title: "The Glamorous accommodation:", subtitle: "Camping Just Got Glamorous, Forget the lumpy sleeping bags and burnt marshmallows. Experience the luxury of glamping alongside unique camping adventures and boutique hotels", image: "assets/images/traveller/accomodtion2.jpg"),
+              index: 0,
+              title: "Unique Stays",
+              subtitle:
+                  "Stay in places that tell a story. From desert camps to heritage homes, each stay is carefully selected to reflect local culture, nature, and a sense of place. This is not accommodation. This is belonging.",
+              image: "assets/images/accomodtion2.jpg"),
           onboardingBuilder(context,
-              index: 1, title: "Golden Hands", subtitle: "explore local products that tell a identity of a place.. ", image: "assets/images/traveller/products2.jpeg"),
+              index: 1,
+              title: "Golden Hands",
+              subtitle:
+                  "Crafted by culture, made by people. Discover handmade pieces created by local artisans. Every item carries heritage, skill, and a human story. You're not buying a product. You're preserving a craft.",
+              image: "assets/images/products2.jpeg"),
           onboardingBuilder(context,
-              index: 2, title: 'your adventures'.tr(), subtitle: "Adventure Awaits: Book Your Thrills, Create Unforgettable Memories.", image: "assets/images/traveller/activity2.jpeg"),
+              index: 2,
+              title: "Adventures",
+              subtitle:
+                  "Go beyond sightseeing. Explore experiences designed by locals, from desert journeys to hidden paths and cultural encounters. Real adventures, built around people, land, and moments you won't find in guidebooks.",
+              image: "assets/images/activity2.jpeg"),
           onboardingBuilder(context,
-              index: 4, title: "Journey planner", subtitle: "book amazing trips, and discover hidden gems With reliable tour guide and travel companies", image: "assets/images/traveller/trips2.jpeg"),
-
+              index: 4,
+              title: "Journey Planner",
+              subtitle:
+                  "Travel, thoughtfully designed. Plan your journey with smart suggestions tailored to your interests, timing, and travel style. Every step is intentional, seamless, and built around how you actually want to move.",
+              image: "assets/images/trips2.jpeg"),
         ],
       ),
     );
   }
 
-  Widget onboardingBuilder(BuildContext context, {required int index, required String title, required String subtitle, required String image}) {
+  Widget onboardingBuilder(BuildContext context,
+      {required int index,
+      required String title,
+      required String subtitle,
+      required String image}) {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height,
@@ -47,19 +65,26 @@ class OnBoardingMain extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CustomText(
-                text: 'onboarding.skip'.tr(),
-                size: 18.sp,
-                color: white,
-                fontWeight: FontWeight.w400,
-                alignment: Alignment.centerRight,
-                textDecoration: TextDecoration.underline,
-                function: () {
+              GestureDetector(
+                onTap: () async {
+                  // Mark onboarding as completed when skipping
+                  await CacheManger.setOnboardingCompleted();
                   Navigator.pushReplacementNamed(context, 'register');
                 },
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'onboarding.skip'.tr(),
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      color: white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
-          
-              Image.asset("assets/images/ard_logo.png"),
+
+              Image.asset("assets/images/logo.png"),
               // SizedBox(
               //   height: 10.h,
               // ),
@@ -71,7 +96,8 @@ class OnBoardingMain extends StatelessWidget {
                   color: Color(0x58FFFFFF),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -108,10 +134,14 @@ class OnBoardingMain extends StatelessWidget {
                 radius: 30,
                 child: ClipOval(
                   child: IconButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (index != 4) {
-                        onBoardingController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+                        onBoardingController.nextPage(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeIn);
                       } else {
+                        // Mark onboarding as completed
+                        await CacheManger.setOnboardingCompleted();
                         Navigator.pushReplacementNamed(context, 'register');
                       }
                     },

@@ -1,4 +1,6 @@
 import 'package:PassPort/version2_module/core/const/app_colors.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_button.dart';
 import 'package:PassPort/version2_module/features/auth/forgot_password/view_model/verify_code_cubit.dart';
 import 'package:PassPort/version2_module/features/auth/forgot_password/view_model/verify_code_state.dart';
@@ -19,18 +21,9 @@ class VerifyCodeScreen extends StatelessWidget {
       child: BlocConsumer<VerifyCodeCubit, VerifyCodeState>(
         listener: (context, state) {
           if (state is VerifyCodeSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.check_circle, color: Colors.white),
-                    SizedBox(width: 8),
-                    Expanded(child: Text(state.message)),
-                  ],
-                ),
-                backgroundColor: Colors.green,
-                duration: Duration(seconds: 3),
-              ),
+            context.showCustomSnackBar(
+              state.message,
+              type: SnackBarType.success,
             );
             // Navigate to reset password screen
             Navigator.pushNamed(
@@ -41,34 +34,19 @@ class VerifyCodeScreen extends StatelessWidget {
               },
             );
           } else if (state is VerifyCodeError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error),
-                backgroundColor: Colors.red,
-                duration: Duration(seconds: 3),
-              ),
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
             );
           } else if (state is ResendCodeSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.check_circle, color: Colors.white),
-                    SizedBox(width: 8),
-                    Expanded(child: Text(state.message)),
-                  ],
-                ),
-                backgroundColor: Colors.green,
-                duration: Duration(seconds: 3),
-              ),
+            context.showCustomSnackBar(
+              state.message,
+              type: SnackBarType.success,
             );
           } else if (state is ResendCodeError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error),
-                backgroundColor: Colors.red,
-                duration: Duration(seconds: 3),
-              ),
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
             );
           }
         },

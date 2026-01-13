@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -436,12 +438,9 @@ class _ImageUploadWidgetState extends State<ImageUploadWidget> {
         widget.onImagesSelected(_imagePaths);
 
         if (images.length > remainingSlots) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content:
-                  Text('Only $remainingSlots images were added due to limit'),
-              backgroundColor: Colors.orange,
-            ),
+          context.showCustomSnackBar(
+            'Only $remainingSlots images were added due to limit',
+            type: SnackBarType.warning,
           );
         }
       }
@@ -465,20 +464,16 @@ class _ImageUploadWidgetState extends State<ImageUploadWidget> {
   }
 
   void _showMaxImagesMessage() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Maximum ${widget.maxImages} images allowed'),
-        backgroundColor: Colors.orange,
-      ),
+    context.showCustomSnackBar(
+      'Maximum ${widget.maxImages} images allowed',
+      type: SnackBarType.warning,
     );
   }
 
   void _showErrorMessage(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.red,
-      ),
+    context.showCustomSnackBar(
+      message,
+      type: SnackBarType.error,
     );
   }
 }

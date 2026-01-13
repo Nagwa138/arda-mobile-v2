@@ -49,71 +49,91 @@ class ChangePassword extends StatelessWidget {
                 ),
               ),
             ),
-            body: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  textFormFildBuilder(
-                    context,
-                    title: 'accountSecurity.old'.tr(),
-                    hint: 'accountSecurity.oldHint'.tr(),
-                    obstructText: UserCubit.get(context).isPasswordVisible,
-                    suffixIcon: GestureDetector(
-                        onTap: () {
-                          UserCubit.get(context).changePasswordVisibility();
-                        },
-                        child: UserCubit.get(context).isPasswordVisible
-                            ? Icon(Icons.remove_red_eye)
-                            : Icon(Icons.visibility_off)),
-                    controller: UserCubit.get(context).oldPassword,
-                  ),
-                  textFormFildBuilder(
-                    context,
-                    title: 'accountSecurity.new'.tr(),
-                    hint: 'accountSecurity.newHint'.tr(),
-                    obstructText: UserCubit.get(context).isPasswordVisibleNew,
-                    suffixIcon: GestureDetector(
-                        onTap: () {
-                          UserCubit.get(context).changePasswordVisibilityNew();
-                        },
-                        child: UserCubit.get(context).isPasswordVisibleNew
-                            ? Icon(Icons.remove_red_eye)
-                            : Icon(Icons.visibility_off)),
-                    controller: UserCubit.get(context).newPassword,
-                  ),
-                  textFormFildBuilder(
-                    context,
-                    title: 'accountSecurity.new'.tr(),
-                    obstructText: UserCubit.get(context).isPasswordVisibleNew,
-                    hint: 'accountSecurity.newHint'.tr(),
-                    suffixIcon: GestureDetector(
-                        onTap: () {
-                          UserCubit.get(context).changePasswordVisibilityNew();
-                        },
-                        child: UserCubit.get(context).isPasswordVisibleNew
-                            ? Icon(Icons.remove_red_eye)
-                            : Icon(Icons.visibility_off)),
-                    controller: UserCubit.get(context).confirmNewPassword,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, 'forgotPassword');
-                    },
-                    child: Text(
-                      'login.forgotPassword'.tr(),
-                      style: TextStyle(
-                        color: accentColor,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                        decoration: TextDecoration.underline,
-                      ),
+            body: Stack(
+              children: [
+                // Background Image
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/background.jpeg"),
+                      fit: BoxFit.cover,
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+                // Existing content
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      textFormFildBuilder(
+                        context,
+                        title: 'accountSecurity.old'.tr(),
+                        hint: 'accountSecurity.oldHint'.tr(),
+                        obstructText: UserCubit.get(context).isPasswordVisible,
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              UserCubit.get(context).changePasswordVisibility();
+                            },
+                            child: UserCubit.get(context).isPasswordVisible
+                                ? Icon(Icons.remove_red_eye)
+                                : Icon(Icons.visibility_off)),
+                        controller: UserCubit.get(context).oldPassword,
+                      ),
+                      textFormFildBuilder(
+                        context,
+                        title: 'accountSecurity.new'.tr(),
+                        hint: 'accountSecurity.newHint'.tr(),
+                        obstructText:
+                            UserCubit.get(context).isPasswordVisibleNew,
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              UserCubit.get(context)
+                                  .changePasswordVisibilityNew();
+                            },
+                            child: UserCubit.get(context).isPasswordVisibleNew
+                                ? Icon(Icons.remove_red_eye)
+                                : Icon(Icons.visibility_off)),
+                        controller: UserCubit.get(context).newPassword,
+                      ),
+                      textFormFildBuilder(
+                        context,
+                        title: 'accountSecurity.new'.tr(),
+                        obstructText:
+                            UserCubit.get(context).isPasswordVisibleNew,
+                        hint: 'accountSecurity.newHint'.tr(),
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              UserCubit.get(context)
+                                  .changePasswordVisibilityNew();
+                            },
+                            child: UserCubit.get(context).isPasswordVisibleNew
+                                ? Icon(Icons.remove_red_eye)
+                                : Icon(Icons.visibility_off)),
+                        controller: UserCubit.get(context).confirmNewPassword,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, 'forgotPassword');
+                        },
+                        child: Text(
+                          'login.forgotPassword'.tr(),
+                          style: TextStyle(
+                            color: accentColor,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
             bottomNavigationBar: Padding(
               padding: EdgeInsets.symmetric(

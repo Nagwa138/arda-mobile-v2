@@ -94,7 +94,7 @@ class BookingHome extends StatelessWidget {
                                                         .size
                                                         .width *
                                                     0.8,
-                                                "assets/images/traveller/accomodtion2.jpg")),
+                                                "assets/images/accomodtion2.jpg")),
                                         Text("Camps and Glamps",
                                             style: TextStyle(
                                               fontSize: 20,
@@ -125,7 +125,7 @@ class BookingHome extends StatelessWidget {
                                                       .size
                                                       .width *
                                                   0.8,
-                                              "assets/images/traveller/trips2.jpeg"),
+                                              "assets/images/trips2.jpeg"),
                                         ),
                                         Text("Journey Planner",
                                             style: TextStyle(
@@ -157,7 +157,7 @@ class BookingHome extends StatelessWidget {
                                                       .size
                                                       .width *
                                                   0.8,
-                                              "assets/images/traveller/activity2.jpeg"),
+                                              "assets/images/activity2.jpeg"),
                                         ),
                                         Text("Adventure",
                                             style: TextStyle(

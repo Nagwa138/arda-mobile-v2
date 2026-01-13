@@ -8,7 +8,7 @@ import 'package:PassPort/screens/auth/createPassword/createPassword.dart';
 import 'package:PassPort/screens/auth/registration/traveller/traveller_register.dart';
 import 'package:PassPort/screens/auth/verifyCode/verifyCode.dart';
 import 'package:PassPort/screens/clendar/clander.dart';
-import 'package:PassPort/screens/onBoarding/onboarding.dart';
+// import 'package:PassPort/screens/onBoarding/onboarding.dart';
 import 'package:PassPort/screens/onBoarding/onboardingMain.dart';
 import 'package:PassPort/screens/partner/landinHome/connectTecnicialSupport/connectTecnicialSupport.dart';
 import 'package:PassPort/screens/partner/landinHome/notifiction/notificationPartner.dart';
@@ -290,8 +290,8 @@ Route<dynamic> controller(RouteSettings settings) {
     case reviewBooking:
       return MaterialPageRoute(
           builder: (context) => const ReviewBooking(), settings: settings);
-    case onBoarding:
-      return MaterialPageRoute(builder: (context) => const OnBoarding());
+    // case onBoarding:
+      // return MaterialPageRoute(builder: (conte87u55xt) => const OnBoarding());
     case detailsBookingCompleted:
       return MaterialPageRoute(
           builder: (context) => const DetailsBookingCompleted(),

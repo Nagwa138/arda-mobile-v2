@@ -40,7 +40,6 @@ class StoryInfo extends StatelessWidget {
 
             ListView(
               children: [
-                // assets/images/traveller/home/bg.png
                 Container(
                   width: double.infinity,
                   height: 210.h,

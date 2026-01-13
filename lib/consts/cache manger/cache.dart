@@ -38,4 +38,15 @@ class CacheManger {
 
     return data;
   }
+
+  // Check if this is the first time the app is launched
+  static Future<bool> isFirstLaunch() async {
+    String? onboardingCompleted = await getData('onboarding_completed');
+    return onboardingCompleted == null || onboardingCompleted != 'true';
+  }
+
+  // Mark onboarding as completed
+  static Future<void> setOnboardingCompleted() async {
+    await saveData('onboarding_completed', 'true');
+  }
 }

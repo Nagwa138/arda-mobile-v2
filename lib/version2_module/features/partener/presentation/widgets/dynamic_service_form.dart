@@ -1,20 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/consts/routes/route.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../domain/entities/service_form_field.dart';
-import '../cubit/add_activity_cubit.dart';
-import '../cubit/add_trip_cubit.dart';
-import '../cubit/add_product_cubit.dart';
 import '../cubit/add_accommodation_cubit.dart';
-import 'image_upload_widget.dart';
-import 'custom_form_field.dart';
+import '../cubit/add_activity_cubit.dart';
+import '../cubit/add_product_cubit.dart';
+import '../cubit/add_trip_cubit.dart';
 import 'category_dropdown_widget.dart';
-import 'room_section_widget.dart';
-
+import 'custom_form_field.dart';
 import 'features_section_widget.dart';
+import 'image_upload_widget.dart';
+import 'room_section_widget.dart';
 
 class DynamicServiceForm extends StatefulWidget {
   final String partnerType;
@@ -90,19 +91,15 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
           child: BlocConsumer<AddActivityCubit, AddActivityState>(
             listener: (context, state) {
               if (state is AddActivitySuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Activity added successfully!'),
-                    backgroundColor: Colors.green,
-                  ),
+                context.showCustomSnackBar(
+                  'Activity added successfully!',
+                  type: SnackBarType.success,
                 );
                 Navigator.pop(context);
               } else if (state is AddActivityError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Error: ${state.message}'),
-                    backgroundColor: Colors.red,
-                  ),
+                context.showCustomSnackBar(
+                  'Error: ${state.message}',
+                  type: SnackBarType.error,
                 );
               }
             },
@@ -121,19 +118,15 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
           child: BlocConsumer<AddTripCubit, AddTripState>(
             listener: (context, state) {
               if (state is AddTripSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Trip added successfully!'),
-                    backgroundColor: Colors.green,
-                  ),
+                context.showCustomSnackBar(
+                  'Trip added successfully!',
+                  type: SnackBarType.success,
                 );
                 Navigator.pop(context);
               } else if (state is AddTripError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Error: ${state.message}'),
-                    backgroundColor: Colors.red,
-                  ),
+                context.showCustomSnackBar(
+                  'Error: ${state.message}',
+                  type: SnackBarType.error,
                 );
               }
             },
@@ -151,19 +144,15 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
           child: BlocConsumer<AddProductCubit, AddProductState>(
             listener: (context, state) {
               if (state is AddProductSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Product added successfully!'),
-                    backgroundColor: Colors.green,
-                  ),
+                context.showCustomSnackBar(
+                  'Product added successfully!',
+                  type: SnackBarType.success,
                 );
                 Navigator.pop(context);
               } else if (state is AddProductError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Error: ${state.message}'),
-                    backgroundColor: Colors.red,
-                  ),
+                context.showCustomSnackBar(
+                  'Error: ${state.message}',
+                  type: SnackBarType.error,
                 );
               }
             },
@@ -181,19 +170,15 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
           child: BlocConsumer<AddAccommodationCubit, AddAccommodationState>(
             listener: (context, state) {
               if (state is AddAccommodationSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Accommodation added successfully!'),
-                    backgroundColor: Colors.green,
-                  ),
+                context.showCustomSnackBar(
+                  'Accommodation added successfully!',
+                  type: SnackBarType.success,
                 );
                 Navigator.pop(context);
               } else if (state is AddAccommodationError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Error: ${state.message}'),
-                    backgroundColor: Colors.red,
-                  ),
+                context.showCustomSnackBar(
+                  'Error: ${state.message}',
+                  type: SnackBarType.error,
                 );
               }
             },
@@ -405,11 +390,9 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
       final hasRequiredFields = _checkRequiredFields();
       if (!hasRequiredFields) {
         print('Missing required fields');
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Please fill all required fields'),
-            backgroundColor: Colors.red,
-          ),
+        context.showCustomSnackBar(
+          'Please fill all required fields',
+          type: SnackBarType.error,
         );
         return;
       }
@@ -478,11 +461,9 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
             widget.onLoadingStateChanged?.call();
 
             // Show success message
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Data collected successfully'),
-                backgroundColor: Colors.green,
-              ),
+            context.showCustomSnackBar(
+              'Data collected successfully',
+              type: SnackBarType.success,
             );
           } catch (e) {
             print('Error in _submitForm: $e');
@@ -493,21 +474,17 @@ class DynamicServiceFormState extends State<DynamicServiceForm> {
             // Notify parent about loading state change
             widget.onLoadingStateChanged?.call();
 
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Error in submitting the form: ${e.toString()}'),
-                backgroundColor: Colors.red,
-              ),
+            context.showCustomSnackBar(
+              'Error in submitting the form: ${e.toString()}',
+              type: SnackBarType.error,
             );
           }
       }
     } else {
       print('Form validation failed');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Please fill all required fields'),
-          backgroundColor: Colors.red,
-        ),
+      context.showCustomSnackBar(
+        'Please fill all required fields',
+        type: SnackBarType.error,
       );
     }
   }

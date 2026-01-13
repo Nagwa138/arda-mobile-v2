@@ -3,6 +3,8 @@ import 'package:PassPort/components/widgets/customButton/customButton.dart';
 import 'package:PassPort/screens/auth/login/widget/buildModernTextField.dart';
 import 'package:PassPort/services/auth/login/loginCubit.dart';
 import 'package:PassPort/services/auth/login/loginState.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,27 +21,16 @@ class CreatePassword extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
           if (state is ChangePasswordError) {
-            // print('ChangePasswordIcon');
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  state.error,
-                  style: TextStyle(color: white),
-                ),
-                backgroundColor: Colors.red,
-              ),
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
             );
           } else if (state is ChangePasswordSuccess) {
             Navigator.pushNamedAndRemoveUntil(
                 context, 'login', (route) => false);
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  'password changed success'.tr(),
-                  style: TextStyle(color: white),
-                ),
-                backgroundColor: accentColor,
-              ),
+            context.showCustomSnackBar(
+              'password changed success'.tr(),
+              type: SnackBarType.success,
             );
           }
         },

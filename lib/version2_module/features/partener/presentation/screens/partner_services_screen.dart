@@ -1,5 +1,7 @@
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/screens/partner/services/detailsservices/detailsservices.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,44 +28,18 @@ class PartnerServicesScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is ServiceSubmissionSuccess) {
             formKey.currentState?.resetLoadingState();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.check_circle_rounded,
-                        color: Colors.white, size: 24),
-                    SizedBox(width: 12),
-                    Expanded(child: Text(state.message)),
-                  ],
-                ),
-                backgroundColor: Colors.green.shade600,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.r)),
-                margin: EdgeInsets.all(16.w),
-              ),
+            context.showCustomSnackBar(
+              state.message,
+              type: SnackBarType.success,
             );
             Navigator.pop(context);
           }
 
           if (state is ServiceSubmissionError) {
             formKey.currentState?.resetLoadingState();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.error_outline_rounded,
-                        color: Colors.white, size: 24),
-                    SizedBox(width: 12),
-                    Expanded(child: Text(state.message)),
-                  ],
-                ),
-                backgroundColor: Colors.red.shade600,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.r)),
-                margin: EdgeInsets.all(16.w),
-              ),
+            context.showCustomSnackBar(
+              state.message,
+              type: SnackBarType.error,
             );
           }
         },
@@ -266,21 +242,9 @@ class PartnerServicesScreen extends StatelessWidget {
       await cubit.submitService(serviceType, data);
     } catch (e) {
       formKey.currentState?.resetLoadingState();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Row(
-            children: [
-              Icon(Icons.error_outline_rounded, color: Colors.white),
-              SizedBox(width: 12),
-              Expanded(child: Text('Failed to add service. Please try again.')),
-            ],
-          ),
-          backgroundColor: Colors.red.shade600,
-          behavior: SnackBarBehavior.floating,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-          margin: EdgeInsets.all(16.w),
-        ),
+      context.showCustomSnackBar(
+        'Failed to add service. Please try again.',
+        type: SnackBarType.error,
       );
     }
   }
@@ -539,13 +503,9 @@ class _PartnerServicesBlocList extends StatelessWidget {
                 },
                 onEdit: () {},
                 onDelete: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Delete not implemented'),
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.r)),
-                    ),
+                  context.showCustomSnackBar(
+                    'Delete not implemented',
+                    type: SnackBarType.warning,
                   );
                 },
               );

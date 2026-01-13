@@ -1,4 +1,6 @@
 import 'package:PassPort/version2_module/core/const/app_colors.dart';
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_button.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_text_field.dart';
 import 'package:PassPort/version2_module/features/auth/forgot_password/view_model/change_password_cubit.dart';
@@ -22,18 +24,9 @@ class ChangePasswordScreen extends StatelessWidget {
       child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
         listener: (context, state) {
           if (state is ChangePasswordSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.check_circle, color: Colors.white),
-                    SizedBox(width: 8),
-                    Expanded(child: Text(state.message)),
-                  ],
-                ),
-                backgroundColor: Colors.green,
-                duration: Duration(seconds: 3),
-              ),
+            context.showCustomSnackBar(
+              state.message,
+              type: SnackBarType.success,
             );
             // Clear fields and navigate to login
             final cubit = ChangePasswordCubit.get(context);
@@ -44,12 +37,9 @@ class ChangePasswordScreen extends StatelessWidget {
               (route) => false,
             );
           } else if (state is ChangePasswordError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.error),
-                backgroundColor: Colors.red,
-                duration: Duration(seconds: 3),
-              ),
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
             );
           }
         },

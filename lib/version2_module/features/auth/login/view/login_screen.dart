@@ -1,3 +1,5 @@
+import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
+import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_text_field.dart';
 import 'package:PassPort/version2_module/features/auth/login/view_model/login_cubit.dart';
 import 'package:PassPort/version2_module/features/auth/login/view_model/login_state.dart';
@@ -18,45 +20,9 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.check_circle_rounded,
-                        color: Colors.white, size: 24),
-                    SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            state.message,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                          Text(
-                            'Welcome back!',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              color: Colors.white70,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                backgroundColor: Colors.green.shade600,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                margin: EdgeInsets.all(16.w),
-                duration: Duration(seconds: 2),
-              ),
+            context.showCustomSnackBar(
+              '${state.message} - Welcome back!',
+              type: SnackBarType.success,
             );
 
             final navigationRoute =
@@ -70,24 +36,9 @@ class LoginScreen extends StatelessWidget {
             );
             print(state.token);
           } else if (state is LoginError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.error_outline_rounded,
-                        color: Colors.white, size: 24),
-                    SizedBox(width: 12),
-                    Expanded(child: Text(state.error)),
-                  ],
-                ),
-                backgroundColor: Colors.red.shade600,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                margin: EdgeInsets.all(16.w),
-                duration: Duration(seconds: 3),
-              ),
+            context.showCustomSnackBar(
+              state.error,
+              type: SnackBarType.error,
             );
           }
         },
