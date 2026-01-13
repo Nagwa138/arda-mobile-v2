@@ -1,5 +1,4 @@
 import 'package:PassPort/consts/cache manger/cache.dart';
-import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:PassPort/version2_module/core/services/api_services.dart';
 import 'package:PassPort/version2_module/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:PassPort/version2_module/features/home/data/repositories/activities_repo.dart';
@@ -309,13 +308,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
-                    colors: [accentColor, accentColor.withValues(alpha: 0.8)],
+                    colors: [lightBrown, lightBrown.withValues(alpha: 0.8)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: accentColor.withValues(alpha: 0.4),
+                      color: lightBrown.withValues(alpha: 0.4),
                       blurRadius: 20,
                       offset: const Offset(0, 6),
                     ),
