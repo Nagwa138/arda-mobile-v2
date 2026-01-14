@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
 import 'package:PassPort/version2_module/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,7 @@ class SnackBarWidget extends StatelessWidget {
       decoration: _buildBoxDecoration(),
       child: Stack(
         clipBehavior: Clip.none,
-        children: [_buildAppLogo(context), _buildContent(context)],
-      ),
-    );
+        children: [_buildAppLogo(context), _buildContent(context)]));
   }
 
   BoxDecoration _buildBoxDecoration() {
@@ -33,10 +32,8 @@ class SnackBarWidget extends StatelessWidget {
           color: Colors.grey.withValues(alpha: 0.2),
           blurRadius: 8,
           spreadRadius: 2,
-          offset: const Offset(0, 3),
-        ),
-      ],
-    );
+          offset: const Offset(0, 3)),
+      ]);
   }
 
   Positioned _buildAppLogo(BuildContext context) {
@@ -45,13 +42,10 @@ class SnackBarWidget extends StatelessWidget {
       top: -50,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: Image.asset(
+        child: CustomImage(
           AppImages.imagesLogo,
           height: 70,
-          color: Colors.black,
-        ),
-      ),
-    );
+          color: Colors.black)));
   }
 
   Column _buildContent(BuildContext context) {
@@ -60,10 +54,8 @@ class SnackBarWidget extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [_buildIcon(), const Gap(8), _buildMessageText(context)],
-        ),
-      ],
-    );
+          children: [_buildIcon(), const Gap(8), _buildMessageText(context)]),
+      ]);
   }
 
   SvgPicture _buildIcon() {
@@ -90,9 +82,6 @@ class SnackBarWidget extends StatelessWidget {
         style: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
-          color: appTextColor,
-        ),
-      ),
-    );
+          color: appTextColor)));
   }
 }

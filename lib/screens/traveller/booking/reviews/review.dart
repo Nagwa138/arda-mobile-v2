@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/review_cubit/review_cubit.dart';
 import 'package:PassPort/services/traveller/review_cubit/review_state.dart';
 import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
@@ -30,26 +31,15 @@ class _ReviewBookingState extends State<ReviewBooking>
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      duration: Duration(milliseconds: 800),
-      vsync: this,
-    );
+    _animationController =
+        AnimationController(duration: Duration(milliseconds: 800), vsync: this);
 
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeOut,
-    ));
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(parent: _animationController, curve: Curves.easeOut));
 
-    _slideAnimation = Tween<Offset>(
-      begin: Offset(0, 0.3),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.elasticOut,
-    ));
+    _slideAnimation = Tween<Offset>(begin: Offset(0, 0.3), end: Offset.zero)
+        .animate(CurvedAnimation(
+            parent: _animationController, curve: Curves.elasticOut));
 
     _animationController.forward();
   }
@@ -65,400 +55,276 @@ class _ReviewBookingState extends State<ReviewBooking>
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
     return BlocProvider(
-      create: (BuildContext context) => ReviewCubit(),
-      child: BlocConsumer<ReviewCubit, ReviewState>(
-        listener: (context, state) {
+        create: (BuildContext context) => ReviewCubit(),
+        child:
+            BlocConsumer<ReviewCubit, ReviewState>(listener: (context, state) {
           if (state is CreateReviewSuccessful) {
             _showSuccessDialog();
           } else if (state is CreateReviewError) {
             _showErrorSnackBar(state.error);
           }
-        },
-        builder: (context, state) {
+        }, builder: (context, state) {
           return Scaffold(
-            backgroundColor: Colors.grey.shade50,
-            appBar: _buildModernAppBar(),
-            body: FadeTransition(
-              opacity: _fadeAnimation,
-              child: SlideTransition(
-                position: _slideAnimation,
-                child: Form(
-                  key: _formKey,
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.all(24.w),
-                    child: Column(
-                      children: [
-                        _buildServiceCard(arguments),
-                        SizedBox(height: 32.h),
-                        _buildRatingSection(context, state),
-                        SizedBox(height: 32.h),
-                        _buildCommentSection(context),
-                        SizedBox(height: 40.h),
-                        _buildSubmitButton(context, arguments, state),
-                        SizedBox(height: 20.h),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
+              backgroundColor: Colors.grey.shade50,
+              appBar: _buildModernAppBar(),
+              body: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                      position: _slideAnimation,
+                      child: Form(
+                          key: _formKey,
+                          child: SingleChildScrollView(
+                              padding: EdgeInsets.all(24.w),
+                              child: Column(children: [
+                                _buildServiceCard(arguments),
+                                SizedBox(height: 32.h),
+                                _buildRatingSection(context, state),
+                                SizedBox(height: 32.h),
+                                _buildCommentSection(context),
+                                SizedBox(height: 40.h),
+                                _buildSubmitButton(context, arguments, state),
+                                SizedBox(height: 20.h),
+                              ]))))));
+        }));
   }
 
   PreferredSizeWidget _buildModernAppBar() {
     return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      leading: Container(
-        margin: EdgeInsets.all(8.w),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.r),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 4,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
-        child: IconButton(
-          icon:
-              Icon(Icons.arrow_back_ios_new, color: appTextColor, size: 18.sp),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
-      title: Text(
-        "booking.reviewBooking".tr(),
-        style: TextStyle(
-          color: appTextColor,
-          fontSize: 20.sp,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      centerTitle: true,
-    );
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Container(
+            margin: EdgeInsets.all(8.w),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12.r),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.1),
+                      blurRadius: 4,
+                      offset: Offset(0, 2)),
+                ]),
+            child: IconButton(
+                icon: Icon(Icons.arrow_back_ios_new,
+                    color: appTextColor, size: 18.sp),
+                onPressed: () => Navigator.pop(context))),
+        title: Text("booking.reviewBooking".tr(),
+            style: TextStyle(
+                color: appTextColor,
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold)),
+        centerTitle: true);
   }
 
   Widget _buildServiceCard(Map arguments) {
     return Container(
-      padding: EdgeInsets.all(20.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 20,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
+        padding: EdgeInsets.all(20.w),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20.r),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.08),
+                  blurRadius: 20,
+                  offset: Offset(0, 4)),
+            ]),
+        child: Column(children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(16.r),
-            child: Image.network(
-              arguments['image'] ?? '',
-              width: double.infinity,
-              height: 160.h,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
+              borderRadius: BorderRadius.circular(16.r),
+              child: CustomImage(
+                arguments['image'] ?? '',
                 width: double.infinity,
                 height: 160.h,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: BorderRadius.circular(16.r),
-                ),
-                child: Icon(
-                  Icons.image_not_supported_outlined,
-                  color: Colors.grey.shade400,
-                  size: 48.sp,
-                ),
-              ),
-            ),
-          ),
+                fit: BoxFit.cover,
+              )),
           SizedBox(height: 16.h),
-          Text(
-            arguments['name'] ?? 'Service Name',
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.bold,
-              color: appTextColor,
-            ),
-            textAlign: TextAlign.center,
-          ),
+          Text(arguments['name'] ?? 'Service Name',
+              style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                  color: appTextColor),
+              textAlign: TextAlign.center),
           SizedBox(height: 8.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.location_on_outlined,
-                color: Colors.grey.shade600,
-                size: 16.sp,
-              ),
-              SizedBox(width: 4.w),
-              Flexible(
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Icon(Icons.location_on_outlined,
+                color: Colors.grey.shade600, size: 16.sp),
+            SizedBox(width: 4.w),
+            Flexible(
                 child: Text(
-                  '${arguments['address'] ?? 'Address'}, ${"booking.Egypt".tr()}',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: Colors.grey.shade600,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+                    '${arguments['address'] ?? 'Address'}, ${"booking.Egypt".tr()}',
+                    style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.grey.shade600,
+                        fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center)),
+          ]),
+        ]));
   }
 
   Widget _buildRatingSection(BuildContext context, ReviewState state) {
     return Container(
-      padding: EdgeInsets.all(24.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 20,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
+        padding: EdgeInsets.all(24.w),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20.r),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.08),
+                  blurRadius: 20,
+                  offset: Offset(0, 4)),
+            ]),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            Container(
                 padding: EdgeInsets.all(12.w),
                 decoration: BoxDecoration(
-                  color: Colors.amber.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: Icon(
-                  Icons.star_rounded,
-                  color: Colors.amber,
-                  size: 24.sp,
-                ),
-              ),
-              SizedBox(width: 12.w),
-              Expanded(
+                    color: Colors.amber.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12.r)),
+                child:
+                    Icon(Icons.star_rounded, color: Colors.amber, size: 24.sp)),
+            SizedBox(width: 12.w),
+            Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "booking.HowHost".tr(),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                  Text("booking.HowHost".tr(),
                       style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: appTextColor,
-                      ),
-                    ),
-                    Text(
-                      'Share your experience with others',
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
+                          color: appTextColor)),
+                  Text('Share your experience with others',
                       style: TextStyle(
-                        fontSize: 14.sp,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+                          fontSize: 14.sp, color: Colors.grey.shade600)),
+                ])),
+          ]),
           SizedBox(height: 24.h),
           Center(
-            child: Column(
-              children: [
-                RatingBar.builder(
-                  initialRating: _currentRating,
-                  minRating: 0,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemSize: 40.sp,
-                  glow: true,
-                  glowColor: Colors.amber.withValues(alpha: 0.3),
-                  itemPadding: EdgeInsets.symmetric(horizontal: 8.w),
-                  itemBuilder: (context, index) => Container(
+              child: Column(children: [
+            RatingBar.builder(
+                initialRating: _currentRating,
+                minRating: 0,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemSize: 40.sp,
+                glow: true,
+                glowColor: Colors.amber.withValues(alpha: 0.3),
+                itemPadding: EdgeInsets.symmetric(horizontal: 8.w),
+                itemBuilder: (context, index) => Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      boxShadow: _currentRating > index
-                          ? [
-                              BoxShadow(
-                                color: Colors.amber.withValues(alpha: 0.3),
-                                blurRadius: 8,
-                                spreadRadius: 1,
-                              ),
-                            ]
-                          : null,
-                    ),
-                    child: Icon(
-                      Icons.star_rounded,
-                      color: Colors.amber,
-                    ),
-                  ),
-                  onRatingUpdate: (rating) {
-                    setState(() {
-                      _currentRating = rating;
-                    });
-                    context.read<ReviewCubit>().rating = rating;
-                  },
-                ),
-                SizedBox(height: 16.h),
-                if (_currentRating > 0)
-                  AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.r),
+                        boxShadow: _currentRating > index
+                            ? [
+                                BoxShadow(
+                                    color: Colors.amber.withValues(alpha: 0.3),
+                                    blurRadius: 8,
+                                    spreadRadius: 1),
+                              ]
+                            : null),
+                    child: Icon(Icons.star_rounded, color: Colors.amber)),
+                onRatingUpdate: (rating) {
+                  setState(() {
+                    _currentRating = rating;
+                  });
+                  context.read<ReviewCubit>().rating = rating;
+                }),
+            SizedBox(height: 16.h),
+            if (_currentRating > 0)
+              AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  decoration: BoxDecoration(
                       color: _getRatingColor(_currentRating)
                           .withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(20.r),
                       border: Border.all(
-                        color: _getRatingColor(_currentRating)
-                            .withValues(alpha: 0.3),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          _getRatingIcon(_currentRating),
-                          color: _getRatingColor(_currentRating),
-                          size: 16.sp,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(
-                          _getRatingText(_currentRating),
-                          style: TextStyle(
+                          color: _getRatingColor(_currentRating)
+                              .withValues(alpha: 0.3))),
+                  child: Row(mainAxisSize: MainAxisSize.min, children: [
+                    Icon(_getRatingIcon(_currentRating),
+                        color: _getRatingColor(_currentRating), size: 16.sp),
+                    SizedBox(width: 8.w),
+                    Text(_getRatingText(_currentRating),
+                        style: TextStyle(
                             color: _getRatingColor(_currentRating),
                             fontWeight: FontWeight.w600,
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+                            fontSize: 14.sp)),
+                  ])),
+          ])),
+        ]));
   }
 
   Widget _buildCommentSection(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(24.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 20,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
+        padding: EdgeInsets.all(24.w),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20.r),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.08),
+                  blurRadius: 20,
+                  offset: Offset(0, 4)),
+            ]),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            Container(
                 padding: EdgeInsets.all(12.w),
                 decoration: BoxDecoration(
-                  color: appTextColor.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: Icon(
-                  Icons.edit_outlined,
-                  color: appTextColor,
-                  size: 24.sp,
-                ),
-              ),
-              SizedBox(width: 12.w),
-              Expanded(
+                    color: appTextColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12.r)),
+                child: Icon(Icons.edit_outlined,
+                    color: appTextColor, size: 24.sp)),
+            SizedBox(width: 12.w),
+            Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "booking.tell".tr(),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                  Text("booking.tell".tr(),
                       style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: appTextColor,
-                      ),
-                    ),
-                    Text(
-                      'Help others by sharing your experience',
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
+                          color: appTextColor)),
+                  Text('Help others by sharing your experience',
                       style: TextStyle(
-                        fontSize: 14.sp,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+                          fontSize: 14.sp, color: Colors.grey.shade600)),
+                ])),
+          ]),
           SizedBox(height: 20.h),
           TextFormField(
-            controller: context.read<ReviewCubit>().reviewComment,
-            maxLines: 6,
-            style: TextStyle(
-              fontSize: 16.sp,
-              color: appTextColor,
-              height: 1.5,
-            ),
-            decoration: InputDecoration(
-              hintText: "booking.writeHint".tr() +
-                  '\n\nWhat did you like most? How was the service? Any suggestions?',
-              hintStyle: TextStyle(
-                color: Colors.grey.shade400,
-                fontSize: 14.sp,
-                height: 1.5,
-              ),
-              filled: true,
-              fillColor: Colors.grey.shade50,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16.r),
-                borderSide: BorderSide.none,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16.r),
-                borderSide: BorderSide(color: Colors.grey.shade200),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16.r),
-                borderSide: BorderSide(color: appTextColor, width: 2),
-              ),
-              contentPadding: EdgeInsets.all(20.w),
-            ),
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Please share your thoughts about the service';
-              }
-              if (value.trim().length < 10) {
-                return 'Please write at least 10 characters';
-              }
-              return null;
-            },
-          ),
-        ],
-      ),
-    );
+              controller: context.read<ReviewCubit>().reviewComment,
+              maxLines: 6,
+              style:
+                  TextStyle(fontSize: 16.sp, color: appTextColor, height: 1.5),
+              decoration: InputDecoration(
+                  hintText: "booking.writeHint".tr() +
+                      '\n\nWhat did you like most? How was the service? Any suggestions?',
+                  hintStyle: TextStyle(
+                      color: Colors.grey.shade400,
+                      fontSize: 14.sp,
+                      height: 1.5),
+                  filled: true,
+                  fillColor: Colors.grey.shade50,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.r),
+                      borderSide: BorderSide.none),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.r),
+                      borderSide: BorderSide(color: Colors.grey.shade200)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16.r),
+                      borderSide: BorderSide(color: appTextColor, width: 2)),
+                  contentPadding: EdgeInsets.all(20.w)),
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return 'Please share your thoughts about the service';
+                }
+                if (value.trim().length < 10) {
+                  return 'Please write at least 10 characters';
+                }
+                return null;
+              }),
+        ]));
   }
 
   Widget _buildSubmitButton(
@@ -466,76 +332,58 @@ class _ReviewBookingState extends State<ReviewBooking>
     final isLoading = state is CreateReviewLoading;
 
     return Container(
-      width: double.infinity,
-      height: 56.h,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [appTextColor, appTextColor.withValues(alpha: 0.8)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: appTextColor.withValues(alpha: 0.3),
-            blurRadius: 12,
-            offset: Offset(0, 6),
-          ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16.r),
-          onTap: isLoading ? null : () => _submitReview(context, arguments),
-          child: Container(
-            alignment: Alignment.center,
-            child: isLoading
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 20.w,
-                        height: 20.h,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation(Colors.white),
-                        ),
-                      ),
-                      SizedBox(width: 12.w),
-                      Text(
-                        'Submitting Review...',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.send_rounded,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
-                      SizedBox(width: 8.w),
-                      Text(
-                        "booking.Continue".tr(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-          ),
-        ),
-      ),
-    );
+        width: double.infinity,
+        height: 56.h,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [appTextColor, appTextColor.withValues(alpha: 0.8)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight),
+            borderRadius: BorderRadius.circular(16.r),
+            boxShadow: [
+              BoxShadow(
+                  color: appTextColor.withValues(alpha: 0.3),
+                  blurRadius: 12,
+                  offset: Offset(0, 6)),
+            ]),
+        child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+                borderRadius: BorderRadius.circular(16.r),
+                onTap:
+                    isLoading ? null : () => _submitReview(context, arguments),
+                child: Container(
+                    alignment: Alignment.center,
+                    child: isLoading
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                                SizedBox(
+                                    width: 20.w,
+                                    height: 20.h,
+                                    child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        valueColor: AlwaysStoppedAnimation(
+                                            Colors.white))),
+                                SizedBox(width: 12.w),
+                                Text('Submitting Review...',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w600)),
+                              ])
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                                Icon(Icons.send_rounded,
+                                    color: Colors.white, size: 20.sp),
+                                SizedBox(width: 8.w),
+                                Text("booking.Continue".tr(),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w600)),
+                              ])))));
   }
 
   void _submitReview(BuildContext context, Map arguments) {
@@ -553,85 +401,59 @@ class _ReviewBookingState extends State<ReviewBooking>
 
   void _showSuccessDialog() {
     showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: EdgeInsets.all(16.w),
-              decoration: BoxDecoration(
-                color: Colors.green.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(50.r),
-              ),
-              child: Icon(
-                Icons.check_circle_rounded,
-                color: Colors.green,
-                size: 48.sp,
-              ),
-            ),
-            SizedBox(height: 20.h),
-            Text(
-              'Review Submitted!',
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-                color: appTextColor,
-              ),
-            ),
-            SizedBox(height: 8.h),
-            Text(
-              'Thank you for sharing your experience. Your review helps others make better decisions.',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: Colors.grey.shade600,
-              ),
-            ),
-            SizedBox(height: 20.h),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context); // Close dialog
-                  Navigator.pop(context); // Go back to previous screen
-                  // Clear form
-                  context.read<ReviewCubit>().reviewComment.clear();
-                  setState(() {
-                    _currentRating = 0;
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: appTextColor,
-                  padding: EdgeInsets.symmetric(vertical: 12.h),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                ),
-                child: Text(
-                  'Done',
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.r)),
+            content: Column(mainAxisSize: MainAxisSize.min, children: [
+              Container(
+                  padding: EdgeInsets.all(16.w),
+                  decoration: BoxDecoration(
+                      color: Colors.green.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(50.r)),
+                  child: Icon(Icons.check_circle_rounded,
+                      color: Colors.green, size: 48.sp)),
+              SizedBox(height: 20.h),
+              Text('Review Submitted!',
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                      color: appTextColor)),
+              SizedBox(height: 8.h),
+              Text(
+                  'Thank you for sharing your experience. Your review helps others make better decisions.',
+                  textAlign: TextAlign.center,
+                  style:
+                      TextStyle(fontSize: 14.sp, color: Colors.grey.shade600)),
+              SizedBox(height: 20.h),
+              SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context); // Close dialog
+                        Navigator.pop(context); // Go back to previous screen
+                        // Clear form
+                        context.read<ReviewCubit>().reviewComment.clear();
+                        setState(() {
+                          _currentRating = 0;
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: appTextColor,
+                          padding: EdgeInsets.symmetric(vertical: 12.h),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.r))),
+                      child: Text('Done',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600)))),
+            ])));
   }
 
   void _showErrorSnackBar(String error) {
-    context.showCustomSnackBar(
-      error,
-      type: SnackBarType.error,
-    );
+    context.showCustomSnackBar(error, type: SnackBarType.error);
   }
 
   Color _getRatingColor(double rating) {

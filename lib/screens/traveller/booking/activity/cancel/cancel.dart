@@ -1,5 +1,6 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/widgets/customButton/customButton.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
@@ -28,13 +29,11 @@ class CancelActivity extends StatelessWidget {
                 .getAllBooking(state: "0", serviceName: "activities");
             context.showCustomSnackBar(
               "Successful",
-              type: SnackBarType.success,
-            );
+              type: SnackBarType.success);
           } else if (state is BookingAgainError) {
             context.showCustomSnackBar(
               state.error,
-              type: SnackBarType.error,
-            );
+              type: SnackBarType.error);
           }
         },
         builder: (context, state) {
@@ -65,10 +64,7 @@ class CancelActivity extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 14.sp, color: Colors.grey[500])),
-                  ],
-                ),
-              ),
-            );
+                  ])));
           }
 
           return ListView.separated(
@@ -91,19 +87,17 @@ class CancelActivity extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Image.network(
+                                    CustomImage(
                                       BookingTravellerCubit.get(context)
                                           .cancelActivity!
                                           .data![index]
                                           .image
-                                          .toString(),
+                                          ?.toString(),
                                       width: 99.w,
                                       height: 107.h,
-                                      fit: BoxFit.fill,
-                                    ),
+                                      fit: BoxFit.fill),
                                     SizedBox(
-                                      width: 20.w,
-                                    ),
+                                      width: 20.w),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -118,20 +112,16 @@ class CancelActivity extends StatelessWidget {
                                             style: TextStyle(
                                                 fontSize: 14.sp,
                                                 color: accentColor,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          width: 150.w,
-                                        ),
+                                                fontWeight: FontWeight.w600)),
+                                          width: 150.w),
                                         SizedBox(
-                                          height: 5.h,
-                                        ),
+                                          height: 5.h),
                                         Row(
                                           children: [
                                             Image.asset(
                                               "assets/images/landingHome/location.png",
                                               color:
-                                                  Color.fromRGBO(0, 86, 79, 1),
-                                            ),
+                                                  Color.fromRGBO(0, 86, 79, 1)),
                                             SizedBox(
                                               width: 90.w,
                                               child: Text(
@@ -141,9 +131,7 @@ class CancelActivity extends StatelessWidget {
                                                     color: Color.fromRGBO(
                                                         140, 140, 140, 1),
                                                     fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            ),
+                                                        FontWeight.w400))),
                                             SizedBox(
                                               width: 90.w,
                                               child: Text(
@@ -153,9 +141,7 @@ class CancelActivity extends StatelessWidget {
                                                     color: Color.fromRGBO(
                                                         140, 140, 140, 1),
                                                     fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            ),
+                                                        FontWeight.w400))),
                                             Text(
                                               BookingTravellerCubit.get(context)
                                                   .cancelActivity!
@@ -166,18 +152,14 @@ class CancelActivity extends StatelessWidget {
                                                   fontSize: 14.sp,
                                                   color: Color.fromRGBO(
                                                       140, 140, 140, 1),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
+                                                  fontWeight: FontWeight.w400)),
                                             Icon(
                                               Icons.star,
                                               color: Colors.yellow,
-                                              size: 16.sp,
-                                            )
-                                          ],
-                                        ),
+                                              size: 16.sp)
+                                          ]),
                                         SizedBox(
-                                          height: 15.h,
-                                        ),
+                                          height: 15.h),
                                         Row(
                                           children: [
                                             Text(
@@ -191,40 +173,27 @@ class CancelActivity extends StatelessWidget {
                                                   fontSize: 14.sp,
                                                   color: Color.fromRGBO(
                                                       0, 86, 79, 1),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
+                                                  fontWeight: FontWeight.w400)),
                                             SizedBox(
-                                              width: 3.w,
-                                            ),
+                                              width: 3.w),
                                             Text(
                                               "booking.Nigth".tr(),
                                               style: TextStyle(
                                                   fontSize: 14.sp,
                                                   color: Color.fromRGBO(
                                                       0, 86, 79, 1),
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                                  fontWeight: FontWeight.w600)),
+                                          ]),
+                                      ]),
+                                  ]),
                                 SizedBox(
-                                  height: 5.h,
-                                ),
+                                  height: 5.h),
                                 Divider(
-                                  color: Color.fromRGBO(224, 224, 224, 1),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                                  color: Color.fromRGBO(224, 224, 224, 1)),
+                              ])),
+                        ])),
                     SizedBox(
-                      height: 10.h,
-                    ),
+                      height: 10.h),
                     CustomButton(
                         height: 40.h,
                         function: () {
@@ -238,21 +207,16 @@ class CancelActivity extends StatelessWidget {
                         text: "booking.BookAgain".tr(),
                         width: 303.w),
                     SizedBox(
-                      height: 20.h,
-                    ),
-                  ],
-                );
+                      height: 20.h),
+                  ]);
               },
               separatorBuilder: (context, index) => SizedBox(
-                    height: 5.h,
-                  ),
+                    height: 5.h),
               itemCount: BookingTravellerCubit.get(context)
                       .cancelActivity
                       ?.data!
                       .length ??
                   0);
-        },
-      ),
-    );
+        }));
   }
 }

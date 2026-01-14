@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -26,22 +27,16 @@ class DetailsPendingActivity extends StatelessWidget {
                 style: TextStyle(
                   color: accentColor,
                   fontSize: 18.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+                  fontWeight: FontWeight.w600))),
             body: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/images/background.jpeg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  fit: BoxFit.cover)),
               child: state is getBookingDetailsLoading
                   ? Center(
                       child: CircularProgressIndicator(
-                      color: accentColor,
-                    ))
+                      color: accentColor))
                   : SingleChildScrollView(
                       child: Column(
                         //crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,19 +45,11 @@ class DetailsPendingActivity extends StatelessWidget {
                             height: 300.h,
                             child: Stack(
                               children: [
-                                Image.network(
+                                CustomImage(
                                   'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png',
                                   width: double.infinity.w,
                                   height: 300.h,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Icon(
-                                      Icons.error,
-                                      size: 100.sp,
-                                      color: Colors.grey[400],
-                                    );
-                                  },
-                                ),
+                                  fit: BoxFit.cover),
                                 Padding(
                                   padding: EdgeInsets.only(
                                       top: 20.h, right: 10.w, left: 10.w),
@@ -87,17 +74,10 @@ class DetailsPendingActivity extends StatelessWidget {
                                             color: accentColor,
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w700),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                                        overflow: TextOverflow.ellipsis)))),
+                              ])),
                           SizedBox(
-                            height: 20.h,
-                          ),
+                            height: 20.h),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: Row(
@@ -113,18 +93,14 @@ class DetailsPendingActivity extends StatelessWidget {
                                     // "Sonesta St. George Hotel - Convention.",
                                     style: TextStyle(
                                       fontSize: 16.sp,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                      fontWeight: FontWeight.w600),
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 3,
-                                    softWrap: true,
-                                  ),
-                                ),
+                                    softWrap: true)),
                                 Spacer(),
                                 Icon(
                                   Icons.star_rate_rounded,
-                                  color: Colors.amber,
-                                ),
+                                  color: Colors.amber),
                                 Text(
                                   BookingTravellerCubit.get(context)
                                       .activityModelDetails!
@@ -134,16 +110,11 @@ class DetailsPendingActivity extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     color: accentColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ],
-                            ),
-                          ),
+                                    fontWeight: FontWeight.w500),
+                                  overflow: TextOverflow.ellipsis),
+                              ])),
                           SizedBox(
-                            height: 20.h,
-                          ),
+                            height: 20.h),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.w),
                             child: Container(
@@ -158,8 +129,7 @@ class DetailsPendingActivity extends StatelessWidget {
                                     BoxShadow(
                                       color: lightBrown.withValues(alpha: 0.1),
                                       blurRadius: 8,
-                                      offset: Offset(0, 2),
-                                    ),
+                                      offset: Offset(0, 2)),
                                   ]),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
@@ -181,9 +151,7 @@ class DetailsPendingActivity extends StatelessWidget {
                                       child: Divider(
                                         color:
                                             lightBrown.withValues(alpha: 0.3),
-                                        thickness: 1,
-                                      ),
-                                    ),
+                                        thickness: 1)),
                                     detailsBooking(
                                         title: "ProfileGuest.days",
                                         title2:
@@ -192,14 +160,9 @@ class DetailsPendingActivity extends StatelessWidget {
                                                 .data!
                                                 .daysCount
                                                 .toString()),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                                  ])))),
                           SizedBox(
-                            height: 20.h,
-                          ),
+                            height: 20.h),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20.w),
                             child: Container(
@@ -214,8 +177,7 @@ class DetailsPendingActivity extends StatelessWidget {
                                     BoxShadow(
                                       color: lightBrown.withValues(alpha: 0.1),
                                       blurRadius: 8,
-                                      offset: Offset(0, 2),
-                                    ),
+                                      offset: Offset(0, 2)),
                                   ]),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
@@ -235,8 +197,7 @@ class DetailsPendingActivity extends StatelessWidget {
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400,
                                               color: accentColor,
-                                              fontSize: 14.sp),
-                                        ),
+                                              fontSize: 14.sp)),
                                         Spacer(),
                                         Text(
                                           overflow: TextOverflow.ellipsis,
@@ -245,34 +206,27 @@ class DetailsPendingActivity extends StatelessWidget {
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: accentColor,
-                                              fontSize: 14.sp),
-                                        ),
-                                      ],
-                                    ),
+                                              fontSize: 14.sp)),
+                                      ]),
                                     Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 12.h),
                                       child: Divider(
                                         color:
                                             lightBrown.withValues(alpha: 0.3),
-                                        thickness: 1,
-                                      ),
-                                    ),
+                                        thickness: 1)),
                                     Text("booking.IncludingTax".tr(),
                                         style: TextStyle(
                                           fontSize: 13.sp,
                                           fontWeight: FontWeight.w400,
-                                          color: lightText,
-                                        )),
+                                          color: lightText)),
                                     Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 12.h),
                                       child: Divider(
                                         color:
                                             lightBrown.withValues(alpha: 0.3),
-                                        thickness: 1,
-                                      ),
-                                    ),
+                                        thickness: 1)),
                                     Row(
                                       children: [
                                         Text(
@@ -281,8 +235,7 @@ class DetailsPendingActivity extends StatelessWidget {
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: accentColor,
-                                              fontSize: 16.sp),
-                                        ),
+                                              fontSize: 16.sp)),
                                         Spacer(),
                                         Text(
                                           overflow: TextOverflow.ellipsis,
@@ -291,18 +244,11 @@ class DetailsPendingActivity extends StatelessWidget {
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: lightBrown,
-                                              fontSize: 16.sp),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                                              fontSize: 16.sp)),
+                                      ]),
+                                  ])))),
                           SizedBox(
-                            height: 20.h,
-                          ),
+                            height: 20.h),
                           arguments['state'] == "Pending"
                               ? Column(
                                   children: [
@@ -328,8 +274,7 @@ class DetailsPendingActivity extends StatelessWidget {
                                                 Image.asset(
                                                     "assets/images/traveller/warining.png"),
                                                 SizedBox(
-                                                  width: 10.w,
-                                                ),
+                                                  width: 10.w),
                                                 Column(
                                                   children: [
                                                     SizedBox(
@@ -339,12 +284,9 @@ class DetailsPendingActivity extends StatelessWidget {
                                                           style: TextStyle(
                                                             fontSize: 14,
                                                             fontWeight:
-                                                                FontWeight.w700,
-                                                          )),
-                                                    ),
+                                                                FontWeight.w700))),
                                                     SizedBox(
-                                                      height: 10.h,
-                                                    ),
+                                                      height: 10.h),
                                                     SizedBox(
                                                       width: 250.w,
                                                       child: Text(
@@ -352,26 +294,16 @@ class DetailsPendingActivity extends StatelessWidget {
                                                           style: TextStyle(
                                                             fontSize: 12,
                                                             fontWeight:
-                                                                FontWeight.w400,
-                                                          )),
-                                                    )
-                                                  ],
-                                                )
-                                              ],
-                                            ),
+                                                                FontWeight.w400)))
+                                                  ])
+                                              ]),
                                             SizedBox(
-                                              height: 20.h,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                              height: 20.h)
+                                          ]))),
                                     SizedBox(
-                                      height: 20.h,
-                                    ),
+                                      height: 20.h),
                                     SizedBox(
-                                      height: 20.h,
-                                    ),
+                                      height: 20.h),
                                     SizedBox(
                                       width: 327.w,
                                       height: 55.h,
@@ -411,14 +343,10 @@ class DetailsPendingActivity extends StatelessWidget {
                                             style: TextStyle(
                                                 fontSize: 16.sp,
                                                 color: accentColor,
-                                                fontWeight: FontWeight.w600),
-                                          )),
-                                    ),
+                                                fontWeight: FontWeight.w600)))),
                                     SizedBox(
-                                      height: 20.h,
-                                    ),
-                                  ],
-                                )
+                                      height: 20.h),
+                                  ])
                               : arguments['state'] == "Upcoming"
                                   ? Column(
                                       children: [
@@ -444,8 +372,7 @@ class DetailsPendingActivity extends StatelessWidget {
                                                           Color>(Colors.white),
                                                   backgroundColor:
                                                       WidgetStateProperty.all<
-                                                          Color>(orange),
-                                                ),
+                                                          Color>(orange)),
                                                 onPressed: () {
                                                   BookingTravellerCubit.get(
                                                           context)
@@ -470,13 +397,9 @@ class DetailsPendingActivity extends StatelessWidget {
                                                       fontSize: 16.sp,
                                                       color: white,
                                                       fontWeight:
-                                                          FontWeight.w600),
-                                                )),
-                                          ),
-                                        ),
+                                                          FontWeight.w600))))),
                                         SizedBox(
-                                          height: 10.h,
-                                        ),
+                                          height: 10.h),
                                         SizedBox(
                                           width: 327.w,
                                           height: 55.h,
@@ -517,11 +440,8 @@ class DetailsPendingActivity extends StatelessWidget {
                                                     fontSize: 16.sp,
                                                     color: accentColor,
                                                     fontWeight:
-                                                        FontWeight.w600),
-                                              )),
-                                        ),
-                                      ],
-                                    )
+                                                        FontWeight.w600)))),
+                                      ])
                                   : arguments['state'] == "Completed"
                                       ? Column(
                                           children: [
@@ -577,20 +497,11 @@ class DetailsPendingActivity extends StatelessWidget {
                                                         fontSize: 16.sp,
                                                         color: accentColor,
                                                         fontWeight:
-                                                            FontWeight.w600),
-                                                  )),
-                                            ),
-                                          ],
-                                        )
+                                                            FontWeight.w600)))),
+                                          ])
                                       : SizedBox.shrink()
-                        ],
-                      ),
-                    ),
-            ),
-          );
-        },
-      ),
-    );
+                        ]))));
+        }));
   }
 }
 
@@ -601,8 +512,7 @@ Widget detailsBooking({required String title, required String title2}) {
         overflow: TextOverflow.ellipsis,
         title.tr(),
         style: TextStyle(
-            fontWeight: FontWeight.w700, color: accentColor, fontSize: 16.sp),
-      ),
+            fontWeight: FontWeight.w700, color: accentColor, fontSize: 16.sp)),
       Spacer(),
       SizedBox(
         child: Text(
@@ -611,9 +521,6 @@ Widget detailsBooking({required String title, required String title2}) {
           style: TextStyle(
               fontWeight: FontWeight.w700,
               color: Color.fromRGBO(5, 10, 42, 1),
-              fontSize: 16.sp),
-        ),
-      ),
-    ],
-  );
+              fontSize: 16.sp))),
+    ]);
 }

@@ -52,19 +52,6 @@ class _TravellerNotificationState extends State<TravellerNotification> {
     }
   }
 
-  DateTime _parseCustomDate(String dateString) {
-    // Convert the month abbreviation to the correct format (capitalize the first letter)
-    dateString = dateString.replaceAllMapped(
-        RegExp(r'\b([A-Z]{3})\b'),
-        (match) =>
-            match.group(0)!.substring(0, 1).toUpperCase() +
-            match.group(0)!.substring(1).toLowerCase());
-
-    // Define the date format based on the expected date string
-    DateFormat dateFormat = DateFormat('dd MMM yyyy hh:mm a');
-    return dateFormat.parse(dateString);
-  }
-
   Future<void> _removeNotification(int index) async {
     // Remove the notification from the list
     setState(() {

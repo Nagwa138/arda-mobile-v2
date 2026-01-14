@@ -1,9 +1,10 @@
-import 'package:PassPort/screens/traveller/booking/accomandation/detailsbooking/detaialsbookingPending.dart';
+﻿import 'package:PassPort/screens/traveller/booking/accomandation/detailsbooking/detaialsbookingPending.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 
@@ -27,13 +28,10 @@ class DetailsBookingUpComing extends StatelessWidget {
               title: Text("booking.Details".tr(),style: TextStyle(
                 color: accentColor,
                 fontSize: 20.sp,
-                fontWeight: FontWeight.w600,
-              ),),
-
-            ),
+                fontWeight: FontWeight.w600))),
             body:
 
-            state is getBookingDetailsLoading ? Center(child: CircularProgressIndicator(color: orange,)):
+            state is getBookingDetailsLoading ? Center(child: CircularProgressIndicator(color: orange)):
             SingleChildScrollView(
               child: Column(
                 children: [
@@ -45,7 +43,7 @@ class DetailsBookingUpComing extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context,index)=>Stack(
                           children: [
-                            Image.network(BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.roomImages![index],width: 375.w,height:300.h,fit: BoxFit.fill,),
+                            CustomImage(BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.roomImages![index],width: 375.w,height:300.h,fit: BoxFit.fill),
                             Padding(
                               padding:  EdgeInsets.only(top: 20.h,right: 10.w,left: 10.w),
                               child: Container(
@@ -63,10 +61,7 @@ class DetailsBookingUpComing extends StatelessWidget {
                                         color: accentColor,
                                         fontSize: 16.sp,
                                         fontWeight: FontWeight.w700
-                                    ),),
-                                ),
-                              ),
-                            ),
+                                    ))))),
                             Positioned(
                               bottom: 5,right: 2,
                               child: Padding(
@@ -83,27 +78,19 @@ class DetailsBookingUpComing extends StatelessWidget {
                                         color: accentColor,
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w700
-                                    ),),
-                                  ),
-                                ),
-                              ),
-                            )
+                                    ))))))
 
-                          ],
-                        )),
-                  ),
-                  SizedBox(height: 20.h,),
+                          ]))),
+                  SizedBox(height: 20.h),
                   Padding(
                     padding:  EdgeInsets.symmetric(horizontal: 15.w),
                     child: Text(
                         BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.serviceName.toString(),
                         style: TextStyle(
                           fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        )
-                    ),
-                  ),
-                  SizedBox(height: 10.h,),
+                          fontWeight: FontWeight.w600)
+                    )),
+                  SizedBox(height: 10.h),
                   Padding(
                     padding:  EdgeInsets.symmetric(horizontal: 15.w),
                     child: Row(children: [
@@ -112,28 +99,25 @@ class DetailsBookingUpComing extends StatelessWidget {
                           fontSize: 14.sp,
                           color: Color.fromRGBO(140, 140, 140, 1),
                           fontWeight: FontWeight.w400
-                      ),),
+                      )),
                       // Text("booking.Egypt".tr(),style: TextStyle(
                       //     fontSize: 14.sp,
                       //     color: Color.fromRGBO(140, 140, 140, 1),
                       //     fontWeight: FontWeight.w400
-                      // ),),
+                      // )),
 
                       Spacer(),
-                      Icon(Icons.star_rounded,color: Colors.amber,size: 20.sp,),
+                      Icon(Icons.star_rounded,color: Colors.amber,size: 20.sp),
                       Text("${BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.rate}",style: TextStyle(
                         fontSize: 12.sp,
                         color:accentColor,
-                        fontWeight: FontWeight.w500,
-
-                      ),),
+                        fontWeight: FontWeight.w500)),
 
 
 
 
-                    ],),
-                  ),
-                  SizedBox(height: 10.h,),
+                    ])),
+                  SizedBox(height: 10.h),
                   Container(
                     width: 327.w,
                     decoration: BoxDecoration(
@@ -149,50 +133,40 @@ class DetailsBookingUpComing extends StatelessWidget {
                               "booking.HostDetails".tr(),
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              )
+                                fontWeight: FontWeight.w600)
                           ),
-                          SizedBox(height: 10.h,),
+                          SizedBox(height: 10.h),
                           Row(
                             children: [
                               Image.asset("assets/images/traveller/location.png"),
-                              SizedBox(width: 5.w,),
+                              SizedBox(width: 5.w),
                               SizedBox(
                                 width: 250.w,
                                 child: Text(
                                     BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.location.toString(),
                                     style: TextStyle(
                                       fontSize: 16.sp,
-                                      fontWeight: FontWeight.w400,
-                                    )
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 10.h,),
+                                      fontWeight: FontWeight.w400)
+                                ))
+                            ]),
+                          SizedBox(height: 10.h),
                           Row(
                             children: [
                               Image.asset("assets/images/traveller/call.png"),
-                              SizedBox(width: 5.w,),
+                              SizedBox(width: 5.w),
                               SizedBox(
                                 width: 250.w,
                                 child: Text(
                                     BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.phone.toString(),
                                     style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                    )
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 10.h,),
+                                      fontWeight: FontWeight.w400)
+                                ))
+                            ]),
+                          SizedBox(height: 10.h),
 
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.h,),
+                        ]))),
+                  SizedBox(height: 10.h),
                   Container(
                     width: 327.w,
                     decoration: BoxDecoration(
@@ -205,11 +179,11 @@ class DetailsBookingUpComing extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           detailsBooking(title: "ProfileGuest.checkIn", title2: "${BookingTravellerCubit.get(context).accomandationDetailsModel?.data!.checkIn.toString()}"),
-                          SizedBox(height: 5.h,),
+                          SizedBox(height: 5.h),
                           detailsBooking(title: "ProfileGuest.checkOut", title2: "${BookingTravellerCubit.get(context).accomandationDetailsModel?.data!.checkOut.toString()}"),
-                          SizedBox(height: 5.h,),
+                          SizedBox(height: 5.h),
                           detailsBooking(title: "ProfileGuest.numberGuests", title2: "${BookingTravellerCubit.get(context).accomandationDetailsModel?.data!.guestNo.toString()}"),
-                          SizedBox(height: 5.h,),
+                          SizedBox(height: 5.h),
                           ListView.separated(
                               shrinkWrap: true,
                               itemBuilder: (context,index)=>Row(
@@ -217,10 +191,9 @@ class DetailsBookingUpComing extends StatelessWidget {
                                 children: [
                                   Text(BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.roomType![index].roomType.toString()),
                                   Text(BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.roomType![index].count.toString()),
-                                ],
-                              ),
+                                ]),
                               separatorBuilder: (context,index)=>SizedBox(height : 5.h), itemCount: BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.roomType!.length),
-                          SizedBox(height: 10.h,),
+                          SizedBox(height: 10.h),
                           GestureDetector(
                             onTap: (){
                               Navigator.pushNamed(context, "getRoomDetails",arguments: {
@@ -230,19 +203,15 @@ class DetailsBookingUpComing extends StatelessWidget {
                             },
                             child: Container(
                                 alignment: Alignment.center,
-                                child: Text("View  Rooms Details",style: TextStyle(decoration: TextDecoration.underline,fontSize: 16.sp,fontWeight: FontWeight.w600),)),
-                          ),
+                                child: Text("View  Rooms Details",style: TextStyle(decoration: TextDecoration.underline,fontSize: 16.sp,fontWeight: FontWeight.w600)))),
 
-                          SizedBox(height: 10.h,),
-
+                          SizedBox(height: 10.h),
 
 
 
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.h,),
+
+                        ]))),
+                  SizedBox(height: 10.h),
                   Container(
                     width: 327.w,
                     decoration: BoxDecoration(
@@ -264,37 +233,31 @@ class DetailsBookingUpComing extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       color: Color.fromRGBO(5, 10, 42, 1),
-                                      fontSize: 14.sp),
-                                ),
-                              ),
+                                      fontSize: 14.sp))),
 
                               Spacer(),
                               Text(
                                 overflow: TextOverflow.ellipsis,
                                 "${BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.pricePerNight.toString()}" + "booking.EGP".tr() + "/" + "Night",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w400,  fontSize: 16.sp),
-                              ),
+                                    fontWeight: FontWeight.w400,  fontSize: 16.sp)),
 
-                            ],
-                          ),
-                          SizedBox(height: 10.h,),
+                            ]),
+                          SizedBox(height: 10.h),
                           Text(
                               "booking.IncludingTax".tr(),
                               style: TextStyle(
                                 fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                              )
+                                fontWeight: FontWeight.w400)
                           ),
-                          SizedBox(height: 20.h,),
+                          SizedBox(height: 20.h),
                           Row(
                             children: [
                               Text(
                                 overflow: TextOverflow.ellipsis,
                                 "booking.Total".tr(),
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w400,  fontSize: 16.sp),
-                              ),
+                                    fontWeight: FontWeight.w400,  fontSize: 16.sp)),
                               Spacer(),
                               Text(
                                 overflow: TextOverflow.ellipsis,
@@ -302,19 +265,14 @@ class DetailsBookingUpComing extends StatelessWidget {
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
 
-                                    fontSize: 16.sp),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 20.h,),
+                                    fontSize: 16.sp)),
+                            ]),
+                          SizedBox(height: 20.h),
 
 
 
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20.h,),
+                        ]))),
+                  SizedBox(height: 20.h),
 
                   Padding(
                     padding:  EdgeInsets.symmetric(horizontal: 20.h),
@@ -331,9 +289,7 @@ class DetailsBookingUpComing extends StatelessWidget {
                                     side: BorderSide(color: accentColor))
                             ),
                             foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
-                            backgroundColor: WidgetStateProperty.all<Color>(accentColor),
-
-                          ),
+                            backgroundColor: WidgetStateProperty.all<Color>(accentColor)),
                           onPressed: (){
                             BookingTravellerCubit.get(context).startPaymentAccomandtion(context: context, id:
                             BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.id.toString()
@@ -343,11 +299,9 @@ class DetailsBookingUpComing extends StatelessWidget {
                               fontSize: 16.sp,
                               color: appBackgroundColor,
                               fontWeight: FontWeight.w600
-                          ),)),
-                    ),
-                  ),
+                          ))))),
 
-                  SizedBox(height: 20.h,),
+                  SizedBox(height: 20.h),
                   SizedBox(
                     width: 327.w,height: 55.h,
                     child: ElevatedButton(
@@ -361,9 +315,7 @@ class DetailsBookingUpComing extends StatelessWidget {
                                   side: BorderSide(color: accentColor))
                           ),
                           foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
-                          backgroundColor: WidgetStateProperty.all<Color>(accentColor),
-
-                        ),
+                          backgroundColor: WidgetStateProperty.all<Color>(accentColor)),
                         onPressed: (){
                           Navigator.pushNamed(context, "cancelReservation",
                           arguments: {
@@ -376,9 +328,8 @@ class DetailsBookingUpComing extends StatelessWidget {
                             fontSize: 16.sp,
                             color: appBackgroundColor,
                             fontWeight: FontWeight.w600
-                        ),)),
-                  ),
-                  SizedBox(height: 20.h,),
+                        )))),
+                  SizedBox(height: 20.h),
 
 
 
@@ -390,15 +341,8 @@ class DetailsBookingUpComing extends StatelessWidget {
 
 
 
-                ],
-              ),
-            ),
-
-          );
-        },
-       
-      ),
-    );
+                ])));
+        }));
   }
 }
 // Widget detailsBooking({required String title, required String title2}) {

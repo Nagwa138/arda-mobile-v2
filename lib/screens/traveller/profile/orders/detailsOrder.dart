@@ -1,8 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
+﻿import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_state.dart';
 
@@ -32,13 +33,9 @@ class OrderDetails extends StatelessWidget {
                   style: TextStyle(
                     color: accentColor,
                     fontSize: 20.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-
-              ),
+                    fontWeight: FontWeight.w600))),
               body:
-              state is GetDetailsLoading ? Center(child: CircularProgressIndicator(color: accentColor,)) :
+              state is GetDetailsLoading ? Center(child: CircularProgressIndicator(color: accentColor)) :
               ListView.separated(itemBuilder: (context,index)=>Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
@@ -48,83 +45,64 @@ class OrderDetails extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.r),
-                        color: Color(0xFFF7F7F7),
-                      ),
+                        color: Color(0xFFF7F7F7)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(15.r),
-                            child: Image.network(
+                            child: CustomImage(
                               ProductCubit.get(context).orderDetails!.data![index].image.toString(),
                               width: 1.sw,
                               height: 200.h,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                              fit: BoxFit.cover)),
                           SizedBox(
-                            height: 10.h,
-                          ),
+                            height: 10.h),
                           Text(ProductCubit.get(context).orderDetails!.data![index].category.toString(),
                               style: TextStyle(
                                 fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                              )),
+                                fontWeight: FontWeight.w400)),
                           SizedBox(
-                            height: 5.h,
-                          ),
+                            height: 5.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(ProductCubit.get(context).orderDetails!.data![index].productName.toString(),
                                   style: TextStyle(
                                     fontSize: 18.sp,
-                                    fontWeight: FontWeight.w600,
-                                  )),
+                                    fontWeight: FontWeight.w600)),
                               Row(
                                 children: [
                                   Icon(
                                     Icons.star,
-                                    color: Colors.amber,
-                                  ),
+                                    color: Colors.amber),
                                   Text(
                                     ProductCubit.get(context).orderDetails!.data![index].rate.toString(),
                                     style: TextStyle(
                                       fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
+                                      fontWeight: FontWeight.w500))
+                                ])
+                            ]),
                           SizedBox(
-                            height: 10.h,
-                          ),
+                            height: 10.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text("products.amount".tr(),
                                   style: TextStyle(
                                     fontSize: 18.sp,
-                                    fontWeight: FontWeight.w600,
-                                  )),
+                                    fontWeight: FontWeight.w600)),
                               Row(
                                 children: [
                                   Text(
                                     ProductCubit.get(context).orderDetails!.data![index].payedAmount.toString(),
                                     style: TextStyle(
                                       fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
+                                      fontWeight: FontWeight.w500))
+                                ])
+                            ]),
                           SizedBox(
-                            height: 10.h,
-                          ),
+                            height: 10.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -132,29 +110,22 @@ class OrderDetails extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.home_work_outlined,
-                                    color: orange,
-                                  ),
+                                    color: orange),
                                   SizedBox(
-                                    width: 5.w,
-                                  ),
+                                    width: 5.w),
                                   Text(ProductCubit.get(context).orderDetails!.data![index].store.toString(),
                                       style: TextStyle(
                                         fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ))
-                                ],
-                              ),
+                                        fontWeight: FontWeight.w500))
+                                ]),
                               Text(ProductCubit.get(context).orderDetails!.data![index].price.toString() + "booking.EGP".tr(),
                                   style: TextStyle(
                                     fontSize: 16.sp,
                                     color: accentColor,
-                                    fontWeight: FontWeight.w600,
-                                  ))
-                            ],
-                          ),
+                                    fontWeight: FontWeight.w600))
+                            ]),
                           SizedBox(
-                            height: 10.h,
-                          ),
+                            height: 10.h),
                           SizedBox(
                             width: 350.w,
                             height: 55.h,
@@ -163,8 +134,7 @@ class OrderDetails extends StatelessWidget {
                                   shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0), side: BorderSide(color: orange))),
                                   foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
-                                  backgroundColor: WidgetStateProperty.all<Color>(accentColor),
-                                ),
+                                  backgroundColor: WidgetStateProperty.all<Color>(accentColor)),
                                 onPressed: (){
                                   Navigator.pushNamed(context, 'reviewBooking',arguments: {
                                     'id' : ProductCubit.get(context).orderDetails!.data![index].id.toString(),
@@ -178,28 +148,16 @@ class OrderDetails extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     SizedBox(
-                                      width: 5.w,
-                                    ),
+                                      width: 5.w),
                                     Text(
                                       "travellerOrders.btn1".tr(),
-                                      style: TextStyle(fontSize: 16.sp, color: white, fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
-                                )),
-                          ),
+                                      style: TextStyle(fontSize: 16.sp, color: white, fontWeight: FontWeight.w600)),
+                                  ]))),
                           SizedBox(
-                            height: 10.h,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ), separatorBuilder: (context,index)=>SizedBox(height: 10.h,), itemCount: ProductCubit.get(context).orderDetails!.data!.length)
+                            height: 10.h),
+                        ])),
+                  ])), separatorBuilder: (context,index)=>SizedBox(height: 10.h), itemCount: ProductCubit.get(context).orderDetails!.data!.length)
           );
-        },
-
-      ),
-    );
+        }));
   }
 }

@@ -21,8 +21,6 @@ class _PartnerRegisterScreenState extends State<PartnerRegisterScreen> {
   final _companyNameController = TextEditingController();
   final _emailController = TextEditingController();
 
-  String? _selectedGovernmentId;
-
   @override
   void initState() {
     super.initState();
@@ -428,14 +426,14 @@ class _PartnerRegisterScreenState extends State<PartnerRegisterScreen> {
         gradient: LinearGradient(
           colors: [
             AppColors.buttonColor,
-            AppColors.buttonColor.withValues(alpha:0.8),
+            AppColors.buttonColor.withValues(alpha: 0.8),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.buttonColor.withValues(alpha:0.3),
+            color: AppColors.buttonColor.withValues(alpha: 0.3),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),

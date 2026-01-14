@@ -1,5 +1,6 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/widgets/customButton/customButton.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
@@ -28,13 +29,11 @@ class Cancelled extends StatelessWidget {
                 .getAllBooking(state: "0", serviceName: "accommodations");
             context.showCustomSnackBar(
               "Successful",
-              type: SnackBarType.success,
-            );
+              type: SnackBarType.success);
           } else if (state is BookingAgainRoomsError) {
             context.showCustomSnackBar(
               state.error,
-              type: SnackBarType.error,
-            );
+              type: SnackBarType.error);
           }
         },
         builder: (context, state) {
@@ -55,30 +54,22 @@ class Cancelled extends StatelessWidget {
                     Icon(
                       Icons.cancel_outlined,
                       size: 80.sp,
-                      color: Colors.grey[400],
-                    ),
+                      color: Colors.grey[400]),
                     SizedBox(height: 20.h),
                     Text(
                       "No Cancelled Bookings",
                       style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,
-                        color: Colors.grey[700],
-                      ),
-                    ),
+                        color: Colors.grey[700])),
                     SizedBox(height: 8.h),
                     Text(
                       "You don't have any cancelled bookings",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 14.sp,
-                        color: Colors.grey[500],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
+                        color: Colors.grey[500])),
+                  ])));
           }
 
           return ListView.separated(
@@ -118,19 +109,17 @@ class Cancelled extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      Image.network(
+                                      CustomImage(
                                         BookingTravellerCubit.get(context)
                                             .cancel!
                                             .data![index]
                                             .image
-                                            .toString(),
+                                            ?.toString(),
                                         width: 99.w,
                                         height: 107.h,
-                                        fit: BoxFit.fill,
-                                      ),
+                                        fit: BoxFit.fill),
                                       SizedBox(
-                                        width: 20.w,
-                                      ),
+                                        width: 20.w),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -146,12 +135,9 @@ class Cancelled extends StatelessWidget {
                                               style: TextStyle(
                                                   fontSize: 16.sp,
                                                   color: accentColor,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          ),
+                                                  fontWeight: FontWeight.w600))),
                                           SizedBox(
-                                            height: 5.h,
-                                          ),
+                                            height: 5.h),
                                           Row(
                                             children: [
                                               Image.asset(
@@ -169,20 +155,16 @@ class Cancelled extends StatelessWidget {
                                                     color: Color.fromRGBO(
                                                         140, 140, 140, 1),
                                                     fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            ],
-                                          ),
+                                                        FontWeight.w400)),
+                                            ]),
                                           SizedBox(
-                                            height: 5.h,
-                                          ),
+                                            height: 5.h),
                                           Row(
                                             children: [
                                               Icon(
                                                 Icons.date_range_outlined,
                                                 color: orange,
-                                                size: 18.sp,
-                                              ),
+                                                size: 18.sp),
                                               SizedBox(
                                                 width: 130.w,
                                                 child: Text(
@@ -197,14 +179,10 @@ class Cancelled extends StatelessWidget {
                                                       color: Color.fromRGBO(
                                                           140, 140, 140, 1),
                                                       fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                                          FontWeight.w400))),
+                                            ]),
                                           SizedBox(
-                                            height: 5.h,
-                                          ),
+                                            height: 5.h),
                                           Row(
                                             children: [
                                               Text(
@@ -220,31 +198,23 @@ class Cancelled extends StatelessWidget {
                                                     fontSize: 14.sp,
                                                     color: accentColor,
                                                     fontWeight:
-                                                        FontWeight.w400),
-                                              ),
+                                                        FontWeight.w400)),
                                               SizedBox(
-                                                width: 6.w,
-                                              ),
+                                                width: 6.w),
                                               Text(
                                                 "booking.Nigth".tr(),
                                                 style: TextStyle(
                                                     fontSize: 14.sp,
                                                     color: accentColor,
                                                     fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                                        FontWeight.w600)),
+                                            ]),
+                                        ]),
+                                    ]),
                                   SizedBox(
-                                    height: 5.h,
-                                  ),
+                                    height: 5.h),
                                   Divider(
-                                    color: Color.fromRGBO(224, 224, 224, 1),
-                                  ),
+                                    color: Color.fromRGBO(224, 224, 224, 1)),
                                   CustomButton(
                                       height: 40.h,
                                       function: () {
@@ -260,28 +230,17 @@ class Cancelled extends StatelessWidget {
                                       text: "booking.BookAgain".tr(),
                                       width: 303.w),
                                   SizedBox(
-                                    height: 10.h,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                                    height: 10.h)
+                                ])),
+                          ]))),
                     SizedBox(
-                      height: 10.h,
-                    ),
-                  ],
-                );
+                      height: 10.h),
+                  ]);
               },
               separatorBuilder: (context, index) => SizedBox(
-                    height: 5.h,
-                  ),
+                    height: 5.h),
               itemCount:
                   BookingTravellerCubit.get(context).cancel!.data!.length);
-        },
-      ),
-    );
+        }));
   }
 }

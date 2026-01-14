@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -37,30 +38,22 @@ class PendingActivity extends StatelessWidget {
                     Icon(
                       Icons.calendar_today_outlined,
                       size: 80.sp,
-                      color: Colors.grey[400],
-                    ),
+                      color: Colors.grey[400]),
                     SizedBox(height: 20.h),
                     Text(
                       "No Pending Activities",
                       style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,
-                        color: Colors.grey[700],
-                      ),
-                    ),
+                        color: Colors.grey[700])),
                     SizedBox(height: 8.h),
                     Text(
                       "You don't have any pending activity bookings",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 14.sp,
-                        color: Colors.grey[500],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
+                        color: Colors.grey[500])),
+                  ])));
           }
 
           return ListView.separated(
@@ -100,27 +93,17 @@ class PendingActivity extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      Image.network(
+                                      CustomImage(
                                         BookingTravellerCubit.get(context)
                                             .pendingActivity!
                                             .data![index]
                                             .image
-                                            .toString(),
+                                            ?.toString(),
                                         width: 99.w,
                                         height: 107.h,
-                                        fit: BoxFit.fill,
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                          return Icon(
-                                            Icons.error,
-                                            size: 100.sp,
-                                            color: Colors.grey[400],
-                                          );
-                                        },
-                                      ),
+                                        fit: BoxFit.fill),
                                       SizedBox(
-                                        width: 20.w,
-                                      ),
+                                        width: 20.w),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -135,20 +118,16 @@ class PendingActivity extends StatelessWidget {
                                               style: TextStyle(
                                                   fontSize: 14.sp,
                                                   color: accentColor,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            width: 150.w,
-                                          ),
+                                                  fontWeight: FontWeight.w600)),
+                                            width: 150.w),
                                           SizedBox(
-                                            height: 5.h,
-                                          ),
+                                            height: 5.h),
                                           Row(
                                             children: [
                                               Image.asset(
                                                 "assets/images/landingHome/location.png",
                                                 color: Color.fromRGBO(
-                                                    0, 86, 79, 1),
-                                              ),
+                                                    0, 86, 79, 1)),
                                               SizedBox(
                                                 width: 90.w,
                                                 child: Text(
@@ -158,9 +137,7 @@ class PendingActivity extends StatelessWidget {
                                                       color: Color.fromRGBO(
                                                           140, 140, 140, 1),
                                                       fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ),
+                                                          FontWeight.w400))),
                                               SizedBox(
                                                 width: 90.w,
                                                 child: Text(
@@ -170,9 +147,7 @@ class PendingActivity extends StatelessWidget {
                                                       color: Color.fromRGBO(
                                                           140, 140, 140, 1),
                                                       fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ),
+                                                          FontWeight.w400))),
                                               Text(
                                                 BookingTravellerCubit.get(
                                                         context)
@@ -185,18 +160,14 @@ class PendingActivity extends StatelessWidget {
                                                     color: Color.fromRGBO(
                                                         140, 140, 140, 1),
                                                     fontWeight:
-                                                        FontWeight.w400),
-                                              ),
+                                                        FontWeight.w400)),
                                               Icon(
                                                 Icons.star,
                                                 color: Colors.yellow,
-                                                size: 16.sp,
-                                              )
-                                            ],
-                                          ),
+                                                size: 16.sp)
+                                            ]),
                                           SizedBox(
-                                            height: 15.h,
-                                          ),
+                                            height: 15.h),
                                           Row(
                                             children: [
                                               Text(
@@ -212,11 +183,9 @@ class PendingActivity extends StatelessWidget {
                                                     color: Color.fromRGBO(
                                                         0, 86, 79, 1),
                                                     fontWeight:
-                                                        FontWeight.w400),
-                                              ),
+                                                        FontWeight.w400)),
                                               SizedBox(
-                                                width: 3.w,
-                                              ),
+                                                width: 3.w),
                                               Text(
                                                 "booking.Nigth".tr(),
                                                 style: TextStyle(
@@ -224,20 +193,14 @@ class PendingActivity extends StatelessWidget {
                                                     color: Color.fromRGBO(
                                                         0, 86, 79, 1),
                                                     fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                                        FontWeight.w600)),
+                                            ]),
+                                        ]),
+                                    ]),
                                   SizedBox(
-                                    height: 5.h,
-                                  ),
+                                    height: 5.h),
                                   Divider(
-                                    color: Color.fromRGBO(224, 224, 224, 1),
-                                  ),
+                                    color: Color.fromRGBO(224, 224, 224, 1)),
                                   Row(
                                     children: [
                                       Expanded(
@@ -277,40 +240,25 @@ class PendingActivity extends StatelessWidget {
                                               style: TextStyle(
                                                   fontSize: 10.sp,
                                                   color: accentColor,
-                                                  fontWeight: FontWeight.w600),
-                                            )),
-                                      ),
+                                                  fontWeight: FontWeight.w600)))),
                                       SizedBox(
-                                        width: 5.w,
-                                      ),
-                                    ],
-                                  ),
+                                        width: 5.w),
+                                    ]),
                                   SizedBox(
-                                    height: 10.h,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                                    height: 10.h)
+                                ])),
+                          ]))),
                     SizedBox(
-                      height: 10.h,
-                    ),
-                  ],
-                );
+                      height: 10.h),
+                  ]);
               },
               separatorBuilder: (context, index) => SizedBox(
-                    height: 5.h,
-                  ),
+                    height: 5.h),
               itemCount: BookingTravellerCubit.get(context)
                       .pendingActivity
                       ?.data!
                       .length ??
                   0);
-        },
-      ),
-    );
+        }));
   }
 }

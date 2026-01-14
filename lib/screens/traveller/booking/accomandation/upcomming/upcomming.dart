@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -34,30 +35,22 @@ class UpComing extends StatelessWidget {
                     Icon(
                       Icons.upcoming_outlined,
                       size: 80.sp,
-                      color: Colors.grey[400],
-                    ),
+                      color: Colors.grey[400]),
                     SizedBox(height: 20.h),
                     Text(
                       "No Upcoming Bookings",
                       style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,
-                        color: Colors.grey[700],
-                      ),
-                    ),
+                        color: Colors.grey[700])),
                     SizedBox(height: 8.h),
                     Text(
                       "You don't have any upcoming bookings",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 14.sp,
-                        color: Colors.grey[500],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
+                        color: Colors.grey[500])),
+                  ])));
           }
 
           return ListView.separated(
@@ -96,20 +89,17 @@ class UpComing extends StatelessWidget {
                                   horizontal: 20.w, vertical: 10.h),
                               child: Row(
                                 children: [
-                                  Image.network(
+                                  CustomImage(
                                     BookingTravellerCubit.get(context)
-                                            .upComing
-                                            ?.data?[index]
-                                            .image
-                                            ?.toString() ??
-                                        "N/M",
+                                        .upComing
+                                        ?.data?[index]
+                                        .image
+                                        ?.toString(),
                                     width: 99.w,
                                     height: 107.h,
-                                    fit: BoxFit.contain,
-                                  ),
+                                    fit: BoxFit.contain),
                                   SizedBox(
-                                    width: 20.w,
-                                  ),
+                                    width: 20.w),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -126,12 +116,9 @@ class UpComing extends StatelessWidget {
                                           style: TextStyle(
                                               fontSize: 16.sp,
                                               color: accentColor,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
+                                              fontWeight: FontWeight.w600))),
                                       SizedBox(
-                                        height: 5.h,
-                                      ),
+                                        height: 5.h),
                                       Row(
                                         children: [
                                           Image.asset(
@@ -149,12 +136,9 @@ class UpComing extends StatelessWidget {
                                                   fontSize: 14.sp,
                                                   color: Color.fromRGBO(
                                                       140, 140, 140, 1),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ),
+                                                  fontWeight: FontWeight.w400))),
                                           SizedBox(
-                                            width: 10.w,
-                                          ),
+                                            width: 10.w),
                                           SizedBox(
                                             width: 100,
                                             child: Text(
@@ -168,21 +152,16 @@ class UpComing extends StatelessWidget {
                                                   fontSize: 14.sp,
                                                   color: Color.fromRGBO(
                                                       140, 140, 140, 1),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                                  fontWeight: FontWeight.w400))),
+                                        ]),
                                       SizedBox(
-                                        height: 5.h,
-                                      ),
+                                        height: 5.h),
                                       Row(
                                         children: [
                                           Icon(
                                             Icons.date_range_outlined,
                                             color: accentColor,
-                                            size: 18.sp,
-                                          ),
+                                            size: 18.sp),
                                           SizedBox(
                                             width: 130.w,
                                             child: Text(
@@ -196,14 +175,10 @@ class UpComing extends StatelessWidget {
                                                   fontSize: 14.sp,
                                                   color: Color.fromRGBO(
                                                       140, 140, 140, 1),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                                  fontWeight: FontWeight.w400))),
+                                        ]),
                                       SizedBox(
-                                        height: 5.h,
-                                      ),
+                                        height: 5.h),
                                       Row(
                                         children: [
                                           Text(
@@ -216,31 +191,22 @@ class UpComing extends StatelessWidget {
                                             style: TextStyle(
                                                 fontSize: 14.sp,
                                                 color: accentColor,
-                                                fontWeight: FontWeight.w400),
-                                          ),
+                                                fontWeight: FontWeight.w400)),
                                           SizedBox(
-                                            width: 3.w,
-                                          ),
+                                            width: 3.w),
                                           Text(
                                             " / " + "booking.Nigth".tr(),
                                             style: TextStyle(
                                                 fontSize: 14.sp,
                                                 color: accentColor,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                                                fontWeight: FontWeight.w600)),
+                                        ]),
+                                    ]),
+                                ])),
                             SizedBox(
-                              height: 10.h,
-                            ),
+                              height: 10.h),
                             SizedBox(
-                              width: 5.w,
-                            ),
+                              width: 5.w),
                             Row(
                               children: [
                                 Expanded(
@@ -286,11 +252,7 @@ class UpComing extends StatelessWidget {
                                             style: TextStyle(
                                                 fontSize: 10.sp,
                                                 color: accentColor,
-                                                fontWeight: FontWeight.w600),
-                                          )),
-                                    ),
-                                  ),
-                                ),
+                                                fontWeight: FontWeight.w600)))))),
                                 Expanded(
                                   flex: 2,
                                   child: Padding(
@@ -314,8 +276,7 @@ class UpComing extends StatelessWidget {
                                                     Colors.white),
                                             backgroundColor:
                                                 WidgetStateProperty.all<Color>(
-                                                    accentColor),
-                                          ),
+                                                    accentColor)),
                                           onPressed: () {
                                             BookingTravellerCubit.get(context)
                                                 .startPaymentAccomandtion(
@@ -338,30 +299,17 @@ class UpComing extends StatelessWidget {
                                             style: TextStyle(
                                                 fontSize: 10.sp,
                                                 color: white,
-                                                fontWeight: FontWeight.w600),
-                                          )),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                                                fontWeight: FontWeight.w600)))))),
+                              ]),
+                          ]))),
                     SizedBox(
-                      height: 10.h,
-                    ),
-                  ],
-                );
+                      height: 10.h),
+                  ]);
               },
               separatorBuilder: (context, index) => SizedBox(
-                    height: 5.h,
-                  ),
+                    height: 5.h),
               itemCount:
                   BookingTravellerCubit.get(context).upComing!.data!.length);
-        },
-      ),
-    );
+        }));
   }
 }

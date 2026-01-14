@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -23,8 +24,7 @@ class ViewRoomDetailsBooking extends StatelessWidget {
             backgroundColor: appBackgroundColor,
             appBar: AppBar(
               backgroundColor: appBackgroundColor,
-              title: Text("Booked room details"),
-            ),
+              title: Text("Booked room details")),
             body:
             state is getRoomDetailsLoading ? Center(child: CircularProgressIndicator()) :
             ListView.separated(
@@ -51,7 +51,7 @@ class ViewRoomDetailsBooking extends StatelessWidget {
                             itemBuilder: (context, indexImage) =>
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(10.r),
-                                  child: Image.network(
+                                  child: CustomImage(
 
                                     BookingTravellerCubit.get(context)
                                         .getBookingRoomModelDetails!
@@ -59,22 +59,17 @@ class ViewRoomDetailsBooking extends StatelessWidget {
                                         .roomImages![indexImage]
                                         .toString(),
                                     width: 200.w,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                    fit: BoxFit.cover)),
                             separatorBuilder: (context, index) =>
                                 SizedBox(
-                                  width: 10.w,
-                                ),
+                                  width: 10.w),
                             itemCount:
                             BookingTravellerCubit.get(context)
                                 .getBookingRoomModelDetails!
                                 .data![index]
                                 .roomImages
                                 ?.length ??
-                                0,
-                          ),
-                        ),
+                                0)),
                         SizedBox(height: 10.h),
 
                         Row(
@@ -84,9 +79,7 @@ class ViewRoomDetailsBooking extends StatelessWidget {
                               style: TextStyle(
                                 color: black,
                                 fontSize: 16.sp,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
+                                fontWeight: FontWeight.w700)),
                             Spacer(),
                             Text(
                               BookingTravellerCubit.get(context)
@@ -97,12 +90,9 @@ class ViewRoomDetailsBooking extends StatelessWidget {
                               style: TextStyle(
                                 color: accentColor,
                                 fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
+                                fontWeight: FontWeight.w400)),
 
-                          ],
-                        ),
+                          ]),
                         SizedBox(height: 10.h),
                         Row(
                           children: [
@@ -116,23 +106,18 @@ class ViewRoomDetailsBooking extends StatelessWidget {
                               style: TextStyle(
                                 color: accentColor,
                                 fontSize: 16.sp,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
+                                fontWeight: FontWeight.w700)),
                             Spacer(),
                             Text(
                               "availableRooms.for".tr(),
                               style: TextStyle(
                                 color: accentColor,
                                 fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
+                                fontWeight: FontWeight.w400)),
                             SizedBox(width: 5.w),
 
                             Icon(Icons.person)
-                          ],
-                        ),
+                          ]),
                         SizedBox(height: 10.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -147,22 +132,15 @@ class ViewRoomDetailsBooking extends StatelessWidget {
                                     style: TextStyle(
                                       color: accentColor,
                                       fontSize: 16.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
+                                      fontWeight: FontWeight.w400)),
                                   TextSpan(
                                     text: 'addService.3.night'.tr(),
                                     style: TextStyle(
                                       color: accentColor,
                                       fontSize: 16.sp,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                                      fontWeight: FontWeight.w700)),
+                                ])),
+                          ]),
                         SizedBox(height: 10.h),
                         Row(
                           children: [
@@ -171,9 +149,7 @@ class ViewRoomDetailsBooking extends StatelessWidget {
                               style: TextStyle(
                                 color: accentColor,
                                 fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                                fontWeight: FontWeight.w600)),
                             Spacer(),
                             Text(
                               BookingTravellerCubit.get(context)
@@ -188,11 +164,8 @@ class ViewRoomDetailsBooking extends StatelessWidget {
                               style: TextStyle(
                                 color: accentColor,
                                 fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
+                                fontWeight: FontWeight.w600)),
+                          ]),
                         SizedBox(height: 10.h),
                         BookingTravellerCubit.get(
                             context)
@@ -206,26 +179,13 @@ class ViewRoomDetailsBooking extends StatelessWidget {
                             style: TextStyle(
                               color: accentColor,
                               fontSize: 14.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ) : SizedBox.shrink()
+                              fontWeight: FontWeight.w600))) : SizedBox.shrink()
 
 
-                      ],
-
-
-                    ),
-                  ),
-                ),
-              ), separatorBuilder: (context,index)=>SizedBox(height: 20.h,), itemCount:   BookingTravellerCubit.get(context)
+                      ])))), separatorBuilder: (context,index)=>SizedBox(height: 20.h), itemCount:   BookingTravellerCubit.get(context)
                 .getBookingRoomModelDetails!
                 .data!
-                .length,),
-          );
-        },
-
-      ),
-    );
+                .length));
+        }));
   }
 }

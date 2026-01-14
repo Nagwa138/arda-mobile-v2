@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/accomadationType_cubit/accomadtion_type_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/accomadationType_cubit/acommedtion_type_state.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/favourite_cubit/favourite_cubit.dart';
@@ -37,10 +38,7 @@ class DetailsFavorite extends StatelessWidget {
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("assets/images/background.jpeg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                        fit: BoxFit.cover))),
                   Scaffold(
                       backgroundColor: Colors.transparent,
                       appBar: AppBar(
@@ -54,14 +52,12 @@ class DetailsFavorite extends StatelessWidget {
                     title: Text("Camps And Glamps",
                         style: TextStyle(
                           fontSize: 20.sp,
-                          fontWeight: FontWeight.w600,
-                        )),
+                          fontWeight: FontWeight.w600)),
                     leading: IconButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.arrow_back_ios)),
-                  ),
+                        icon: Icon(Icons.arrow_back_ios))),
                   body: emptyFavourites
                       ? Center(
                           child: Column(
@@ -75,18 +71,13 @@ class DetailsFavorite extends StatelessWidget {
                                 style: TextStyle(
                                   color: const Color.fromRGBO(21, 11, 61, 1),
                                   fontSize: 24.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              )
-                            ],
-                          ),
-                        )
+                                  fontWeight: FontWeight.w400))
+                            ]))
                       : state is GetAllFavouriteLoading
                           ? Center(
                               child: Center(
                                   child: CircularProgressIndicator(
-                              color: orange,
-                            )))
+                              color: orange)))
                           : FavouriteCubit.get(context)
                                   .accomandation!
                                   .data!
@@ -102,21 +93,15 @@ class DetailsFavorite extends StatelessWidget {
                                         Icon(
                                           Icons.favorite_outline,
                                           color: orange,
-                                          size: 150.sp,
-                                        ),
+                                          size: 150.sp),
                                         Text(
                                           textAlign: TextAlign.center,
-                                          "You haven’t any Camps And Glamps  Now",
+                                          "You havenâ€™t any Camps And Glamps  Now",
                                           style: TextStyle(
                                             color: accentColor,
                                             fontSize: 22.sp,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                            fontWeight: FontWeight.w400))
+                                      ])))
                               : ListView.separated(
                                   //physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
@@ -166,7 +151,7 @@ class DetailsFavorite extends StatelessWidget {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(25.r),
-                                                        child: Image.network(
+                                                        child: CustomImage(
                                                           FavouriteCubit.get(
                                                                   context)
                                                               .accomandation!
@@ -175,29 +160,9 @@ class DetailsFavorite extends StatelessWidget {
                                                               .toString(),
                                                           width: 99.w,
                                                           height: 114.h,
-                                                          fit: BoxFit.fill,
-                                                          errorBuilder:
-                                                              (context, error,
-                                                                  stackTrace) {
-                                                            return Container(
-                                                              width: 99.w,
-                                                              height: 114.h,
-                                                              color: Colors
-                                                                  .grey[300],
-                                                              child: Icon(
-                                                                Icons
-                                                                    .broken_image,
-                                                                color: Colors
-                                                                    .grey[600],
-                                                                size: 40.sp,
-                                                              ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
+                                                          fit: BoxFit.fill)),
                                                       SizedBox(
-                                                        width: 5.w,
-                                                      ),
+                                                        width: 5.w),
                                                       Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -219,12 +184,9 @@ class DetailsFavorite extends StatelessWidget {
                                                                       accentColor,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w600),
-                                                            ),
-                                                          ),
+                                                                          .w600))),
                                                           SizedBox(
-                                                            height: 5.h,
-                                                          ),
+                                                            height: 5.h),
                                                           Row(
                                                             children: [
                                                               Image.asset(
@@ -250,9 +212,7 @@ class DetailsFavorite extends StatelessWidget {
                                                                           1),
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w400),
-                                                                ),
-                                                              ),
+                                                                              .w400))),
                                                               SizedBox(
                                                                 width: 60.w,
                                                                 child: Text(
@@ -274,18 +234,14 @@ class DetailsFavorite extends StatelessWidget {
                                                                           1),
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w400),
-                                                                ),
-                                                              ),
+                                                                              .w400))),
                                                               SizedBox(
-                                                                width: 30.w,
-                                                              ),
+                                                                width: 30.w),
                                                               Icon(
                                                                 Icons
                                                                     .star_rate_rounded,
                                                                 color: Colors
-                                                                    .amber,
-                                                              ),
+                                                                    .amber),
                                                               Text(
                                                                   FavouriteCubit
                                                                           .get(
@@ -303,13 +259,10 @@ class DetailsFavorite extends StatelessWidget {
                                                                         accentColor,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w500,
-                                                                  ))
-                                                            ],
-                                                          ),
+                                                                            .w500))
+                                                            ]),
                                                           SizedBox(
-                                                            height: 5.h,
-                                                          ),
+                                                            height: 5.h),
                                                           Row(
                                                             children: [
                                                               SizedBox(
@@ -331,12 +284,9 @@ class DetailsFavorite extends StatelessWidget {
                                                                           accentColor,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w400),
-                                                                ),
-                                                              ),
+                                                                              .w400))),
                                                               SizedBox(
-                                                                width: 3.w,
-                                                              ),
+                                                                width: 3.w),
                                                               SizedBox(
                                                                 width: 65.w,
                                                                 child: Text(
@@ -350,12 +300,9 @@ class DetailsFavorite extends StatelessWidget {
                                                                           accentColor,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w600),
-                                                                ),
-                                                              ),
+                                                                              .w600))),
                                                               SizedBox(
-                                                                width: 30,
-                                                              ),
+                                                                width: 30),
                                                               IconButton(
                                                                   onPressed:
                                                                       () {
@@ -377,38 +324,23 @@ class DetailsFavorite extends StatelessWidget {
                                                                     Icons
                                                                         .favorite,
                                                                     color: Colors
-                                                                        .red,
-                                                                  ))
-                                                            ],
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    );
+                                                                        .red))
+                                                            ])
+                                                        ])
+                                                    ])),
+                                              ]))),
+                                      ]);
                                   },
                                   separatorBuilder: (context, index) =>
                                       SizedBox(
-                                        height: 15.h,
-                                      ),
+                                        height: 15.h),
                                   itemCount: FavouriteCubit.get(context)
                                       .accomandation!
                                       .data!
-                                      .length),
-                ),
-                ],
-              );
-            },
-          );
-        },
-      ),
-    );
+                                      .length)),
+                ]);
+            });
+        }));
   }
 }
 // /*

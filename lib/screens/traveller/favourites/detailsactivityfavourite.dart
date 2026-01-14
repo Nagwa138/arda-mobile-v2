@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/activity_cubit/activity_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/activity_cubit/activity_stata.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/favourite_cubit/favourite_cubit.dart';
@@ -39,10 +40,7 @@ class DetailsActivityFavourite extends StatelessWidget {
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage("assets/images/background.jpeg"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                          fit: BoxFit.cover))),
                     Scaffold(
                       backgroundColor: Colors.transparent,
                       appBar: AppBar(
@@ -52,20 +50,17 @@ class DetailsActivityFavourite extends StatelessWidget {
                         title: Text("Adventure",
                             style: TextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                            )),
+                              fontWeight: FontWeight.w600)),
                         leading: IconButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: Icon(Icons.arrow_back_ios)),
-                      ),
+                            icon: Icon(Icons.arrow_back_ios))),
                       body: state is GetAllFavouriteLoading
                           ? Center(
                               child: Center(
                                   child: CircularProgressIndicator(
-                              color: orange,
-                            )))
+                              color: orange)))
                           : FavouriteCubit.get(context).activity!.data!.isEmpty
                               ? Center(
                                   child: Padding(
@@ -78,21 +73,15 @@ class DetailsActivityFavourite extends StatelessWidget {
                                         Icon(
                                           Icons.favorite_outline,
                                           color: orange,
-                                          size: 150.sp,
-                                        ),
+                                          size: 150.sp),
                                         Text(
                                           textAlign: TextAlign.center,
-                                          "You haven’t any Adventure Now",
+                                          "You havenâ€™t any Adventure Now",
                                           style: TextStyle(
                                             color: accentColor,
                                             fontSize: 22.sp,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                            fontWeight: FontWeight.w400))
+                                      ])))
                               : ListView.separated(
                                   //physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
@@ -156,7 +145,7 @@ class DetailsActivityFavourite extends StatelessWidget {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(25.r),
-                                                        child: Image.network(
+                                                        child: CustomImage(
                                                           FavouriteCubit.get(
                                                                   context)
                                                               .activity!
@@ -168,29 +157,9 @@ class DetailsActivityFavourite extends StatelessWidget {
                                                           fit: BoxFit.fill,
                                                           color: accentColor
                                                               .withValues(
-                                                                  alpha: 0.2),
-                                                          errorBuilder:
-                                                              (context, error,
-                                                                  stackTrace) {
-                                                            return Container(
-                                                              width: 99.w,
-                                                              height: 114.h,
-                                                              color: Colors
-                                                                  .grey[300],
-                                                              child: Icon(
-                                                                Icons
-                                                                    .broken_image,
-                                                                color: Colors
-                                                                    .grey[600],
-                                                                size: 40.sp,
-                                                              ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
+                                                                  alpha: 0.2))),
                                                       SizedBox(
-                                                        width: 5.w,
-                                                      ),
+                                                        width: 5.w),
                                                       Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -212,12 +181,9 @@ class DetailsActivityFavourite extends StatelessWidget {
                                                                       accentColor,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w600),
-                                                            ),
-                                                          ),
+                                                                          .w600))),
                                                           SizedBox(
-                                                            height: 5.h,
-                                                          ),
+                                                            height: 5.h),
                                                           Row(
                                                             children: [
                                                               Image.asset(
@@ -238,9 +204,7 @@ class DetailsActivityFavourite extends StatelessWidget {
                                                                           1),
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w400),
-                                                                ),
-                                                              ),
+                                                                              .w400))),
                                                               SizedBox(
                                                                 width: 60.w,
                                                                 child: Text(
@@ -256,18 +220,14 @@ class DetailsActivityFavourite extends StatelessWidget {
                                                                           1),
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w400),
-                                                                ),
-                                                              ),
+                                                                              .w400))),
                                                               SizedBox(
-                                                                width: 30.w,
-                                                              ),
+                                                                width: 30.w),
                                                               Icon(
                                                                 Icons
                                                                     .star_rate_rounded,
                                                                 color: Colors
-                                                                    .amber,
-                                                              ),
+                                                                    .amber),
                                                               Text(
                                                                   FavouriteCubit
                                                                           .get(
@@ -285,13 +245,10 @@ class DetailsActivityFavourite extends StatelessWidget {
                                                                         accentColor,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w500,
-                                                                  ))
-                                                            ],
-                                                          ),
+                                                                            .w500))
+                                                            ]),
                                                           SizedBox(
-                                                            height: 5.h,
-                                                          ),
+                                                            height: 5.h),
                                                           Row(
                                                             children: [
                                                               SizedBox(
@@ -313,12 +270,9 @@ class DetailsActivityFavourite extends StatelessWidget {
                                                                           accentColor,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w400),
-                                                                ),
-                                                              ),
+                                                                              .w400))),
                                                               SizedBox(
-                                                                width: 55,
-                                                              ),
+                                                                width: 55),
                                                               IconButton(
                                                                   onPressed:
                                                                       () {
@@ -333,38 +287,22 @@ class DetailsActivityFavourite extends StatelessWidget {
                                                                     Icons
                                                                         .favorite,
                                                                     color: Colors
-                                                                        .red,
-                                                                  ))
-                                                            ],
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    );
+                                                                        .red))
+                                                            ])
+                                                        ])
+                                                    ])),
+                                              ]))),
+                                      ]);
                                   },
                                   separatorBuilder: (context, index) =>
                                       SizedBox(
-                                        height: 15.h,
-                                      ),
+                                        height: 15.h),
                                   itemCount: FavouriteCubit.get(context)
                                       .activity!
                                       .data!
-                                      .length),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
-        ),
-      ),
-    );
+                                      .length)),
+                  ]);
+              });
+          })));
   }
 }

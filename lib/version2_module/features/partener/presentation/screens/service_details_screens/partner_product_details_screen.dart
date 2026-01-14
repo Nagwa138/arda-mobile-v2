@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
 import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
 import 'package:flutter/material.dart';
@@ -14,60 +15,39 @@ class PartnerProductDetailsScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
 
     return Scaffold(
-      backgroundColor: appBackgroundColor,
-      body: CustomScrollView(
-        slivers: [
+        backgroundColor: appBackgroundColor,
+        body: CustomScrollView(slivers: [
           // Custom App Bar with Image
           SliverAppBar(
             expandedHeight: 300.h,
             pinned: true,
             backgroundColor: appTextColor,
             leading: Container(
-              margin: EdgeInsets.all(8.w),
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.9),
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.arrow_back, color: appTextColor),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ),
-            actions: [
-              Container(
                 margin: EdgeInsets.all(8.w),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.9),
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
+                    color: Colors.white.withValues(alpha: 0.9),
+                    borderRadius: BorderRadius.circular(10.r)),
                 child: IconButton(
-                  icon: Icon(Icons.edit, color: appTextColor),
-                  onPressed: () {
-                    // Edit product functionality
-                  },
-                ),
-              ),
+                    icon: Icon(Icons.arrow_back, color: appTextColor),
+                    onPressed: () => Navigator.pop(context))),
+            actions: [
+              Container(
+                  margin: EdgeInsets.all(8.w),
+                  decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.9),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  child: IconButton(
+                      icon: Icon(Icons.edit, color: appTextColor),
+                      onPressed: () {
+                        // Edit product functionality
+                      })),
             ],
             flexibleSpace: FlexibleSpaceBar(
               background: Hero(
                 tag: 'product_${productData['id']}',
-                child: Image.network(
+                child: CustomImage(
                   productData['image'] ?? '',
                   fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Container(
-                      color: Colors.grey[300],
-                      child: Center(
-                        child: CircularProgressIndicator(color: appTextColor),
-                      ),
-                    );
-                  },
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    color: Colors.grey[300],
-                    child: Icon(Icons.image_not_supported,
-                        size: 50.sp, color: Colors.grey[600]),
-                  ),
                 ),
               ),
             ),
@@ -75,274 +55,222 @@ class PartnerProductDetailsScreen extends StatelessWidget {
 
           // Content
           SliverToBoxAdapter(
-            child: Container(
-              decoration: BoxDecoration(
-                color: appBackgroundColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.r),
-                  topRight: Radius.circular(30.r),
-                ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(20.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Status Badge
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
-                      decoration: BoxDecoration(
-                        color: _getStatusColor(productData['status']),
-                        borderRadius: BorderRadius.circular(20.r),
-                      ),
-                      child: Text(
-                        productData['status'] ?? 'Active',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: appBackgroundColor,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30.r),
+                          topRight: Radius.circular(30.r))),
+                  child: Padding(
+                      padding: EdgeInsets.all(20.w),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Status Badge
+                            Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 12.w, vertical: 6.h),
+                                decoration: BoxDecoration(
+                                    color:
+                                        _getStatusColor(productData['status']),
+                                    borderRadius: BorderRadius.circular(20.r)),
+                                child: Text(productData['status'] ?? 'Active',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600))),
 
-                    SizedBox(height: 16.h),
+                            SizedBox(height: 16.h),
 
-                    // Product Name and Price
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            productData['name'] ?? 'Product Name',
-                            style: TextStyle(
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.bold,
-                              color: appTextColor,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 12.w, vertical: 8.h),
-                          decoration: BoxDecoration(
-                            color: appTextColor.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(15.r),
-                          ),
-                          child: Text(
-                            '${productData['price'] ?? '0'} EGP',
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.bold,
-                              color: appTextColor,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                            // Product Name and Price
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                      child: Text(
+                                          productData['name'] ?? 'Product Name',
+                                          style: TextStyle(
+                                              fontSize: 24.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: appTextColor))),
+                                  Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 12.w, vertical: 8.h),
+                                      decoration: BoxDecoration(
+                                          color: appTextColor.withValues(
+                                              alpha: 0.1),
+                                          borderRadius:
+                                              BorderRadius.circular(15.r)),
+                                      child: Text(
+                                          '${productData['price'] ?? '0'} EGP',
+                                          style: TextStyle(
+                                              fontSize: 18.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: appTextColor))),
+                                ]),
 
-                    SizedBox(height: 12.h),
+                            SizedBox(height: 12.h),
 
-                    // Rating and Reviews
-                    Row(
-                      children: [
-                        RatingBarIndicator(
-                          rating: (productData['rate'] ?? 0).toDouble(),
-                          itemBuilder: (context, index) => Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                          itemCount: 5,
-                          itemSize: 20.sp,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(
-                          '${productData['rate'] ?? 0.0}',
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
-                            color: appTextColor,
-                          ),
-                        ),
-                        SizedBox(width: 4.w),
-                        Text(
-                          '(${productData['reviewCount'] ?? 0} reviews)',
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                      ],
-                    ),
+                            // Rating and Reviews
+                            Row(children: [
+                              RatingBarIndicator(
+                                  rating: (productData['rate'] ?? 0).toDouble(),
+                                  itemBuilder: (context, index) =>
+                                      Icon(Icons.star, color: Colors.amber),
+                                  itemCount: 5,
+                                  itemSize: 20.sp),
+                              SizedBox(width: 8.w),
+                              Text('${productData['rate'] ?? 0.0}',
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: appTextColor)),
+                              SizedBox(width: 4.w),
+                              Text(
+                                  '(${productData['reviewCount'] ?? 0} reviews)',
+                                  style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.grey[600])),
+                            ]),
 
-                    SizedBox(height: 20.h),
+                            SizedBox(height: 20.h),
 
-                    // Location
-                    _buildInfoSection(
-                      'Location',
-                      productData['location'] ?? 'Not specified',
-                      Icons.location_on,
-                    ),
+                            // Location
+                            _buildInfoSection(
+                                'Location',
+                                productData['location'] ?? 'Not specified',
+                                Icons.location_on),
 
-                    SizedBox(height: 16.h),
+                            SizedBox(height: 16.h),
 
-                    // Category
-                    _buildInfoSection(
-                      'Category',
-                      productData['categoryName'] ?? 'Others',
-                      Icons.category,
-                    ),
+                            // Category
+                            _buildInfoSection(
+                                'Category',
+                                productData['categoryName'] ?? 'Others',
+                                Icons.category),
 
-                    SizedBox(height: 16.h),
+                            SizedBox(height: 16.h),
 
-                    // Delivery Information
-                    _buildDeliveryInfo(productData),
+                            // Delivery Information
+                            _buildDeliveryInfo(productData),
 
-                    SizedBox(height: 20.h),
+                            SizedBox(height: 20.h),
 
-                    // Description
-                    _buildSectionTitle('Description'),
-                    SizedBox(height: 8.h),
-                    Text(
-                      productData['description'] ?? 'No description available',
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: Colors.grey[700],
-                        height: 1.5,
-                      ),
-                    ),
+                            // Description
+                            _buildSectionTitle('Description'),
+                            SizedBox(height: 8.h),
+                            Text(
+                                productData['description'] ??
+                                    'No description available',
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Colors.grey[700],
+                                    height: 1.5)),
 
-                    SizedBox(height: 20.h),
+                            SizedBox(height: 20.h),
 
-                    // Rules and Cancellation Policy
-                    if (productData['rulesAndCancellationPolicy'] != null)
-                      _buildExpandableSection(
-                        'Rules & Cancellation Policy',
-                        productData['rulesAndCancellationPolicy'],
-                        Icons.rule,
-                      ),
+                            // Rules and Cancellation Policy
+                            if (productData['rulesAndCancellationPolicy'] !=
+                                null)
+                              _buildExpandableSection(
+                                  'Rules & Cancellation Policy',
+                                  productData['rulesAndCancellationPolicy'],
+                                  Icons.rule),
 
-                    SizedBox(height: 16.h),
+                            SizedBox(height: 16.h),
 
-                    // Important Information
-                    if (productData['importantInformation'] != null)
-                      _buildExpandableSection(
-                        'Important Information',
-                        productData['importantInformation'],
-                        Icons.info,
-                      ),
+                            // Important Information
+                            if (productData['importantInformation'] != null)
+                              _buildExpandableSection(
+                                  'Important Information',
+                                  productData['importantInformation'],
+                                  Icons.info),
 
-                    SizedBox(height: 30.h),
+                            SizedBox(height: 30.h),
 
-                    // Action Buttons
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              // Edit product
-                            },
-                            icon: Icon(Icons.edit, color: Colors.white),
-                            label: Text(
-                              'Edit Product',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: appTextColor,
-                              padding: EdgeInsets.symmetric(vertical: 16.h),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.r),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 12.w),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.red, width: 2),
-                            borderRadius: BorderRadius.circular(15.r),
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              _showDeleteDialog(context);
-                            },
-                            icon: Icon(Icons.delete,
-                                color: Colors.red, size: 24.sp),
-                            padding: EdgeInsets.all(16.w),
-                          ),
-                        ),
-                      ],
-                    ),
+                            // Action Buttons
+                            Row(children: [
+                              Expanded(
+                                  child: ElevatedButton.icon(
+                                      onPressed: () {
+                                        // Edit product
+                                      },
+                                      icon:
+                                          Icon(Icons.edit, color: Colors.white),
+                                      label: Text('Edit Product',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w600)),
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: appTextColor,
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 16.h),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      15.r))))),
+                              SizedBox(width: 12.w),
+                              Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.red, width: 2),
+                                      borderRadius:
+                                          BorderRadius.circular(15.r)),
+                                  child: IconButton(
+                                      onPressed: () {
+                                        _showDeleteDialog(context);
+                                      },
+                                      icon: Icon(Icons.delete,
+                                          color: Colors.red, size: 24.sp),
+                                      padding: EdgeInsets.all(16.w))),
+                            ]),
 
-                    SizedBox(height: 20.h),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+                            SizedBox(height: 20.h),
+                          ])))),
+        ]));
   }
 
   Widget _buildInfoSection(String title, String value, IconData icon) {
     return Container(
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
+        padding: EdgeInsets.all(16.w),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15.r),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withValues(alpha: 0.1),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: Offset(0, 2)),
+            ]),
+        child: Row(children: [
           Container(
-            padding: EdgeInsets.all(8.w),
-            decoration: BoxDecoration(
-              color: appTextColor.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(10.r),
-            ),
-            child: Icon(icon, color: appTextColor, size: 20.sp),
-          ),
+              padding: EdgeInsets.all(8.w),
+              decoration: BoxDecoration(
+                  color: appTextColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: Icon(icon, color: appTextColor, size: 20.sp)),
           SizedBox(width: 12.w),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                Text(title,
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.grey[600],
+                        fontWeight: FontWeight.w500)),
                 SizedBox(height: 2.h),
-                Text(
-                  value,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: appTextColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+                Text(value,
+                    style: TextStyle(
+                        fontSize: 14.sp,
+                        color: appTextColor,
+                        fontWeight: FontWeight.w600)),
+              ])),
+        ]));
   }
 
   Widget _buildDeliveryInfo(Map<String, dynamic> productData) {
@@ -350,137 +278,96 @@ class PartnerProductDetailsScreen extends StatelessWidget {
     final shippingCost = productData['shippingCost'];
 
     return Container(
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
+        padding: EdgeInsets.all(16.w),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15.r),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withValues(alpha: 0.1),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: Offset(0, 2)),
+            ]),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            Container(
                 padding: EdgeInsets.all(8.w),
                 decoration: BoxDecoration(
-                  color: appTextColor.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
+                    color: appTextColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(10.r)),
                 child: Icon(Icons.local_shipping,
-                    color: appTextColor, size: 20.sp),
-              ),
-              SizedBox(width: 12.w),
-              Text(
-                'Delivery Information',
+                    color: appTextColor, size: 20.sp)),
+            SizedBox(width: 12.w),
+            Text('Delivery Information',
                 style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                  color: appTextColor,
-                ),
-              ),
-            ],
-          ),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    color: appTextColor)),
+          ]),
           SizedBox(height: 12.h),
-          Row(
-            children: [
-              Icon(
-                isDeliveryAvailable ? Icons.check_circle : Icons.cancel,
+          Row(children: [
+            Icon(isDeliveryAvailable ? Icons.check_circle : Icons.cancel,
                 color: isDeliveryAvailable ? Colors.green : Colors.red,
-                size: 16.sp,
-              ),
-              SizedBox(width: 8.w),
-              Text(
-                isDeliveryAvailable ? 'Delivery Available' : 'No Delivery',
+                size: 16.sp),
+            SizedBox(width: 8.w),
+            Text(isDeliveryAvailable ? 'Delivery Available' : 'No Delivery',
                 style: TextStyle(
-                  fontSize: 14.sp,
-                  color: isDeliveryAvailable ? Colors.green : Colors.red,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
+                    fontSize: 14.sp,
+                    color: isDeliveryAvailable ? Colors.green : Colors.red,
+                    fontWeight: FontWeight.w500)),
+          ]),
           if (isDeliveryAvailable && shippingCost != null) ...[
             SizedBox(height: 8.h),
-            Text(
-              'Shipping Cost: ${shippingCost} EGP',
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: appTextColor,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            Text('Shipping Cost: ${shippingCost} EGP',
+                style: TextStyle(
+                    fontSize: 14.sp,
+                    color: appTextColor,
+                    fontWeight: FontWeight.w500)),
           ],
-        ],
-      ),
-    );
+        ]));
   }
 
   Widget _buildSectionTitle(String title) {
-    return Text(
-      title,
-      style: TextStyle(
-        fontSize: 18.sp,
-        fontWeight: FontWeight.bold,
-        color: appTextColor,
-      ),
-    );
+    return Text(title,
+        style: TextStyle(
+            fontSize: 18.sp, fontWeight: FontWeight.bold, color: appTextColor));
   }
 
   Widget _buildExpandableSection(String title, String content, IconData icon) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: ExpansionTile(
-        leading: Container(
-          padding: EdgeInsets.all(8.w),
-          decoration: BoxDecoration(
-            color: appTextColor.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(10.r),
-          ),
-          child: Icon(icon, color: appTextColor, size: 20.sp),
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
-            color: appTextColor,
-          ),
-        ),
-        children: [
-          Padding(
-            padding: EdgeInsets.all(16.w),
-            child: Text(
-              content,
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: Colors.grey[700],
-                height: 1.5,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+        margin: EdgeInsets.only(bottom: 16.h),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15.r),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withValues(alpha: 0.1),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: Offset(0, 2)),
+            ]),
+        child: ExpansionTile(
+            leading: Container(
+                padding: EdgeInsets.all(8.w),
+                decoration: BoxDecoration(
+                    color: appTextColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(10.r)),
+                child: Icon(icon, color: appTextColor, size: 20.sp)),
+            title: Text(title,
+                style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    color: appTextColor)),
+            children: [
+              Padding(
+                  padding: EdgeInsets.all(16.w),
+                  child: Text(content,
+                      style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.grey[700],
+                          height: 1.5))),
+            ]));
   }
 
   Color _getStatusColor(String? status) {
@@ -498,56 +385,37 @@ class PartnerProductDetailsScreen extends StatelessWidget {
 
   void _showDeleteDialog(BuildContext context) {
     showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.r),
-        ),
-        title: Text(
-          'Delete Product',
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-            color: appTextColor,
-          ),
-        ),
-        content: Text(
-          'Are you sure you want to delete this product? This action cannot be undone.',
-          style: TextStyle(
-            fontSize: 14.sp,
-            color: Colors.grey[700],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(
-              'Cancel',
-              style: TextStyle(color: Colors.grey[600]),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              // Delete product logic
-              context.showCustomSnackBar(
-                'Product deleted successfully',
-                type: SnackBarType.error,
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-            ),
-            child: Text(
-              'Delete',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
-      ),
-    );
+        context: context,
+        builder: (context) => AlertDialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.r)),
+                title: Text('Delete Product',
+                    style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                        color: appTextColor)),
+                content: Text(
+                    'Are you sure you want to delete this product? This action cannot be undone.',
+                    style: TextStyle(fontSize: 14.sp, color: Colors.grey[700])),
+                actions: [
+                  TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text('Cancel',
+                          style: TextStyle(color: Colors.grey[600]))),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        // Delete product logic
+                        context.showCustomSnackBar(
+                            'Product deleted successfully',
+                            type: SnackBarType.error);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.r))),
+                      child: Text('Delete',
+                          style: TextStyle(color: Colors.white))),
+                ]));
   }
 }

@@ -1,5 +1,4 @@
 import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/version2_module/core/const/app_colors.dart';
 import 'package:PassPort/version2_module/core/enums/user_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -376,20 +375,6 @@ class _PartnerMobileDashboardScreenState
           color: appTextColor,
         ),
       );
-    }
-
-    Map<String, dynamic> stats = {};
-    if (state is DashboardLoaded) {
-      stats = state.stats;
-    } else {
-      // Default stats for initial load
-      stats = {
-        'totalEarnings': 'Soon',
-        'totalBookings': 'Soon',
-        'confirmed': 'Soon',
-        'rejected': 'Soon',
-        'pending': 'Soon',
-      };
     }
 
     return Column(

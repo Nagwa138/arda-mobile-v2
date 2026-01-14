@@ -57,11 +57,11 @@ class TripsListPage extends StatelessWidget {
                   child: TripCard(
                     trip: trips[index],
                     onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        'detailsTrips',
-                        arguments: trips[index].id,
-                      );
+                      Navigator.pushNamed(context, 'detailsTrips', arguments: {
+                        'id': trips[index].id,
+                        'text': 'trips',
+                        'num': trips[index].availableSeats,
+                      });
                     },
                   ),
                 );

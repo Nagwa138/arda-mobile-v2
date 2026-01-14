@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/models/traveller/randomProduct/random_product.dart'
     as product_model;
 import 'package:flutter/material.dart';
@@ -24,10 +25,8 @@ class ProductCard extends StatelessWidget {
               color: Colors.black.withAlpha((0.15 * 255).toInt()),
               spreadRadius: 0,
               blurRadius: 30,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
+              offset: const Offset(0, 10)),
+          ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -42,13 +41,8 @@ class ProductCard extends StatelessWidget {
                   ProductStoreInfo(product: product),
                   SizedBox(height: 10.h),
                   ProductPriceRow(product: product),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                ])),
+          ])));
   }
 }
 
@@ -58,58 +52,27 @@ class ProductImageSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool hasValidImage = product.image != null &&
-        product.image!.isNotEmpty &&
-        product.image!.startsWith('http');
-
     return Stack(
       children: [
         ClipRRect(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10.r),
-            topRight: Radius.circular(10.r),
-          ),
+            topRight: Radius.circular(10.r)),
           child: Container(
             height: 220.h,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: Color(0xFFD4C4B0),
-            ),
-            child: hasValidImage
-                ? Image.network(
-                    product.image!,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Center(
-                        child: Icon(
-                          Icons.shopping_bag_outlined,
-                          size: 50.sp,
-                          color: const Color(0xFF9B6B4A),
-                        ),
-                      );
-                    },
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: const Color(0xFF9B6B4A),
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
-                  )
-                : Center(
-                    child: Icon(
-                      Icons.shopping_bag_outlined,
-                      size: 50.sp,
-                      color: const Color(0xFF9B6B4A),
-                    ),
-                  ),
-          ),
-        ),
+              color: Color(0xFFD4C4B0)),
+            child: CustomImage(
+              product.image,
+              fit: BoxFit.cover,
+              height: 220.h,
+              width: double.infinity,
+              placeholder: Center(
+                child: Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 50.sp,
+                  color: const Color(0xFF9B6B4A)))))),
         Positioned(
           top: 16.h,
           left: 16.w,
@@ -118,59 +81,47 @@ class ProductImageSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ProductBadge(
-                text: product.productType!,
-              ),
+                text: product.productType!),
               if (product.rate != null && product.rate! > 0)
                 ProductRatingBadge(rating: product.rate!),
-            ],
-          ),
-        ),
-      ],
-    );
+            ])),
+      ]);
   }
 }
 
 class ProductBadge extends StatelessWidget {
   const ProductBadge({super.key, required this.text});
- final String text; 
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 7.h),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF8B5E3C), Color(0xFF9B6B4A)],
-        ),
+          colors: [Color(0xFF8B5E3C), Color(0xFF9B6B4A)]),
         borderRadius: BorderRadius.circular(10.r),
         boxShadow: [
           BoxShadow(
             color: const Color(0xFF8B5E3C).withAlpha((0.4 * 255).toInt()),
             blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
+            offset: const Offset(0, 3)),
+        ]),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(
             Icons.gesture_rounded,
             size: 13.sp,
-            color: const Color(0xFFFAF5F0),
-          ),
+            color: const Color(0xFFFAF5F0)),
           SizedBox(width: 5.w),
           Text(
-                text,
+            text,
             style: TextStyle(
               fontSize: 11.sp,
               fontWeight: FontWeight.w700,
               color: const Color(0xFFFAF5F0),
-              letterSpacing: 0.2,
-            ),
-          ),
-        ],
-      ),
-    );
+              letterSpacing: 0.2)),
+        ]));
   }
 }
 
@@ -189,18 +140,15 @@ class ProductRatingBadge extends StatelessWidget {
           BoxShadow(
             color: const Color(0xFF8B5E3C).withAlpha((0.2 * 255).toInt()),
             blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
+            offset: const Offset(0, 3)),
+        ]),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(
             Icons.star_rounded,
             color: const Color(0xFFFFD700),
-            size: 14.sp,
-          ),
+            size: 14.sp),
           SizedBox(width: 4.w),
           Text(
             rating.toStringAsFixed(1),
@@ -208,12 +156,8 @@ class ProductRatingBadge extends StatelessWidget {
               fontSize: 11.sp,
               fontWeight: FontWeight.w700,
               color: const Color(0xFF5A3D2B),
-              letterSpacing: 0.2,
-            ),
-          ),
-        ],
-      ),
-    );
+              letterSpacing: 0.2)),
+        ]));
   }
 }
 
@@ -230,11 +174,9 @@ class ProductName extends StatelessWidget {
         fontWeight: FontWeight.w600,
         color: const Color(0xFF3D2817),
         height: 1.3,
-        letterSpacing: -0.2,
-      ),
+        letterSpacing: -0.2),
       maxLines: 2,
-      overflow: TextOverflow.ellipsis,
-    );
+      overflow: TextOverflow.ellipsis);
   }
 }
 
@@ -255,17 +197,14 @@ class ProductStoreInfo extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.r),
         border: Border.all(
           color: const Color(0xFFD4C4B0).withAlpha((0.5 * 255).toInt()),
-          width: 1,
-        ),
-      ),
+          width: 1)),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(
             Icons.store_outlined,
             size: 16.sp,
-            color: const Color(0xFF8B5E3C),
-          ),
+            color: const Color(0xFF8B5E3C)),
           SizedBox(width: 6.w),
           Flexible(
             child: Text(
@@ -274,15 +213,10 @@ class ProductStoreInfo extends StatelessWidget {
                 fontSize: 12.sp,
                 color: const Color(0xFF5A3D2B),
                 fontWeight: FontWeight.w600,
-                letterSpacing: 0.2,
-              ),
+                letterSpacing: 0.2),
               maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
-      ),
-    );
+              overflow: TextOverflow.ellipsis)),
+        ]));
   }
 }
 
@@ -306,18 +240,13 @@ class ProductPriceRow extends StatelessWidget {
                 color: const Color(0xFF7D5737).withAlpha((0.4 * 255).toInt()),
                 spreadRadius: 0,
                 blurRadius: 10,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
+                offset: const Offset(0, 3)),
+            ]),
           child: Icon(
             Icons.shopping_cart_outlined,
             size: 20.sp,
-            color: const Color(0xFFFAF5F0),
-          ),
-        ),
-      ],
-    );
+            color: const Color(0xFFFAF5F0))),
+      ]);
   }
 }
 
@@ -337,10 +266,8 @@ class ProductPrice extends StatelessWidget {
             color: const Color(0xFF7D5737).withAlpha((0.4 * 255).toInt()),
             spreadRadius: 0,
             blurRadius: 10,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
+            offset: const Offset(0, 3)),
+        ]),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -351,9 +278,7 @@ class ProductPrice extends StatelessWidget {
               fontSize: 20.sp,
               fontWeight: FontWeight.w800,
               color: const Color(0xFFFAF5F0),
-              height: 1,
-            ),
-          ),
+              height: 1)),
           SizedBox(width: 4.w),
           Padding(
             padding: EdgeInsets.only(bottom: 1.h),
@@ -362,12 +287,7 @@ class ProductPrice extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w600,
-                color: const Color(0xFFFAF5F0).withAlpha((0.85 * 255).toInt()),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+                color: const Color(0xFFFAF5F0).withAlpha((0.85 * 255).toInt())))),
+        ]));
   }
 }

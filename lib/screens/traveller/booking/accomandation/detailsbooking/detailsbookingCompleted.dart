@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/screens/traveller/booking/accomandation/detailsbooking/detaialsbookingPending.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
@@ -31,15 +32,11 @@ class DetailsBookingCompleted extends StatelessWidget {
                 style: TextStyle(
                   color: accentColor,
                   fontSize: 20.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+                  fontWeight: FontWeight.w600))),
             body: state is getBookingDetailsLoading
                 ? Center(
                     child: CircularProgressIndicator(
-                    color: accentColor,
-                  ))
+                    color: accentColor))
                 : SingleChildScrollView(
                     child: Column(
                       children: [
@@ -55,15 +52,14 @@ class DetailsBookingCompleted extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) => Stack(
                                     children: [
-                                      Image.network(
+                                      CustomImage(
                                         BookingTravellerCubit.get(context)
                                             .accomandationDetailsModel!
                                             .data!
                                             .roomImages![index],
                                         width: 375.w,
                                         height: 300.h,
-                                        fit: BoxFit.fill,
-                                      ),
+                                        fit: BoxFit.fill),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: 20.h, right: 10.w, left: 10.w),
@@ -86,11 +82,7 @@ class DetailsBookingCompleted extends StatelessWidget {
                                               style: TextStyle(
                                                   color: accentColor,
                                                   fontSize: 16.sp,
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                                  fontWeight: FontWeight.w700))))),
                                       Positioned(
                                         bottom: 5,
                                         right: 2,
@@ -115,18 +107,10 @@ class DetailsBookingCompleted extends StatelessWidget {
                                                     fontSize: 12.sp,
                                                     fontWeight:
                                                         FontWeight.w700),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  )),
-                        ),
+                                                overflow: TextOverflow.ellipsis)))))
+                                    ]))),
                         SizedBox(
-                          height: 20.h,
-                        ),
+                          height: 20.h),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15.w),
                           child: Text(
@@ -137,12 +121,9 @@ class DetailsBookingCompleted extends StatelessWidget {
                                   .toString(),
                               style: TextStyle(
                                 fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                              )),
-                        ),
+                                fontWeight: FontWeight.w600))),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15.w),
                           child: Row(
@@ -154,34 +135,27 @@ class DetailsBookingCompleted extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 14.sp,
                                     color: Color.fromRGBO(140, 140, 140, 1),
-                                    fontWeight: FontWeight.w400),
-                              ),
+                                    fontWeight: FontWeight.w400)),
                               // Text("booking.Egypt".tr(),style: TextStyle(
                               //     fontSize: 14.sp,
                               //     color: Color.fromRGBO(140, 140, 140, 1),
                               //     fontWeight: FontWeight.w400
-                              // ),),
+                              // )),
 
                               Spacer(),
                               Icon(
                                 Icons.star_rounded,
                                 color: Colors.amber,
-                                size: 20.sp,
-                              ),
+                                size: 20.sp),
                               Text(
                                 "${BookingTravellerCubit.get(context).accomandationDetailsModel!.data!.rate}",
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: accentColor,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                                  fontWeight: FontWeight.w500)),
+                            ])),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Container(
                           width: 327.w,
                           decoration: BoxDecoration(
@@ -198,18 +172,15 @@ class DetailsBookingCompleted extends StatelessWidget {
                                 Text("booking.HostDetails".tr(),
                                     style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    )),
+                                      fontWeight: FontWeight.w600)),
                                 SizedBox(
-                                  height: 10.h,
-                                ),
+                                  height: 10.h),
                                 Row(
                                   children: [
                                     Image.asset(
                                         "assets/images/traveller/location.png"),
                                     SizedBox(
-                                      width: 5.w,
-                                    ),
+                                      width: 5.w),
                                     SizedBox(
                                       width: 250.w,
                                       child: Text(
@@ -220,21 +191,16 @@ class DetailsBookingCompleted extends StatelessWidget {
                                               .toString(),
                                           style: TextStyle(
                                             fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                    )
-                                  ],
-                                ),
+                                            fontWeight: FontWeight.w400)))
+                                  ]),
                                 SizedBox(
-                                  height: 10.h,
-                                ),
+                                  height: 10.h),
                                 Row(
                                   children: [
                                     Image.asset(
                                         "assets/images/traveller/call.png"),
                                     SizedBox(
-                                      width: 5.w,
-                                    ),
+                                      width: 5.w),
                                     SizedBox(
                                       width: 250.w,
                                       child: Text(
@@ -245,21 +211,13 @@ class DetailsBookingCompleted extends StatelessWidget {
                                               .toString(),
                                           style: TextStyle(
                                             fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                    )
-                                  ],
-                                ),
+                                            fontWeight: FontWeight.w400)))
+                                  ]),
                                 SizedBox(
-                                  height: 10.h,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                                  height: 10.h),
+                              ]))),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Container(
                           width: 327.w,
                           decoration: BoxDecoration(
@@ -278,22 +236,19 @@ class DetailsBookingCompleted extends StatelessWidget {
                                     title2:
                                         "${BookingTravellerCubit.get(context).accomandationDetailsModel?.data!.checkIn.toString()}"),
                                 SizedBox(
-                                  height: 5.h,
-                                ),
+                                  height: 5.h),
                                 detailsBooking(
                                     title: "ProfileGuest.checkOut",
                                     title2:
                                         "${BookingTravellerCubit.get(context).accomandationDetailsModel?.data!.checkOut.toString()}"),
                                 SizedBox(
-                                  height: 5.h,
-                                ),
+                                  height: 5.h),
                                 detailsBooking(
                                     title: "ProfileGuest.numberGuests",
                                     title2:
                                         "${BookingTravellerCubit.get(context).accomandationDetailsModel?.data!.guestNo.toString()}"),
                                 SizedBox(
-                                  height: 5.h,
-                                ),
+                                  height: 5.h),
                                 ListView.separated(
                                     shrinkWrap: true,
                                     itemBuilder: (context, index) => Row(
@@ -314,8 +269,7 @@ class DetailsBookingCompleted extends StatelessWidget {
                                                 .roomType![index]
                                                 .count
                                                 .toString()),
-                                          ],
-                                        ),
+                                          ]),
                                     separatorBuilder: (context, index) =>
                                         SizedBox(height: 5.h),
                                     itemCount:
@@ -325,8 +279,7 @@ class DetailsBookingCompleted extends StatelessWidget {
                                             .roomType!
                                             .length),
                                 SizedBox(
-                                  height: 10.h,
-                                ),
+                                  height: 10.h),
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.pushNamed(
@@ -353,19 +306,12 @@ class DetailsBookingCompleted extends StatelessWidget {
                                             decoration:
                                                 TextDecoration.underline,
                                             fontSize: 16.sp,
-                                            fontWeight: FontWeight.w600),
-                                      )),
-                                ),
+                                            fontWeight: FontWeight.w600)))),
                                 SizedBox(
-                                  height: 10.h,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                                  height: 10.h),
+                              ]))),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Container(
                           width: 327.w,
                           decoration: BoxDecoration(
@@ -387,8 +333,7 @@ class DetailsBookingCompleted extends StatelessWidget {
                                           " Night",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 16.sp),
-                                    ),
+                                          fontSize: 16.sp)),
                                     Spacer(),
                                     SizedBox(
                                       width: 140.w,
@@ -400,22 +345,16 @@ class DetailsBookingCompleted extends StatelessWidget {
                                             "Night",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 14.sp),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                            fontSize: 14.sp))),
+                                  ]),
                                 SizedBox(
-                                  height: 10.h,
-                                ),
+                                  height: 10.h),
                                 Text("booking.IncludingTax".tr(),
                                     style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                    )),
+                                      fontWeight: FontWeight.w400)),
                                 SizedBox(
-                                  height: 20.h,
-                                ),
+                                  height: 20.h),
                                 Row(
                                   children: [
                                     Text(
@@ -423,8 +362,7 @@ class DetailsBookingCompleted extends StatelessWidget {
                                       "booking.Total".tr(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 16.sp),
-                                    ),
+                                          fontSize: 16.sp)),
                                     Spacer(),
                                     Text(
                                       overflow: TextOverflow.ellipsis,
@@ -432,23 +370,15 @@ class DetailsBookingCompleted extends StatelessWidget {
                                           "booking.EGP".tr(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 16.sp),
-                                    ),
-                                  ],
-                                ),
+                                          fontSize: 16.sp)),
+                                  ]),
                                 SizedBox(
-                                  height: 20.h,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                                  height: 20.h),
+                              ]))),
                         SizedBox(
-                          height: 20.h,
-                        ),
+                          height: 20.h),
                         SizedBox(
-                          height: 20.h,
-                        ),
+                          height: 20.h),
                         SizedBox(
                           width: 327.w,
                           height: 55.h,
@@ -495,18 +425,10 @@ class DetailsBookingCompleted extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 16.sp,
                                     color: accentColor,
-                                    fontWeight: FontWeight.w600),
-                              )),
-                        ),
+                                    fontWeight: FontWeight.w600)))),
                         SizedBox(
-                          height: 20.h,
-                        ),
-                      ],
-                    ),
-                  ),
-          );
-        },
-      ),
-    );
+                          height: 20.h),
+                      ])));
+        }));
   }
 }

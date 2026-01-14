@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/models/traveller/rooms/roomlist.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/BookingCart/bookingCardCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
@@ -33,34 +34,29 @@ class AvailableRooms extends StatelessWidget {
           if (state is DeleteBookingSuccessful) {
             context.showCustomSnackBar(
               "Done",
-              type: SnackBarType.success,
-            );
+              type: SnackBarType.success);
           } else if (state is AddBookingSuccessful) {
             context.showCustomSnackBar(
               "Done",
-              type: SnackBarType.success,
-            );
+              type: SnackBarType.success);
           } else if (state is AddAnotherBookingSuccessful) {
             context.showCustomSnackBar(
               "Done Again",
-              type: SnackBarType.success,
-            );
+              type: SnackBarType.success);
           } else if (state is CreateBookingRoomSuccessful) {
             context.showCustomSnackBar(
               "Create Booking Successful",
-              type: SnackBarType.success,
-            );
+              type: SnackBarType.success);
           } else if (state is CreateBookingRoomError) {
             Navigator.pop(context);
             Navigator.pop(context);
             context.showCustomSnackBar(
               state.error,
-              type: SnackBarType.error,
-            );
+              type: SnackBarType.error);
           } else if (state is CreateBookingRoomLoading) {
             showDialog(
               context: context,
-              barrierDismissible: false, // لا يمكن إغلاق الحوار بالضغط خارجًا
+              barrierDismissible: false, // Ù„Ø§ ÙŠÙ…ÙƒÙ† Ø¥ØºÙ„Ø§Ù‚ Ø§Ù„Ø­ÙˆØ§Ø± Ø¨Ø§Ù„Ø¶ØºØ· Ø®Ø§Ø±Ø¬Ù‹Ø§
               builder: (BuildContext context) {
                 return AlertDialog(
                   content: Row(
@@ -68,11 +64,8 @@ class AvailableRooms extends StatelessWidget {
                       CircularProgressIndicator(),
                       SizedBox(width: 10),
                       Text("Loading..."),
-                    ],
-                  ),
-                );
-              },
-            );
+                    ]));
+              });
           }
         },
         builder: (context, state) {
@@ -110,10 +103,7 @@ class AvailableRooms extends StatelessWidget {
                       style: TextStyle(
                         color: accentColor,
                         fontSize: 20.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
+                        fontWeight: FontWeight.w600))),
                   body: ListView(
                     padding:
                         EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
@@ -123,9 +113,7 @@ class AvailableRooms extends StatelessWidget {
                         style: TextStyle(
                           color: accentColor,
                           fontSize: 20.sp,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+                          fontWeight: FontWeight.w700)),
                       SizedBox(height: 20.h),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
@@ -166,13 +154,9 @@ class AvailableRooms extends StatelessWidget {
                                                           .toggleRoom ==
                                                       0
                                                   ? appBackgroundColor
-                                                  : accentColor),
-                                    )),
-                              ),
-                            ),
+                                                  : accentColor))))),
                             SizedBox(
-                              width: 15.w,
-                            ),
+                              width: 15.w),
                             GestureDetector(
                               onTap: () {
                                 BookingTravellerCubit.get(context)
@@ -208,13 +192,9 @@ class AvailableRooms extends StatelessWidget {
                                                           .toggleRoom ==
                                                       1
                                                   ? appBackgroundColor
-                                                  : accentColor),
-                                    )),
-                              ),
-                            ),
+                                                  : accentColor))))),
                             SizedBox(
-                              width: 15.w,
-                            ),
+                              width: 15.w),
                             GestureDetector(
                               onTap: () {
                                 BookingTravellerCubit.get(context)
@@ -250,13 +230,9 @@ class AvailableRooms extends StatelessWidget {
                                                           .toggleRoom ==
                                                       2
                                                   ? appBackgroundColor
-                                                  : accentColor),
-                                    )),
-                              ),
-                            ),
+                                                  : accentColor))))),
                             SizedBox(
-                              width: 15.w,
-                            ),
+                              width: 15.w),
                             GestureDetector(
                               onTap: () {
                                 BookingTravellerCubit.get(context)
@@ -292,46 +268,34 @@ class AvailableRooms extends StatelessWidget {
                                                           .toggleRoom ==
                                                       3
                                                   ? appBackgroundColor
-                                                  : accentColor),
-                                    )),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                                                  : accentColor))))),
+                          ])),
                       SizedBox(height: 20.h),
                       SizedBox(height: 20.h),
                       Row(
                         children: [
                           Icon(
                             Icons.calendar_month,
-                            color: accentColor,
-                          ),
+                            color: accentColor),
                           SizedBox(width: 10.w),
                           Text(
                             arguments['date'],
                             style: TextStyle(
                               color: accentColor,
                               fontSize: 16.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
+                              fontWeight: FontWeight.w400)),
                           Spacer(),
                           Icon(
                             Icons.person,
-                            color: accentColor,
-                          ),
+                            color: accentColor),
                           SizedBox(width: 10.w),
                           Text(
                             arguments['Guest'] + "availableRooms.guest".tr(),
                             style: TextStyle(
                               color: accentColor,
                               fontSize: 16.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
+                              fontWeight: FontWeight.w400)),
+                        ]),
                       SizedBox(height: 10.h),
                       BookingTravellerCubit.get(context)
                               .getAllAvailableRom!
@@ -341,20 +305,16 @@ class AvailableRooms extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SizedBox(
-                                  height: 60.h,
-                                ),
+                                  height: 60.h),
                                 Image.asset("assets/images/oops.png"),
                                 SizedBox(
-                                  height: 20.h,
-                                ),
+                                  height: 20.h),
                                 Text(
                                   "No Rooms Available On The Selected Days",
                                   style: TextStyle(
                                       fontSize: 18.sp,
-                                      fontWeight: FontWeight.w700),
-                                )
-                              ],
-                            )
+                                      fontWeight: FontWeight.w700))
+                              ])
                           : ListView.separated(
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
@@ -377,9 +337,7 @@ class AvailableRooms extends StatelessWidget {
                                             style: TextStyle(
                                               color: accentColor,
                                               fontSize: 16.sp,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
+                                              fontWeight: FontWeight.w700)),
                                           Spacer(),
                                           Text(
                                             BookingTravellerCubit.get(context)
@@ -392,14 +350,10 @@ class AvailableRooms extends StatelessWidget {
                                             style: TextStyle(
                                               color: accentColor,
                                               fontSize: 16.sp,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                              fontWeight: FontWeight.w400)),
+                                        ]),
                                       SizedBox(
-                                        height: 20.h,
-                                      ),
+                                        height: 20.h),
                                       SizedBox(
                                         height: 200.h,
                                         child: ListView.separated(
@@ -409,29 +363,24 @@ class AvailableRooms extends StatelessWidget {
                                               ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10.r),
-                                            child: Image.network(
+                                            child: CustomImage(
                                               BookingTravellerCubit.get(context)
                                                   .getAllAvailableRom!
                                                   .data![index]
                                                   .roomImage![indexImage]
                                                   .toString(),
                                               width: 200.w,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
+                                              fit: BoxFit.cover)),
                                           separatorBuilder: (context, index) =>
                                               SizedBox(
-                                            width: 10.w,
-                                          ),
+                                            width: 10.w),
                                           itemCount:
                                               BookingTravellerCubit.get(context)
                                                       .getAllAvailableRom!
                                                       .data![index]
                                                       .roomImage
                                                       ?.length ??
-                                                  0,
-                                        ),
-                                      ),
+                                                  0)),
                                       SizedBox(height: 10.h),
                                       Row(
                                         children: [
@@ -445,18 +394,14 @@ class AvailableRooms extends StatelessWidget {
                                             style: TextStyle(
                                               color: accentColor,
                                               fontSize: 16.sp,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
+                                              fontWeight: FontWeight.w700)),
                                           Spacer(),
                                           Text(
                                             "availableRooms.for".tr(),
                                             style: TextStyle(
                                               color: accentColor,
                                               fontSize: 16.sp,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
+                                              fontWeight: FontWeight.w400)),
                                           SizedBox(width: 5.w),
                                           Text(
                                             BookingTravellerCubit.get(context)
@@ -469,12 +414,9 @@ class AvailableRooms extends StatelessWidget {
                                             style: TextStyle(
                                               color: accentColor,
                                               fontSize: 16.sp,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
+                                              fontWeight: FontWeight.w400)),
                                           Icon(Icons.person)
-                                        ],
-                                      ),
+                                        ]),
                                       SizedBox(height: 10.h),
                                       Row(
                                         mainAxisAlignment:
@@ -490,23 +432,16 @@ class AvailableRooms extends StatelessWidget {
                                                   style: TextStyle(
                                                     color: accentColor,
                                                     fontSize: 16.sp,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                ),
+                                                    fontWeight: FontWeight.w400)),
                                                 TextSpan(
                                                   text:
                                                       'addService.3.night'.tr(),
                                                   style: TextStyle(
                                                     color: accentColor,
                                                     fontSize: 16.sp,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                                    fontWeight: FontWeight.w700)),
+                                              ])),
+                                        ]),
                                       SizedBox(height: 10.h),
                                       Row(
                                         children: [
@@ -515,9 +450,7 @@ class AvailableRooms extends StatelessWidget {
                                             style: TextStyle(
                                               color: accentColor,
                                               fontSize: 14.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
+                                              fontWeight: FontWeight.w600)),
                                           Spacer(),
                                           Text(
                                             BookingTravellerCubit.get(context)
@@ -532,11 +465,8 @@ class AvailableRooms extends StatelessWidget {
                                             style: TextStyle(
                                               color: accentColor,
                                               fontSize: 14.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                              fontWeight: FontWeight.w600)),
+                                        ]),
                                       SizedBox(height: 10.h),
                                       Container(
                                         decoration: ShapeDecoration(
@@ -544,25 +474,19 @@ class AvailableRooms extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(20.r),
                                             side: BorderSide(
-                                              color: accentColor,
-                                            ),
-                                          ),
-                                        ),
+                                              color: accentColor))),
                                         child: Column(
                                           children: [
                                             ListTile(
                                               leading: Icon(
                                                 Icons.info,
-                                                color: accentColor,
-                                              ),
+                                                color: accentColor),
                                               title: Text(
                                                 'roomInfo.title7'.tr(),
                                                 style: TextStyle(
                                                   color: accentColor,
                                                   fontSize: 14.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
+                                                  fontWeight: FontWeight.w600)),
                                               subtitle: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -574,30 +498,23 @@ class AvailableRooms extends StatelessWidget {
                                                       color: accentColor,
                                                       fontSize: 14.sp,
                                                       fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
+                                                          FontWeight.w600)),
                                                   Text(
                                                     'roomInfo.subtitle7-2'.tr(),
                                                     style: TextStyle(
                                                       color: accentColor,
                                                       fontSize: 14.sp,
                                                       fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                                          FontWeight.w500)),
+                                                ])),
                                             SizedBox(
-                                              height: 20.h,
-                                            ),
+                                              height: 20.h),
                                             Padding(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 10.w),
                                               child: Row(
                                                 children: [
-                                                  // التحقق من حالة الغرفة
+                                                  // Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† Ø­Ø§Ù„Ø© Ø§Ù„ØºØ±ÙØ©
                                                   Builder(
                                                     builder: (context) {
                                                       String roomId =
@@ -611,7 +528,7 @@ class AvailableRooms extends StatelessWidget {
                                                           .isRoomBooked(roomId);
 
                                                       if (isBooked) {
-                                                        // إذا كانت الغرفة محجوزة، نعرض زر "Cancel Now"
+                                                        // Ø¥Ø°Ø§ ÙƒØ§Ù†Øª Ø§Ù„ØºØ±ÙØ© Ù…Ø­Ø¬ÙˆØ²Ø©ØŒ Ù†Ø¹Ø±Ø¶ Ø²Ø± "Cancel Now"
                                                         return Expanded(
                                                           child:
                                                               GestureDetector(
@@ -647,8 +564,7 @@ class AvailableRooms extends StatelessWidget {
                                                                 shape: RoundedRectangleBorder(
                                                                     borderRadius:
                                                                         BorderRadius.circular(
-                                                                            8.r)),
-                                                              ),
+                                                                            8.r))),
                                                               child: Center(
                                                                 child: Text(
                                                                   "Cancel Now",
@@ -663,15 +579,9 @@ class AvailableRooms extends StatelessWidget {
                                                                         15.sp,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        );
+                                                                            .w600))))));
                                                       } else {
-                                                        // إذا كانت الغرفة غير محجوزة، نعرض زر "Book Now"
+                                                        // Ø¥Ø°Ø§ ÙƒØ§Ù†Øª Ø§Ù„ØºØ±ÙØ© ØºÙŠØ± Ù…Ø­Ø¬ÙˆØ²Ø©ØŒ Ù†Ø¹Ø±Ø¶ Ø²Ø± "Book Now"
                                                         return Expanded(
                                                           child:
                                                               GestureDetector(
@@ -722,8 +632,7 @@ class AvailableRooms extends StatelessWidget {
                                                                   RoomList(
                                                                 id: '${BookingTravellerCubit.get(context).getAllAvailableRom?.data![index].id}',
                                                                 numberOfPerson:
-                                                                    numberOfPerson,
-                                                              );
+                                                                    numberOfPerson);
 
                                                               context
                                                                   .read<
@@ -745,8 +654,7 @@ class AvailableRooms extends StatelessWidget {
                                                                 shape: RoundedRectangleBorder(
                                                                     borderRadius:
                                                                         BorderRadius.circular(
-                                                                            8.r)),
-                                                              ),
+                                                                            8.r))),
                                                               child: Center(
                                                                 child: Text(
                                                                   "Book Now",
@@ -761,39 +669,21 @@ class AvailableRooms extends StatelessWidget {
                                                                         15.sp,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        );
+                                                                            .w600))))));
                                                       }
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                                    }),
+                                                ])),
                                             SizedBox(
-                                              height: 10.h,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                                              height: 10.h),
+                                          ])),
+                                    ]))),
                               separatorBuilder: (context, index) => SizedBox(
-                                height: 20.h,
-                              ),
+                                height: 20.h),
                               itemCount: BookingTravellerCubit.get(context)
                                   .getAllAvailableRom!
                                   .data!
-                                  .length,
-                            ),
-                    ],
-                  ),
+                                  .length),
+                    ]),
                   bottomNavigationBar: Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
@@ -804,10 +694,7 @@ class AvailableRooms extends StatelessWidget {
                           backgroundColor: WidgetStateProperty.all(accentColor),
                           shape: WidgetStateProperty.all(
                             RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
+                              borderRadius: BorderRadius.circular(10.0)))),
                         onPressed: () async {
                           if (state.isEmpty) {
                             context.showCustomSnackBar(
@@ -840,18 +727,8 @@ class AvailableRooms extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16.sp,
                             color: white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
+                            fontWeight: FontWeight.w600)))))));
+            });
+        }));
   }
 }

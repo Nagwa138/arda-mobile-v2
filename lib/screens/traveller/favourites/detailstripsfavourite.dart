@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/favourite_cubit/favourite_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/favourite_cubit/favourite_state.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/trips_cubit/trips_cubit.dart';
@@ -37,10 +38,7 @@ class DetailsTripsFavourite extends StatelessWidget {
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("assets/images/background.jpeg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                        fit: BoxFit.cover))),
                   Scaffold(
                       backgroundColor: Colors.transparent,
                       appBar: AppBar(
@@ -54,20 +52,17 @@ class DetailsTripsFavourite extends StatelessWidget {
                     title: Text("Journey Planner",
                         style: TextStyle(
                           fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        )),
+                          fontWeight: FontWeight.w600)),
                     leading: IconButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.arrow_back_ios)),
-                  ),
+                        icon: Icon(Icons.arrow_back_ios))),
                   body: state is GetAllFavouriteLoading
                       ? Center(
                           child: Center(
                               child: CircularProgressIndicator(
-                          color: orange,
-                        )))
+                          color: orange)))
                       : FavouriteCubit.get(context).trip!.data!.isEmpty
                           ? Center(
                               child: Padding(
@@ -78,21 +73,15 @@ class DetailsTripsFavourite extends StatelessWidget {
                                     Icon(
                                       Icons.favorite_outline,
                                       color: orange,
-                                      size: 150.sp,
-                                    ),
+                                      size: 150.sp),
                                     Text(
                                       textAlign: TextAlign.center,
-                                      "You haven’t any Journey Planner Now",
+                                      "You havenâ€™t any Journey Planner Now",
                                       style: TextStyle(
                                         color: accentColor,
                                         fontSize: 22.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
+                                        fontWeight: FontWeight.w400))
+                                  ])))
                           : ListView.separated(
                               //physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
@@ -135,7 +124,7 @@ class DetailsTripsFavourite extends StatelessWidget {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             25.r),
-                                                    child: Image.network(
+                                                    child: CustomImage(
                                                       FavouriteCubit.get(
                                                               context)
                                                           .trip!
@@ -144,27 +133,9 @@ class DetailsTripsFavourite extends StatelessWidget {
                                                           .toString(),
                                                       width: 99.w,
                                                       height: 114.h,
-                                                      fit: BoxFit.fill,
-                                                      errorBuilder: (context,
-                                                          error, stackTrace) {
-                                                        return Container(
-                                                          width: 99.w,
-                                                          height: 114.h,
-                                                          color:
-                                                              Colors.grey[300],
-                                                          child: Icon(
-                                                            Icons.broken_image,
-                                                            color: Colors
-                                                                .grey[600],
-                                                            size: 40.sp,
-                                                          ),
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
+                                                      fit: BoxFit.fill)),
                                                   SizedBox(
-                                                    width: 5.w,
-                                                  ),
+                                                    width: 5.w),
                                                   Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
@@ -185,12 +156,9 @@ class DetailsTripsFavourite extends StatelessWidget {
                                                                   accentColor,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w600),
-                                                        ),
-                                                      ),
+                                                                      .w600))),
                                                       SizedBox(
-                                                        height: 5.h,
-                                                      ),
+                                                        height: 5.h),
                                                       Row(
                                                         children: [
                                                           Row(
@@ -198,8 +166,7 @@ class DetailsTripsFavourite extends StatelessWidget {
                                                               Icon(
                                                                 Icons
                                                                     .calendar_month,
-                                                                color: orange,
-                                                              ),
+                                                                color: orange),
                                                               SizedBox(
                                                                   width: 10.w),
                                                               SizedBox(
@@ -218,19 +185,14 @@ class DetailsTripsFavourite extends StatelessWidget {
                                                                           12.sp,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w500,
-                                                                    )),
-                                                              )
-                                                            ],
-                                                          ),
+                                                                              .w500)))
+                                                            ]),
                                                           SizedBox(
-                                                            width: 30.w,
-                                                          ),
+                                                            width: 30.w),
                                                           Icon(
                                                             Icons
                                                                 .star_rate_rounded,
-                                                            color: Colors.amber,
-                                                          ),
+                                                            color: Colors.amber),
                                                           Text(
                                                               FavouriteCubit.get(
                                                                       context)
@@ -244,13 +206,10 @@ class DetailsTripsFavourite extends StatelessWidget {
                                                                     accentColor,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w500,
-                                                              ))
-                                                        ],
-                                                      ),
+                                                                        .w500))
+                                                        ]),
                                                       SizedBox(
-                                                        height: 5.h,
-                                                      ),
+                                                        height: 5.h),
                                                       Row(
                                                         children: [
                                                           SizedBox(
@@ -273,12 +232,9 @@ class DetailsTripsFavourite extends StatelessWidget {
                                                                       accentColor,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w400),
-                                                            ),
-                                                          ),
+                                                                          .w400))),
                                                           SizedBox(
-                                                            width: 55,
-                                                          ),
+                                                            width: 55),
                                                           IconButton(
                                                               onPressed: () {
                                                                 TripsCubit.get(context).deleteFavouriteOfTrips(
@@ -293,36 +249,21 @@ class DetailsTripsFavourite extends StatelessWidget {
                                                               icon: Icon(
                                                                 Icons.favorite,
                                                                 color:
-                                                                    Colors.red,
-                                                              ))
-                                                        ],
-                                                      )
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
+                                                                    Colors.red))
+                                                        ])
+                                                    ])
+                                                ])),
+                                          ]))),
+                                  ]);
                               },
                               separatorBuilder: (context, index) => SizedBox(
-                                    height: 15.h,
-                                  ),
+                                    height: 15.h),
                               itemCount: FavouriteCubit.get(context)
                                   .trip!
                                   .data!
-                                  .length),
-                ),
-                ],
-              );
-            },
-          );
-        },
-      ),
-    );
+                                  .length)),
+                ]);
+            });
+        }));
   }
 }

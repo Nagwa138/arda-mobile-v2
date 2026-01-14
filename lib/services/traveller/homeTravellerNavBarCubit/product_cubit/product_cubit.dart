@@ -170,7 +170,6 @@ class ProductCubit extends Cubit<ProductState> {
     print("tokn is person product = $token");
     final List<Map<String, dynamic>> cardsList =
         cards.map((card) => card.toMap()).toList();
-    final String cardsJson = json.encode(cardsList);
 
     try {
       var response = await http.post(

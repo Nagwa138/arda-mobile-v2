@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/version2_module/core/enums/booking_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,10 +31,8 @@ class BookingCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+            offset: const Offset(0, 4)),
+        ]),
       child: InkWell(
         onTap: onViewDetails,
         borderRadius: BorderRadius.circular(16.r),
@@ -45,16 +44,20 @@ class BookingCard extends StatelessWidget {
               // Header with guest info and status
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: 24.r,
-                    backgroundColor: Colors.grey[200],
-                    backgroundImage: booking.profileImage != null
-                        ? AssetImage(booking.profileImage!)
-                        : null,
-                    child: booking.profileImage == null
-                        ? Icon(Icons.person, color: Colors.grey[600])
-                        : null,
-                  ),
+                  Container(
+                    width: 48.r,
+                    height: 48.r,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey[200]),
+                    child: booking.profileImage != null
+                        ? ClipOval(
+                            child: CustomImage(
+                              booking.profileImage!,
+                              width: 48.r,
+                              height: 48.r,
+                              fit: BoxFit.cover))
+                        : Icon(Icons.person, color: Colors.grey[600])),
                   SizedBox(width: 12.w),
                   Expanded(
                     child: Column(
@@ -65,41 +68,29 @@ class BookingCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
-                            color: appTextColor,
-                          ),
-                        ),
+                            color: appTextColor)),
                         Text(
                           booking.serviceName,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: Colors.grey[600],
-                          ),
+                            color: Colors.grey[600]),
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
+                          overflow: TextOverflow.ellipsis),
+                      ])),
                   Container(
                     padding: EdgeInsets.symmetric(
                       horizontal: 12.w,
-                      vertical: 6.h,
-                    ),
+                      vertical: 6.h),
                     decoration: BoxDecoration(
                       color: booking.bookingStatus.backgroundColor,
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
+                      borderRadius: BorderRadius.circular(20.r)),
                     child: Text(
                       booking.statusDisplayText.toUpperCase(),
                       style: TextStyle(
                         color: booking.bookingStatus.statusColor,
                         fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                        fontWeight: FontWeight.w600))),
+                ]),
 
               SizedBox(height: 16.h),
 
@@ -108,8 +99,7 @@ class BookingCard extends StatelessWidget {
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
                   color: Colors.grey[50],
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
+                  borderRadius: BorderRadius.circular(12.r)),
                 child: Column(
                   children: [
                     Row(
@@ -121,20 +111,15 @@ class BookingCard extends StatelessWidget {
                           'Check-in: ${booking.formattedCheckIn}',
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: Colors.grey[700],
-                          ),
-                        ),
+                            color: Colors.grey[700])),
                         Spacer(),
                         Text(
                           '${booking.numberOfNights} nights',
                           style: TextStyle(
                             fontSize: 12.sp,
                             color: Colors.grey[600],
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
+                            fontWeight: FontWeight.w500)),
+                      ]),
                     SizedBox(height: 8.h),
                     Row(
                       children: [
@@ -145,11 +130,8 @@ class BookingCard extends StatelessWidget {
                           'Check-out: ${booking.formattedCheckOut}',
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                      ],
-                    ),
+                            color: Colors.grey[700])),
+                      ]),
                     SizedBox(height: 8.h),
                     Row(
                       children: [
@@ -160,23 +142,16 @@ class BookingCard extends StatelessWidget {
                           '${booking.guests} ${booking.guests > 1 ? 'Guests' : 'Guest'}',
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: Colors.grey[700],
-                          ),
-                        ),
+                            color: Colors.grey[700])),
                         Spacer(),
                         Text(
                           booking.formattedAmount,
                           style: TextStyle(
                             fontSize: 16.sp,
                             color: appTextColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                            fontWeight: FontWeight.bold)),
+                      ]),
+                  ])),
 
               // Status-based action buttons
               _buildStatusBasedActions(),
@@ -187,14 +162,8 @@ class BookingCard extends StatelessWidget {
                 'Booked on ${booking.formattedBookingDate}',
                 style: TextStyle(
                   fontSize: 12.sp,
-                  color: Colors.grey[500],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+                  color: Colors.grey[500])),
+            ]))));
   }
 
   /// Build action buttons based on booking status
@@ -225,8 +194,7 @@ class BookingCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
                 color:
-                    BookingStatus.pending.statusColor.withValues(alpha: 0.3)),
-          ),
+                    BookingStatus.pending.statusColor.withValues(alpha: 0.3))),
           child: Column(
             children: [
               Row(
@@ -239,11 +207,8 @@ class BookingCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
-                      color: BookingStatus.pending.statusColor,
-                    ),
-                  ),
-                ],
-              ),
+                      color: BookingStatus.pending.statusColor)),
+                ]),
               SizedBox(height: 12.h),
               Row(
                 children: [
@@ -256,19 +221,14 @@ class BookingCard extends StatelessWidget {
                           side: BorderSide(color: Colors.red),
                           padding: EdgeInsets.symmetric(vertical: 12.h),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(8.r))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(Icons.close, size: 16.sp),
                             SizedBox(width: 4.w),
                             Text('Reject'),
-                          ],
-                        ),
-                      ),
-                    ),
+                          ]))),
                     SizedBox(width: 12.w),
                   ],
                   if (onAccept != null) ...[
@@ -279,9 +239,7 @@ class BookingCard extends StatelessWidget {
                           backgroundColor: Colors.green,
                           padding: EdgeInsets.symmetric(vertical: 12.h),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(8.r))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -289,20 +247,12 @@ class BookingCard extends StatelessWidget {
                             SizedBox(width: 4.w),
                             Text(
                               'Accept',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                              style: TextStyle(color: Colors.white)),
+                          ]))),
                   ],
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+                ]),
+            ])),
+      ]);
   }
 
   /// Actions for upcoming bookings
@@ -317,8 +267,7 @@ class BookingCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
                 color:
-                    BookingStatus.upcoming.statusColor.withValues(alpha: 0.3)),
-          ),
+                    BookingStatus.upcoming.statusColor.withValues(alpha: 0.3))),
           child: Row(
             children: [
               Icon(Icons.schedule,
@@ -333,38 +282,26 @@ class BookingCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
-                        color: BookingStatus.upcoming.statusColor,
-                      ),
-                    ),
+                        color: BookingStatus.upcoming.statusColor)),
                     Text(
                       'Booking has been accepted and confirmed',
                       style: TextStyle(
                         fontSize: 12.sp,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                        color: Colors.grey[600])),
+                  ])),
               TextButton(
                 onPressed: onViewDetails,
                 style: TextButton.styleFrom(
-                  foregroundColor: BookingStatus.upcoming.statusColor,
-                ),
+                  foregroundColor: BookingStatus.upcoming.statusColor),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text('Details'),
                     SizedBox(width: 4.w),
                     Icon(Icons.arrow_forward_ios, size: 12.sp),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+                  ])),
+            ])),
+      ]);
   }
 
   /// Actions for completed bookings
@@ -379,8 +316,7 @@ class BookingCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
                 color:
-                    BookingStatus.completed.statusColor.withValues(alpha: 0.3)),
-          ),
+                    BookingStatus.completed.statusColor.withValues(alpha: 0.3))),
           child: Row(
             children: [
               Icon(Icons.check_circle,
@@ -395,38 +331,26 @@ class BookingCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
-                        color: BookingStatus.completed.statusColor,
-                      ),
-                    ),
+                        color: BookingStatus.completed.statusColor)),
                     Text(
                       'Service has been successfully delivered',
                       style: TextStyle(
                         fontSize: 12.sp,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                        color: Colors.grey[600])),
+                  ])),
               TextButton(
                 onPressed: onViewDetails,
                 style: TextButton.styleFrom(
-                  foregroundColor: BookingStatus.completed.statusColor,
-                ),
+                  foregroundColor: BookingStatus.completed.statusColor),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text('Details'),
                     SizedBox(width: 4.w),
                     Icon(Icons.arrow_forward_ios, size: 12.sp),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+                  ])),
+            ])),
+      ]);
   }
 
   /// Actions for cancelled bookings
@@ -441,8 +365,7 @@ class BookingCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.r),
             border: Border.all(
                 color:
-                    BookingStatus.cancelled.statusColor.withValues(alpha: 0.3)),
-          ),
+                    BookingStatus.cancelled.statusColor.withValues(alpha: 0.3))),
           child: Row(
             children: [
               Icon(Icons.cancel,
@@ -457,37 +380,25 @@ class BookingCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
-                        color: BookingStatus.cancelled.statusColor,
-                      ),
-                    ),
+                        color: BookingStatus.cancelled.statusColor)),
                     Text(
                       'This booking has been cancelled',
                       style: TextStyle(
                         fontSize: 12.sp,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                        color: Colors.grey[600])),
+                  ])),
               TextButton(
                 onPressed: onViewDetails,
                 style: TextButton.styleFrom(
-                  foregroundColor: BookingStatus.cancelled.statusColor,
-                ),
+                  foregroundColor: BookingStatus.cancelled.statusColor),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text('Details'),
                     SizedBox(width: 4.w),
                     Icon(Icons.arrow_forward_ios, size: 12.sp),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+                  ])),
+            ])),
+      ]);
   }
 }

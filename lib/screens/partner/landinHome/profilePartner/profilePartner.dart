@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/partner/landingMainContentCubit/landingMainContentCubit.dart';
 import 'package:PassPort/services/partner/landingMainContentCubit/landingMainContentStates.dart';
 import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
@@ -24,24 +25,20 @@ class ProfilePartner extends StatelessWidget {
             Navigator.pop(context);
             context.showCustomSnackBar(
               "Successful",
-              type: SnackBarType.success,
-            );
+              type: SnackBarType.success);
           } else if (state is AcceptError) {
             context.showCustomSnackBar(
               state.error,
-              type: SnackBarType.error,
-            );
+              type: SnackBarType.error);
           } else if (state is RejectSuccessful) {
             Navigator.pop(context);
             context.showCustomSnackBar(
               "Successful",
-              type: SnackBarType.success,
-            );
+              type: SnackBarType.success);
           } else if (state is RejectError) {
             context.showCustomSnackBar(
               state.error,
-              type: SnackBarType.error,
-            );
+              type: SnackBarType.error);
           }
         },
         builder: (context, state) {
@@ -54,15 +51,11 @@ class ProfilePartner extends StatelessWidget {
                 style: TextStyle(
                   color: accentColor,
                   fontSize: 20.sp,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
+                  fontWeight: FontWeight.w700))),
             body: state is getGuestByIdLoadingCancel
                 ? Center(
                     child: CircularProgressIndicator(
-                    color: accentColor,
-                  ))
+                    color: accentColor))
                 : SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,12 +74,9 @@ class ProfilePartner extends StatelessWidget {
                             style: TextStyle(
                                 color: accentColor,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 16.sp),
-                          ),
-                        ),
+                                fontSize: 16.sp))),
                         SizedBox(
-                          height: 5.h,
-                        ),
+                          height: 5.h),
                         Center(
                           child: Text(
                             LandingMainContentCubit.get(context)
@@ -98,12 +88,9 @@ class ProfilePartner extends StatelessWidget {
                             style: TextStyle(
                                 color: accentColor,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 14.sp),
-                          ),
-                        ),
+                                fontSize: 14.sp))),
                         SizedBox(
-                          height: 20.h,
-                        ),
+                          height: 20.h),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
                           child: Text(
@@ -111,12 +98,9 @@ class ProfilePartner extends StatelessWidget {
                             style: TextStyle(
                                 color: accentColor,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 14.sp),
-                          ),
-                        ),
+                                fontSize: 14.sp))),
                         SizedBox(
-                          height: 30.h,
-                        ),
+                          height: 30.h),
                         LandingMainContentCubit.get(context)
                                     .guestByIdModel!
                                     .data!
@@ -163,12 +147,9 @@ class ProfilePartner extends StatelessWidget {
                                             style: TextStyle(
                                                 fontSize: 16.sp,
                                                 color: accentColor,
-                                                fontWeight: FontWeight.w600),
-                                          )),
-                                    ),
+                                                fontWeight: FontWeight.w600)))),
                                     SizedBox(
-                                      width: 20.w,
-                                    ),
+                                      width: 20.w),
                                     SizedBox(
                                       height: 48.h,
                                       width: 152.w,
@@ -187,8 +168,7 @@ class ProfilePartner extends StatelessWidget {
                                                     Colors.white),
                                             backgroundColor:
                                                 WidgetStateProperty.all<Color>(
-                                                    accentColor),
-                                          ),
+                                                    accentColor)),
                                           onPressed: () {
                                             LandingMainContentCubit.get(context)
                                                 .acceptBooking(
@@ -204,15 +184,10 @@ class ProfilePartner extends StatelessWidget {
                                             style: TextStyle(
                                                 fontSize: 16.sp,
                                                 color: white,
-                                                fontWeight: FontWeight.w600),
-                                          )),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                                fontWeight: FontWeight.w600)))),
+                                  ])),
                         SizedBox(
-                          height: 20.h,
-                        ),
+                          height: 20.h),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
                           child: Text(
@@ -220,12 +195,9 @@ class ProfilePartner extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 18.sp,
                                 color: accentColor,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
+                                fontWeight: FontWeight.w600))),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Center(
                           child: Container(
                             width: 327.w,
@@ -246,11 +218,9 @@ class ProfilePartner extends StatelessWidget {
                                         .data!
                                         .guestInfo!
                                         .name
-                                        .toString(),
-                                  ),
+                                        .toString()),
                                   SizedBox(
-                                    height: 20.h,
-                                  ),
+                                    height: 20.h),
                                   ProfileInformation(
                                       title: "ProfileGuest.email",
                                       title2:
@@ -261,8 +231,7 @@ class ProfilePartner extends StatelessWidget {
                                               .email
                                               .toString()),
                                   SizedBox(
-                                    height: 20.h,
-                                  ),
+                                    height: 20.h),
                                   ProfileInformation(
                                       title: "ProfileGuest.birthDay",
                                       title2:
@@ -273,8 +242,7 @@ class ProfilePartner extends StatelessWidget {
                                               .birthDate
                                               .toString()),
                                   SizedBox(
-                                    height: 20.h,
-                                  ),
+                                    height: 20.h),
                                   ProfileInformation(
                                       title: "ProfileGuest.gender",
                                       title2:
@@ -284,14 +252,9 @@ class ProfilePartner extends StatelessWidget {
                                               .guestInfo!
                                               .gender
                                               .toString())
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                                ])))),
                         SizedBox(
-                          height: 20.h,
-                        ),
+                          height: 20.h),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
                           child: Text(
@@ -299,12 +262,9 @@ class ProfilePartner extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 18.sp,
                                 color: accentColor,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
+                                fontWeight: FontWeight.w600))),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Center(
                           child: Container(
                             width: 327.w,
@@ -328,8 +288,7 @@ class ProfilePartner extends StatelessWidget {
                                               .checkIn
                                               .toString()),
                                   SizedBox(
-                                    height: 20.h,
-                                  ),
+                                    height: 20.h),
                                   ProfileInformation(
                                       title: "ProfileGuest.checkOut",
                                       title2:
@@ -340,8 +299,7 @@ class ProfilePartner extends StatelessWidget {
                                               .checkOut
                                               .toString()),
                                   SizedBox(
-                                    height: 20.h,
-                                  ),
+                                    height: 20.h),
                                   ProfileInformation(
                                       title: "ProfileGuest.numberGuests",
                                       title2:
@@ -352,8 +310,7 @@ class ProfilePartner extends StatelessWidget {
                                               .guestNo
                                               .toString()),
                                   SizedBox(
-                                    height: 20.h,
-                                  ),
+                                    height: 20.h),
                                   SizedBox(
                                     child: ListView.separated(
                                         shrinkWrap: true,
@@ -372,19 +329,16 @@ class ProfilePartner extends StatelessWidget {
                                                         .toString()),
                                         separatorBuilder: (context, index) =>
                                             SizedBox(
-                                              height: 10.h,
-                                            ),
+                                              height: 10.h),
                                         itemCount:
                                             LandingMainContentCubit.get(context)
                                                 .guestByIdModel!
                                                 .data!
                                                 .bookingInfo!
                                                 .room!
-                                                .length),
-                                  ),
+                                                .length)),
                                   SizedBox(
-                                    height: 15.h,
-                                  ),
+                                    height: 15.h),
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.pushNamed(
@@ -425,17 +379,10 @@ class ProfilePartner extends StatelessWidget {
                                               decoration:
                                                   TextDecoration.underline,
                                               fontSize: 16.sp,
-                                              fontWeight: FontWeight.w600),
-                                        )),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                                              fontWeight: FontWeight.w600)))),
+                                ])))),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
                           child: Text(
@@ -443,12 +390,9 @@ class ProfilePartner extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 18.sp,
                                 color: accentColor,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
+                                fontWeight: FontWeight.w600))),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Center(
                           child: Container(
                             width: 327.w,
@@ -463,22 +407,15 @@ class ProfilePartner extends StatelessWidget {
                               child: Column(
                                 children: [
                                   SizedBox(
-                                    height: 20.h,
-                                  ),
+                                    height: 20.h),
                                   ProfileInformation(
                                       title: "ProfileGuest.Payment method",
                                       title2: "ProfileGuest.notVerified"),
                                   SizedBox(
-                                    height: 20.h,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                                    height: 20.h)
+                                ])))),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
                           child: Text(
@@ -486,12 +423,9 @@ class ProfilePartner extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 18.sp,
                                 color: accentColor,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
+                                fontWeight: FontWeight.w600))),
                         SizedBox(
-                          height: 10.h,
-                        ),
+                          height: 10.h),
                         Center(
                           child: Container(
                             width: 327.w,
@@ -507,14 +441,12 @@ class ProfilePartner extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      Image.network(
+                                      CustomImage(
                                         "${LandingMainContentCubit.get(context).guestByIdModel!.data?.serviceDetails!.image.toString()}",
                                         width: 99.w,
-                                        height: 89.h,
-                                      ),
+                                        height: 89.h),
                                       SizedBox(
-                                        width: 5.w,
-                                      ),
+                                        width: 5.w),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -526,9 +458,7 @@ class ProfilePartner extends StatelessWidget {
                                               style: TextStyle(
                                                   fontSize: 16.sp,
                                                   color: accentColor,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          ),
+                                                  fontWeight: FontWeight.w600))),
                                           Row(
                                             children: [
                                               Image.asset(
@@ -539,10 +469,8 @@ class ProfilePartner extends StatelessWidget {
                                                     fontSize: 14.sp,
                                                     color: accentColor,
                                                     fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                            ],
-                                          ),
+                                                        FontWeight.w400)),
+                                            ]),
                                           Row(
                                             children: [
                                               Text(
@@ -553,43 +481,26 @@ class ProfilePartner extends StatelessWidget {
                                                     fontSize: 14.sp,
                                                     color: accentColor,
                                                     fontWeight:
-                                                        FontWeight.w400),
-                                              ),
+                                                        FontWeight.w400)),
                                               SizedBox(
-                                                width: 10.w,
-                                              ),
+                                                width: 10.w),
                                               Text(
                                                 "/ " + "booking.Nigth".tr(),
                                                 style: TextStyle(
                                                     fontSize: 14.sp,
                                                     color: accentColor,
                                                     fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                                        FontWeight.w600)),
+                                            ])
+                                        ]),
+                                    ]),
                                   SizedBox(
-                                    height: 30.h,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                                    height: 30.h)
+                                ])))),
                         SizedBox(
-                          height: 10.h,
-                        ),
-                      ],
-                    ),
-                  ),
-          );
-        },
-      ),
-    );
+                          height: 10.h),
+                      ])));
+        }));
   }
 }
 
@@ -602,9 +513,7 @@ Widget ProfileInformation({required String title, required String title2}) {
           overflow: TextOverflow.ellipsis,
           title.tr(),
           style: TextStyle(
-              fontWeight: FontWeight.w700, color: black, fontSize: 16.sp),
-        ),
-      ),
+              fontWeight: FontWeight.w700, color: black, fontSize: 16.sp))),
       Spacer(),
       Expanded(
         child: Text(
@@ -613,9 +522,6 @@ Widget ProfileInformation({required String title, required String title2}) {
           style: TextStyle(
               fontWeight: FontWeight.w500,
               color: Color.fromRGBO(5, 10, 42, 1),
-              fontSize: 14.sp),
-        ),
-      ),
-    ],
-  );
+              fontSize: 14.sp))),
+    ]);
 }

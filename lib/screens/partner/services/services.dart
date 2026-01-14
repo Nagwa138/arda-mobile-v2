@@ -1,4 +1,4 @@
-// import 'package:easy_localization/easy_localization.dart';
+﻿// import 'package:easy_localization/easy_localization.dart';
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
@@ -121,15 +121,11 @@
 //                                         child: Stack(
 //                                           alignment: Alignment.topRight,
 //                                           children: [
-//                                             Image.network(
+//                                             CustomImage(
 //                                               context.read<ServicesCubit>().servicesModel!.data[index].coverPhotoUrl!,
 //                                               width: 327.w,
 //                                               fit: BoxFit.fill,
-//                                               loadingBuilder: (context, child, loadingProgress) {
-//                                                 if (loadingProgress == null) {
-//                                                   return child; // Image has finished loading
-//                                                 }
-//                                                 return Center(
+////                                                 return Center(
 //                                                   child: CircularProgressIndicator(
 //                                                     value: loadingProgress.expectedTotalBytes != null
 //                                                         ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)

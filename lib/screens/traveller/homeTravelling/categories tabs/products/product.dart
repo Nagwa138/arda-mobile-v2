@@ -1,10 +1,11 @@
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
+import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_cubit.dart';
+import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_state.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:PassPort/components/color/color.dart';
-import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_cubit.dart';
-import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_state.dart';
 
 class Products extends StatelessWidget {
   const Products({super.key});
@@ -27,9 +28,7 @@ class Products extends StatelessWidget {
                 style: TextStyle(
                   color: accentColor,
                   fontSize: 20.sp,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+                  fontWeight: FontWeight.w700)),
               actions: [
                 GestureDetector(
                   onTap: () {
@@ -37,16 +36,12 @@ class Products extends StatelessWidget {
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    child: Icon(Icons.shopping_basket_rounded),
-                  ),
-                )
-              ],
-            ),
+                    child: Icon(Icons.shopping_basket_rounded)))
+              ]),
             body: state is getProductLoading
                 ? Center(
                     child: CircularProgressIndicator(
-                    color: accentColor,
-                  ))
+                    color: accentColor))
                 : GridView.builder(
                     padding:
                         EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
@@ -56,8 +51,7 @@ class Products extends StatelessWidget {
                       crossAxisCount: 2,
                       crossAxisSpacing: 15.w,
                       mainAxisSpacing: 15.h,
-                      childAspectRatio: 0.9,
-                    ),
+                      childAspectRatio: 0.9),
                     itemBuilder: (context, index) => GestureDetector(
                       onTap: () {
                         print(ProductCubit.get(context)
@@ -86,7 +80,7 @@ class Products extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Image.network(
+                              CustomImage(
                                 ProductCubit.get(context)
                                     .productModel!
                                     .data![index]
@@ -94,8 +88,7 @@ class Products extends StatelessWidget {
                                     .toString(),
                                 width: 200.w,
                                 height: 120.h,
-                                fit: BoxFit.cover,
-                              ),
+                                fit: BoxFit.cover),
                               Padding(
                                 padding: EdgeInsets.only(
                                     bottom: 20.h, left: 10.w, top: 0.h),
@@ -136,19 +129,8 @@ class Products extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: white,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-          );
-        },
-      ),
-    );
+                                    fontWeight: FontWeight.w600)))
+                            ]))))));
+        }));
   }
 }

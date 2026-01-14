@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+﻿import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../components/color/color.dart';
+import '../../../components/widgets/custom_image.dart';
 
 class CustomCarouselSlider extends StatefulWidget {
   const CustomCarouselSlider({
@@ -59,12 +59,10 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
               setState(() {
                 _currentIndex = index;
               });
-            },
-          ),
+            }),
           itemBuilder: (context, index, realIndex) {
             return _buildImageItem(displayImages[index]);
-          },
-        ),
+          }),
 
         // Numbered Indicators
         if (displayImages.length > 1)
@@ -72,8 +70,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
             bottom: 20.h,
             left: 0,
             right: 0,
-            child: _buildNumberedIndicators(displayImages.length),
-          ),
+            child: _buildNumberedIndicators(displayImages.length)),
 
         // Magnifier Icon
         Positioned(
@@ -90,21 +87,13 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.3),
                     blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
+                    offset: const Offset(0, 2)),
+                ]),
               child: Icon(
                 Icons.zoom_in,
                 color: Colors.white,
-                size: 25
-                .sp,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
+                size: 25.sp)))),
+      ]);
   }
 
   void _showImageZoom(BuildContext context, String imageUrl) {
@@ -119,22 +108,9 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
               minScale: 0.5,
               maxScale: 4.0,
               child: Center(
-                child: CachedNetworkImage(
-                  imageUrl: imageUrl,
-                  fit: BoxFit.contain,
-                  placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(color: Colors.white),
-                  ),
-                  errorWidget: (context, url, error) => Center(
-                    child: Icon(
-                      Icons.error_outline,
-                      color: Colors.white,
-                      size: 64.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+                child: CustomImage(
+                  imageUrl,
+                  fit: BoxFit.contain))),
             Positioned(
               top: 40.h,
               right: 16.w,
@@ -145,67 +121,24 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                   decoration: BoxDecoration(
                     color: Colors.black.withValues(alpha: 0.5),
                     borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
-                  ),
-                  child: Icon(Icons.close, color: Colors.white, size: 22.sp),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                    border:
+                        Border.all(color: Colors.white.withValues(alpha: 0.2))),
+                  child: Icon(Icons.close, color: Colors.white, size: 22.sp)))),
+          ])));
   }
 
   Widget _buildImageItem(String imageUrl) {
-    final bool isNetworkImage = imageUrl.startsWith('http');
-
-    return isNetworkImage
-        ? Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return Container(
-                color: Colors.grey[200],
-                child: Center(
-                  child: CircularProgressIndicator(
-                    color: accentColor,
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
-                        : null,
-                  ),
-                ),
-              );
-            },
-            errorBuilder: (context, error, stackTrace) => Container(
-              color: Colors.grey[100],
-              child: Center(
-                child: Image.asset(
-                  widget.placeholderImage,
-                  fit: BoxFit.contain,
-                  width: 150.w,
-                ),
-              ),
-            ),
-          )
-        : Image.asset(
-            imageUrl,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            errorBuilder: (context, error, stackTrace) => Container(
-              color: Colors.grey[100],
-              child: Center(
-                child: Icon(
-                  Icons.image_not_supported_outlined,
-                  size: 80.r,
-                  color: Colors.grey[400],
-                ),
-              ),
-            ),
-          );
+    return CustomImage(
+      imageUrl,
+      fit: BoxFit.cover,
+      width: double.infinity,
+      errorWidget: Container(
+        color: Colors.grey[100],
+        child: Center(
+          child: CustomImage(
+            widget.placeholderImage,
+            fit: BoxFit.contain,
+            width: 150.w))));
   }
 
   Widget _buildNumberedIndicators(int count) {
@@ -227,13 +160,9 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.3),
                       blurRadius: 4,
-                      offset: const Offset(0, 1),
-                    ),
+                      offset: const Offset(0, 1)),
                   ]
-                : null,
-          ),
-        );
-      }),
-    );
+                : null));
+      }));
   }
 }

@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/models/traveller/products/card_model.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/cart_cubit/cart_cubit.dart';
@@ -36,16 +37,9 @@ class Cart extends StatelessWidget {
                           return EmptyCartView();
                         }
                         return CartContentView(cards: cards);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
+                      })),
+                ])));
+        }));
   }
 }
 
@@ -63,11 +57,8 @@ class CartBackgroundContainer extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/background.jpeg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: child,
-    );
+          fit: BoxFit.cover)),
+      child: child);
   }
 }
 
@@ -85,10 +76,7 @@ class CartAppBar extends StatelessWidget {
         style: TextStyle(
           color: accentColor,
           fontSize: 20.sp,
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-    );
+          fontWeight: FontWeight.w700)));
   }
 }
 
@@ -108,9 +96,7 @@ class EmptyCartView extends StatelessWidget {
           EmptyCartSubtitle(),
           SizedBox(height: 32.h),
           StartShoppingButton(),
-        ],
-      ),
-    );
+        ]));
   }
 }
 
@@ -123,14 +109,11 @@ class EmptyCartIcon extends StatelessWidget {
       padding: EdgeInsets.all(40.w),
       decoration: BoxDecoration(
         color: accentColor.withValues(alpha: 0.1),
-        shape: BoxShape.circle,
-      ),
+        shape: BoxShape.circle),
       child: Icon(
         Icons.shopping_cart_outlined,
         size: 120.sp,
-        color: accentColor.withValues(alpha: 0.6),
-      ),
-    );
+        color: accentColor.withValues(alpha: 0.6)));
   }
 }
 
@@ -144,9 +127,7 @@ class EmptyCartTitle extends StatelessWidget {
       style: TextStyle(
         color: accentColor,
         fontSize: 24.sp,
-        fontWeight: FontWeight.w700,
-      ),
-    );
+        fontWeight: FontWeight.w700));
   }
 }
 
@@ -163,10 +144,7 @@ class EmptyCartSubtitle extends StatelessWidget {
         style: TextStyle(
           color: Colors.grey[600],
           fontSize: 15.sp,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-    );
+          fontWeight: FontWeight.w400)));
   }
 }
 
@@ -180,8 +158,7 @@ class StartShoppingButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 32.w,
-          vertical: 14.h,
-        ),
+          vertical: 14.h),
         decoration: BoxDecoration(
           color: accentColor,
           borderRadius: BorderRadius.circular(12.r),
@@ -189,31 +166,23 @@ class StartShoppingButton extends StatelessWidget {
             BoxShadow(
               color: accentColor.withValues(alpha: 0.3),
               blurRadius: 12,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
+              offset: const Offset(0, 6)),
+          ]),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               Icons.shopping_bag_outlined,
               color: Colors.white,
-              size: 20.sp,
-            ),
+              size: 20.sp),
             SizedBox(width: 8.w),
             Text(
               "Start Shopping",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.sp,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                fontWeight: FontWeight.w600)),
+          ])));
   }
 }
 
@@ -233,9 +202,7 @@ class CartContentView extends StatelessWidget {
         children: [
           CartItemsList(cards: cards),
           if (cards.isNotEmpty) CartFooterSection(cards: cards),
-        ],
-      ),
-    );
+        ]));
   }
 }
 
@@ -258,10 +225,8 @@ class CartItemsList extends StatelessWidget {
         return CartItemCard(
           card: cards[index],
           index: index,
-          currentAmount: cards[index].amount,
-        );
-      },
-    );
+          currentAmount: cards[index].amount);
+      });
   }
 }
 
@@ -299,10 +264,8 @@ class CartItemCard extends StatelessWidget {
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
+              offset: const Offset(0, 4)),
+          ]),
         padding: EdgeInsets.all(12.w),
         child: Column(
           children: [
@@ -310,26 +273,18 @@ class CartItemCard extends StatelessWidget {
               children: [
                 ProductImage(
                   imageUrl: card.image,
-                  isValid: isValidImageUrl(card.image),
-                ),
+                  isValid: isValidImageUrl(card.image)),
                 SizedBox(width: 15.w),
                 Expanded(
                   child: CartProductDetails(
                     card: card,
-                    index: index,
-                  ),
-                ),
-              ],
-            ),
+                    index: index)),
+              ]),
             Divider(height: 24.h, thickness: 1),
             QuantityControl(
               index: index,
-              currentAmount: currentAmount,
-            ),
-          ],
-        ),
-      ),
-    );
+              currentAmount: currentAmount),
+          ])));
   }
 }
 
@@ -348,23 +303,12 @@ class ProductImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.r),
       child: isValid
-          ? Image.network(
+          ? CustomImage(
               imageUrl,
               width: 85.w,
               height: 110.h,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return PlaceholderImage(
-                  icon: Icons.image_not_supported,
-                );
-              },
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return LoadingImage(loadingProgress: loadingProgress);
-              },
-            )
-          : PlaceholderImage(icon: Icons.shopping_bag),
-    );
+              fit: BoxFit.cover)
+          : PlaceholderImage(icon: Icons.shopping_bag));
   }
 }
 
@@ -386,16 +330,12 @@ class PlaceholderImage extends StatelessWidget {
           colors: [
             Colors.grey[200]!,
             Colors.grey[300]!,
-          ],
-        ),
-        borderRadius: BorderRadius.circular(15.r),
-      ),
+          ]),
+        borderRadius: BorderRadius.circular(15.r)),
       child: Icon(
         icon,
         color: Colors.grey[600],
-        size: 40.sp,
-      ),
-    );
+        size: 40.sp));
   }
 }
 
@@ -414,8 +354,7 @@ class LoadingImage extends StatelessWidget {
       height: 110.h,
       decoration: BoxDecoration(
         color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(15.r),
-      ),
+        borderRadius: BorderRadius.circular(15.r)),
       child: Center(
         child: CircularProgressIndicator(
           value: loadingProgress.expectedTotalBytes != null
@@ -423,10 +362,7 @@ class LoadingImage extends StatelessWidget {
                   loadingProgress.expectedTotalBytes!
               : null,
           strokeWidth: 2,
-          color: accentColor,
-        ),
-      ),
-    );
+          color: accentColor)));
   }
 }
 
@@ -447,16 +383,14 @@ class CartProductDetails extends StatelessWidget {
       children: [
         ProductHeader(
           description: card.description,
-          index: index,
-        ),
+          index: index),
         SizedBox(height: 6.h),
         ProductTitle(title: card.title),
         SizedBox(height: 8.h),
         StoreInfo(storeName: card.store),
         SizedBox(height: 8.h),
         ProductPrice(price: card.price),
-      ],
-    );
+      ]);
   }
 }
 
@@ -480,16 +414,12 @@ class ProductHeader extends StatelessWidget {
             style: TextStyle(
               color: accentColor,
               fontSize: 15.sp,
-              fontWeight: FontWeight.w700,
-            ),
+              fontWeight: FontWeight.w700),
             maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
+            overflow: TextOverflow.ellipsis)),
         SizedBox(width: 8.w),
         RemoveButton(index: index),
-      ],
-    );
+      ]);
   }
 }
 
@@ -509,15 +439,11 @@ class RemoveButton extends StatelessWidget {
         padding: EdgeInsets.all(4.w),
         decoration: BoxDecoration(
           color: Colors.red.withValues(alpha: 0.1),
-          shape: BoxShape.circle,
-        ),
+          shape: BoxShape.circle),
         child: Icon(
           Icons.close,
           color: Colors.red,
-          size: 18.sp,
-        ),
-      ),
-    );
+          size: 18.sp)));
   }
 }
 
@@ -536,9 +462,7 @@ class ProductTitle extends StatelessWidget {
       style: TextStyle(
         color: Colors.grey[600],
         fontSize: 13.sp,
-        fontWeight: FontWeight.w500,
-      ),
-    );
+        fontWeight: FontWeight.w500));
   }
 }
 
@@ -557,8 +481,7 @@ class StoreInfo extends StatelessWidget {
         Icon(
           Icons.store_outlined,
           color: accentColor.withValues(alpha: 0.7),
-          size: 16.sp,
-        ),
+          size: 16.sp),
         SizedBox(width: 5.w),
         Expanded(
           child: Text(
@@ -567,12 +490,8 @@ class StoreInfo extends StatelessWidget {
             style: TextStyle(
               fontSize: 12.sp,
               color: Colors.grey[600],
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ],
-    );
+              fontWeight: FontWeight.w500))),
+      ]);
   }
 }
 
@@ -589,21 +508,16 @@ class ProductPrice extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 10.w,
-        vertical: 6.h,
-      ),
+        vertical: 6.h),
       decoration: BoxDecoration(
         color: accentColor.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(8.r),
-      ),
+        borderRadius: BorderRadius.circular(8.r)),
       child: Text(
         "$price ${"currency".tr()}",
         style: TextStyle(
           color: accentColor,
           fontSize: 15.sp,
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-    );
+          fontWeight: FontWeight.w700)));
   }
 }
 
@@ -627,50 +541,38 @@ class QuantityControl extends StatelessWidget {
           style: TextStyle(
             color: Colors.grey[700],
             fontSize: 15.sp,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+            fontWeight: FontWeight.w600)),
         Container(
           decoration: BoxDecoration(
             color: accentColor.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(25.r),
             border: Border.all(
               color: accentColor.withValues(alpha: 0.2),
-              width: 1,
-            ),
-          ),
+              width: 1)),
           padding: EdgeInsets.symmetric(
             horizontal: 8.w,
-            vertical: 4.h,
-          ),
+            vertical: 4.h),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               QuantityButton(
                 onTap: () => context.read<CardCubit>().decrementQuantity(index),
                 icon: Icons.remove,
-                isEnabled: currentAmount > 1,
-              ),
+                isEnabled: currentAmount > 1),
               SizedBox(width: 12.w),
               Text(
                 currentAmount.toString(),
                 style: TextStyle(
                   color: accentColor,
                   fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+                  fontWeight: FontWeight.w700)),
               SizedBox(width: 12.w),
               QuantityButton(
                 onTap: () => context.read<CardCubit>().incrementQuantity(index),
                 icon: Icons.add,
-                isEnabled: true,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+                isEnabled: true),
+            ])),
+      ]);
   }
 }
 
@@ -694,15 +596,11 @@ class QuantityButton extends StatelessWidget {
         padding: EdgeInsets.all(4.w),
         decoration: BoxDecoration(
           color: isEnabled ? accentColor : Colors.grey[300],
-          shape: BoxShape.circle,
-        ),
+          shape: BoxShape.circle),
         child: Icon(
           icon,
           size: 18.sp,
-          color: isEnabled ? Colors.white : Colors.grey[500],
-        ),
-      ),
-    );
+          color: isEnabled ? Colors.white : Colors.grey[500])));
   }
 }
 
@@ -730,8 +628,7 @@ class CartFooterSection extends StatelessWidget {
         SizedBox(height: 24.h),
         CheckoutButton(cards: cards),
         SizedBox(height: 20.h),
-      ],
-    );
+      ]);
   }
 }
 
@@ -750,18 +647,14 @@ class AddMoreProductsButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 2.w,
-              color: accentColor,
-            ),
-            borderRadius: BorderRadius.circular(12.r),
-          ),
+              color: accentColor),
+            borderRadius: BorderRadius.circular(12.r)),
           shadows: [
             BoxShadow(
               color: accentColor.withValues(alpha: 0.1),
               blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
+              offset: const Offset(0, 2)),
+          ]),
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -769,8 +662,7 @@ class AddMoreProductsButton extends StatelessWidget {
               Icon(
                 Icons.add_shopping_cart,
                 color: accentColor,
-                size: 20.sp,
-              ),
+                size: 20.sp),
               SizedBox(width: 8.w),
               Text(
                 'products.addCart'.tr(),
@@ -778,14 +670,8 @@ class AddMoreProductsButton extends StatelessWidget {
                 style: TextStyle(
                   color: accentColor,
                   fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+                  fontWeight: FontWeight.w700)),
+            ]))));
   }
 }
 
@@ -810,10 +696,8 @@ class PaymentSummaryCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+            offset: const Offset(0, 4)),
+        ]),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -822,17 +706,13 @@ class PaymentSummaryCard extends StatelessWidget {
           PaymentRow(
             label: 'products.Subtotal'.tr(),
             value: "$subtotal ${"currency".tr()}",
-            isTotal: false,
-          ),
+            isTotal: false),
           Divider(height: 24.h, thickness: 1),
           PaymentRow(
             label: 'products.total'.tr(),
             value: "$total ${"currency".tr()}",
-            isTotal: true,
-          ),
-        ],
-      ),
-    );
+            isTotal: true),
+        ]));
   }
 }
 
@@ -846,19 +726,15 @@ class PaymentSummaryHeader extends StatelessWidget {
         Icon(
           Icons.receipt_long,
           color: accentColor,
-          size: 22.sp,
-        ),
+          size: 22.sp),
         SizedBox(width: 8.w),
         Text(
           'products.payment'.tr(),
           style: TextStyle(
             color: accentColor,
             fontSize: 18.sp,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ],
-    );
+            fontWeight: FontWeight.w700)),
+      ]);
   }
 }
 
@@ -884,19 +760,14 @@ class PaymentRow extends StatelessWidget {
           style: TextStyle(
             color: isTotal ? accentColor : Colors.grey[600],
             fontSize: isTotal ? 16.sp : 14.sp,
-            fontWeight: isTotal ? FontWeight.w700 : FontWeight.w500,
-          ),
-        ),
+            fontWeight: isTotal ? FontWeight.w700 : FontWeight.w500)),
         Text(
           value,
           style: TextStyle(
             color: accentColor,
             fontSize: isTotal ? 17.sp : 15.sp,
-            fontWeight: isTotal ? FontWeight.w700 : FontWeight.w600,
-          ),
-        ),
-      ],
-    );
+            fontWeight: isTotal ? FontWeight.w700 : FontWeight.w600)),
+      ]);
   }
 }
 
@@ -914,8 +785,7 @@ class CheckoutButton extends StatelessWidget {
       onTap: () => Navigator.pushNamed(
         context,
         'checkoutInfo',
-        arguments: cards,
-      ),
+        arguments: cards),
       child: Container(
         height: 56.h,
         decoration: BoxDecoration(
@@ -925,21 +795,14 @@ class CheckoutButton extends StatelessWidget {
             BoxShadow(
               color: accentColor.withValues(alpha: 0.3),
               blurRadius: 12,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
+              offset: const Offset(0, 6)),
+          ]),
         child: Center(
           child: Text(
             'products.check'.tr(),
             style: TextStyle(
               color: Colors.white,
               fontSize: 16.sp,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-      ),
-    );
+              fontWeight: FontWeight.w700)))));
   }
 }

@@ -12,8 +12,6 @@ import '../../../../../../version2_module/core/widgets/custom_carousel_slider.da
 class Details extends StatelessWidget {
   const Details({super.key});
 
-  static const String _placeholderImage = 'assets/images/ard_logo.png';
-
   String _getDisplayText(dynamic value) {
     if (value == null || (value is String && value.trim().isEmpty)) {
       return "No Details";

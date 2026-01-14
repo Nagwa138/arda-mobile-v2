@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/favourite_cubit/favourite_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/favourite_cubit/favourite_state.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/product_cubit/product_cubit.dart';
@@ -36,10 +37,7 @@ class DetailsProductFavourite extends StatelessWidget {
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("assets/images/background.jpeg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                        fit: BoxFit.cover))),
                   Scaffold(
                       backgroundColor: Colors.transparent,
                       appBar: AppBar(
@@ -49,20 +47,17 @@ class DetailsProductFavourite extends StatelessWidget {
                     title: Text("Golden Hands",
                         style: TextStyle(
                           fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        )),
+                          fontWeight: FontWeight.w600)),
                     leading: IconButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.arrow_back_ios)),
-                  ),
+                        icon: Icon(Icons.arrow_back_ios))),
                   body: state is GetAllFavouriteLoading
                       ? Center(
                           child: Center(
                               child: CircularProgressIndicator(
-                          color: orange,
-                        )))
+                          color: orange)))
                       : FavouriteCubit.get(context).product!.data!.isEmpty
                           ? Center(
                               child: Padding(
@@ -73,21 +68,15 @@ class DetailsProductFavourite extends StatelessWidget {
                                     Icon(
                                       Icons.favorite_outline,
                                       color: orange,
-                                      size: 150.sp,
-                                    ),
+                                      size: 150.sp),
                                     Text(
                                       textAlign: TextAlign.center,
-                                      "You haven’t any Golden Hands Now",
+                                      "You havenâ€™t any Golden Hands Now",
                                       style: TextStyle(
                                         color: accentColor,
                                         fontSize: 22.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
+                                        fontWeight: FontWeight.w400))
+                                  ])))
                           : ListView.separated(
                               //physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
@@ -155,7 +144,7 @@ class DetailsProductFavourite extends StatelessWidget {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             25.r),
-                                                    child: Image.network(
+                                                    child: CustomImage(
                                                       FavouriteCubit.get(
                                                               context)
                                                           .product!
@@ -163,27 +152,9 @@ class DetailsProductFavourite extends StatelessWidget {
                                                           .image![0],
                                                       width: 99.w,
                                                       height: 114.h,
-                                                      fit: BoxFit.fill,
-                                                      errorBuilder: (context,
-                                                          error, stackTrace) {
-                                                        return Container(
-                                                          width: 99.w,
-                                                          height: 114.h,
-                                                          color:
-                                                              Colors.grey[300],
-                                                          child: Icon(
-                                                            Icons.broken_image,
-                                                            color: Colors
-                                                                .grey[600],
-                                                            size: 40.sp,
-                                                          ),
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
+                                                      fit: BoxFit.fill)),
                                                   SizedBox(
-                                                    width: 5.w,
-                                                  ),
+                                                    width: 5.w),
                                                   Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
@@ -204,12 +175,9 @@ class DetailsProductFavourite extends StatelessWidget {
                                                                   accentColor,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w600),
-                                                        ),
-                                                      ),
+                                                                      .w600))),
                                                       SizedBox(
-                                                        height: 5.h,
-                                                      ),
+                                                        height: 5.h),
                                                       Row(
                                                         children: [
                                                           Row(
@@ -217,11 +185,9 @@ class DetailsProductFavourite extends StatelessWidget {
                                                               Icon(
                                                                 Icons
                                                                     .home_work_outlined,
-                                                                color: orange,
-                                                              ),
+                                                                color: orange),
                                                               SizedBox(
-                                                                width: 5.w,
-                                                              ),
+                                                                width: 5.w),
                                                               Text(
                                                                   "Egyptian store",
                                                                   style:
@@ -230,18 +196,14 @@ class DetailsProductFavourite extends StatelessWidget {
                                                                         14.sp,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w500,
-                                                                  ))
-                                                            ],
-                                                          ),
+                                                                            .w500))
+                                                            ]),
                                                           SizedBox(
-                                                            width: 10.w,
-                                                          ),
+                                                            width: 10.w),
                                                           Icon(
                                                             Icons
                                                                 .star_rate_rounded,
-                                                            color: Colors.amber,
-                                                          ),
+                                                            color: Colors.amber),
                                                           SizedBox(
                                                             width: 50.w,
                                                             child: Text(
@@ -259,14 +221,10 @@ class DetailsProductFavourite extends StatelessWidget {
                                                                       accentColor,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w500,
-                                                                )),
-                                                          )
-                                                        ],
-                                                      ),
+                                                                          .w500)))
+                                                        ]),
                                                       SizedBox(
-                                                        height: 5.h,
-                                                      ),
+                                                        height: 5.h),
                                                       Row(
                                                         children: [
                                                           Row(
@@ -288,13 +246,10 @@ class DetailsProductFavourite extends StatelessWidget {
                                                                         accentColor,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w400),
-                                                              ),
-                                                            ],
-                                                          ),
+                                                                            .w400)),
+                                                            ]),
                                                           SizedBox(
-                                                            width: 90.w,
-                                                          ),
+                                                            width: 90.w),
                                                           IconButton(
                                                               onPressed: () {
                                                                 ProductCubit.get(context).deleteFavouriteOfProduct(
@@ -309,36 +264,21 @@ class DetailsProductFavourite extends StatelessWidget {
                                                               icon: Icon(
                                                                 Icons.favorite,
                                                                 color:
-                                                                    Colors.red,
-                                                              ))
-                                                        ],
-                                                      )
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
+                                                                    Colors.red))
+                                                        ])
+                                                    ])
+                                                ])),
+                                          ]))),
+                                  ]);
                               },
                               separatorBuilder: (context, index) => SizedBox(
-                                    height: 15.h,
-                                  ),
+                                    height: 15.h),
                               itemCount: FavouriteCubit.get(context)
                                   .product!
                                   .data!
-                                  .length),
-                ),
-                ],
-              );
-            },
-          );
-        },
-      ),
-    );
+                                  .length)),
+                ]);
+            });
+        }));
   }
 }

@@ -1,4 +1,5 @@
-import 'package:PassPort/components/color/color.dart';
+﻿import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -37,10 +38,8 @@ class ServiceCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+            offset: const Offset(0, 4)),
+        ]),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(16.r),
@@ -49,19 +48,13 @@ class ServiceCard extends StatelessWidget {
           child: Row(
             children: [
               // Service Image
-              Container(
-                width: 80.w,
-                height: 80.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.r),
-                  image: DecorationImage(
-                    image: imageUrl.startsWith('http')
-                        ? NetworkImage(imageUrl)
-                        : AssetImage(imageUrl) as ImageProvider,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12.r),
+                child: CustomImage(
+                  imageUrl,
+                  width: 80.w,
+                  height: 80.h,
+                  fit: BoxFit.cover)),
 
               SizedBox(width: 16.w),
 
@@ -77,21 +70,16 @@ class ServiceCard extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 8.w,
-                            vertical: 4.h,
-                          ),
+                            vertical: 4.h),
                           decoration: BoxDecoration(
                             color: _getStatusColor().withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(6.r),
-                          ),
+                            borderRadius: BorderRadius.circular(6.r)),
                           child: Text(
                             status,
                             style: TextStyle(
                               color: _getStatusColor(),
                               fontSize: 10.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
+                              fontWeight: FontWeight.w600))),
                         PopupMenuButton<String>(
                           onSelected: (value) {
                             if (value == 'edit') {
@@ -108,9 +96,7 @@ class ServiceCard extends StatelessWidget {
                                   Icon(Icons.edit, size: 16.sp),
                                   SizedBox(width: 8.w),
                                   Text('Edit'),
-                                ],
-                              ),
-                            ),
+                                ])),
                             PopupMenuItem(
                               value: 'delete',
                               child: Row(
@@ -120,18 +106,13 @@ class ServiceCard extends StatelessWidget {
                                   SizedBox(width: 8.w),
                                   Text('Delete',
                                       style: TextStyle(color: Colors.red)),
-                                ],
-                              ),
-                            ),
+                                ])),
                           ],
                           child: Icon(
                             Icons.more_vert,
                             color: Colors.grey[600],
-                            size: 18.sp,
-                          ),
-                        ),
-                      ],
-                    ),
+                            size: 18.sp)),
+                      ]),
 
                     SizedBox(height: 8.h),
 
@@ -141,11 +122,9 @@ class ServiceCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
-                        color: appTextColor,
-                      ),
+                        color: appTextColor),
                       maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                      overflow: TextOverflow.ellipsis),
 
                     SizedBox(height: 4.h),
 
@@ -155,22 +134,17 @@ class ServiceCard extends StatelessWidget {
                         Icon(
                           Icons.location_on,
                           color: Colors.grey[500],
-                          size: 14.sp,
-                        ),
+                          size: 14.sp),
                         SizedBox(width: 4.w),
                         Expanded(
                           child: Text(
                             location,
                             style: TextStyle(
                               fontSize: 12.sp,
-                              color: Colors.grey[600],
-                            ),
+                              color: Colors.grey[600]),
                             maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
+                            overflow: TextOverflow.ellipsis)),
+                      ]),
 
                     SizedBox(height: 8.h),
 
@@ -206,14 +180,8 @@ class ServiceCard extends StatelessWidget {
                     //     ),
                     //   ],
                     // ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+                  ])),
+            ]))));
   }
 
   Color _getStatusColor() {

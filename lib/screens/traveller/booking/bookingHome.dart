@@ -188,7 +188,6 @@ class BookingHome extends StatelessWidget {
 
 Future<void> showMyDialog(BuildContext context) async {
   final _formKey = GlobalKey<FormState>();
-  String userInput = '';
 
   return showDialog<void>(
     context: context,
@@ -206,9 +205,6 @@ Future<void> showMyDialog(BuildContext context) async {
             decoration: InputDecoration(
               labelText: 'Message',
             ),
-            onSaved: (value) {
-              userInput = value ?? '';
-            },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';
