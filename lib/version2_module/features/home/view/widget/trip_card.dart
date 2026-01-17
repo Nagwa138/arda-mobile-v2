@@ -221,7 +221,7 @@ class TripRouteInfo extends StatelessWidget {
           SizedBox(width: 6.w),
           Flexible(
             child: Text(
-              '${trip.from ?? 'From'} â†’ ${trip.to ?? 'To'}',
+              '${trip.from ?? 'From'} → ${trip.to ?? 'To'}',
               style: TextStyle(
                 fontSize: 12.sp,
                 color: const Color(0xFF5A3D2B),
