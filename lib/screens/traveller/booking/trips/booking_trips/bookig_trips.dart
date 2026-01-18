@@ -54,7 +54,8 @@ class BookingTrips extends StatelessWidget {
                     child: Row(
                       children: [
                         BookingTabButton(
-                          isSelected: BookingTravellerCubit.get(context).toggle == 0,
+                          isSelected:
+                              BookingTravellerCubit.get(context).toggle == 0,
                           title: "booking.Pending",
                           onTap: () {
                             BookingTravellerCubit.get(context).toggleBooking(0);
@@ -64,7 +65,8 @@ class BookingTrips extends StatelessWidget {
                           },
                         ),
                         BookingTabButton(
-                          isSelected: BookingTravellerCubit.get(context).toggle == 1,
+                          isSelected:
+                              BookingTravellerCubit.get(context).toggle == 1,
                           title: "booking.Upcoming",
                           onTap: () {
                             BookingTravellerCubit.get(context).toggleBooking(1);
@@ -74,7 +76,8 @@ class BookingTrips extends StatelessWidget {
                           },
                         ),
                         BookingTabButton(
-                          isSelected: BookingTravellerCubit.get(context).toggle == 2,
+                          isSelected:
+                              BookingTravellerCubit.get(context).toggle == 2,
                           title: "booking.Completed",
                           onTap: () {
                             BookingTravellerCubit.get(context).toggleBooking(2);
@@ -84,7 +87,8 @@ class BookingTrips extends StatelessWidget {
                           },
                         ),
                         BookingTabButton(
-                          isSelected: BookingTravellerCubit.get(context).toggle == 3,
+                          isSelected:
+                              BookingTravellerCubit.get(context).toggle == 3,
                           title: "booking.Cancelled",
                           onTap: () {
                             BookingTravellerCubit.get(context).toggleBooking(3);
