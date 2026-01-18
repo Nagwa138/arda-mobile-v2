@@ -47,7 +47,7 @@ class Activities extends StatelessWidget {
                                             "assets/images/landingHome/notificationEmpty.png"),
                                         Text(
                                             textAlign: TextAlign.center,
-                                            "You havenâ€™t any Adventure Now",
+                                            "You haven't any Adventure Now",
                                             style: TextStyle(
                                                 color: accentColor,
                                                 fontSize: 22.sp,

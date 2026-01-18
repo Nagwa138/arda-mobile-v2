@@ -1,4 +1,5 @@
 import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_lodaing_indicator.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/trips_cubit/trips_cubit.dart';
 import 'package:PassPort/services/traveller/homeTravellerNavBarCubit/trips_cubit/trips_state.dart';
 import 'package:PassPort/version2_module/core/widgets/custom_carousel_slider.dart';
@@ -32,9 +33,7 @@ class DetailsTrips extends StatelessWidget {
           if (state is GetTripByIdLoading) {
             return Scaffold(
               backgroundColor: appBackgroundColor,
-              body: Center(
-                child: CircularProgressIndicator(color: accentColor),
-              ),
+              body: CustomLodaingIndicator(),
             );
           }
 
@@ -278,7 +277,7 @@ class DetailsTrips extends StatelessWidget {
                 bottomNavigationBar: tripData.ended != true
                     ? Container(
                         decoration: BoxDecoration(
-                                    color: appBackgroundColor,
+                          color: appBackgroundColor,
                           // boxShadow: [
                           //   BoxShadow(
                           //     color: Colors.black.withValues(alpha:0.08),

@@ -13,304 +13,320 @@ class Trips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => TripsCubit()..getAllTrips(),
-      child: BlocConsumer<TripsCubit, TripsStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Scaffold(
-            backgroundColor: appBackgroundColor,
-            appBar: AppBar(
-              backgroundColor: appBackgroundColor,
-              elevation: 0.0,
-              centerTitle: true,
-              title: Text(
-                "Journey Planner",
-                style: TextStyle(
-                  color: accentColor,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w700))),
-            floatingActionButton: SizedBox(
-              height: 60.h,
-              width: 60.w,
-              child: FittedBox(
-                child: FloatingActionButton(
-                    shape: CircleBorder(),
-                    onPressed: () {
-                      Navigator.pushNamed(context, "addTripe");
-                    },
-                    backgroundColor: accentColor,
-                    child: Icon(
-                      Icons.add,
-                      color: white,
-                      size: 30.sp)))),
-            body: state is GetTripsLoading
-                ? Center(
-                    child: CircularProgressIndicator(
-                    color: orange))
-                : TripsCubit.get(context).tripsModel!.data!.isEmpty
-                    ? Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.w),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                  "assets/images/landingHome/notificationEmpty.png"),
-                              Text(
-                                textAlign: TextAlign.center,
-                                "You havenâ€™t any Journey Planner Now",
-                                style: TextStyle(
-                                  color: accentColor,
-                                  fontSize: 22.sp,
-                                  fontWeight: FontWeight.w400))
-                            ])))
-                    : Center(
-                        child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: ListView.separated(
-                            itemBuilder: (context, index) => Container(
-                                  width: 327.w,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(24.r),
-                                    border: Border.all(color: accentColor)),
+        create: (BuildContext context) => TripsCubit()..getAllTrips(),
+        child: BlocConsumer<TripsCubit, TripsStates>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return Scaffold(
+                  backgroundColor: appBackgroundColor,
+                  appBar: AppBar(
+                      backgroundColor: appBackgroundColor,
+                      elevation: 0.0,
+                      centerTitle: true,
+                      title: Text("Journey Planner",
+                          style: TextStyle(
+                              color: accentColor,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w700))),
+                  floatingActionButton: SizedBox(
+                      height: 60.h,
+                      width: 60.w,
+                      child: FittedBox(
+                          child: FloatingActionButton(
+                              shape: CircleBorder(),
+                              onPressed: () {
+                                Navigator.pushNamed(context, "addTripe");
+                              },
+                              backgroundColor: accentColor,
+                              child:
+                                  Icon(Icons.add, color: white, size: 30.sp)))),
+                  body: state is GetTripsLoading
+                      ? Center(child: CircularProgressIndicator(color: orange))
+                      : TripsCubit.get(context).tripsModel!.data!.isEmpty
+                          ? Center(
+                              child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 10.w),
                                   child: Column(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadiusDirectional.only(
-                                          topEnd: Radius.circular(24.r),
-                                          topStart: Radius.circular(24.r)),
-                                        child: CustomImage(
-                                          TripsCubit.get(context)
-                                              .tripsModel!
-                                              .data![index]
-                                              .image
-                                              ?.toString(),
-                                          height: 300.h,
-                                          fit: BoxFit.cover,
-                                          width: double.infinity)),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 15.h, left: 20.w, right: 20.w),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                                TripsCubit.get(context)
-                                                    .tripsModel!
-                                                    .data![index]
-                                                    .name
-                                                    .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 20.sp,
-                                                  color: accentColor,
-                                                  fontWeight: FontWeight.bold)),
-                                            // SizedBox(height: 10.h),
-                                            // Divider(color: Color.fromRGBO(238, 238, 238, 1)),
-                                            // SizedBox(height: 10.h),
-                                            // Row(
-                                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            //   children: [
-                                            //     Column(
-                                            //       crossAxisAlignment: CrossAxisAlignment.start,
-                                            //       children: [
-                                            //         Text(
-                                            //             "trips.From".tr(),
-                                            //             style: TextStyle(
-                                            //               fontSize: 8.sp,
-                                            //               color: Color.fromRGBO(140, 140, 140, 1),
-                                            //               fontWeight: FontWeight.w500,
-                                            //             )
-                                            //         ),
-                                            //         SizedBox(height: 5.h),
-                                            //         Text(
-                                            //             TripsCubit.get(context).tripsModel!.data![index].from.toString(),
-                                            //             //"trips.Alexanderia".tr(),
-                                            //             style: TextStyle(
-                                            //               fontSize: 12.sp,
-                                            //               fontWeight: FontWeight.w500,
-                                            //             )
-                                            //         )
-                                            //       ],
-                                            //     ),
-                                            //
-                                            //     Image.asset("assets/images/traveller/loadtrips.png"),
-                                            //
-                                            //     Column(
-                                            //       crossAxisAlignment: CrossAxisAlignment.start,
-                                            //       children: [
-                                            //         Text(
-                                            //             "trips.To".tr(),
-                                            //             style: TextStyle(
-                                            //               fontSize: 8.sp,
-                                            //               color: Color.fromRGBO(140, 140, 140, 1),
-                                            //               fontWeight: FontWeight.w500,
-                                            //             )
-                                            //         ),
-                                            //         SizedBox(height: 5.h),
-                                            //         Text(
-                                            //             TripsCubit.get(context).tripsModel!.data![index].to.toString(),
-                                            //             //"trips.Cairo".tr(),
-                                            //             style: TextStyle(
-                                            //               fontSize: 12.sp,
-                                            //               fontWeight: FontWeight.w500,
-                                            //             )
-                                            //         )
-                                            //       ],
-                                            //     ),
-                                            //
-                                            //
-                                            //
-                                            //
-                                            //   ],
-                                            // ),
-                                            // SizedBox(height: 10.h),
-                                            Divider(
-                                              color: Colors.white54),
-                                            SizedBox(
-                                              height: 10.h),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Image.asset(
-                                                        "assets/images/traveller/time.png"),
-                                                    SizedBox(width: 10.w),
-                                                    Text(
-                                                        TripsCubit.get(context)
-                                                            .tripsModel!
-                                                            .data![index]
-                                                            .time
-                                                            .toString(),
-                                                        //"5:00 am",
-                                                        style: TextStyle(
-                                                          fontSize: 12.sp,
-                                                          fontWeight:
-                                                              FontWeight.w500))
-                                                  ]),
-                                                Row(
-                                                  children: [
-                                                    Image.asset(
-                                                        "assets/images/traveller/date.png"),
-                                                    SizedBox(width: 10.w),
-                                                    Text(
-                                                        TripsCubit.get(context)
-                                                            .tripsModel!
-                                                            .data![index]
-                                                            .date
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                          fontSize: 12.sp,
-                                                          fontWeight:
-                                                              FontWeight.w500))
-                                                  ]),
-                                              ]),
-                                            SizedBox(
-                                              height: 10.h),
-                                            Divider(
-                                              color: Colors.white54),
-                                            SizedBox(
-                                              height: 10.h),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Image.asset(
-                                                        "assets/images/traveller/person.png"),
-                                                    SizedBox(width: 10.w),
-                                                    Text(
-                                                        "${TripsCubit.get(context).tripsModel!.data![index].availableSeats.toString()}  " +
-                                                            "trips.person".tr(),
-                                                        style: TextStyle(
-                                                          fontSize: 12.sp,
-                                                          fontWeight:
-                                                              FontWeight.w500))
-                                                  ]),
-                                                Text(
-                                                    "${TripsCubit.get(context).tripsModel!.data![index].pricePerPerson.toString()} " +
-                                                        "booking.EGP".tr() +
-                                                        " / " +
-                                                        "trips.person".tr(),
-                                                    style: TextStyle(
-                                                      fontSize: 15.sp,
-                                                      color: accentColor,
-                                                      fontWeight:
-                                                          FontWeight.w700)),
-                                              ]),
-                                            SizedBox(
-                                              height: 40.h),
-                                            SizedBox(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                            "assets/images/landingHome/notificationEmpty.png"),
+                                        Text(
+                                            textAlign: TextAlign.center,
+                                            "You haven't any Journey Planner Now",
+                                            style: TextStyle(
+                                                color: accentColor,
+                                                fontSize: 22.sp,
+                                                fontWeight: FontWeight.w400))
+                                      ])))
+                          : Center(
+                              child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 20.w),
+                                  child: ListView.separated(
+                                      itemBuilder: (context, index) =>
+                                          Container(
                                               width: 327.w,
-                                              height: 55.h,
-                                              child: ElevatedButton(
-                                                  style: ButtonStyle(
-                                                    shape: WidgetStateProperty.all<
-                                                            RoundedRectangleBorder>(
-                                                        RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadiusDirectional
+                                                          .circular(24.r),
+                                                  border: Border.all(
+                                                      color: accentColor)),
+                                              child: Column(children: [
+                                                ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadiusDirectional
+                                                            .only(
+                                                                topEnd: Radius
                                                                     .circular(
-                                                                        10.0),
-                                                            side: BorderSide(
-                                                                color:
-                                                                    accentColor))),
-                                                    foregroundColor:
-                                                        WidgetStateProperty.all<
-                                                                Color>(
-                                                            Colors.white),
-                                                    backgroundColor:
-                                                        WidgetStateProperty.all<
-                                                            Color>(accentColor)),
-                                                  onPressed: () {
-                                                    print(
+                                                                        24.r),
+                                                                topStart: Radius
+                                                                    .circular(
+                                                                        24.r)),
+                                                    child: CustomImage(
                                                         TripsCubit.get(context)
                                                             .tripsModel!
                                                             .data![index]
-                                                            .id
-                                                            .toString());
-                                                    Navigator.pushNamed(
-                                                        context, "detailsTrips",
-                                                        arguments: {
-                                                          'id': TripsCubit.get(
-                                                                  context)
-                                                              .tripsModel!
-                                                              .data![index]
-                                                              .id
-                                                              .toString(),
-                                                          'text': "trips",
-                                                          "num": TripsCubit.get(
-                                                                  context)
-                                                              .tripsModel!
-                                                              .data![index]
-                                                              .availableSeats
-                                                        });
-                                                  },
-                                                  child: Text(
-                                                    "trips.BookNow".tr(),
-                                                    style: TextStyle(
-                                                        fontSize: 16.sp,
-                                                        color: white,
-                                                        fontWeight:
-                                                            FontWeight.w600)))),
-                                            SizedBox(
-                                              height: 20.h),
-                                          ])),
-                                    ])),
-                            separatorBuilder: (context, index) => SizedBox(
-                                  height: 10.h),
-                            itemCount: TripsCubit.get(context)
-                                .tripsModel!
-                                .data!
-                                .length))));
-        }));
+                                                            .image
+                                                            ?.toString(),
+                                                        height: 300.h,
+                                                        fit: BoxFit.cover,
+                                                        width:
+                                                            double.infinity)),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 15.h,
+                                                        left: 20.w,
+                                                        right: 20.w),
+                                                    child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                              TripsCubit
+                                                                      .get(
+                                                                          context)
+                                                                  .tripsModel!
+                                                                  .data![index]
+                                                                  .name
+                                                                  .toString(),
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      20.sp,
+                                                                  color:
+                                                                      accentColor,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold)),
+                                                          // SizedBox(height: 10.h),
+                                                          // Divider(color: Color.fromRGBO(238, 238, 238, 1)),
+                                                          // SizedBox(height: 10.h),
+                                                          // Row(
+                                                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          //   children: [
+                                                          //     Column(
+                                                          //       crossAxisAlignment: CrossAxisAlignment.start,
+                                                          //       children: [
+                                                          //         Text(
+                                                          //             "trips.From".tr(),
+                                                          //             style: TextStyle(
+                                                          //               fontSize: 8.sp,
+                                                          //               color: Color.fromRGBO(140, 140, 140, 1),
+                                                          //               fontWeight: FontWeight.w500,
+                                                          //             )
+                                                          //         ),
+                                                          //         SizedBox(height: 5.h),
+                                                          //         Text(
+                                                          //             TripsCubit.get(context).tripsModel!.data![index].from.toString(),
+                                                          //             //"trips.Alexanderia".tr(),
+                                                          //             style: TextStyle(
+                                                          //               fontSize: 12.sp,
+                                                          //               fontWeight: FontWeight.w500,
+                                                          //             )
+                                                          //         )
+                                                          //       ],
+                                                          //     ),
+                                                          //
+                                                          //     Image.asset("assets/images/traveller/loadtrips.png"),
+                                                          //
+                                                          //     Column(
+                                                          //       crossAxisAlignment: CrossAxisAlignment.start,
+                                                          //       children: [
+                                                          //         Text(
+                                                          //             "trips.To".tr(),
+                                                          //             style: TextStyle(
+                                                          //               fontSize: 8.sp,
+                                                          //               color: Color.fromRGBO(140, 140, 140, 1),
+                                                          //               fontWeight: FontWeight.w500,
+                                                          //             )
+                                                          //         ),
+                                                          //         SizedBox(height: 5.h),
+                                                          //         Text(
+                                                          //             TripsCubit.get(context).tripsModel!.data![index].to.toString(),
+                                                          //             //"trips.Cairo".tr(),
+                                                          //             style: TextStyle(
+                                                          //               fontSize: 12.sp,
+                                                          //               fontWeight: FontWeight.w500,
+                                                          //             )
+                                                          //         )
+                                                          //       ],
+                                                          //     ),
+                                                          //
+                                                          //
+                                                          //
+                                                          //
+                                                          //   ],
+                                                          // ),
+                                                          // SizedBox(height: 10.h),
+                                                          Divider(
+                                                              color: Colors
+                                                                  .white54),
+                                                          SizedBox(
+                                                              height: 10.h),
+                                                          Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Row(children: [
+                                                                  Image.asset(
+                                                                      "assets/images/traveller/time.png"),
+                                                                  SizedBox(
+                                                                      width:
+                                                                          10.w),
+                                                                  Text(
+                                                                      TripsCubit.get(
+                                                                              context)
+                                                                          .tripsModel!
+                                                                          .data![
+                                                                              index]
+                                                                          .time
+                                                                          .toString(),
+                                                                      //"5:00 am",
+                                                                      style: TextStyle(
+                                                                          fontSize: 12
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w500))
+                                                                ]),
+                                                                Row(children: [
+                                                                  Image.asset(
+                                                                      "assets/images/traveller/date.png"),
+                                                                  SizedBox(
+                                                                      width:
+                                                                          10.w),
+                                                                  Text(
+                                                                      TripsCubit.get(
+                                                                              context)
+                                                                          .tripsModel!
+                                                                          .data![
+                                                                              index]
+                                                                          .date
+                                                                          .toString(),
+                                                                      style: TextStyle(
+                                                                          fontSize: 12
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w500))
+                                                                ]),
+                                                              ]),
+                                                          SizedBox(
+                                                              height: 10.h),
+                                                          Divider(
+                                                              color: Colors
+                                                                  .white54),
+                                                          SizedBox(
+                                                              height: 10.h),
+                                                          Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Row(children: [
+                                                                  Image.asset(
+                                                                      "assets/images/traveller/person.png"),
+                                                                  SizedBox(
+                                                                      width:
+                                                                          10.w),
+                                                                  Text(
+                                                                      "${TripsCubit.get(context).tripsModel!.data![index].availableSeats.toString()}  " +
+                                                                          "trips.person"
+                                                                              .tr(),
+                                                                      style: TextStyle(
+                                                                          fontSize: 12
+                                                                              .sp,
+                                                                          fontWeight:
+                                                                              FontWeight.w500))
+                                                                ]),
+                                                                Text(
+                                                                    "${TripsCubit.get(context).tripsModel!.data![index].pricePerPerson.toString()} " +
+                                                                        "booking.EGP"
+                                                                            .tr() +
+                                                                        " / " +
+                                                                        "trips.person"
+                                                                            .tr(),
+                                                                    style: TextStyle(
+                                                                        fontSize: 15
+                                                                            .sp,
+                                                                        color:
+                                                                            accentColor,
+                                                                        fontWeight:
+                                                                            FontWeight.w700)),
+                                                              ]),
+                                                          SizedBox(
+                                                              height: 40.h),
+                                                          SizedBox(
+                                                              width: 327.w,
+                                                              height: 55.h,
+                                                              child:
+                                                                  ElevatedButton(
+                                                                      style: ButtonStyle(
+                                                                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                                              borderRadius: BorderRadius.circular(
+                                                                                  10.0),
+                                                                              side: BorderSide(
+                                                                                  color:
+                                                                                      accentColor))),
+                                                                          foregroundColor: WidgetStateProperty.all<Color>(Colors
+                                                                              .white),
+                                                                          backgroundColor: WidgetStateProperty.all<Color>(
+                                                                              accentColor)),
+                                                                      onPressed:
+                                                                          () {
+                                                                        print(TripsCubit.get(context)
+                                                                            .tripsModel!
+                                                                            .data![index]
+                                                                            .id
+                                                                            .toString());
+                                                                        Navigator.pushNamed(
+                                                                            context,
+                                                                            "detailsTrips",
+                                                                            arguments: {
+                                                                              'id': TripsCubit.get(context).tripsModel!.data![index].id.toString(),
+                                                                              'text': "trips",
+                                                                              "num": TripsCubit.get(context).tripsModel!.data![index].availableSeats
+                                                                            });
+                                                                      },
+                                                                      child: Text("trips.BookNow".tr(),
+                                                                          style: TextStyle(
+                                                                              fontSize: 16.sp,
+                                                                              color: white,
+                                                                              fontWeight: FontWeight.w600)))),
+                                                          SizedBox(
+                                                              height: 20.h),
+                                                        ])),
+                                              ])),
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(height: 10.h),
+                                      itemCount: TripsCubit.get(context)
+                                          .tripsModel!
+                                          .data!
+                                          .length))));
+            }));
   }
 }
 
