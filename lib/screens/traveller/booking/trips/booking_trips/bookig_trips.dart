@@ -3,6 +3,7 @@ import 'package:PassPort/screens/traveller/booking/trips/cancel/cancel.dart';
 import 'package:PassPort/screens/traveller/booking/trips/complete/complete.dart';
 import 'package:PassPort/screens/traveller/booking/trips/pending/pending.dart';
 import 'package:PassPort/screens/traveller/booking/trips/upcomming/upcomming.dart';
+import 'package:PassPort/screens/traveller/booking/widgets/booking_tab_button.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -48,67 +49,51 @@ class BookingTrips extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          bookingHost(
-                              context: context,
-                              index: 0,
-                              title: "booking.Pending",
-                              function: () {
-                                BookingTravellerCubit.get(context)
-                                    .toggleBooking(0);
-                                controllerBooking.animateToPage(0,
-                                    duration: Duration(milliseconds: 300),
-                                    curve: Curves.easeIn);
-                              }),
-                          SizedBox(
-                            width: 20.w,
-                          ),
-                          bookingHost(
-                              context: context,
-                              index: 1,
-                              title: "booking.Upcoming",
-                              function: () {
-                                BookingTravellerCubit.get(context)
-                                    .toggleBooking(1);
-                                controllerBooking.animateToPage(1,
-                                    duration: Duration(milliseconds: 300),
-                                    curve: Curves.easeIn);
-                              }),
-                          SizedBox(
-                            width: 20.w,
-                          ),
-                          bookingHost(
-                              context: context,
-                              index: 2,
-                              title: "booking.Completed",
-                              function: () {
-                                BookingTravellerCubit.get(context)
-                                    .toggleBooking(2);
-                                controllerBooking.animateToPage(2,
-                                    duration: Duration(milliseconds: 300),
-                                    curve: Curves.easeIn);
-                              }),
-                          SizedBox(
-                            width: 20.w,
-                          ),
-                          bookingHost(
-                              context: context,
-                              index: 3,
-                              title: "booking.Cancelled",
-                              function: () {
-                                BookingTravellerCubit.get(context)
-                                    .toggleBooking(3);
-                                controllerBooking.animateToPage(3,
-                                    duration: Duration(milliseconds: 300),
-                                    curve: Curves.easeIn);
-                              }),
-                        ],
-                      ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        BookingTabButton(
+                          isSelected: BookingTravellerCubit.get(context).toggle == 0,
+                          title: "booking.Pending",
+                          onTap: () {
+                            BookingTravellerCubit.get(context).toggleBooking(0);
+                            controllerBooking.animateToPage(0,
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.easeIn);
+                          },
+                        ),
+                        BookingTabButton(
+                          isSelected: BookingTravellerCubit.get(context).toggle == 1,
+                          title: "booking.Upcoming",
+                          onTap: () {
+                            BookingTravellerCubit.get(context).toggleBooking(1);
+                            controllerBooking.animateToPage(1,
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.easeIn);
+                          },
+                        ),
+                        BookingTabButton(
+                          isSelected: BookingTravellerCubit.get(context).toggle == 2,
+                          title: "booking.Completed",
+                          onTap: () {
+                            BookingTravellerCubit.get(context).toggleBooking(2);
+                            controllerBooking.animateToPage(2,
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.easeIn);
+                          },
+                        ),
+                        BookingTabButton(
+                          isSelected: BookingTravellerCubit.get(context).toggle == 3,
+                          title: "booking.Cancelled",
+                          onTap: () {
+                            BookingTravellerCubit.get(context).toggleBooking(3);
+                            controllerBooking.animateToPage(3,
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.easeIn);
+                          },
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -135,36 +120,4 @@ class BookingTrips extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget bookingHost(
-    {required context,
-    required int index,
-    required String title,
-    required VoidCallback function}) {
-  return GestureDetector(
-    onTap: function,
-    child: Container(
-      width: 110.w,
-      height: 55.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadiusDirectional.circular(30.r),
-        border: Border.all(
-            color: BookingTravellerCubit.get(context).toggle == index
-                ? black
-                : Color.fromRGBO(238, 238, 238, 1)),
-      ),
-      child: Center(
-        child: Text(
-          textAlign: TextAlign.center,
-          title.tr(),
-          style: TextStyle(
-            color: black,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ),
-    ),
-  );
 }

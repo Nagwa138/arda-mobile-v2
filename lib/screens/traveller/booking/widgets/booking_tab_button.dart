@@ -19,9 +19,22 @@ class BookingTabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         decoration: BoxDecoration(
+          gradient: isSelected
+              ? LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    lightBrown.withOpacity(0.2),
+                    lightBrown.withOpacity(0.05),
+                    Colors.transparent,
+                  ],
+                )
+              : null,
           border: Border(
             bottom: BorderSide(
               color: isSelected ? lightBrown : Colors.transparent,
