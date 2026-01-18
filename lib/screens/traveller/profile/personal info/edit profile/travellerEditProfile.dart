@@ -52,33 +52,10 @@ class TravellerEditProfile extends StatelessWidget {
                     onPressed: () => Navigator.pop(context),
                   ),
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        Image.asset(
-                          'assets/images/auth/Intersect.png',
+                    background: Image.asset(
+                          'assets/images/home_background.jpeg',
                           fit: BoxFit.cover,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Colors.transparent,
-                                Colors.black.withValues(alpha: 0.3),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Center(
-                          child: Image.asset(
-                            "assets/images/ard_logo.png",
-                            height: 120.h,
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ),
 

@@ -94,7 +94,7 @@ class TravellerPersonalInfo extends StatelessWidget {
                             // Info Cards Container
                             Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: appBackgroundColor,
                                 borderRadius: BorderRadius.circular(24.r),
                                 border: Border.all(
                                   color: Colors.black.withValues(alpha: 0.08),

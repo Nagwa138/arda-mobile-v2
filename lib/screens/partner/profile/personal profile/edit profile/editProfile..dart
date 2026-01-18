@@ -29,18 +29,9 @@ class EditProfile extends StatelessWidget {
                   width: 1.sw,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/auth/Intersect.png'),
+                      image: AssetImage('assets/images/home_background.jpeg'),
                       fit: BoxFit.cover,
                     ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/images/ard_logo.png",
-                        height: 300.h,
-                      ),
-                    ],
                   ),
                 ),
               ),

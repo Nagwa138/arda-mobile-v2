@@ -1,3 +1,5 @@
+import 'package:PassPort/components/widgets/background_container.dart';
+import 'package:PassPort/components/widgets/watermark_logo.dart';
 import 'package:PassPort/version2_module/core/const/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,16 +31,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
       body: Stack(
         children: [
           // Background Image
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/background.jpeg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          const BackgroundContainer(),
           // Main content
           SingleChildScrollView(
             padding: EdgeInsets.all(16.0),
@@ -67,12 +60,16 @@ class PrivacyPolicyScreen extends StatelessWidget {
                 SizedBox(height: 32.h),
 
                 // Arabic Version
-                Text(
-                  'سياسة الخصوصية (العربية)',
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF233A6A),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'سياسة الخصوصية (العربية)',
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF233A6A),
+                    ),
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -90,17 +87,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
             ),
           ),
           // Watermark logo
-          Center(
-            child: Opacity(
-              opacity: 0.3,
-              child: Image.asset(
-                'assets/images/logo.png',
-                width: 200.w,
-                height: 200.h,
-                color: Colors.black,
-              ),
-            ),
-          ),
+          const WatermarkLogo(),
         ],
       ),
     );
