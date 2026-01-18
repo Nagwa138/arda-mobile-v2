@@ -1,4 +1,5 @@
 import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_lodaing_indicator.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -18,7 +19,9 @@ class UpcomingTrips extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           if (state is getBookingLoading) {
-            return Center(child: CircularProgressIndicator());
+            return CustomLodaingIndicator(
+              padding: EdgeInsets.all(20.h),
+            );
           }
 
           final bookingsCount =

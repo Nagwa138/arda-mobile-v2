@@ -20,7 +20,9 @@ class Pending extends StatelessWidget {
             listener: (context, state) {},
             builder: (context, state) {
               if (state is getBookingLoading) {
-                return CustomLodaingIndicator();
+                return CustomLodaingIndicator(
+                  padding: EdgeInsets.all(20.h),
+                );
               }
 
               // Check if data is empty

@@ -1,3 +1,4 @@
+import 'package:PassPort/components/widgets/custom_lodaing_indicator.dart';
 import 'package:PassPort/version2_module/core/const/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -276,7 +277,7 @@ class _PartnerRegisterScreenState extends State<PartnerRegisterScreen> {
         ),
         SizedBox(height: 8.h),
         if (state is ServicesLoading)
-          const Center(child: CircularProgressIndicator())
+          const CustomLodaingIndicator()
         else if (state is ServicesLoaded ||
             context.read<PartnerRegisterCubit>().services.isNotEmpty)
           Container(
@@ -353,7 +354,7 @@ class _PartnerRegisterScreenState extends State<PartnerRegisterScreen> {
         ),
         SizedBox(height: 8.h),
         if (state is ServicesLoading)
-          const Center(child: CircularProgressIndicator())
+          const CustomLodaingIndicator()
         else if (context.read<PartnerRegisterCubit>().governments.isNotEmpty)
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),

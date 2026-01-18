@@ -1,4 +1,5 @@
 import 'package:PassPort/components/color/color.dart';
+import 'package:PassPort/components/widgets/custom_lodaing_indicator.dart';
 import 'package:PassPort/services/add%20service/add_service_cubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
@@ -36,7 +37,7 @@ class TripBooking extends StatelessWidget {
                     return AlertDialog(
                       content: Row(
                         children: [
-                          CircularProgressIndicator(),
+                          const CustomLodaingIndicator(),
                           SizedBox(width: 10),
                           Text("Loading..."),
                         ],

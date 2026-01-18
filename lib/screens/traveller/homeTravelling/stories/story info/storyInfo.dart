@@ -1,5 +1,6 @@
 ﻿import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/widgets/custom_image.dart';
+import 'package:PassPort/components/widgets/custom_lodaing_indicator.dart';
 import 'package:PassPort/services/traveller/homeTravellingcubit/home_traveller_state.dart';
 import 'package:PassPort/services/traveller/homeTravellingcubit/home_travellet_cubit.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class StoryInfo extends StatelessWidget {
             listener: (context, state) {},
             builder: (context, state) {
               if (state is getBlocByIdLoading) {
-                return Center(child: CircularProgressIndicator());
+                return const CustomLodaingIndicator();
               }
               return Scaffold(
                   backgroundColor: white,

@@ -1,5 +1,6 @@
 ﻿import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/widgets/custom_image.dart';
+import 'package:PassPort/components/widgets/custom_lodaing_indicator.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -13,256 +14,256 @@ class CompleteActivity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => BookingTravellerCubit()
-        ..getAllBooking(state: "2", serviceName: "activities"),
-      child: BlocConsumer<BookingTravellerCubit, BookingTravellerStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          if (state is getBookingLoading) {
-            return Center(child: CircularProgressIndicator());
-          }
+        create: (BuildContext context) => BookingTravellerCubit()
+          ..getAllBooking(state: "2", serviceName: "activities"),
+        child: BlocConsumer<BookingTravellerCubit, BookingTravellerStates>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              if (state is getBookingLoading) {
+                return CustomLodaingIndicator(
+                  padding: EdgeInsets.all(20.h),
+                );
+              }
 
-          final bookingsCount = BookingTravellerCubit.get(context)
-                  .completeActivity
-                  ?.data
-                  ?.length ??
-              0;
-          if (bookingsCount == 0) {
-            return Center(
-              child: Padding(
-                padding: EdgeInsets.all(40.w),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.check_circle_outline,
-                        size: 80.sp, color: Colors.grey[400]),
-                    SizedBox(height: 20.h),
-                    Text("No Completed Activities",
-                        style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.grey[700])),
-                    SizedBox(height: 8.h),
-                    Text("You haven't completed any activity bookings yet",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 14.sp, color: Colors.grey[500])),
-                  ])));
-          }
-
-          return ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, "detailsBookingActivity",
-                            arguments: {
-                              'pendingId': BookingTravellerCubit.get(context)
-                                  .completeActivity!
-                                  .data![index]
-                                  .id
-                                  .toString(),
-                              'state': BookingTravellerCubit.get(context)
-                                  .completeActivity!
-                                  .data![index]
-                                  .status
-                                  .toString()
-                            });
-                      },
-                      child: Container(
-                        width: 400.w,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadiusDirectional.circular(25.r),
-                            color: Colors.white54),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 20.w, vertical: 10.h),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      CustomImage(
-                                        BookingTravellerCubit.get(context)
-                                            .completeActivity!
-                                            .data![index]
-                                            .image
-                                            ?.toString(),
-                                        width: 99.w,
-                                        height: 107.h,
-                                        fit: BoxFit.fill),
-                                      SizedBox(
-                                        width: 20.w),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            child: Text(
-                                              BookingTravellerCubit.get(context)
-                                                  .completeActivity!
-                                                  .data![index]
-                                                  .activityName
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  color: accentColor,
-                                                  fontWeight: FontWeight.w600)),
-                                            width: 150.w),
-                                          SizedBox(
-                                            height: 5.h),
-                                          Row(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/landingHome/location.png",
-                                                color: Color.fromRGBO(
-                                                    0, 86, 79, 1)),
-                                              SizedBox(
-                                                width: 90.w,
-                                                child: Text(
-                                                  "booking.Luxor".tr() + "   ",
-                                                  style: TextStyle(
-                                                      fontSize: 14.sp,
-                                                      color: Color.fromRGBO(
-                                                          140, 140, 140, 1),
-                                                      fontWeight:
-                                                          FontWeight.w400))),
-                                              SizedBox(
-                                                width: 90.w,
-                                                child: Text(
-                                                  "booking.Egypt".tr(),
-                                                  style: TextStyle(
-                                                      fontSize: 14.sp,
-                                                      color: Color.fromRGBO(
-                                                          140, 140, 140, 1),
-                                                      fontWeight:
-                                                          FontWeight.w400))),
-                                              Text(
-                                                BookingTravellerCubit.get(
-                                                        context)
-                                                    .completeActivity!
-                                                    .data![index]
-                                                    .rate
-                                                    .toString(),
-                                                style: TextStyle(
-                                                    fontSize: 14.sp,
-                                                    color: Color.fromRGBO(
-                                                        140, 140, 140, 1),
-                                                    fontWeight:
-                                                        FontWeight.w400)),
-                                              Icon(
-                                                Icons.star,
-                                                color: Colors.yellow,
-                                                size: 16.sp)
-                                            ]),
-                                          SizedBox(
-                                            height: 15.h),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                BookingTravellerCubit.get(
-                                                            context)
-                                                        .completeActivity!
-                                                        .data![index]
-                                                        .price
-                                                        .toString() +
-                                                    "booking.EGP".tr(),
-                                                style: TextStyle(
-                                                    fontSize: 14.sp,
-                                                    color: Color.fromRGBO(
-                                                        0, 86, 79, 1),
-                                                    fontWeight:
-                                                        FontWeight.w400)),
-                                              SizedBox(
-                                                width: 3.w),
-                                              Text(
-                                                "booking.Nigth".tr(),
-                                                style: TextStyle(
-                                                    fontSize: 14.sp,
-                                                    color: Color.fromRGBO(
-                                                        0, 86, 79, 1),
-                                                    fontWeight:
-                                                        FontWeight.w600)),
-                                            ]),
-                                        ]),
-                                    ]),
-                                  SizedBox(
-                                    height: 5.h),
-                                  Divider(
-                                    color: Color.fromRGBO(224, 224, 224, 1)),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: ElevatedButton(
-                                        style: ButtonStyle(
-                                            shape: WidgetStateProperty.all<
-                                                    RoundedRectangleBorder>(
-                                                RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                    side: BorderSide(
-                                                        color: orange))),
-                                            foregroundColor:
-                                                WidgetStateProperty.all<Color>(
-                                                    Colors.white),
-                                            backgroundColor:
-                                                WidgetStateProperty.all<Color>(
-                                                    white),
-                                            elevation:
-                                                WidgetStateProperty.all<double>(0.0)),
-                                        onPressed: () {
-                                          Navigator.pushNamed(
-                                              context, "reviewBooking",
-                                              arguments: {
-                                                "id": BookingTravellerCubit.get(
-                                                        context)
-                                                    .completeActivity!
-                                                    .data![index]
-                                                    .serviceId
-                                                    .toString(),
-                                                'name':
-                                                    BookingTravellerCubit.get(
-                                                            context)
-                                                        .completeActivity!
-                                                        .data![index]
-                                                        .activityName
-                                                        .toString(),
-                                                'image':
-                                                    BookingTravellerCubit.get(
-                                                            context)
-                                                        .completeActivity!
-                                                        .data![index]
-                                                        .image
-                                                        .toString(),
-                                                'address': "Place"
-                                              });
-                                        },
-                                        child: Text(
-                                          "booking.ReviewActivity".tr(),
-                                          style: TextStyle(
-                                              fontSize: 10.sp,
-                                              color: accentColor,
-                                              fontWeight: FontWeight.w600)))),
-                                  SizedBox(
-                                    height: 10.h)
-                                ])),
-                          ]))),
-                    SizedBox(
-                      height: 10.h),
-                  ]);
-              },
-              separatorBuilder: (context, index) => SizedBox(
-                    height: 5.h),
-              itemCount: BookingTravellerCubit.get(context)
+              final bookingsCount = BookingTravellerCubit.get(context)
                       .completeActivity
-                      ?.data!
-                      .length ??
-                  0);
-        }));
+                      ?.data
+                      ?.length ??
+                  0;
+              if (bookingsCount == 0) {
+                return Center(
+                    child: Padding(
+                        padding: EdgeInsets.all(40.w),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.check_circle_outline,
+                                  size: 80.sp, color: Colors.grey[400]),
+                              SizedBox(height: 20.h),
+                              Text("No Completed Activities",
+                                  style: TextStyle(
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.grey[700])),
+                              SizedBox(height: 8.h),
+                              Text(
+                                  "You haven't completed any activity bookings yet",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: Colors.grey[500])),
+                            ])));
+              }
+
+              return ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Column(children: [
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, "detailsBookingActivity",
+                                arguments: {
+                                  'pendingId':
+                                      BookingTravellerCubit.get(context)
+                                          .completeActivity!
+                                          .data![index]
+                                          .id
+                                          .toString(),
+                                  'state': BookingTravellerCubit.get(context)
+                                      .completeActivity!
+                                      .data![index]
+                                      .status
+                                      .toString()
+                                });
+                          },
+                          child: Container(
+                              width: 400.w,
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadiusDirectional.circular(25.r),
+                                  color: Colors.white54),
+                              child: Column(children: [
+                                Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 20.w, vertical: 10.h),
+                                    child: Column(children: [
+                                      Row(children: [
+                                        CustomImage(
+                                            BookingTravellerCubit.get(context)
+                                                .completeActivity!
+                                                .data![index]
+                                                .image
+                                                ?.toString(),
+                                            width: 99.w,
+                                            height: 107.h,
+                                            fit: BoxFit.fill),
+                                        SizedBox(width: 20.w),
+                                        Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                  child: Text(
+                                                      BookingTravellerCubit.get(
+                                                              context)
+                                                          .completeActivity!
+                                                          .data![index]
+                                                          .activityName
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          fontSize: 14.sp,
+                                                          color: accentColor,
+                                                          fontWeight:
+                                                              FontWeight.w600)),
+                                                  width: 150.w),
+                                              SizedBox(height: 5.h),
+                                              Row(children: [
+                                                Image.asset(
+                                                    "assets/images/landingHome/location.png",
+                                                    color: Color.fromRGBO(
+                                                        0, 86, 79, 1)),
+                                                SizedBox(
+                                                    width: 90.w,
+                                                    child: Text(
+                                                        "booking.Luxor".tr() +
+                                                            "   ",
+                                                        style: TextStyle(
+                                                            fontSize: 14.sp,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    140,
+                                                                    140,
+                                                                    140,
+                                                                    1),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400))),
+                                                SizedBox(
+                                                    width: 90.w,
+                                                    child: Text(
+                                                        "booking.Egypt".tr(),
+                                                        style: TextStyle(
+                                                            fontSize: 14.sp,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    140,
+                                                                    140,
+                                                                    140,
+                                                                    1),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400))),
+                                                Text(
+                                                    BookingTravellerCubit.get(
+                                                            context)
+                                                        .completeActivity!
+                                                        .data![index]
+                                                        .rate
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                        fontSize: 14.sp,
+                                                        color: Color.fromRGBO(
+                                                            140, 140, 140, 1),
+                                                        fontWeight:
+                                                            FontWeight.w400)),
+                                                Icon(Icons.star,
+                                                    color: Colors.yellow,
+                                                    size: 16.sp)
+                                              ]),
+                                              SizedBox(height: 15.h),
+                                              Row(children: [
+                                                Text(
+                                                    BookingTravellerCubit.get(
+                                                                context)
+                                                            .completeActivity!
+                                                            .data![index]
+                                                            .price
+                                                            .toString() +
+                                                        "booking.EGP".tr(),
+                                                    style: TextStyle(
+                                                        fontSize: 14.sp,
+                                                        color: Color.fromRGBO(
+                                                            0, 86, 79, 1),
+                                                        fontWeight:
+                                                            FontWeight.w400)),
+                                                SizedBox(width: 3.w),
+                                                Text("booking.Nigth".tr(),
+                                                    style: TextStyle(
+                                                        fontSize: 14.sp,
+                                                        color: Color.fromRGBO(
+                                                            0, 86, 79, 1),
+                                                        fontWeight:
+                                                            FontWeight.w600)),
+                                              ]),
+                                            ]),
+                                      ]),
+                                      SizedBox(height: 5.h),
+                                      Divider(
+                                          color:
+                                              Color.fromRGBO(224, 224, 224, 1)),
+                                      SizedBox(
+                                          width: double.infinity,
+                                          child: ElevatedButton(
+                                              style: ButtonStyle(
+                                                  shape: WidgetStateProperty.all<
+                                                          RoundedRectangleBorder>(
+                                                      RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                  10.0),
+                                                          side: BorderSide(
+                                                              color: orange))),
+                                                  foregroundColor:
+                                                      WidgetStateProperty.all<Color>(
+                                                          Colors.white),
+                                                  backgroundColor:
+                                                      WidgetStateProperty.all<Color>(
+                                                          white),
+                                                  elevation:
+                                                      WidgetStateProperty.all<double>(0.0)),
+                                              onPressed: () {
+                                                Navigator.pushNamed(
+                                                    context, "reviewBooking",
+                                                    arguments: {
+                                                      "id":
+                                                          BookingTravellerCubit
+                                                                  .get(context)
+                                                              .completeActivity!
+                                                              .data![index]
+                                                              .serviceId
+                                                              .toString(),
+                                                      'name':
+                                                          BookingTravellerCubit
+                                                                  .get(context)
+                                                              .completeActivity!
+                                                              .data![index]
+                                                              .activityName
+                                                              .toString(),
+                                                      'image':
+                                                          BookingTravellerCubit
+                                                                  .get(context)
+                                                              .completeActivity!
+                                                              .data![index]
+                                                              .image
+                                                              .toString(),
+                                                      'address': "Place"
+                                                    });
+                                              },
+                                              child: Text("booking.ReviewActivity".tr(), style: TextStyle(fontSize: 10.sp, color: accentColor, fontWeight: FontWeight.w600)))),
+                                      SizedBox(height: 10.h)
+                                    ])),
+                              ]))),
+                      SizedBox(height: 10.h),
+                    ]);
+                  },
+                  separatorBuilder: (context, index) => SizedBox(height: 5.h),
+                  itemCount: BookingTravellerCubit.get(context)
+                          .completeActivity
+                          ?.data!
+                          .length ??
+                      0);
+            }));
   }
 }

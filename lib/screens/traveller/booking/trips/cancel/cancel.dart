@@ -1,5 +1,6 @@
 import 'package:PassPort/components/color/color.dart';
 import 'package:PassPort/components/widgets/customButton/customButton.dart';
+import 'package:PassPort/components/widgets/custom_lodaing_indicator.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerCubit.dart';
 import 'package:PassPort/services/traveller/bookingTravellerCubit/bookingTravellerStates.dart';
 import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
@@ -39,7 +40,9 @@ class CancelTrips extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is getBookingLoading) {
-            return Center(child: CircularProgressIndicator());
+            return CustomLodaingIndicator(
+              padding: EdgeInsets.all(20.h),
+            );
           }
 
           final bookingsCount =

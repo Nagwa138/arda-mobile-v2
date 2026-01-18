@@ -1,3 +1,4 @@
+import 'package:PassPort/components/widgets/custom_lodaing_indicator.dart';
 import 'package:PassPort/version2_module/core/const/app_colors.dart';
 import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
 import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
@@ -158,9 +159,7 @@ class ChangePasswordScreen extends StatelessWidget {
 
                       // Change Password Button with loading state
                       state is ChangePasswordLoading
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
+                          ? const CustomLodaingIndicator()
                           : CustomButton(
                               text: 'Reset Password',
                               onPressed: () {

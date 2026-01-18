@@ -1,3 +1,4 @@
+import 'package:PassPort/components/widgets/custom_lodaing_indicator.dart';
 import 'package:PassPort/version2_module/core/const/app_colors.dart';
 import 'package:PassPort/version2_module/core/enums/snack_bar_type.dart';
 import 'package:PassPort/version2_module/core/extensions/show_snack_bar_extension.dart';
@@ -113,9 +114,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 
                             // Send Reset Button with loading state
                             state is ForgotPasswordLoading
-                                ? const Center(
-                                    child: CircularProgressIndicator(),
-                                  )
+                                ? const CustomLodaingIndicator()
                                 : CustomButton(
                                     text: 'Send Code',
                                     onPressed: () {
